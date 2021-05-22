@@ -1,6 +1,7 @@
 .NavBarHeader{
     display: flex;
     justify-content: space-between;
+
     align-items: center;
     padding: 30px 10%;
     background-color: var(--secoundryColor);
@@ -38,6 +39,7 @@
     cursor: pointer;
     transition: all 0.3s ease 0s;
 
+
 }
 
 .NavBarButton:hover {
@@ -45,5 +47,6 @@
 }
 
 .NavBarButtonDiv {
-     display: inline-block;
+    display: flex;
+
 }

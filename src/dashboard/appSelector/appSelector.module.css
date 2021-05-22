@@ -1,0 +1,10 @@
+.appSelector {
+    width: 45px;
+    height: 45px;
+}
+.appSelectorButton {
+    width: 45px;
+    height: 45px;
+    background: none;
+    border: none;
+}

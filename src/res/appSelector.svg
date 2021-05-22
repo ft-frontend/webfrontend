@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg18">
+  <defs
+     id="defs12" />
+  <metadata
+     id="metadata15">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1">
+    <circle
+       style="fill:#E5E5E5;fill-rule:evenodd;stroke-width:0.264583"
+       id="path20"
+       cx="38.283241"
+       cy="72.365067"
+       r="20" />
+    <circle
+       style="fill:#E5E5E5;fill-rule:evenodd;stroke-width:0.264583"
+       id="path20-3"
+       cx="94.993744"
+       cy="68.969734"
+       r="20" />
+    <circle
+       style="fill:#E5E5E5;fill-rule:evenodd;stroke-width:0.264583"
+       id="path20-6"
+       cx="152.93353"
+       cy="69.683105"
+       r="20" />
+    <circle
+       style="fill:#E5E5E5;fill-rule:evenodd;stroke-width:0.264583"
+       id="path20-7"
+       cx="38.089127"
+       cy="123.98631"
+       r="20" />
+    <circle
+       style="fill:#E5E5E5;fill-rule:evenodd;stroke-width:0.264583"
+       id="path20-5"
+       cx="96.491798"
+       cy="121.82298"
+       r="20" />
+    <circle
+       style="fill:#E5E5E5;fill-rule:evenodd;stroke-width:0.264583"
+       id="path20-35"
+       cx="152.76874"
+       cy="125.54515"
+       r="20" />
+    <circle
+       style="fill:#E5E5E5;fill-rule:evenodd;stroke-width:0.264583"
+       id="path20-62"
+       cx="37.724537"
+       cy="181.10896"
+       r="20" />
+    <circle
+       style="fill:#E5E5E5;fill-rule:evenodd;stroke-width:0.264583"
+       id="path20-9"
+       cx="97.554405"
+       cy="179.66858"
+       r="20" />
+    <circle
+       style="fill:#E5E5E5;fill-rule:evenodd;stroke-width:0.264583"
+       id="path20-1"
+       cx="153.58391"
+       cy="177.81181"
+       r="20" />
+  </g>
+</svg>

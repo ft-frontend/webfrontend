@@ -17,6 +17,11 @@ class MainPage extends React.Component {
             {
                 name: "Einloggen",
                 link: "#"
+            },
+            {
+                name: "Registrieren",
+                link: "#"
+
             }
         ]}/>;
 

@@ -1,11 +1,11 @@
 import React from "react";
 import NavBar from "../NavBar/NavBar";
-
+import dashboardStyle from "./dashboard.module.css"
+import AppSelector from "./appSelector/appSelector"
 class dashboard extends React.Component {
 
     render() {
     return (
-
         <NavBar links={[
             {
                 name: "Home",
@@ -25,6 +25,8 @@ class dashboard extends React.Component {
                 link: "#"
             }
         ]}>
+
+            <AppSelector/>
 
         </NavBar>
 

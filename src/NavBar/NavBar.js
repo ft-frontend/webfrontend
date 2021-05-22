@@ -32,15 +32,15 @@ class NavBar extends React.Component {
                         {listItems}
                     </ul>
 
-
-
                 </nav>
 
+
                 <div className={styles.NavBarButtonDiv}>
+                    {this.props.children}
                     {buttons}
                 </div>
 
-                {this.props.children}
+
 
             </header>
 
