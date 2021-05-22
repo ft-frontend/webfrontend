@@ -1,10 +1,12 @@
 import React from "react";
 import style from "./appListItem.module.css"
+
 class AppListItem extends React.Component {
     constructor(props) {
         super(props);
 
-    }
+    this.redirect = this.redirect.bind(this);
+        }
 
     redirect() {
     window.location.href = this.props.redirect;

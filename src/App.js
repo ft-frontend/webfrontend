@@ -10,6 +10,7 @@ import signUp from "./auth/signUp";
 import signOut from "./auth/signOut";
 import ledwall from "./module/ledwall/ledwall";
 import drone from "./module/drone/drone";
+import other from "./module/other/other";
 
 function App() {
 
@@ -31,6 +32,8 @@ function App() {
           <Route path="/module/ledwall" component={ledwall}/>
 
           <Route path="/module/drone" component={drone}/>
+
+          <Route path="/module/other" component={other}/>
 
           <Route exact path="/module" component={drone}>
 
