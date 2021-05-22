@@ -1,13 +1,16 @@
 import React from "react";
-import signInStyle from "./signIn.module.css"
+import signInStyle from "./sign.module.css"
 import api from "../api/api";
+import {useLocation} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 
 
 class SignIn extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {value: '',redirect: false,url: ''};
 
         this.handleChangeUser = this.handleChangeUser.bind(this);
         this.handleChangePass = this.handleChangePass.bind(this);
@@ -25,6 +28,10 @@ class SignIn extends React.Component {
 
         api.signIn(this.state.name,this.state.password).then(result => {
            if(result.success) {
+               const queryString = window.location.search;
+               const urlParams = new URLSearchParams(queryString);
+               this.setState({redirect: true,url:  urlParams.get('redirect')})
+
            }else{
                this.setState({error: result.error});
            }
@@ -33,26 +40,33 @@ class SignIn extends React.Component {
     }
 
     render() {
-       return (
+        const { redirect } = this.state;
 
+        if (redirect) {
+            return <Redirect to={this.state.url}/>;
+        }else {
 
-            <div>
-                <div className={signInStyle.loginBackground}/>
+            return (
 
-                <form className={signInStyle.signinform} onSubmit={this.handleSubmit}>
-            <h1>Login</h1>
-            <input type="text" placeholder="E-mail/Name" onChange={this.handleChangeUser} />
+                <div>
 
-            <input type="password" placeholder="Passwort" onChange={this.handleChangePass}/>
+                    <div className={signInStyle.loginBackground}/>
 
-              <button  type='submit' >Login</button>
+                    <form className={signInStyle.signinform} onSubmit={this.handleSubmit}>
+                        <h1>Login</h1>
+                        <input type="text" placeholder="E-mail/Name" onChange={this.handleChangeUser}/>
 
-            <p className={signInStyle.errorlable}>{this.state.error}</p>
+                        <input type="password" placeholder="Passwort" onChange={this.handleChangePass}/>
 
-        </form>
-            </div>
+                        <button type='submit'>Login</button>
 
-    )
+                        <p className={signInStyle.errorlable}>{this.state.error}</p>
+
+                    </form>
+                </div>
+
+            )
+        }
     }
 }
 export default SignIn;
