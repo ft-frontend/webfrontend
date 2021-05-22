@@ -10,6 +10,8 @@ class SignIn extends React.Component {
 
     constructor(props) {
         super(props);
+        api.checkSession().then(r => { if(r) window.location.replace("/dashboard");})
+
         this.state = {value: '',redirect: false,url: ''};
 
         this.handleChangeUser = this.handleChangeUser.bind(this);

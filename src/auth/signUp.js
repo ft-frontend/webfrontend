@@ -8,6 +8,7 @@ class SignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {value: '',redirect: false,url: ''};
+        api.checkSession().then(r => { if(r) window.location.replace("/dashboard");})
 
         this.handleChangeUser = this.handleChangeUser.bind(this);
         this.handleChangePass = this.handleChangePass.bind(this);

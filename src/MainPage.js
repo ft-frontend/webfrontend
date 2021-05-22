@@ -1,8 +1,13 @@
 import React from "react";
 import NavBar from "./NavBar/NavBar";
+import api from "./api/api";
 
 
 class MainPage extends React.Component {
+    constructor(props) {
+        super(props);
+        api.checkSession().then(r => { if(r) window.location.replace("/dashboard");})
+    }
     render() {
         return <NavBar links={[
             {
