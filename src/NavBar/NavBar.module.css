@@ -1,0 +1,49 @@
+.NavBarHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: var(--secoundryColor);
+}
+
+.NavBarUL {
+    display: inline-block;
+}
+
+.NavBarUL li, li>a ,.NavBarButton {
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+}
+
+.NavBarUL li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.NavBarUL li a{
+    transition: all 0.3s ease 0s;
+}
+.NavBarUL li a:hover{
+    color: #0088a9;
+}
+
+.NavBarButton {
+    padding: 9px 25px;
+    background-color: rgba(0,136, 169,1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+}
+
+.NavBarButton:hover {
+    background-color:  rgba(50,136, 250,1);
+}
+
+.NavBarButtonDiv {
+     display: inline-block;
+}
