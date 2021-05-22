@@ -22,7 +22,7 @@ class dashboard extends React.Component {
         ]} buttons={[
             {
                 name: "Ausloggen",
-                link: "#"
+                link: "/auth/signout"
             }
         ]}>
 

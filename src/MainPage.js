@@ -16,11 +16,11 @@ class MainPage extends React.Component {
         ]} buttons={[
             {
                 name: "Einloggen",
-                link: "/auth/signin"
+                link: "/auth/signin?redirect=/dashboard"
             },
             {
                 name: "Registrieren",
-                link: "/auth/signup"
+                link: "/auth/signup?redirect=/dashboard"
 
             }
         ]}/>;
