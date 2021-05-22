@@ -39,6 +39,9 @@ class NavBar extends React.Component {
                 <div className={styles.NavBarButtonDiv}>
                     {buttons}
                 </div>
+
+                {this.props.children}
+
             </header>
 
 

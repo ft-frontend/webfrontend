@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import './i18n/i18nexzConf'
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
