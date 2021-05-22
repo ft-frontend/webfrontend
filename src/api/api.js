@@ -70,6 +70,34 @@ const api = {
 
         });
 
+    },
+    signUp: function (username,email,password) {
+
+        return new Promise((resolve, reject) => {
+            post.body = JSON.stringify({
+                email: email,
+                password: password,
+                name: username
+            })
+            fetch(backend+`/auth/signup`,post).then(res=>res.json()).then(result => {
+                if(result.success){
+                    cookies.set('session', result.session, { path: '/' });
+
+                    resolve({
+                        success:true,
+                        session: result.session
+                    });
+                }else{
+                    resolve({
+                        success:false,
+                        error: result.error
+                    });
+                }
+            })
+
+
+        });
+
     }
 
 
