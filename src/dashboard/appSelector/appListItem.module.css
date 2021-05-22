@@ -1,0 +1,44 @@
+.AppListItem {
+    padding: 10px;
+    align-content: center;
+    margin-top: 8px;
+    margin-left: 7px;
+    margin-right: 7px;
+    border-radius: 10px;
+    float: left;
+    horiz-align: center;
+    transition: 0.25s;
+    cursor: pointer;
+
+}
+
+.AppListItem:last-child {
+    margin-bottom: 9px;
+    display: inline-block;
+
+}
+
+.AppListItemNameText {
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    align-content: center;
+
+}
+
+.AppListItem:hover {
+    background-color: rgba(0, 136, 169, 0.57);
+}
+
+.AppListItemLeftIcon {
+    width: 40px;
+    height: 40px;
+    background: none;
+    white-space: nowrap;
+    horiz-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+
+}

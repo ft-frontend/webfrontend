@@ -1,32 +1,21 @@
-.appSelector {
-    width: 45px;
-    height: 45px;
-}
-.appSelectorButton {
-    width: 45px;
-    height: 45px;
-    background: none;
-    border: none;
-}
-.dropdown {
+.appSelectionBox {
     position: absolute;
-    top: 58px;
-    width:300px;
-    transform: translateX(-45%);
-    background-color: red;
-    border: var(--border);
-    border-radius: var(--border-radius);
-    padding: 1rem;
-    overflow:hidden;
+    background-color: #edf0f1;
+    min-width: 256px;
+    max-width: 256px;
+    max-height: 40vh;
+    border-radius: 7px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-right: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
-.menu-item{
-    height: 50px;
-    display:flex;
-    align-items: center;
-    border-radius: var(--border-radius);
-    transition: background var(--speed);
-    padding: 0.5rem;
+
+.appSelectionBox::-webkit-scrollbar {
+    display: none;
 }
-.menu-item:hover {
-    background-color: #525357;
+
+.appSelectionToggleButton {
+    cursor: pointer;
 }
+

@@ -1,46 +1,52 @@
 import React from "react";
-import appSelectorStyle from "./appSelector.module.css"
 import AppSelectorIcon from "../../res/appSelector.svg"
-import { useState } from "react";
+import DroneSelectorIcon from "../../res/droneicon.svg"
+import LEDWallSelectorIcon from "../../res/ledwallicon.svg"
+import HomeSelectorIcon from "../../res/home.svg"
 
+import appSelectorStyle from "./appSelector.module.css"
+import ApplistItem from "./AppListItem"
 
-export default function bla(){
-    return(
-<NavItem>
-    <p>Hello World!</p>
-</NavItem>
-    )
-}
+class appSelector extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false
+        }
+        this.toggleSelector = this.toggleSelector.bind(this);
+        this.items = [
+            <ApplistItem redirect="/dashboard" iconsrc={HomeSelectorIcon}>HOME</ApplistItem>,
+            <ApplistItem redirect="/dashboard" iconsrc={LEDWallSelectorIcon}>LEDWALL</ApplistItem>,
+            <ApplistItem redirect="/dashboard" iconsrc={DroneSelectorIcon}>DRONE</ApplistItem>,
+            <ApplistItem redirect="/dashboard" iconsrc={AppSelectorIcon}>SONSTIGES</ApplistItem>,
+            <ApplistItem redirect="/dashboard" iconsrc={AppSelectorIcon}>EINSTELLUNGEN</ApplistItem>
+    ]
 
-
-function NavItem(props) {
-    const[open, setOpen] = useState();
-
-    return (
-        <li className="nav-item">
-            <button type="button" className={appSelectorStyle.appSelectorButton} onClick={() => setOpen(!open)}>
-                <img className={appSelectorStyle.appSelector} src={AppSelectorIcon}  alt="Selector">
-                </img>
-            </button>
-            {open && props.children}
-        </li>
-
-    )
-};
-
-function DropDownMenu(){
-    function DropdownItem(props) {
-        return (
-            <a href = "#" className="menu-item">
-                <span className="icon-button">{props.leftIcon}</span>
-                {props.children}
-                <span className={"icon-right"}>{props.rightIcon}</span>
-            </a>
-        )
     }
-    return(
-        <div className="dropdown">
-            <DropdownItem>My Profile</DropdownItem>
+
+    toggleSelector() {
+        this.setState({open:!this.state.open})
+    }
+
+    render() {
+
+
+        return (
+        <div>
+        <a className={appSelectorStyle.appSelectionToggleButton} onClick={this.toggleSelector}>
+            <img src={AppSelectorIcon} width={45} height={45}/>
+        </a>
+            {
+                this.state.open &&
+
+                    <div className={appSelectorStyle.appSelectionBox}>{this.items}</div>
+
+
+            }
         </div>
-    )
+        );
+    }
+
 }
+
+export default appSelector;
