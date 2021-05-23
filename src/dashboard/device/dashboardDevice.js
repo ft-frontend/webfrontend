@@ -1,6 +1,7 @@
 import React from "react";
 import Selector from "../Selector";
 import api from "../../api/api";
+import AddDevice from "./addDevice/AddDevice";
 
 class dashboardDevice extends React.Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class dashboardDevice extends React.Component {
     }
 
     render() {
-        return (<div>{ this.state.renderList &&<Selector items={this.state.deviceTypeList}/>}</div>)
+        return (<div><AddDevice/>{ this.state.renderList &&<Selector items={this.state.deviceTypeList}/>}</div>)
     }
 
 }

@@ -126,6 +126,31 @@ const api = {
             }
 
         })
+    },
+
+    registerDevice: function (regCode) {
+        return new Promise((resolve,reject) => {
+
+            if(cookies.get('session')===undefined) {
+                resolve(false);
+            }else{
+                fetch(backend+`/device/registerByCode?session=${cookies.get('session')}&regCode=${regCode}`).then(res=>res.json()).then(result => {
+                    if(result.error!==undefined) {
+                        resolve({
+                            success:false,
+                            error: result.error
+                        })
+                    }else{
+                        resolve({
+                            success:true,
+                            deviceType: result.deviceType,
+                            uuid: result.uuid
+                        })
+                    }
+                })
+            }
+
+        })
     }
 
 
