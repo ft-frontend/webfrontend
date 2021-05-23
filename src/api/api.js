@@ -98,7 +98,38 @@ const api = {
 
         });
 
+    },
+
+    listAvailableDevices: function() {
+        return new Promise((resolve,reject) => {
+
+            if(cookies.get('session')===undefined) {
+                resolve(false);
+            }else{
+                fetch(backend+`/device/listAvailable?session=${cookies.get('session')}`).then(res=>res.json()).then(result => {
+                    resolve(result.data);
+                })
+            }
+
+        })
+    },
+
+    listSpecificUserDevice: function(deviceUUID) {
+        return new Promise((resolve,reject) => {
+
+            if(cookies.get('session')===undefined) {
+                resolve(false);
+            }else{
+                fetch(backend+`/device/listSpecificUserDevice?session=${cookies.get('session')}&device=${deviceUUID}`).then(res=>res.json()).then(result => {
+                    resolve(result.data);
+                })
+            }
+
+        })
     }
+
+
+
 
 
 }

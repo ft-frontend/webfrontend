@@ -6,7 +6,7 @@ class NavBar extends React.Component {
 
         const listItems = [];
         this.props.links.forEach(link => {
-            listItems.push(<li><a href={link.link}>{link.name}</a></li>);
+            listItems.push(<li><a className={styles.NavBarLinks} href={link.link}>{link.name}</a></li>);
         });
 
         const buttons = [];
