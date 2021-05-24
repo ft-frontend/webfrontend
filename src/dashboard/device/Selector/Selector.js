@@ -34,6 +34,8 @@ class Selector extends React.Component {
                 {/* <li className={SelectorStyle.DeviceSelectorLI}><div className={SelectorStyle.DeviceSelectorItem} onClick={()=>{alert("demo")}}><img className={SelectorStyle.DeviceSelectorItemImage} src={HomeSelectorIcon} alt="SelectDevice"/><p className={SelectorStyle.DeviceSelectorItemName}>testitem</p></div></li> */}
 
 
+
+
             </ul>
             </div>
 

@@ -18,5 +18,6 @@
 .appSelectionToggleButton {
     cursor: pointer;
     margin-right: 20px;
+    user-select: none;
 }
 

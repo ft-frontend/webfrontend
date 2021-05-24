@@ -13,6 +13,7 @@
     justify-content: center;
     flex-wrap: wrap;
     vertical-align:top;
+
 }
 
 
@@ -31,12 +32,19 @@
 .DeviceSelectorParentDiv::-webkit-scrollbar {
     display: none;
 }
+.DeviceSelectorUL {
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
 
 .DeviceSelectorItemName {
 
     font-size: 20px;
     align-self: flex-end;
     margin-bottom: 10px;
+    user-select: none;
 
 }
 
@@ -53,4 +61,5 @@
 
     margin-top: 20px;
     position: relative;
+    user-select: none;
 }

@@ -3,6 +3,7 @@ import {withRouter} from "react-router";
 import api from "../../api/api";
 import Selector from "./Selector/Selector";
 import DroneSelectorIcon from "../../res/droneicon.svg";
+import deviceDashboardFontStyle from "./deviceDashboardFont.module.css"
 import LEDWallSelectorIcon from "../../res/ledwallicon.svg";
 
 class DeviceSelect extends React.Component {
@@ -13,18 +14,42 @@ class DeviceSelect extends React.Component {
 
         this.state = {
             deviceList: [],
-            renderList: false
+            renderList: false,
+            deviceType: "Bitte Warten..."
         };
     }
 
     componentDidMount() {
         api.listSpecificUserDevice(this.deviceType).then(r => {
+        api.listAvailableDevices().then(devices => {
+            const deviceTypeName = devices.find(o => o.UUID === this.deviceType);
+            if(deviceTypeName!==undefined) {
+                this.setState({
+                    deviceType: deviceTypeName.name
+                })
+            }else{
+                this.setState({
+                    deviceType: "Fehler beim Übertragen der Daten!"
+                })
+                return;
+            }
+            let img;
+            switch (deviceTypeName.name) {
+                case "Drone":
+                    img = DroneSelectorIcon;
+                    break;
+                case "LEDWall":
+                    img = LEDWallSelectorIcon;
+                    break;
+
+            }
+
 
             r.forEach(device => {
                 this.state.deviceList.push( {
                     link: "/dashboard/device/"+ this.deviceType+"/"+device.uuid,
                     text: device.name,
-                    img: DroneSelectorIcon
+                    img: img
 
                 });
             })
@@ -32,10 +57,11 @@ class DeviceSelect extends React.Component {
                 renderList: true
             })
         })
+        })
     }
 
     render() {
-        return (<div><h1>{this.deviceType}</h1>{ this.state.renderList &&<Selector items={this.state.deviceList}/>}</div>) ;
+        return (<div><h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.deviceType}</h1>{ this.state.renderList &&<Selector items={this.state.deviceList}/>}</div>) ;
     }
 
 

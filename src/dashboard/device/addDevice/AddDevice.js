@@ -150,7 +150,7 @@ class AddDevice extends React.Component {
 
     render() {
         return <div>
-            <button className={AddDeviceStyle.AddDeviceButton} onClick={this.openMenu}>Gerät hinzufügen + </button>
+            <a className={AddDeviceStyle.AddDeviceButton} onClick={this.openMenu}><p className={AddDeviceStyle.AddDeviceButtonText}>+</p></a>
             {
                 this.state.menuOpened &&
 

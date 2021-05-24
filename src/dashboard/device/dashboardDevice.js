@@ -4,6 +4,7 @@ import api from "../../api/api";
 import AddDevice from "./addDevice/AddDevice";
 import DroneSelectorIcon from "../../res/droneicon.svg";
 import LEDWallSelectorIcon from "../../res/ledwallicon.svg";
+import deviceDashboardFontStyle from "./deviceDashboardFont.module.css"
 
 class dashboardDevice extends React.Component {
     constructor(props) {
@@ -28,6 +29,8 @@ class dashboardDevice extends React.Component {
 
                 }
 
+
+
                 this.state.deviceTypeList.push( {
                     link: "/dashboard/device/"+device.UUID,
                     text: device.name,
@@ -41,7 +44,7 @@ class dashboardDevice extends React.Component {
     }
 
     render() {
-        return (<div><AddDevice/>{ this.state.renderList &&<Selector items={this.state.deviceTypeList}/>}</div>)
+        return (<div><h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>Bitte Gerät wählen:</h1><AddDevice/>{ this.state.renderList &&<Selector items={this.state.deviceTypeList}/>}</div>)
     }
 
 }

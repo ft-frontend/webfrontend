@@ -19,10 +19,13 @@
 }
 
 .AppListItemNameText {
+    user-select: none;
+
     text-decoration: none;
     text-align: center;
     display: inline-block;
     align-content: center;
+
 
 }
 
@@ -40,6 +43,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 6px;
+    user-select: none;
+
 
 
 }

@@ -13,6 +13,8 @@
 
 .NavBarButton {
     margin-right: 30px;
+    user-select: none;
+
 }
 
 
@@ -22,6 +24,8 @@
     font-size: 16px;
     color: #edf0f1;
     text-decoration: none;
+    user-select: none;
+
 }
 
 .NavBarUL li {
