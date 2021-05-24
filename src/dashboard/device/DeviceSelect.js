@@ -1,8 +1,9 @@
 import React from "react";
 import {withRouter} from "react-router";
 import api from "../../api/api";
-import Selector from "../Selector";
-
+import Selector from "./Selector/Selector";
+import DroneSelectorIcon from "../../res/droneicon.svg";
+import LEDWallSelectorIcon from "../../res/ledwallicon.svg";
 
 class DeviceSelect extends React.Component {
 
@@ -18,10 +19,13 @@ class DeviceSelect extends React.Component {
 
     componentDidMount() {
         api.listSpecificUserDevice(this.deviceType).then(r => {
+
             r.forEach(device => {
                 this.state.deviceList.push( {
                     link: "/dashboard/device/"+ this.deviceType+"/"+device.uuid,
-                    text: device.name
+                    text: device.name,
+                    img: DroneSelectorIcon
+
                 });
             })
             this.setState({

@@ -120,6 +120,6 @@
     pointer-events: auto;
 
     transition: all 1s ease;
-    background-color: rgba(67, 129, 180, 0.89);
+    background-color: rgba(67, 129, 180, 0.72);
     backdrop-filter: blur(5px);
 }

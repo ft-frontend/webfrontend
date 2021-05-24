@@ -35,13 +35,13 @@ class AddDevice extends React.Component {
     handleColorClick(event) {
        const color = event.target.getAttribute("color")
 
-        if (color.toString.valueOf() === "red") {
+        if (color== "red") {
             $(event.target).css("background-color", "rgb(0, 255, 0)")
             $(event.target).attr("color", "green");
-        } else if (color.toString.valueOf() === "green") {
+        } else if (color== "green") {
             $(event.target).css("background-color", "rgb(0, 0, 255)")
             $(event.target).attr("color", "blue");
-        } else if (color.toString.valueOf() === "blue") {
+        } else if (color == "blue") {
             $(event.target).css("background-color", "rgb(255, 255, 255)")
             $(event.target).attr("color", "white");
         } else {
@@ -55,20 +55,20 @@ class AddDevice extends React.Component {
         $("."+AddDeviceStyle.AddDeviceColorClicker).parent().children().each(function () {
 
 
-            if ($(this).attr("color").toString.valueOf() === "white") {
+            if ($(this).attr("color") == "white") {
 
                 tempRegNum = tempRegNum | (0x00 << counter)
             }
-            if ($(this).attr("color").toString.valueOf() === "red") {
+            if ($(this).attr("color") == "red") {
                 tempRegNum = tempRegNum | (0x01 << counter)
 
             }
-            if ($(this).attr("color").toString.valueOf() === "green") {
+            if ($(this).attr("color") == "green") {
                 tempRegNum = tempRegNum | (0x02 << counter)
 
             }
-            if ($(this).attr("color").toString.valueOf() === "blue") {
-                tempRegNum = tempRegNum | (0x02 << counter)
+            if ($(this).attr("color") == "blue") {
+                tempRegNum = tempRegNum | (0x03 << counter)
 
             }
             counter += 2;
@@ -77,8 +77,7 @@ class AddDevice extends React.Component {
         this.setState({
             currentRegistrationNumber:  tempRegNum
         })
-        console.log(this.state.currentRegistrationNumber)
-        $(AddDeviceStyle.AddDeviceDialogCodeUserInput).attr("value",this.state.currentRegistrationNumber)
+        console.log(tempRegNum)
 
     }
 
@@ -157,7 +156,7 @@ class AddDevice extends React.Component {
 
                 <div>
                 <div className={AddDeviceStyle.AddDeviceDialog} >
-                    <input onInput={this.updateColorClicker} type="number" placeholder="Code" className={AddDeviceStyle.AddDeviceDialogCodeUserInput} max="16383" />
+                    <input onInput={this.updateColorClicker} type="number" placeholder="Code" className={AddDeviceStyle.AddDeviceDialogCodeUserInput} value={this.state.currentRegistrationNumber} max="16383" />
                     <button onClick={this.registerDevice} className={AddDeviceStyle.AddDeviceDialogRegisterNewDevice}>Verbinden</button>
                     <div className={AddDeviceStyle.AddDeviceDialogColorCodeSelectionBox}>
                         <div color="red" onClick={this.handleColorClick} className={AddDeviceStyle.AddDeviceColorClicker}/>
