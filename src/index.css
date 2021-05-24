@@ -12,12 +12,15 @@ body {
   --homeprimaryColor: rgb(254, 62, 63);
 }
 
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 
   outline: 0 none;
+  /* Disable global Image Drag'n'Drop*/
+    -webkit-user-drag:none;
 }
 
 code {
