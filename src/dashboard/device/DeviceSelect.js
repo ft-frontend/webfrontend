@@ -5,6 +5,7 @@ import Selector from "./Selector/Selector";
 import DroneSelectorIcon from "../../res/droneicon.svg";
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css"
 import LEDWallSelectorIcon from "../../res/ledwallicon.svg";
+import DeviceImageDrawer from "./DeviceImageDrawer";
 
 class DeviceSelect extends React.Component {
 
@@ -33,23 +34,13 @@ class DeviceSelect extends React.Component {
                 })
                 return;
             }
-            let img;
-            switch (deviceTypeName.name) {
-                case "Drone":
-                    img = DroneSelectorIcon;
-                    break;
-                case "LEDWall":
-                    img = LEDWallSelectorIcon;
-                    break;
-
-            }
 
 
             r.forEach(device => {
                 this.state.deviceList.push( {
                     link: "/dashboard/device/"+ this.deviceType+"/"+device.uuid,
                     text: device.name,
-                    img: img
+                    img: DeviceImageDrawer(deviceTypeName.name)
 
                 });
             })

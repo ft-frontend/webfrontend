@@ -2,9 +2,9 @@ import React from "react";
 import Selector from "./Selector/Selector";
 import api from "../../api/api";
 import AddDevice from "./addDevice/AddDevice";
-import DroneSelectorIcon from "../../res/droneicon.svg";
-import LEDWallSelectorIcon from "../../res/ledwallicon.svg";
+
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css"
+import DeviceImageDrawer from "./DeviceImageDrawer";
 
 class dashboardDevice extends React.Component {
     constructor(props) {
@@ -18,23 +18,12 @@ class dashboardDevice extends React.Component {
     componentDidMount() {
         api.listAvailableDevices().then(r => {
             r.forEach(device => {
-                let img;
-                switch (device.name) {
-                    case "Drone":
-                        img = DroneSelectorIcon;
-                        break;
-                    case "LEDWall":
-                        img = LEDWallSelectorIcon;
-                        break;
-
-                }
-
 
 
                 this.state.deviceTypeList.push( {
                     link: "/dashboard/device/"+device.UUID,
                     text: device.name,
-                    img:img
+                    img:DeviceImageDrawer(device.name)
                 });
             })
             this.setState({

@@ -4,12 +4,14 @@
     min-width: 256px;
     max-width: 256px;
     max-height: 40vh;
+    right: 10vw;
     border-radius: 7px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
 
 .appSelectionBox::-webkit-scrollbar {
     display: none;

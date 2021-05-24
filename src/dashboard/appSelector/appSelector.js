@@ -9,6 +9,8 @@ import OtherSelectorIcon from "../../res/other.svg";
 import appSelectorStyle from "./appSelector.module.css";
 import ApplistItem from "./AppListItem";
 
+import $ from "jquery";
+
 class appSelector extends React.Component {
     constructor(props) {
         super(props);
@@ -24,8 +26,23 @@ class appSelector extends React.Component {
             <ApplistItem redirect="#" iconsrc={SettingsSelectorIcon}>EINSTELLUNGEN</ApplistItem>
         ];
 
+
+
+
     }
 
+    componentDidMount() {
+        const obj = this;
+
+        $(document).on('click', function (e) {
+            if ($(e.target).closest("."+appSelectorStyle.appSelectionBox).length === 0&&$(e.target).closest("."+appSelectorStyle.appSelectionToggleButton).length === 0) {
+                obj.setState({
+                    open: false
+                })
+
+            }
+        });
+    }
 
 
     toggleSelector() {

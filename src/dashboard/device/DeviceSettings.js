@@ -1,18 +1,47 @@
 import React from "react";
-import {
-    useParams
-} from "react-router-dom";
 
-function DeviceSettings(props)  {
+import deviceDashboardFontStyle from "./deviceDashboardFont.module.css";
+import api from "../../api/api";
 
 
-
-    let {device} = useParams();
-
+class DeviceSettings extends React.Component {
 
 
+    constructor(props) {
+        super(props);
+        this.state ={
+            deviceUUID: this.props.match.params.device,
+            deviceTypeUUID: this.props.match.params.deviceType,
+            deviceName: "Bitte Warten..."
+        };
+    }
 
-    return <h1>{device}</h1>
+    componentDidMount() {
+        api.listSpecificUserDevice(this.state.deviceTypeUUID).then(result => {
+         const device =  result.find(o=> o.uuid===this.state.deviceUUID);
+         if(device===undefined) {
+             this.setState({
+                 deviceName: "Fehler beim Übertragen der Daten!"
+             })
+             return;
+         }else{
+             this.setState({
+                 deviceName: device.name
+             })
+
+             
+
+         }
+
+        })
+
+    }
+
+
+    render() {
+        return (<div><h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.deviceName}</h1></div>);
+
+    }
 
 
 }
