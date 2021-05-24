@@ -17,21 +17,19 @@ class DeviceSettings extends React.Component {
     }
 
     componentDidMount() {
-        api.listSpecificUserDevice(this.state.deviceTypeUUID).then(result => {
-         const device =  result.find(o=> o.uuid===this.state.deviceUUID);
-         if(device===undefined) {
-             this.setState({
-                 deviceName: "Fehler beim Übertragen der Daten!"
-             })
-             return;
-         }else{
-             this.setState({
-                 deviceName: device.name
-             })
+        api.getUserSpecificDeviceInfo(this.state.deviceUUID).then(result => {
+            console.log(result);
+            if(result.error) {
+                this.setState({
+                    deviceName: result.errorMessage
+                })
+                return;
+            }else{
+                this.setState({
+                    deviceName: result.data.name
+                })
+            }
 
-             
-
-         }
 
         })
 

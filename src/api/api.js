@@ -128,6 +128,20 @@ const api = {
         })
     },
 
+    getUserSpecificDeviceInfo: function(deviceUUID) {
+        return new Promise((resolve,reject) => {
+
+            if(cookies.get('session')===undefined) {
+                resolve(false);
+            }else{
+                fetch(backend+`/device/getUserSpecificDeviceInfo?session=${cookies.get('session')}&device=${deviceUUID}`).then(res=>res.json()).then(result => {
+                    resolve(result);
+                })
+            }
+
+        })
+    },
+
     registerDevice: function (regCode) {
         return new Promise((resolve,reject) => {
 
