@@ -152,3 +152,12 @@
     background-color: rgba(67, 129, 180, 0.72);
     backdrop-filter: blur(5px);
 }
+
+@media (max-width: 500px) and (orientation: portrait) {
+   .AddDeviceDialog {
+       max-width: 90vw;
+       width: 90vw;
+       left: 270px;
+   }
+
+}

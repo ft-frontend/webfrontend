@@ -13,11 +13,13 @@ class NavBar extends React.Component {
 
         this.props.buttons.forEach(button => {
             buttons.push(
-                <a href={button.link}>
+
                     <button className={styles.NavBarButton}>
+                        <a href={button.link}>
                         {button.name}
+                        </a>
                     </button>
-                </a>
+
             );
 
         });

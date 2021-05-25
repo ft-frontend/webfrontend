@@ -1,4 +1,4 @@
-import './App.css';
+import style from './App.css';
 import {BrowserRouter as Router, Route,Redirect} from "react-router-dom";
 import MainPage from "./MainPage";
 import dashboard from "./dashboard/dashboard";
@@ -14,9 +14,9 @@ import other from "./module/other/other";
 import DeviceSettings from "./dashboard/device/DeviceSettings";
 import DeviceSelect from "./dashboard/device/DeviceSelect";
 
+
+
 function App() {
-
-
 
 
     return (
@@ -53,6 +53,7 @@ function App() {
 
 
         </Router>
+
     );
 }
 

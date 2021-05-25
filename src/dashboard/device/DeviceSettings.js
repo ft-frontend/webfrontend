@@ -23,7 +23,6 @@ class DeviceSettings extends React.Component {
                 this.setState({
                     deviceName: result.errorMessage
                 })
-                return;
             }else{
                 this.setState({
                     deviceName: result.data.name

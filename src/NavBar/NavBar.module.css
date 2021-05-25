@@ -11,9 +11,17 @@
     display: inline-block;
 }
 
+
 .NavBarButton {
-    margin-right: 30px;
+    margin-right: 10px;
     user-select: none;
+
+}
+
+
+.NavBarButton > a {
+    color: white;
+    text-decoration: none;
 
 }
 
@@ -58,4 +66,16 @@
 .NavBarButtonDiv {
     display: flex;
 
+}
+
+
+@media (max-width: 500px) and (orientation: portrait) {
+    .NavBarButton:last-child {
+        margin-right: 10px;
+
+    }
+    .NavBarHeader{
+        padding: 30px 0;
+
+    }
 }

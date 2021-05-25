@@ -10,6 +10,7 @@
     margin-right: 10px;
     overflow-y: scroll;
     overflow-x: hidden;
+    z-index: 999;
 }
 
 
@@ -23,3 +24,9 @@
     user-select: none;
 }
 
+@media (max-height: 700px) and (orientation: landscape) {
+    .appSelectionBox {
+
+        max-height: 80vh;
+    }
+}

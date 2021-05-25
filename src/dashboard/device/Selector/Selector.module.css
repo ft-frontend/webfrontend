@@ -67,3 +67,25 @@
     position: relative;
     user-select: none;
 }
+
+@media (max-width: 500px) and (orientation: portrait) {
+    .DeviceSelectorItem {
+        width: 70vw;
+        max-width: 70vw;
+        height: 22vh;
+        max-height: 22vh;
+    }
+
+}
+@media (max-height: 500px) and (orientation: landscape) {
+    .DeviceSelectorItem {
+        height: 30vh;
+        max-height: 30vh;
+        width: 35vw;
+        max-width: 35vw;
+    }
+    .DeviceSelectorParentDiv {
+        height: 54vh;
+    }
+
+}
