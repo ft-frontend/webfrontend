@@ -4,10 +4,12 @@ import api from "./api/api";
 
 
 class MainPage extends React.Component {
-    constructor(props) {
-        super(props);
+
+
+    componentDidMount() {
         api.checkSession().then(r => { if(r) window.location.replace("/dashboard");})
     }
+
     render() {
         return <NavBar links={[
             {

@@ -10,6 +10,8 @@ body {
 :root {
   --secoundryColor:  #212225;
   --homeprimaryColor: rgb(254, 62, 63);
+  color-scheme: light dark; /* both supported */
+
 }
 
 

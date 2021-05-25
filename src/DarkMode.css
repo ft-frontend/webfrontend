@@ -1,0 +1,21 @@
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background-color: #313131 !important;
+    }
+
+    h1 {
+        color: white !important;
+    }
+
+
+}
+
+.dark-body {
+    background-color: #313131 !important;
+}
+
+.dark-body > * h1 {
+    color: white !important;
+
+}

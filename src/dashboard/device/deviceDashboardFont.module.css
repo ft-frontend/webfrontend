@@ -2,3 +2,19 @@
     text-align: center;
     margin-top: 10px;
 }
+
+.onlineDevice {
+    box-shadow: 0 8px 8px 0 rgba(46, 204, 113, 0.6), 0 5px 25px 4px rgba(46, 204, 113, 0.8);
+
+}
+.onlineDevice:hover {
+    box-shadow: 0 10px 10px 0 rgba(46, 204, 113, 0.6), 0 7px 29px 4px rgba(46, 204, 113, 0.8);
+
+}
+
+.offlineDevice {
+    box-shadow: 0 8px 8px 0 rgba(255, 0, 0, 0.6), 0 5px 25px 4px rgba(255, 0, 0, 0.8);
+}
+.offlineDevice:hover {
+    box-shadow: 0 10px 10px 0 rgba(255, 0, 0, 0.6), 0 7px 29px 4px rgba(255, 0, 0, 0.8);
+}

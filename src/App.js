@@ -15,11 +15,11 @@ import DeviceSettings from "./dashboard/device/DeviceSettings";
 import DeviceSelect from "./dashboard/device/DeviceSelect";
 import ModuleNavBar from "./module/moduleNavBar";
 import droneControl from "./module/drone/droneControl";
-
-
+import "./DarkMode.css"
 
 function App() {
 
+    document.body.classList.add("dark-body") //remove this line to disable dark mode
 
     return (
         <Router>

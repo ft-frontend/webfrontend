@@ -14,7 +14,7 @@ class Selector extends React.Component {
         this.props.items.forEach((item,i) => {
 
             this.state.items.push(
-                <li key={i} className={SelectorStyle.DeviceSelectorLI}><div className={SelectorStyle.DeviceSelectorItem} onClick={() => {window.location.href=item.link}}><img className={SelectorStyle.DeviceSelectorItemImage} src={item.img} alt="SelectDevice"/><p className={SelectorStyle.DeviceSelectorItemName}>{item.text}</p></div></li>
+                <li key={i} className={SelectorStyle.DeviceSelectorLI}><div className={SelectorStyle.DeviceSelectorItem+" "+item.costumeClass} onClick={() => {window.location.href=item.link}}><img className={SelectorStyle.DeviceSelectorItemImage} src={item.img} alt="SelectDevice"/><p className={SelectorStyle.DeviceSelectorItemName}>{item.text}</p></div></li>
             )
 
         })

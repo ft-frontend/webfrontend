@@ -37,7 +37,8 @@ class DeviceSelect extends React.Component {
                 this.state.deviceList.push( {
                     link: "/dashboard/device/"+ this.deviceType+"/"+device.uuid,
                     text: device.name,
-                    img: DeviceImageDrawer(deviceTypeName.name)
+                    img: DeviceImageDrawer(deviceTypeName.name),
+                    costumeClass: device.online?deviceDashboardFontStyle.onlineDevice:deviceDashboardFontStyle.offlineDevice
 
                 });
             })

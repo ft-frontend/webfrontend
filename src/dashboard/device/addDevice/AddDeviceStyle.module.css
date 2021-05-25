@@ -5,7 +5,7 @@
     bottom: 5vh;
     width: 55px;
     height: 55px;
-    box-shadow: 2px 2px 3px #999;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #0088a9;
     border-radius: 50px;
     text-align: center;
@@ -14,7 +14,7 @@
 }
 
 .AddDeviceButton:hover {
-    box-shadow: 3px 3px 4px #999;
+    box-shadow: 0 9px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
 
 }
 
