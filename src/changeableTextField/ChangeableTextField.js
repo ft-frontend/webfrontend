@@ -2,7 +2,7 @@ import React from "react";
 import editIcon from "../res/edit.svg";
 import ChangeableTextFieldStyle from "./ChangeableTextField.module.css";
 import api from "../api/api";
-
+import $ from "jquery"
 class ChangeableTextField extends React.Component {
 
     constructor(props) {
@@ -19,11 +19,12 @@ class ChangeableTextField extends React.Component {
     }
 
     updateName() {
-        if (this.state.currentText.length > 2&&this.state.currentText.length<51) {
+        if (this.state.currentText.length > 2&&this.state.currentText.length<23) {
             api.updateDeviceName(this.props.deviceUUID, this.state.currentText).then((result) => {
                 this.setState({
                     isEditing: false
                 });
+                $(document).off(".interrupt");
                 if (!result.success) {
                     this.setState({
                         currentText: this.props.text
@@ -53,6 +54,16 @@ class ChangeableTextField extends React.Component {
                 isEditing: true
             });
 
+            const obj = this;
+            $(document).on("keyup.interrupt",function(e) {
+                if (e.key === "Escape") {
+                    obj.setState({
+                        isEditing: false,
+                        currentText: obj.props.text
+                    })
+                }
+            });
+
 
         }
     }
@@ -62,8 +73,9 @@ class ChangeableTextField extends React.Component {
     }
 
     updateText(event) {
+        if(event.target.value.length>22&&event.target.value.length>this.state.currentText.length) return
         this.setState({currentText: event.target.value});
-        event.target.style.width = ((event.target.value.length + 1)) + 'ch';
+        event.target.style.width = ((event.target.value.length)) + 'ch';
     }
 
     render() {

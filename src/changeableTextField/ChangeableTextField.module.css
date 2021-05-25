@@ -23,9 +23,9 @@
 
     font-size: 2em;
     font-weight: bold;
-    min-width:50px!important;
+    min-width:60px!important;
     max-width:99.99%!important;
-    transition: width 0.1s;
+    transition: width 0.05s;
     text-align:center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
