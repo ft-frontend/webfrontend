@@ -127,6 +127,20 @@ const api = {
         })
     },
 
+    updateDeviceName: function(deviceUUID,newName) {
+        return new Promise((resolve,reject) => {
+
+            if(cookies.get('session')===undefined) {
+                resolve(false);
+            }else{
+                fetch(backend+`/device/changeDeviceName?session=${cookies.get('session')}&device=${deviceUUID}&newName=${newName}`).then(res=>res.json()).then(result => {
+                    resolve(result);
+                })
+            }
+
+        })
+    },
+
     getUserSpecificDeviceInfo: function(deviceUUID) {
         return new Promise((resolve,reject) => {
 

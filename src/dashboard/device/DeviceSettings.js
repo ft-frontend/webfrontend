@@ -2,6 +2,7 @@ import React from "react";
 
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css";
 import api from "../../api/api";
+import ChangeableTextField from "../../changeableTextField/ChangeableTextField";
 
 
 class DeviceSettings extends React.Component {
@@ -12,7 +13,8 @@ class DeviceSettings extends React.Component {
         this.state ={
             deviceUUID: this.props.match.params.device,
             deviceTypeUUID: this.props.match.params.deviceType,
-            deviceName: "Bitte Warten..."
+            deviceName: "Bitte Warten...",
+            renderEverything: false
         };
     }
 
@@ -24,7 +26,8 @@ class DeviceSettings extends React.Component {
                 })
             }else{
                 this.setState({
-                    deviceName: result.data.name
+                    deviceName: result.data.name,
+                    renderEverything: true
                 })
             }
 
@@ -34,8 +37,25 @@ class DeviceSettings extends React.Component {
     }
 
 
+
+
     render() {
-        return (<div><h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.deviceName}</h1></div>);
+        return (<div>
+
+            {
+                this.state.renderEverything?
+
+                    <div>
+                        <ChangeableTextField className={deviceDashboardFontStyle.deviceDashboardFontCenter} deviceUUID={this.state.deviceUUID} text={this.state.deviceName}/>
+                    </div>:
+                        <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.deviceName}</h1>
+
+
+
+
+            }
+
+        </div>);
 
     }
 

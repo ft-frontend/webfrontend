@@ -1,0 +1,41 @@
+.ChangeableTextFieldEditButton {
+
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-left: 20px;
+    justify-self: center;
+    position: fixed;
+}
+
+.ChangeableTextFieldText {
+    margin-top: 10px;
+    display:inline;
+    justify-self: center;
+    user-select: none;
+    cursor: text;
+
+
+}
+
+.ChangeableTextFieldInput {
+
+    font-size: 2em;
+    font-weight: bold;
+    min-width:50px!important;
+    max-width:99.99%!important;
+    transition: width 0.1s;
+    text-align:center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    border-color: black;
+    border-radius: 10px;
+    border-width: 2px;
+}
+.ChangeableTextFieldDiv {
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    margin-top:10px;
+}
