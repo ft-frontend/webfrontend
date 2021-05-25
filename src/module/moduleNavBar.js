@@ -11,7 +11,9 @@ class ModuleNavBar extends React.Component {
         this.state = {
             name: this.props.name
         };
-        api.checkSession().then(r => { if(!r) window.location.replace("/auth/signin");})
+        var loc = window.location.pathname;
+
+        api.checkSession().then(r => { if(!r) window.location.href = "/auth/signin?redirect="+loc.substring(0, loc.length) })
 
     }
 

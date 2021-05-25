@@ -9,7 +9,8 @@ class ChangeableTextField extends React.Component {
         super(props);
         this.state = {
             isEditing: false,
-            currentText: this.props.text
+            currentText: this.props.text,
+            originalText: this.props.text
         };
 
         this.checkInputKeyPress = this.checkInputKeyPress.bind(this);
@@ -22,12 +23,13 @@ class ChangeableTextField extends React.Component {
         if (this.state.currentText.length > 2&&this.state.currentText.length<23) {
             api.updateDeviceName(this.props.deviceUUID, this.state.currentText).then((result) => {
                 this.setState({
-                    isEditing: false
+                    isEditing: false,
+                    originalText: this.state.currentText
                 });
                 $(document).off(".interrupt");
                 if (!result.success) {
                     this.setState({
-                        currentText: this.props.text
+                        currentText: this.state.originalText
                     });
                 }
             });

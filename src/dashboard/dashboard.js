@@ -6,7 +6,9 @@ import api from "../api/api";
 class dashboard extends React.Component {
     constructor(props) {
         super(props);
-        api.checkSession().then(r => { if(!r) window.location.replace("/auth/signin");})
+        var loc = window.location.pathname;
+
+        api.checkSession().then(r => { if(!r) window.location.href = "/auth/signin?redirect="+loc.substring(0, loc.length) })
 
     }
 

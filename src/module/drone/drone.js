@@ -1,6 +1,5 @@
 import React from "react";
 import Selector from "../../dashboard/device/Selector/Selector";
-import moduleStyle from "../moduleFont.module.css"
 import api from "../../api/api";
 import DeviceImageDrawer from "../../dashboard/device/DeviceImageDrawer";
 
@@ -11,7 +10,7 @@ class drone extends React.Component {
         this.deviceType = "1770efae-9f94-11eb-87e8-0242ac110002"
         this.state = {
             deviceList: [],
-            renderList: false,
+            renderList: false
         };
     }
 
