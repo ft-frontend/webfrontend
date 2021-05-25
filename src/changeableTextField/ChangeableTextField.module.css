@@ -1,12 +1,19 @@
 .ChangeableTextFieldEditButton {
 
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
-    margin-top: 4px;
-    margin-left: 20px;
+    margin-top: 8px;
+    margin-left: 15px;
     justify-self: center;
     position: fixed;
+    opacity: 45%;
+    transition: opacity linear 0.15s;
+}
+
+.ChangeableTextFieldEditButton:hover {
+    opacity: 95%;
+
 }
 
 .ChangeableTextFieldText {
@@ -15,6 +22,7 @@
     justify-self: center;
     user-select: none;
     cursor: text;
+
 
 
 }

@@ -22,15 +22,17 @@ class ChangeableTextField extends React.Component {
     updateName() {
         if (this.state.currentText.length > 2&&this.state.currentText.length<23) {
             api.updateDeviceName(this.props.deviceUUID, this.state.currentText).then((result) => {
-                this.setState({
-                    isEditing: false,
-                    originalText: this.state.currentText
-                });
-                $(document).off(".interrupt");
+
                 if (!result.success) {
                     this.setState({
                         currentText: this.state.originalText
                     });
+                }else{
+                    this.setState({
+                        isEditing: false,
+                        originalText: this.state.currentText
+                    });
+                    $(document).off(".interrupt");
                 }
             });
         }
@@ -90,6 +92,7 @@ class ChangeableTextField extends React.Component {
                            className={ChangeableTextFieldStyle.ChangeableTextFieldInput}
                            value={this.state.currentText}
                            onChange={this.updateText} onBlur={this.toggleMode} style={{width: ((this.state.currentText.length + 1)) + 'ch'}}
+                           autoFocus
                     />
 
             }
