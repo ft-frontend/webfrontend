@@ -33,16 +33,21 @@ class appSelector extends React.Component {
 
     componentDidMount() {
         const obj = this;
-
-        $(document).on('click', function (e) {
+        this.handler = function (e) {
             if ($(e.target).closest("."+appSelectorStyle.appSelectionBox).length === 0&&$(e.target).closest("."+appSelectorStyle.appSelectionToggleButton).length === 0) {
                 obj.setState({
                     open: false
                 })
 
             }
-        });
+        };
+        $(document).on('click',  this.handler);
     }
+    componentWillUnmount() {
+        $(document).off('click',  this.handler);
+
+    }
+
 
 
     toggleSelector() {

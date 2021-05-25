@@ -14,10 +14,10 @@ class NavBar extends React.Component {
         this.props.buttons.forEach(button => {
             buttons.push(
 
-                    <button key={button.name} className={styles.NavBarButton}>
-                        <a href={button.link}>
+                    <button onClick={()=> window.location.href=button.link} key={button.name} className={styles.NavBarButton}>
+                        <p>
                         {button.name}
-                        </a>
+                        </p>
                     </button>
 
             );
