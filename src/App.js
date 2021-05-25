@@ -1,4 +1,4 @@
-import style from './App.css';
+import './App.css';
 import {BrowserRouter as Router, Route,Redirect} from "react-router-dom";
 import MainPage from "./MainPage";
 import dashboard from "./dashboard/dashboard";
@@ -21,10 +21,7 @@ function App() {
 
     return (
         <Router>
-            <Route exact path="/" >
-                <MainPage/>
-
-            </Route>
+            <Route exact path="/" component={MainPage} />
 
           <Route path="/dashboard" component={dashboard}/>
           <Route path="/dashboard/home" component={dashboardHome}/>
@@ -39,7 +36,7 @@ function App() {
 
           <Route path="/module/other" component={other}/>
 
-          <Route exact path="/module" component={drone}>
+          <Route exact path="/module">
 
               <Redirect to="/" />
 

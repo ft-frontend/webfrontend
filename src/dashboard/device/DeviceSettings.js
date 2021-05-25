@@ -18,7 +18,6 @@ class DeviceSettings extends React.Component {
 
     componentDidMount() {
         api.getUserSpecificDeviceInfo(this.state.deviceUUID).then(result => {
-            console.log(result);
             if(result.error) {
                 this.setState({
                     deviceName: result.errorMessage

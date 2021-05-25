@@ -1,4 +1,3 @@
-import React from "react";
 import DroneSelectorIcon from "../../res/droneicon.svg";
 import LEDWallSelectorIcon from "../../res/ledwallicon.svg";
 import Default from "../../res/appSelector.svg";

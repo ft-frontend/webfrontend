@@ -15,9 +15,9 @@ class AppListItem extends React.Component {
         return(
             <div onClick={this.redirect}  className={style.AppListItem}>
                 {this.props.iconsrc &&
-                <img className={style.AppListItemLeftIcon} src={this.props.iconsrc}></img>
+                <img alt="" className={style.AppListItemLeftIcon} src={this.props.iconsrc}></img>
                 }
-                <p clasName={style.AppListItemNameText}>{this.props.children}</p>
+                <p className={style.AppListItemNameText}>{this.props.children}</p>
             </div>
         )
     }

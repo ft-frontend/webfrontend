@@ -4,18 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import api from "./api/api";
-
-
-api.checkSession().then(result => {
-
-    if(!result) {
-        console.log("No session")
-    }else{
-        console.log("result")
-    }
-})
-
 
 ReactDOM.render(
   <React.StrictMode>

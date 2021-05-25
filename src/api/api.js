@@ -16,7 +16,6 @@ const api = {
         if(cookies.get('session')===undefined) {
             resolve(false);
         }else{
-            console.log(backend+`/auth/validateSession?session=${cookies.get('session')}`)
             fetch(backend+`/auth/validateSession?session=${cookies.get('session')}`).then(res=>res.json()).then(result => {
                 resolve(result.success);
             })

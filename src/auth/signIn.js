@@ -1,7 +1,6 @@
 import React from "react";
 import signInStyle from "./sign.module.css"
 import api from "../api/api";
-import {useLocation} from "react-router-dom";
 import {Redirect} from "react-router-dom";
 
 

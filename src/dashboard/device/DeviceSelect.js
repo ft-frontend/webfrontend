@@ -1,10 +1,7 @@
 import React from "react";
-import {withRouter} from "react-router";
 import api from "../../api/api";
 import Selector from "./Selector/Selector";
-import DroneSelectorIcon from "../../res/droneicon.svg";
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css"
-import LEDWallSelectorIcon from "../../res/ledwallicon.svg";
 import DeviceImageDrawer from "./DeviceImageDrawer";
 
 class DeviceSelect extends React.Component {

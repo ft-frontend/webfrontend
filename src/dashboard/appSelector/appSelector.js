@@ -19,11 +19,11 @@ class appSelector extends React.Component {
         };
         this.toggleSelector = this.toggleSelector.bind(this);
         this.items = [
-            <ApplistItem redirect="/dashboard" iconsrc={HomeSelectorIcon}>HOME</ApplistItem>,
-            <ApplistItem redirect="/module/ledwall" iconsrc={LEDWallSelectorIcon}>LEDWALL</ApplistItem>,
-            <ApplistItem redirect="/module/drone" iconsrc={DroneSelectorIcon}>DRONE</ApplistItem>,
-            <ApplistItem redirect="/module/other" iconsrc={OtherSelectorIcon}>SONSTIGES</ApplistItem>,
-            <ApplistItem redirect="#" iconsrc={SettingsSelectorIcon}>EINSTELLUNGEN</ApplistItem>
+            <ApplistItem key="1" redirect="/dashboard" iconsrc={HomeSelectorIcon}>HOME</ApplistItem>,
+            <ApplistItem key="2" redirect="/module/ledwall" iconsrc={LEDWallSelectorIcon}>LEDWALL</ApplistItem>,
+            <ApplistItem key="3" redirect="/module/drone" iconsrc={DroneSelectorIcon}>DRONE</ApplistItem>,
+            <ApplistItem key="4" redirect="/module/other" iconsrc={OtherSelectorIcon}>SONSTIGES</ApplistItem>,
+            <ApplistItem key="5" redirect="#" iconsrc={SettingsSelectorIcon}>EINSTELLUNGEN</ApplistItem>
         ];
 
 
@@ -54,20 +54,19 @@ class appSelector extends React.Component {
 
         return (
             <div>
-                <a className={appSelectorStyle.appSelectionToggleButton} onClick={this.toggleSelector}>
-                    <img src={AppSelectorIcon} width={45} height={45}/>
-                </a>
+                <p className={appSelectorStyle.appSelectionToggleButton} onClick={this.toggleSelector}>
+                    <img alt="" src={AppSelectorIcon} width={45} height={45}/>
+                </p>
                 {
                     this.state.open &&
 
-                    <div className={appSelectorStyle.appSelectionBox}>{this.items}</div>
+                    <div className={appSelectorStyle.appSelectionBox}><div className={appSelectorStyle.appSelectionBoxItemHolder}>{this.items}</div></div>
 
 
                 }
             </div>
         );
     }
-
 }
 
 export default appSelector;

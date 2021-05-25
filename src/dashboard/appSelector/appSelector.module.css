@@ -4,17 +4,33 @@
     min-width: 256px;
     max-width: 256px;
     max-height: 40vh;
-    right: 10vw;
+    top: 11vh;
+    margin-left: -10px;
     border-radius: 7px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: 10px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-y: visible;
+    overflow-x: visible;
     z-index: 999;
 }
 
+.appSelectionBox::before {
 
-.appSelectionBox::-webkit-scrollbar {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 20px;
+    bottom: 100%;
+    border: .75rem solid transparent;
+    border-top: none;
+
+    border-bottom-color: #edf0f1;
+    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
+}
+
+
+.appSelectionBoxItemHolder::-webkit-scrollbar {
     display: none;
 }
 
@@ -22,11 +38,28 @@
     cursor: pointer;
     margin-right: 20px;
     user-select: none;
+    margin-bottom: -19px;
+}
+.appSelectionBoxItemHolder {
+    min-width: 256px;
+    max-width: 256px;
+    max-height: 40vh;
+    overflow-y: scroll;
+
 }
 
 @media (max-height: 700px) and (orientation: landscape) {
     .appSelectionBox {
 
         max-height: 80vh;
+    }
+}
+@media (max-width: 700px) and (orientation: portrait) {
+    .appSelectionBox {
+        margin-left: -25vw;
+    }
+    .appSelectionBox::before {
+        left: 25vw;
+        margin-left: 10px;
     }
 }
