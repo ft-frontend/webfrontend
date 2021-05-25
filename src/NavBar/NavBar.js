@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./NavBar.module.css";
+import api from "../api/api";
 
 class NavBar extends React.Component {
     render() {

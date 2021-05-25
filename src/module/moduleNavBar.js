@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../NavBar/NavBar";
 import AppSelector from "../dashboard/appSelector/appSelector";
 import ModuleStyle from "./moduleNavBar.module.css"
+import api from "../api/api";
 
 class ModuleNavBar extends React.Component {
 
@@ -10,6 +11,8 @@ class ModuleNavBar extends React.Component {
         this.state = {
             name: this.props.name
         };
+        api.checkSession().then(r => { if(!r) window.location.replace("/auth/signin");})
+
     }
 
     render() {

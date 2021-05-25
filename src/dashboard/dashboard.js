@@ -6,7 +6,7 @@ import api from "../api/api";
 class dashboard extends React.Component {
     constructor(props) {
         super(props);
-        api.checkSession().then(r => { if(!r) window.location.replace("/");})
+        api.checkSession().then(r => { if(!r) window.location.replace("/auth/signin");})
 
     }
 
