@@ -14,6 +14,7 @@ import Other from "./module/other/other";
 import DeviceSettings from "./dashboard/device/DeviceSettings";
 import DeviceSelect from "./dashboard/device/DeviceSelect";
 import ModuleNavBar from "./module/moduleNavBar";
+import droneControl from "./module/drone/droneControl";
 
 
 
@@ -40,20 +41,26 @@ function App() {
 
             <Route path="/module/ledwall">
                 <ModuleNavBar name="LedWall"/>
-                <LedWall/>
             </Route>
 
             <Route path="/module/drone">
                 <ModuleNavBar name="Drone"/>
-
-                <Drone/>
             </Route>
 
             <Route path="/module/other" >
                 <ModuleNavBar name="Sonstiges"/>
-
-                <Other/>
             </Route>
+
+            <Route exact path="/module/drone" component={Drone}/>
+            <Route exact path="/module/drone/:device" component={droneControl}/>
+
+            <Route exact path="/module/other" component={Other}/>
+            <Route exact path="/module/ledwall" component={LedWall}/>
+
+
+
+
+
 
 
 

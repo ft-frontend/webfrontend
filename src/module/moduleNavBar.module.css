@@ -2,9 +2,10 @@
 
     color: white;
     margin-left: -0vw;
-    margin-right: 26.5vw;
+    margin-right: 27.5vw;
     font-size: 30px;
     font-weight: bold;
+    user-select: none;
 }
 
 @media (max-width: 500px) and (orientation: portrait) {

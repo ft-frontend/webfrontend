@@ -49,8 +49,8 @@
 }
 
 .NavBarButton {
-    padding: 9px 25px;
-    background-color: rgba(0,136, 169,1);
+   padding: 9px 25px;
+   background-color: rgba(0,136, 169,1);
     border: none;
     border-radius: 50px;
     cursor: pointer;
