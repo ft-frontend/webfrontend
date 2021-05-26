@@ -30,12 +30,14 @@
     height: 80vh;
     max-height: 80vh;
     overflow-y: scroll;
+    scrollbar-width: none;
 
 
 }
 .DeviceSelectorParentDiv::-webkit-scrollbar {
     display: none;
 }
+
 .DeviceSelectorUL {
     display:flex;
     justify-content: center;
