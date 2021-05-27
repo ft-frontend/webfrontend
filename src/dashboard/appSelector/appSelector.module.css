@@ -3,8 +3,8 @@
     background-color: #edf0f1;
     min-width: 256px;
     max-width: 256px;
-    max-height: 40vh;
-    top: 11vh;
+    max-height: 288px;
+    top: 5em;
     margin-left: -10px;
     border-radius: 7px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -43,7 +43,7 @@
 .appSelectionBoxItemHolder {
     min-width: 256px;
     max-width: 256px;
-    max-height: 40vh;
+    max-height: 288px;
     overflow-y: scroll;
 
 }

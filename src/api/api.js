@@ -50,6 +50,7 @@ const api = {
             fetch(backend + `/auth/signin`, post).then(res => res.json()).then(result => {
                 if (!result.error) {
                     cookies.set('session', result.session, {path: '/'});
+                    this.getAccountSettings(true);
 
                     resolve({
                         success: true,
@@ -76,7 +77,7 @@ const api = {
                 });
                 fetch(backend + `/auth/signout`, post).then(res => res.json()).then(result => {
                     cookies.remove('session', {path: '/'});
-
+                    cookies.remove('acsettings', {path: '/'});
                     if (!result.error) {
                         resolve(true);
                     } else {
@@ -99,6 +100,7 @@ const api = {
             fetch(backend + `/auth/signup`, post).then(res => res.json()).then(result => {
                 if (result.success) {
                     cookies.set('session', result.session, {path: '/'});
+                    this.getAccountSettings(true);
 
                     resolve({
                         success: true,
