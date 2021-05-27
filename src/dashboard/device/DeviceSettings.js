@@ -6,6 +6,7 @@ import ChangeableTextField from "../../changeableTextField/ChangeableTextField";
 import ConfirmButton from "../confirmButton/ConfirmButton";
 import Trash from "../../res/trash.svg"
 
+
 class DeviceSettings extends React.Component {
 
 
@@ -22,14 +23,16 @@ class DeviceSettings extends React.Component {
 
     componentDidMount() {
         api.getUserSpecificDeviceInfo(this.state.deviceUUID).then(result => {
+            console.log(result);
             if(result.error) {
                 this.setState({
                     deviceName: result.errorMessage
                 })
             }else{
                 this.setState({
-                    deviceName: result.data.name,
-                    renderEverything: true
+                    deviceName: result.data.content.name,
+                    renderEverything: true,
+                    adminAccess: (result.data.admin!==undefined)
                 })
             }
 
@@ -58,6 +61,10 @@ class DeviceSettings extends React.Component {
                     <div>
                         <ChangeableTextField className={deviceDashboardFontStyle.deviceDashboardFontCenter} deviceUUID={this.state.deviceUUID} text={this.state.deviceName}/>
                         <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}  confirmText={"Möchtest du das Gerät wirklich löschen?"} confirmAction={this.deleteDevice}><img  className={deviceDashboardFontStyle.deleteDeviceButton} src={Trash} alt="Delete"/></ConfirmButton>
+                        {
+                            this.state.adminAccess&&
+                                <h4 className={deviceDashboardFontStyle.adminAccessInfo}>Admin-Zugriff</h4>
+                        }
                     </div>:
                         <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.deviceName}</h1>
 

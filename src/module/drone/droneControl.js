@@ -27,8 +27,9 @@ class droneControl extends React.Component {
                 })
             }else{
                 this.setState({
-                    deviceName: result.data.name,
-                    renderEverything: true
+                    deviceName: result.data.content.name,
+                    renderEverything: true,
+                    adminAccess: result.data.admin!==undefined
                 })
             }
 
@@ -40,10 +41,16 @@ class droneControl extends React.Component {
         return <div>
             <img  onClick={() => window.location.href="/module/drone/"} className={droneControlStyle.DroneControlBackButton} src={backIcon}  alt="Settings"/>
             <img  onClick={() => window.location.href="/dashboard/device/"+this.deviceType+"/"+this.props.match.params.device} className={droneControlStyle.DroneControlSettingsButton} src={settingsIcon} alt="Settings"/>
-            <h1 className={moduleStyle.moduleFontCenter}>{this.state.deviceName}</h1>
+            <h1 className={moduleStyle.moduleFontCenter}>{this.state.deviceName} </h1>
             {
                 this.state.renderEverything &&
+                    <div>
+
                     <h1 className={moduleStyle.moduleFontCenter}> Das Gerät wurde gefunden und hier wird mal eine Karte mit der Position angezeigt!</h1>
+                        <h4 className={droneControlStyle.adminAccessInfo}>Admin-Zugriff</h4>
+
+                    </div>
+
             }
 
         </div>

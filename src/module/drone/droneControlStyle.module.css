@@ -28,5 +28,11 @@ transform: translateX(-1px);
 
 }
 
+.adminAccessInfo{
+    position: absolute;
+    right: 12em;
+    top: 7.6em;
+}
+
 
 
