@@ -19,7 +19,7 @@ import "./DarkMode.css"
 
 function App() {
 
-    document.body.classList.add("dark-body") //remove this line to disable dark mode
+   // document.body.classList.add("dark-body") //remove this line to disable dark mode
 
     return (
         <Router>

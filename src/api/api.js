@@ -11,11 +11,10 @@ const post = {
 };
 
 function checkErrorCodes(response) {
-    console.log(response)
+    console.log(response);
     if (response.errorcode) {
-        console.log("test")
 
-        if(response.errorcode === "006") {
+        if (response.errorcode === "006") {
             redirectToLogin();
         }
         return true;
@@ -24,7 +23,7 @@ function checkErrorCodes(response) {
 }
 
 function redirectToLogin() {
-    window.location.href = "/auth/signin?redirect="+window.location.pathname;
+    window.location.href = "/auth/signin?redirect=" + window.location.pathname;
 
 }
 
@@ -126,7 +125,10 @@ const api = {
                 resolve(false);
             } else {
                 fetch(backend + `/device/listAvailable?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) {reject("error"); return}
+                    if (checkErrorCodes(result)) {
+                        reject("error");
+                        return;
+                    }
                     resolve(result.data);
                 });
             }
@@ -142,7 +144,10 @@ const api = {
                 resolve(false);
             } else {
                 fetch(backend + `/device/listSpecificUserDevice?session=${cookies.get('session')}&device=${deviceUUID}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) {reject("error"); return}
+                    if (checkErrorCodes(result)) {
+                        reject("error");
+                        return;
+                    }
                     resolve(result.data);
                 });
             }
@@ -158,7 +163,10 @@ const api = {
                 resolve(false);
             } else {
                 fetch(backend + `/device/changeDeviceName?session=${cookies.get('session')}&device=${deviceUUID}&newName=${newName}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) {reject("error"); return}
+                    if (checkErrorCodes(result)) {
+                        reject("error");
+                        return;
+                    }
                     resolve(result);
                 });
             }
@@ -174,7 +182,10 @@ const api = {
                 resolve(false);
             } else {
                 fetch(backend + `/device/getUserSpecificDeviceInfo?session=${cookies.get('session')}&device=${deviceUUID}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) {reject("error"); return}
+                    if (checkErrorCodes(result)) {
+                        reject("error");
+                        return;
+                    }
 
                     resolve(result);
                 });
@@ -192,7 +203,8 @@ const api = {
                 resolve(false);
             } else {
                 fetch(backend + `/device/registerByCode?session=${cookies.get('session')}&regCode=${regCode}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) {reject("error"); return}
+                    if (checkErrorCodes(result)) {
+                    }
                     if (result.error !== undefined) {
                         resolve({
                             success: false,
@@ -203,6 +215,47 @@ const api = {
                             success: true,
                             deviceType: result.deviceType,
                             uuid: result.uuid
+                        });
+                    }
+                });
+            }
+
+        });
+    },
+
+    getAccountSettings: function (force) {
+        return new Promise((resolve, reject) => {
+
+            if (!force) {
+                if (cookies.get("acsettings") !== undefined) {
+                    console.log(cookies.get("acsettings"));
+                    resolve({
+                        success: true,
+                        settings: cookies.get("acsettings")
+                    });
+                    return;
+                }
+            }
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                fetch(backend + `/account/getSettings?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        reject("error");
+                        return;
+                    }
+                    if (result.error !== undefined) {
+                        resolve({
+                            success: false,
+                            error: result.error
+                        });
+                    } else {
+                        cookies.set('acsettings', result, {path: '/'});
+                        resolve({
+                            success: true,
+                            settings: result,
                         });
                     }
                 });
