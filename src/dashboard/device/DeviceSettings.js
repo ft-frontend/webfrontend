@@ -3,7 +3,8 @@ import React from "react";
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css";
 import api from "../../api/api";
 import ChangeableTextField from "../../changeableTextField/ChangeableTextField";
-
+import ConfirmButton from "../confirmButton/ConfirmButton";
+import Trash from "../../res/trash.svg"
 
 class DeviceSettings extends React.Component {
 
@@ -16,6 +17,7 @@ class DeviceSettings extends React.Component {
             deviceName: "Bitte Warten...",
             renderEverything: false
         };
+        this.deleteDevice = this.deleteDevice.bind(this);
     }
 
     componentDidMount() {
@@ -36,6 +38,14 @@ class DeviceSettings extends React.Component {
 
     }
 
+    deleteDevice() {
+    api.deleteDevice(this.state.deviceUUID).then(r => {
+        if(r.success) {
+            window.location.href="/dashboard/device/";
+        }
+    })
+    }
+
 
 
 
@@ -47,6 +57,7 @@ class DeviceSettings extends React.Component {
 
                     <div>
                         <ChangeableTextField className={deviceDashboardFontStyle.deviceDashboardFontCenter} deviceUUID={this.state.deviceUUID} text={this.state.deviceName}/>
+                        <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}  confirmText={"Möchtest du das Gerät wirklich löschen?"} confirmAction={this.deleteDevice}><img  className={deviceDashboardFontStyle.deleteDeviceButton} src={Trash} alt="Delete"/></ConfirmButton>
                     </div>:
                         <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.deviceName}</h1>
 
@@ -58,7 +69,6 @@ class DeviceSettings extends React.Component {
         </div>);
 
     }
-
 
 }
 

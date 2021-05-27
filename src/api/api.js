@@ -223,6 +223,25 @@ const api = {
         });
     },
 
+    deleteDevice: function (deviceuuid) {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                fetch(backend + `/device/deleteDevice?session=${cookies.get('session')}&deviceuuid=${deviceuuid}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                        resolve({
+                            success: true
+                        });
+
+                });
+            }
+
+        });
+    },
+
     getAccountSettings: function (force) {
         return new Promise((resolve, reject) => {
 

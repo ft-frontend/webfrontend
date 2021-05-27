@@ -18,3 +18,14 @@
 .offlineDevice:hover {
     box-shadow: 0 10px 10px 0 rgba(255, 0, 0, 0.6), 0 7px 29px 4px rgba(255, 0, 0, 0.8);
 }
+
+.deleteDeviceButton {
+    cursor: pointer;
+    height: 40px;
+}
+.deleteDeviceButtonDiv{
+    width: max-content;
+    position: absolute;
+    right: 2em;
+    top: 7em;
+}
