@@ -1,0 +1,7 @@
+.mapMakerPosition {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: -20px;
+    top: -40px;
+}

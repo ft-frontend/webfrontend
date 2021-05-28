@@ -1,4 +1,5 @@
 import Cookies from 'universal-cookie';
+import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 const cookies = new Cookies();
 
@@ -283,6 +284,37 @@ const api = {
             }
 
         });
+    },
+
+    getDeviceStatusInfo: function (deviceUUID) {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                fetch(backend + `/device/getStatusInfo?session=${cookies.get('session')}&deviceuuid=${deviceUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                    resolve({
+                        success: true,
+                        data: result.data
+                    });
+
+                });
+            }
+
+        });
+    },
+
+    connectToDroneWebsocket: function (deviceuuid) {
+        if (cookies.get('session') === undefined) {
+            redirectToLogin();
+            return undefined;
+        } else {
+            const client = new W3CWebSocket('wss://api.arnold-tim.de/device/droneLiveConnection?session='+cookies.get("session")+"&device="+deviceuuid);
+            return client;
+        }
+
     }
 
 
