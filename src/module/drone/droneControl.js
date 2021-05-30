@@ -7,6 +7,7 @@ import backIcon from "../../res/back.svg";
 import api from "../../api/api";
 import SimpelMap from "./SimpelMap";
 import MapMarker from "./MapMarker";
+import SetPIDValue from "./SetPIDValue";
 
 
 class droneControl extends React.Component {
@@ -18,8 +19,11 @@ class droneControl extends React.Component {
             renderEverything: false,
             droneLong: 49,
             droneLat: 0,
-            renderMap: false
+            renderMap: false,
+            showFlightSettings: false
         };
+
+        this.switchViewMode = this.switchViewMode.bind(this);
 
     }
 
@@ -81,6 +85,12 @@ class droneControl extends React.Component {
 
     }
 
+    switchViewMode() {
+    this.setState({
+        showFlightSettings: !this.state.showFlightSettings
+        })
+    }
+
     render() {
         return <div>
             <img onClick={() => window.location.href = "/module/drone/"}
@@ -99,15 +109,22 @@ class droneControl extends React.Component {
                     }
                     {
                         this.state.renderMap &&
-                        <SimpelMap  center={{latitude:this.state.droneLat,longitude:this.state.droneLong}}>
+                    <div>
+                        <button onClick={this.switchViewMode}>Flugeinstellungen Anzeigen/Verbergen</button>
+                        {
+                            !this.state.showFlightSettings?
+                            <SimpelMap  center={{latitude:this.state.droneLat,longitude:this.state.droneLong}}>
 
-                            <MapMarker
-                                lat={this.state.droneLat}
-                                lng={this.state.droneLong}
-                            />
 
-                        </SimpelMap>
-                    }
+                            </SimpelMap>:
+                                <div>
+                                <SetPIDValue ws={this.websocket}></SetPIDValue>
+
+                                </div>
+                        }
+
+                    </div>
+                        }
 
 
 
