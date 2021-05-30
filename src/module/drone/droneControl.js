@@ -5,7 +5,6 @@ import droneControlStyle from "./droneControlStyle.module.css";
 import settingsIcon from "../../res/settings.svg";
 import backIcon from "../../res/back.svg";
 import api from "../../api/api";
-import GoogleMapReact from 'google-map-react';
 import SimpelMap from "./SimpelMap";
 import MapMarker from "./MapMarker";
 
@@ -17,7 +16,7 @@ class droneControl extends React.Component {
         this.state = {
             deviceName: "Bitte Warten...",
             renderEverything: false,
-            droneLong: 0,
+            droneLong: 49,
             droneLat: 0,
             renderMap: false
         };
@@ -57,7 +56,8 @@ class droneControl extends React.Component {
 
                this.setState({
                    droneLong: parseFloat(long.toString()),
-                   droneLat: parseFloat(lat.toString())
+                   droneLat: parseFloat(lat.toString()),
+                   renderMap: true
                 });
             }
         });
@@ -97,13 +97,18 @@ class droneControl extends React.Component {
                     {
                         this.state.adminAccess && <h4 className={droneControlStyle.adminAccessInfo}>Admin-Zugriff</h4>
                     }
-                    <SimpelMap  center={{lat:this.state.droneLat,lng:this.state.droneLong}}>
-                        <MapMarker
-                            lat={this.state.droneLat}
-                            lng={this.state.droneLong}
-                        />
+                    {
+                        this.state.renderMap &&
+                        <SimpelMap  center={{latitude:this.state.droneLat,longitude:this.state.droneLong}}>
 
-                    </SimpelMap>
+                            <MapMarker
+                                lat={this.state.droneLat}
+                                lng={this.state.droneLong}
+                            />
+
+                        </SimpelMap>
+                    }
+
 
 
                 </div>

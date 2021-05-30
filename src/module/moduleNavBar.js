@@ -3,6 +3,7 @@ import NavBar from "../NavBar/NavBar";
 import AppSelector from "../dashboard/appSelector/appSelector";
 import ModuleStyle from "./moduleNavBar.module.css"
 import api from "../api/api";
+import settingsHandler from "../settings/settingsHandler";
 
 class ModuleNavBar extends React.Component {
 
@@ -17,6 +18,8 @@ class ModuleNavBar extends React.Component {
         var loc = window.location.pathname;
 
         api.checkSession().then(r => { if(!r) window.location.href = "/auth/signin?redirect="+loc.substring(0, loc.length) })
+        api.getAccountSettings(false).then(r => settingsHandler.handlerSettings(r.settings));
+
     }
 
     render() {
