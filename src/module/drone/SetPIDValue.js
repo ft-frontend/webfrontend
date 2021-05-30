@@ -17,9 +17,9 @@ class SetPIDValue extends React.Component {
         const obj = {
             type: "pid",
             pidType:  parseInt(PIDSelect),
-            p: parseInt(p),
-            i: parseInt(i),
-            d: parseInt(d)
+            p: p,
+            i: i,
+            d: d
         }
         this.props.ws.send(JSON.stringify(obj));
 
@@ -43,9 +43,9 @@ class SetPIDValue extends React.Component {
 
                 </select>
 
-                <input type="number" name="p" id="PValue" placeholder="P"/>
-                <input type="number" name="i" id="IValue" placeholder="I"/>
-                <input type="number" name="d" id="DValue" placeholder="D"/>
+                <input  name="p" id="PValue" placeholder="P"/>
+                <input  name="i" id="IValue" placeholder="I" />
+                <input  name="d" id="DValue" placeholder="D"/>
 
                 <button>Übernehmen</button>
                 </form>
