@@ -1,4 +1,4 @@
-const settingsHandler = {
+const accountSettingsHandler = {
 
     handlerSettings: function (settings) {
         if(typeof (settings.darkmode) !== undefined) {
@@ -14,4 +14,4 @@ const settingsHandler = {
 
 }
 
-export default settingsHandler;
+export default accountSettingsHandler;

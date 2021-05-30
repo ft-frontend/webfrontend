@@ -3,7 +3,6 @@ import {BrowserRouter as Router, Route,Redirect} from "react-router-dom";
 import MainPage from "./MainPage";
 import dashboard from "./dashboard/dashboard";
 import dashboardHome from "./dashboard/dashboardHome";
-import dashboardSettings from "./dashboard/dashboardSettings";
 import dashboardDevice from "./dashboard/device/dashboardDevice";
 import signIn from "./auth/signIn";
 import signUp from "./auth/signUp";
@@ -16,6 +15,8 @@ import DeviceSelect from "./dashboard/device/DeviceSelect";
 import ModuleNavBar from "./module/moduleNavBar";
 import droneControl from "./module/drone/droneControl";
 import "./DarkMode.css"
+import settingsBar from "./settings/settingsBar";
+import AccountSettings from "./settings/account/accountSettings";
 
 function App() {
 
@@ -27,7 +28,6 @@ function App() {
 
           <Route path="/dashboard" component={dashboard}/>
           <Route path="/dashboard/home" component={dashboardHome}/>
-          <Route path="/dashboard/settings" component={dashboardSettings}/>
           <Route exact path="/dashboard/device" component={dashboardDevice}/>
           <Route exact path="/dashboard/device/:deviceType" component={DeviceSelect}/>
           <Route exact path="/dashboard/device/:deviceType/:device" component={DeviceSettings}/>
@@ -58,6 +58,9 @@ function App() {
             <Route exact path="/module/ledwall" component={LedWall}/>
 
 
+            <Route path="/dashboard/settings" component={settingsBar}/>
+
+            <Route path="/dashboard/settings/account" component={AccountSettings}/>
 
 
 
