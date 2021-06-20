@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "../NavBar/NavBar";
-import AppSelector from "./appSelector/appSelector";
+import NavBar from "../UI/NavBar/NavBar";
+import AppSelector from "../UI/appSelector/appSelector";
 import api from "../api/api";
 import accountSettingsHandler from "../settings/accountSettingsHandler";
 
@@ -28,6 +28,11 @@ class dashboard extends React.Component {
                 {
                     name: "Geräte",
                     link: "/dashboard/device"
+                },
+
+                {
+                    name: "Suche",
+                    link: "/dashboard/search"
                 }
             ]} buttons={[
                 {

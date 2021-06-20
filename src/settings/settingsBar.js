@@ -1,5 +1,5 @@
 import React from "react";
-import VerticalSelectionBar from "../verticalSelectionBar/VerticalSelectionBar";
+import VerticalSelectionBar from "../UI/verticalSelectionBar/VerticalSelectionBar";
 
 class settingsBar extends React.Component {
     render() {

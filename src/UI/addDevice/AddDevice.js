@@ -1,7 +1,7 @@
 import React from "react";
 import AddDeviceStyle from "./AddDeviceStyle.module.css";
 import $ from 'jquery';
-import api from "../../../api/api";
+import api from "../../api/api";
 
 class AddDevice extends React.Component {
     constructor(props) {

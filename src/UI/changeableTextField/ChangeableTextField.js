@@ -1,7 +1,7 @@
 import React from "react";
-import editIcon from "../res/edit.svg";
+import editIcon from "../../res/edit.svg";
 import ChangeableTextFieldStyle from "./ChangeableTextField.module.css";
-import api from "../api/api";
+import api from "../../api/api";
 import $ from "jquery"
 class ChangeableTextField extends React.Component {
 

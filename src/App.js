@@ -17,6 +17,9 @@ import droneControl from "./module/drone/droneControl";
 import "./DarkMode.css"
 import settingsBar from "./settings/settingsBar";
 import AccountSettings from "./settings/account/accountSettings";
+import Interaction from "./dashboard/interaction/interaction";
+import Search from "./dashboard/search/search";
+import SearchResult from "./dashboard/search/searchResult";
 
 function App() {
 
@@ -27,10 +30,16 @@ function App() {
             <Route exact path="/" component={MainPage} />
 
           <Route path="/dashboard" component={dashboard}/>
+
           <Route path="/dashboard/home" component={dashboardHome}/>
+
           <Route exact path="/dashboard/device" component={dashboardDevice}/>
           <Route exact path="/dashboard/device/:deviceType" component={DeviceSelect}/>
           <Route exact path="/dashboard/device/:deviceType/:device" component={DeviceSettings}/>
+
+          <Route exact path="/dashboard/interaction" component={Interaction}/>
+
+          <Route  path="/dashboard/search" component={Search}/>
 
 
             <Route exact path="/module">

@@ -1,5 +1,5 @@
 import React from "react";
-import Selector from "../../dashboard/device/Selector/Selector";
+import Selector from "../../UI/Selector/Selector";
 import api from "../../api/api";
 import DeviceImageDrawer from "../../dashboard/device/DeviceImageDrawer";
 

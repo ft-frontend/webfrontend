@@ -2,8 +2,8 @@ import React from "react";
 
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css";
 import api from "../../api/api";
-import ChangeableTextField from "../../changeableTextField/ChangeableTextField";
-import ConfirmButton from "../confirmButton/ConfirmButton";
+import ChangeableTextField from "../../UI/changeableTextField/ChangeableTextField";
+import ConfirmButton from "../../UI/confirmButton/ConfirmButton";
 import Trash from "../../res/trash.svg"
 
 

@@ -1,6 +1,6 @@
 import React from "react";
 import api from "../../api/api";
-import Selector from "./Selector/Selector";
+import Selector from "../../UI/Selector/Selector";
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css"
 import DeviceImageDrawer from "./DeviceImageDrawer";
 
