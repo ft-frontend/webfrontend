@@ -31,7 +31,7 @@ class dashboard extends React.Component {
                 },
 
                 {
-                    name: "Suche",
+                    name: "Suche (Beta)",
                     link: "/dashboard/search"
                 }
             ]} buttons={[

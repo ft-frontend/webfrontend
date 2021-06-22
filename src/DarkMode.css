@@ -23,3 +23,10 @@
     color: white !important;
 
 }
+
+.dark-body > * #searchBar  {
+    color: #ffffff !important;
+    border: 1px solid  white !important;
+
+}
+

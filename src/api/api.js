@@ -12,7 +12,6 @@ const post = {
 };
 
 function checkErrorCodes(response) {
-    console.log(response);
     if (response.errorcode) {
 
         if (response.errorcode === "006") {
@@ -315,6 +314,27 @@ const api = {
             return client;
         }
 
+    },
+    makeSearchRequest: function(deviceName,deviceTypeName,searchQuery) {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                const params = `${deviceName?"&deviceName=true":""}${deviceTypeName?"&deviceTypeName=true":""}`
+
+                fetch(backend + `/search/doSearch?session=${cookies.get('session')}${params}&searchquery=${searchQuery}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                    resolve({
+                        success: true,
+                        data: result.result
+                    });
+
+                });
+            }
+
+        });
     }
 
 

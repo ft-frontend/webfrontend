@@ -1,0 +1,21 @@
+.searchResultElement {
+    margin: 5vh auto auto;
+    background-color: #ebebee;
+
+    height: 18vh;
+    max-height: 40vh;
+    width: 40vw;
+    max-width: 40vw;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+    justify-content: center;
+    flex-wrap: wrap;
+    vertical-align: top;
+}
+
+.searchResultElement > h1 {
+    color: black !important;
+    text-align: center;
+
+}
