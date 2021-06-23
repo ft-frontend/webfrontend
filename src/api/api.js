@@ -2,8 +2,10 @@ import Cookies from 'universal-cookie';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 const cookies = new Cookies();
-
-const backend = "https://api.arnold-tim.de";
+let backend = "https://productionapi.arnold-tim.de";
+if (cookies.get('backend') !== undefined) {
+   backend = cookies.get('backend');
+}
 
 const post = {
     method: 'POST',
@@ -335,7 +337,13 @@ const api = {
             }
 
         });
+    },
+    setBackendAddress: function(backendAddress) {
+        backend = backendAddress;
+        cookies.set('backend', backendAddress, {path: '/'});
+
     }
+
 
 
 };

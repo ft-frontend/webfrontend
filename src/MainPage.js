@@ -11,7 +11,7 @@ class MainPage extends React.Component {
     }
 
     render() {
-        return <NavBar links={[
+        return <div><NavBar links={[
             {
                 name: "Home",
                 link: "#"
@@ -30,7 +30,12 @@ class MainPage extends React.Component {
                 link: "/auth/signup?redirect=/dashboard"
 
             }
-        ]}/>;
+        ]}/>
+        <button onClick={() => {api.setBackendAddress("https://api.arnold-tim.de")}}>Testing Backend</button>
+        <button onClick={() => {api.setBackendAddress("https://productionapi.arnold-tim.de")}}>Production Backend</button>
+
+
+        </div>;
 
     }
 }

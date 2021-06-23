@@ -18,13 +18,13 @@ class Search extends Component {
 
     onType(event) {
         this.setState({
-            searchResults: [],
             showResults: false,
             searchQuery: event.target.value.toString()
         });
         if (event.target.value.toString().length >= 2) {
             const thisElement = this;
             api.makeSearchRequest(true, true, event.target.value.toString()).then((result) => {
+                console.log(result)
                 result.data.sort(function(a, b) {
                     //TODO sort by Categorie
                     //TODO should we really sort for each word!?
@@ -74,7 +74,6 @@ class Search extends Component {
                     })
 
                     pct /= element.foundString.split(' ').length;
-                    console.log("test"+pct);
                     element.levDist = pct;
                 })
 
@@ -84,14 +83,19 @@ class Search extends Component {
                 });
 
             });
+        }else {
+            this.setState({
+                searchResults:[]
+
+            });
         }
     }
 
     render() {
         return (
             <div>
-                <div className={SearchBarStyle.dashboardSearchBarDiv}><input type="text" id="searchBar" className={SearchBarStyle.dashboardSearchBar} onKeyUp={this.onType} placeholder="Zur Suche Text hier eingeben"/></div>
-                {this.state.showResults ? <SearchResult searchResults={this.state.searchResults}/>:(this.state.searchQuery.length>=2&&<h1>Loading</h1>)}
+                <div className={SearchBarStyle.dashboardSearchBarDiv}><input type="text" id="searchBar" className={SearchBarStyle.dashboardSearchBar} onChange={this.onType} placeholder="Zur Suche Text hier eingeben"/></div>
+                {(!this.state.showResults&&this.state.searchQuery.length>=2) && <p className={SearchBarStyle.dashboardSearchBarLoading}>Loading...</p>} <SearchResult showError={this.state.showResults} searchQuery={this.state.searchQuery} searchResults={this.state.searchResults}/>
             </div>
         );
     }

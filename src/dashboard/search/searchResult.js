@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import uuid from "uuid";
 import SearchResultElement from "./searchResultElement";
+import SearchBarStyle from "./SearchBarStyle.module.css"
 
 class SearchResult extends Component {
 
@@ -34,8 +35,12 @@ function renderEntries(props,state) {
         elements.push(<SearchResultElement key={uuid()} element={searchResult}/>)
 
     })
+
+    if(props.searchResults.length===0&&props.searchQuery.length>=2&&props.showError) {
+        elements.push(<p className={SearchBarStyle.dashboardSearchBarLoading}>Keine Ergebnisse</p>)
+    }
     state.elements = elements;
-console.log(props.searchResults)
+
     return state;
 
 }
