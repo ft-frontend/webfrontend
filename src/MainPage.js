@@ -31,8 +31,8 @@ class MainPage extends React.Component {
 
             }
         ]}/>
-        <button onClick={() => {api.setBackendAddress("https://api.arnold-tim.de")}}>Testing Backend</button>
-        <button onClick={() => {api.setBackendAddress("https://productionapi.arnold-tim.de")}}>Production Backend</button>
+        <button onClick={() => {api.setBackendAddress("https://testingapi.arnold-tim.de")}}>Testing Backend</button>
+        <button onClick={() => {api.setBackendAddress("https://api.arnold-tim.de")}}>Production Backend</button>
 
 
         </div>;

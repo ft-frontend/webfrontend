@@ -2,7 +2,7 @@ import Cookies from 'universal-cookie';
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 const cookies = new Cookies();
-let backend = "https://productionapi.arnold-tim.de";
+let backend = "https://api.arnold-tim.de";
 if (cookies.get('backend') !== undefined) {
    backend = cookies.get('backend');
 }
