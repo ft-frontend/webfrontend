@@ -1,18 +1,7 @@
-@media (prefers-color-scheme: dark) {
 
-    body {
-        background-color: #313131 !important;
-    }
-
-    h1 {
-        color: white !important;
-    }
-
-
-}
 
 .dark-body {
-    background-color: #313131 !important;
+    background-color: #313131 ;
 }
 
 .dark-body > * h1 {
@@ -24,9 +13,28 @@
 
 }
 
-.dark-body > * #searchBar  {
+.dark-body >  #searchBar  {
     color: #ffffff !important;
     border: 1px solid  white !important;
 
 }
+.dark-body > * #DroneBatteryPercentageLabel  {
+    color: #ffffff !important;
+
+}
+.dark-body > * #DroneBatteryIcon  {
+    border: 3px solid #ffffff;
+}
+
+.dark-body > * #DroneBatteryIcon:after  {
+    background: #fff;
+}
+
+
+
+
+
+
+
+
 
