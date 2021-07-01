@@ -8,6 +8,7 @@ import api from "../../api/api";
 import SimpelMap from "./SimpelMap";
 import MapMarker from "./MapMarker";
 import SetPIDValue from "./SetPIDValue";
+import drone from "./drone";
 
 
 class droneControl extends React.Component {
@@ -51,19 +52,33 @@ class droneControl extends React.Component {
             if (result.success) {
                 let long = 0;
                 let lat = 0;
+                let voltage = "?";
+                let percentage = "?";
                 if (result.data.long) {
-                    long = result.data.long;
+                    long = parseFloat(result.data.long.toString())
                 }
                 if (result.data.lat) {
-                    lat = result.data.lat;
+                   lat = parseFloat(result.data.lat.toString())
+
                 }
 
-               this.setState({
-                   droneLong: parseFloat(long.toString()),
-                   droneLat: parseFloat(lat.toString()),
+                if (result.data.batteryVoltage) {
+                    voltage = parseFloat(result.data.batteryVoltage)
+                }
+                if (result.data.batteryPercentage) {
+                   percentage = parseFloat( result.data.batteryPercentage)
+                }
+
+                this.setState({
+                   droneLong: long,
+                   droneLat: lat,
+                   droneBatteryVoltage: voltage,
+                   droneBatteryPercentage: percentage,
                    renderMap: true
                 });
             }
+            console.log(this.state)
+
         });
 
         this.websocket = api.connectToDroneWebsocket(this.props.match.params.device);
@@ -72,14 +87,31 @@ class droneControl extends React.Component {
         };
         this.websocket.onmessage = (message) => {
             console.log(message.data);
-
             const messageParsed = JSON.parse(message.data);
-            console.log(messageParsed.long)
-            console.log(messageParsed.lat);
-            this.setState({
-                droneLong: messageParsed.long,
-                droneLat: messageParsed.lat
-           })
+
+
+        switch (message) {
+
+            case "clientPos":
+                console.log(messageParsed.long)
+                console.log(messageParsed.lat);
+                this.setState({
+                    droneLong: messageParsed.long,
+                    droneLat: messageParsed.lat
+                })
+                break;
+            case "volate":
+                console.log(messageParsed.voltage)
+                console.log(messageParsed.percentage);
+                this.setState({
+                    droneBatteryVoltage: messageParsed.voltage,
+                    droneBatteryPercentage: messageParsed.percentage,
+                })
+                break;
+
+        }
+
+
         };
 
 
@@ -110,7 +142,8 @@ class droneControl extends React.Component {
                     {
                         this.state.renderMap &&
                     <div>
-                        <button onClick={this.switchViewMode}>Flugeinstellungen Anzeigen/Verbergen</button>
+                        <div  title={this.state.droneBatteryVoltage+" V"} className={droneControlStyle.droneBatteryDiv}><div className={droneControlStyle.droneBatteryIcon}><div className={droneControlStyle.droneBatteryLevel} style={{width: this.state.droneBatteryPercentage+"%"}}/></div><p className={droneControlStyle.droneBatteryIconPercentageLabel}>{this.state.droneBatteryPercentage+" %"}</p></div>
+                        <button onClick={this.switchViewMode}>Flugeinstellungen</button>
                         {
                             !this.state.showFlightSettings?
                             <SimpelMap  center={{latitude:this.state.droneLat,longitude:this.state.droneLong}}>
