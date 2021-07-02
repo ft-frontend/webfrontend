@@ -9,6 +9,7 @@ import SimpelMap from "./SimpelMap";
 import MapMarker from "./MapMarker";
 import SetPIDValue from "./SetPIDValue";
 import drone from "./drone";
+import DroneFlightParams from "./droneFlightParams";
 
 
 class droneControl extends React.Component {
@@ -50,15 +51,23 @@ class droneControl extends React.Component {
 
         api.getDeviceStatusInfo(this.props.match.params.device).then(result => {
             if (result.success) {
-                let long = 0;
-                let lat = 0;
+                let long = "?";
+                let lat = "?";
+                let alt = "?";
                 let voltage = "?";
                 let percentage = "?";
+                let connectedSatellites = "?"
+                let height = "?"
+                let online = "?"
+
                 if (result.data.long) {
                     long = parseFloat(result.data.long.toString())
                 }
                 if (result.data.lat) {
                    lat = parseFloat(result.data.lat.toString())
+
+                }if (result.data.alt) {
+                    alt = parseFloat(result.data.alt.toString())
 
                 }
 
@@ -69,11 +78,19 @@ class droneControl extends React.Component {
                    percentage = parseFloat( result.data.batteryPercentage)
                 }
 
+                if(result.data.connectedSatellites) {
+                    connectedSatellites = parseFloat( result.data.connectedSatellites)
+                }
+
                 this.setState({
                    droneLong: long,
                    droneLat: lat,
+                   droneAlt: alt,
                    droneBatteryVoltage: voltage,
                    droneBatteryPercentage: percentage,
+                    droneConnectedSatellites: connectedSatellites,
+                    droneHeight: height,
+                    droneOnline: "Offline",
                    renderMap: true
                 });
             }
@@ -89,6 +106,10 @@ class droneControl extends React.Component {
             console.log(message.data);
             const messageParsed = JSON.parse(message.data);
 
+            //Set Drone Online state to online when data from drone arrives
+            this.setState({
+                droneOnline: "online"
+            })
 
         switch (message) {
 
@@ -97,10 +118,12 @@ class droneControl extends React.Component {
                 console.log(messageParsed.lat);
                 this.setState({
                     droneLong: messageParsed.long,
-                    droneLat: messageParsed.lat
+                    droneLat: messageParsed.lat,
+                    droneAlt: messageParsed.alt,
+                    droneConnectedSatellites: messageParsed.ConnectedSatellites
                 })
                 break;
-            case "volate":
+            case "voltage":
                 console.log(messageParsed.voltage)
                 console.log(messageParsed.percentage);
                 this.setState({
@@ -151,6 +174,7 @@ class droneControl extends React.Component {
 
                             </SimpelMap>:
                                 <div>
+                                    <DroneFlightParams droneBatteryVoltage={this.state.droneBatteryVoltage} droneBatteryPercentage={this.state.droneBatteryPercentage} droneConnectedSatellites={this.state.droneConnectedSatellites} lat={this.state.droneLat} long={this.state.droneLong} alt={this.state.droneAlt} height={this.state.droneHeight} droneOnline={this.state.droneOnline}/>
                                 <SetPIDValue ws={this.websocket}></SetPIDValue>
 
                                 </div>
