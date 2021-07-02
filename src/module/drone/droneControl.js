@@ -40,6 +40,7 @@ class droneControl extends React.Component {
             } else {
                 this.setState({
                     deviceName: result.data.content.name,
+                    droneOnline: result.data.content.online?"Online":"Offline",
                     renderEverything: true,
                     adminAccess: result.data.admin !== undefined,
 
@@ -58,7 +59,6 @@ class droneControl extends React.Component {
                 let percentage = "?";
                 let connectedSatellites = "?"
                 let height = "?"
-                let online = "?"
 
                 if (result.data.long) {
                     long = parseFloat(result.data.long.toString())
@@ -77,6 +77,9 @@ class droneControl extends React.Component {
                 if (result.data.batteryPercentage) {
                    percentage = parseFloat( result.data.batteryPercentage)
                 }
+                if (result.data.height) {
+                    height = parseFloat( result.data.height)
+                }
 
                 if(result.data.connectedSatellites) {
                     connectedSatellites = parseFloat( result.data.connectedSatellites)
@@ -90,7 +93,7 @@ class droneControl extends React.Component {
                    droneBatteryPercentage: percentage,
                     droneConnectedSatellites: connectedSatellites,
                     droneHeight: height,
-                    droneOnline: "Offline",
+
                    renderMap: true
                 });
             }
@@ -106,12 +109,8 @@ class droneControl extends React.Component {
             console.log(message.data);
             const messageParsed = JSON.parse(message.data);
 
-            //Set Drone Online state to online when data from drone arrives
-            this.setState({
-                droneOnline: "online"
-            })
-
-        switch (message) {
+            // eslint-disable-next-line default-case
+        switch (messageParsed.type) {
 
             case "clientPos":
                 console.log(messageParsed.long)
@@ -131,6 +130,11 @@ class droneControl extends React.Component {
                     droneBatteryPercentage: messageParsed.percentage,
                 })
                 break;
+            case "clientStatusUpdate":
+                this.setState({
+                    droneOnline: messageParsed.onlineState
+                })
+
 
         }
 
