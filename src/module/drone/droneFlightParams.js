@@ -17,6 +17,16 @@ class DroneFlightParams extends Component {
                         <td>Online-Status</td>
                         <td>{this.props.droneOnline}</td>
                     </tr>
+
+                    <tr>
+                        <td>Flugmodus</td>
+                        <td>{this.props.droneEmergencyMode}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Emergency Stop</td>
+                        <td>{this.props.droneFlightMode}</td>
+                    </tr>
                     <tr>
                         <td colSpan={2} className={DroneFlightParamsStyle.droneFlightParamsTableSep}>Akku</td>
                     </tr>

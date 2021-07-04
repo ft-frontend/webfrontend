@@ -51,6 +51,7 @@ class droneControl extends React.Component {
         });
 
         api.getDeviceStatusInfo(this.props.match.params.device).then(result => {
+            console.log(result);
             if (result.success) {
                 let long = "?";
                 let lat = "?";
@@ -59,6 +60,8 @@ class droneControl extends React.Component {
                 let percentage = "?";
                 let connectedSatellites = "?"
                 let height = "?"
+                let EmergencyMode = "?"
+                let flightMode = "?"
 
                 if (result.data.long) {
                     long = parseFloat(result.data.long.toString())
@@ -84,6 +87,12 @@ class droneControl extends React.Component {
                 if(result.data.connectedSatellites) {
                     connectedSatellites = parseFloat( result.data.connectedSatellites)
                 }
+                if(result.data.flightMode) {
+                    flightMode = parseFloat( result.data.flightMode)
+                }
+                if(result.data.EmergencyMode) {
+                    EmergencyMode = parseFloat( result.data.EmergencyMode)
+                }
 
                 this.setState({
                    droneLong: long,
@@ -93,6 +102,8 @@ class droneControl extends React.Component {
                    droneBatteryPercentage: percentage,
                     droneConnectedSatellites: connectedSatellites,
                     droneHeight: height,
+                    droneFlightMode: flightMode,
+                    droneEmergencyMode: EmergencyMode,
 
                    renderMap: true
                 });
@@ -108,6 +119,7 @@ class droneControl extends React.Component {
         this.websocket.onmessage = (message) => {
             console.log(message.data);
             const messageParsed = JSON.parse(message.data);
+
 
             // eslint-disable-next-line default-case
         switch (messageParsed.type) {
@@ -134,6 +146,13 @@ class droneControl extends React.Component {
                 this.setState({
                     droneOnline: messageParsed.onlineState
                 })
+                break;
+            case "flightMode":
+                this.setState({
+                    droneFlightMode: messageParsed.flightMode,
+                    droneEmergencyMode: messageParsed.emergencyMode
+                })
+                break;
 
 
         }
@@ -178,7 +197,7 @@ class droneControl extends React.Component {
 
                             </SimpelMap>:
                                 <div>
-                                    <DroneFlightParams droneBatteryVoltage={this.state.droneBatteryVoltage} droneBatteryPercentage={this.state.droneBatteryPercentage} droneConnectedSatellites={this.state.droneConnectedSatellites} lat={this.state.droneLat} long={this.state.droneLong} alt={this.state.droneAlt} height={this.state.droneHeight} droneOnline={this.state.droneOnline}/>
+                                    <DroneFlightParams droneBatteryVoltage={this.state.droneBatteryVoltage} droneBatteryPercentage={this.state.droneBatteryPercentage} droneConnectedSatellites={this.state.droneConnectedSatellites} lat={this.state.droneLat} long={this.state.droneLong} alt={this.state.droneAlt} height={this.state.droneHeight} droneOnline={this.state.droneOnline} droneFlightMode={this.state.droneFlightMode} droneEmergencyMode={this.state.droneEmergencyMode}/>
                                 <SetPIDValue ws={this.websocket}></SetPIDValue>
 
                                 </div>
