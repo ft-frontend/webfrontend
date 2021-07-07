@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import "react-bingmaps";
 
 class SimpleMap extends Component {
-    static defaultProps = {
 
-        zoom: 16
-    };
 
     constructor(props) {
         super(props);
+        this.state = {
+
+        }
         const obj = this;
         window.GetMap = function () {
             // eslint-disable-next-line no-undef
@@ -21,10 +21,12 @@ class SimpleMap extends Component {
 
             });
 
+
             const pin = new window.Microsoft.Maps.Pushpin(new window.Microsoft.Maps.Location(obj.props.center.latitude, obj.props.center.longitude),{
              color: 'red'
             })
             obj.map.entities.push(pin);
+            obj.dronePos = pin;
 
         };
     }
@@ -43,6 +45,10 @@ class SimpleMap extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        this.map.setView({
+            center: new window.Microsoft.Maps.Location(this.props.center.latitude, this.props.center.longitude)
+        })
+        this.dronePos.setLocation(new window.Microsoft.Maps.Location(this.props.center.latitude, this.props.center.longitude))
     }
 
 
@@ -58,25 +64,7 @@ class SimpleMap extends Component {
         return (
 
             <div>
-                {/* <ReactBingmaps bingmapKey=""
-                               mapTypeId= "aerial"
-                               disableStreetside={true}
-                               navigationBarMode = {"compact"}
-               // AkBVrBtsknpJShn4Yjy9xKpdHxNdYuymoJ_1yHe95ECRs3CEIbwWmD6wje-c1R9v
 
-
-                               pushPins = {
-                                   [
-                                       {
-                                           "location":[this.props.center.latitude, this.props.center.longitude], "option":{ color: 'red' }
-                                       }
-                                   ]
-                               }
-
-                               zoom = {19}
-                               center = {[this.props.center.latitude, this.props.center.longitude ]}
-                />
-                */}
                 <div id="myMap" style={{height: '43em', width: '100vw', marginTop: '20px'}}/>
 
             </div>
