@@ -34,6 +34,12 @@ class AddMission extends Component {
                     <input className={AddMissionStyle.AddMissionTextInput} id="addMissionNameInput"  maxLength={40} type="text" placeholder={"Name"} defaultValue={"New Mission"}/>
                     <button className={AddMissionStyle.AddMissionSubmit} type="submit" >Erstellen</button>
                 </form>
+                <hr style={{marginTop:"30px"}}/>
+
+                <h4 className={deviceDashboardFontStyle.deviceDashboardFontCenter} style={{marginTop:"30px"}}>Oder Importieren aus einer Datei</h4>
+
+                <p>SOON</p>
+
 
 
             </div>

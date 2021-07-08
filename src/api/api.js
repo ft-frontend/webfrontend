@@ -399,6 +399,34 @@ const api = {
             }
 
         });
+    },
+
+    getMissionData: function(missionUUID) {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+
+                fetch(backend + `/drone/mission/getMissionData?session=${cookies.get('session')}&missionUUID=${missionUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                    if(result.success) {
+                        resolve({
+                            success: true,
+                            mission: result.mission
+                        });
+                    }else{
+                        resolve({
+                            success: false
+                        });
+                    }
+
+
+                });
+            }
+
+        });
     }
 
 
