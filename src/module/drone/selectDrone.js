@@ -3,7 +3,7 @@ import Selector from "../../UI/Selector/Selector";
 import api from "../../api/api";
 import DeviceImageDrawer from "../../dashboard/device/DeviceImageDrawer";
 
-class drone extends React.Component {
+class SelectDrone extends React.Component {
 
     constructor(props) {
         super(props);
@@ -19,7 +19,7 @@ class drone extends React.Component {
 
                 r.forEach(device => {
                     this.state.deviceList.push( {
-                        link: "/module/drone/"+device.uuid,
+                        link: "/module/drone/select/"+device.uuid,
                         text: device.name,
                         img: DeviceImageDrawer("Drone")
 
@@ -41,4 +41,4 @@ class drone extends React.Component {
 
 }
 
-export default drone;
+export default SelectDrone;

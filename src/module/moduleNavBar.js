@@ -36,7 +36,6 @@ class ModuleNavBar extends React.Component {
                 }
             ]}>
                 <p className={ModuleStyle.moduleHeaderNavBarText}>{this.state.name}</p>
-                <AppSelector/>
 
             </NavBar>
 

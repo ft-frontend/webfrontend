@@ -1,0 +1,31 @@
+.AddMissionTextInput {
+
+    font-size: 2em;
+    font-weight: bold;
+    min-width:700px!important;
+
+    max-width:99.99%!important;
+    transition: width 0.05s;
+    text-align:center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    border-color: black;
+    border-radius: 10px;
+    border-width: 2px;
+    margin-right: 30px;
+
+}
+
+
+.AddMissionForm {
+
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    margin-right: auto;
+    margin-top: 40px;
+
+}
+.AddMissionSubmit {
+
+}

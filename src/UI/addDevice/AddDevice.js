@@ -2,6 +2,7 @@ import React from "react";
 import AddDeviceStyle from "./AddDeviceStyle.module.css";
 import $ from 'jquery';
 import api from "../../api/api";
+import FloatingButton from "../FloatingButton/FloatingButton";
 
 class AddDevice extends React.Component {
     constructor(props) {
@@ -147,8 +148,8 @@ class AddDevice extends React.Component {
 
     render() {
         return <div>
-            <div className={AddDeviceStyle.AddDeviceButton} onClick={this.openMenu}><p
-                className={AddDeviceStyle.AddDeviceButtonText}>+</p></div>
+
+            <FloatingButton callback={this.openMenu} text={"+"}/>
             {
                 this.state.menuOpened &&
 

@@ -207,6 +207,7 @@ const api = {
                 resolve(false);
             } else {
                 fetch(backend + `/device/registerByCode?session=${cookies.get('session')}&regCode=${regCode}`).then(res => res.json()).then(result => {
+
                     if (checkErrorCodes(result)) {
                     }
                     if (result.error !== undefined) {
@@ -265,6 +266,7 @@ const api = {
                 resolve(false);
             } else {
                 fetch(backend + `/account/getSettings?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;
@@ -342,6 +344,61 @@ const api = {
         backend = backendAddress;
         cookies.set('backend', backendAddress, {path: '/'});
 
+    },
+
+    addNewMission: function (name) {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                    name: name
+                });
+                fetch(backend + `/drone/mission/createMission`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                   if(result.success) {
+                       resolve({
+                           success:true,
+                           uuid: result.uuid
+                       })
+                   }else{
+                       resolve({
+                           success:false
+                       })
+                   }
+
+                });
+            }
+
+        });
+    },
+    listMissions: function () {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+
+                fetch(backend + `/drone/mission/listMissions?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                    if(result.success) {
+                        resolve({
+                            success: true,
+                            missions: result.missions
+                        });
+                    }else{
+                        resolve({
+                            success: false
+                        });
+                    }
+
+
+                });
+            }
+
+        });
     }
 
 

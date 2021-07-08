@@ -1,0 +1,25 @@
+.FloatingButton {
+
+    position: absolute;
+    right: 3vw;
+    bottom: 5vh;
+    width: 55px;
+    height: 55px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #0088a9;
+    border-radius: 50px;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.FloatingButton:hover {
+    box-shadow: 0 9px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 25px 0 rgba(0, 0, 0, 0.19);
+
+}
+.FloatingButtonText {
+    margin-top: 13px;
+    font-size: 22px;
+    color: white;
+    user-select: none;
+}

@@ -56,7 +56,7 @@ class DroneFlightParams extends Component {
 
                     <tr>
                         <td>Altitude</td>
-                        <td>{this.props.alt}</td>
+                        <td>{this.props.alt+" m (NN)"}</td>
                     </tr>
                     <tr>
                         <td>Höhe</td>

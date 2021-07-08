@@ -41,7 +41,6 @@ class dashboard extends React.Component {
                 }
             ]}>
 
-                <AppSelector/>
 
             </NavBar>
 

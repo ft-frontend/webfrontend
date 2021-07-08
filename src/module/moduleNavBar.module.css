@@ -1,11 +1,11 @@
 .moduleHeaderNavBarText {
 
     color: white;
-    margin-left: -0vw;
-    margin-right: 27.5vw;
+    margin: auto;
     font-size: 30px;
     font-weight: bold;
     user-select: none;
+    left: 50vw;
 }
 
 @media (max-width: 500px) and (orientation: portrait) {

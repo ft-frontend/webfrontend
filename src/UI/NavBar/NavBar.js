@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./NavBar.module.css";
+import AppSelector from "../appSelector/appSelector";
 
 class NavBar extends React.Component {
     render() {
@@ -36,9 +37,10 @@ class NavBar extends React.Component {
 
                 </nav>
 
+                {this.props.children}
 
                 <div className={styles.NavBarButtonDiv}>
-                    {this.props.children}
+                    <AppSelector/>
                     {buttons}
                 </div>
 

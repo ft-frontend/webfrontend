@@ -21,7 +21,7 @@ class appSelector extends React.Component {
         this.items = [
             <ApplistItem key="1" redirect="/dashboard" iconsrc={HomeSelectorIcon}>HOME</ApplistItem>,
             <ApplistItem key="2" redirect="/module/ledwall" iconsrc={LEDWallSelectorIcon}>LEDWALL</ApplistItem>,
-            <ApplistItem key="3" redirect="/module/drone" iconsrc={DroneSelectorIcon}>DRONE</ApplistItem>,
+            <ApplistItem key="3" redirect="/module/drone" iconsrc={DroneSelectorIcon}>DROHNE</ApplistItem>,
             <ApplistItem key="4" redirect="/module/other" iconsrc={OtherSelectorIcon}>SONSTIGES</ApplistItem>,
             <ApplistItem key="5" redirect="/dashboard/settings/account" iconsrc={SettingsSelectorIcon}>EINSTELLUNGEN</ApplistItem>
         ];

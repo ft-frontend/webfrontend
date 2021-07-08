@@ -22,7 +22,7 @@ class SimpleMap extends Component {
             });
 
 
-            const pin = new window.Microsoft.Maps.Pushpin(new window.Microsoft.Maps.Location(obj.props.center.latitude, obj.props.center.longitude),{
+            const pin = new window.Microsoft.Maps.Pushpin(new window.Microsoft.Maps.Location(obj.props.center.latitude, obj.props.center.longitude),{ //TODO do not create a new ELEMENT!!!
              color: 'red'
             })
             obj.map.entities.push(pin);

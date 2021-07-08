@@ -8,7 +8,7 @@ import api from "../../api/api";
 import SimpelMap from "./SimpelMap";
 import MapMarker from "./MapMarker";
 import SetPIDValue from "./SetPIDValue";
-import drone from "./drone";
+import SelectDrone from "./selectDrone";
 import DroneFlightParams from "./droneFlightParams";
 
 
@@ -88,10 +88,10 @@ class droneControl extends React.Component {
                     connectedSatellites = parseFloat( result.data.connectedSatellites)
                 }
                 if(result.data.flightMode) {
-                    flightMode = parseFloat( result.data.flightMode)
+                    flightMode = ( result.data.flightMode)
                 }
                 if(result.data.EmergencyMode) {
-                    EmergencyMode = parseFloat( result.data.EmergencyMode)
+                    EmergencyMode = ( result.data.EmergencyMode)
                 }
 
                 this.setState({
