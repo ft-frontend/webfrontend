@@ -1,20 +1,25 @@
 import React, {Component} from 'react';
 import "react-bingmaps";
 import MissionPlannerControls from "./missionPlaner/missionPlannerControls";
+import api from "../../api/api";
 
 class SimpleMap extends Component {
 
 
     constructor(props) {
         super(props);
-        this.state = {
-            plannerMode: this.props.planner,
-            plannerData: JSON.parse(this.props.missionData),
-            pushPins: [],
-            polyLine: undefined,
-            pushPinHovered: undefined,
 
-        };
+            this.state = {
+                plannerMode: this.props.planner,
+                plannerData: this.props.planner?JSON.parse(this.props.missionData):undefined,
+                pushPins: [],
+                polyLine: undefined,
+                pushPinHovered: undefined,
+                selectedPushPin: undefined
+
+            };
+
+
 
         this.missionParser = this.missionParser.bind(this);
         this.handlePushPinDrag = this.handlePushPinDrag.bind(this);
@@ -26,6 +31,9 @@ class SimpleMap extends Component {
         this.removePushPin = this.removePushPin.bind(this);
         this.regeneratePushPinText = this.regeneratePushPinText.bind(this);
         this.missionComposer = this.missionComposer.bind(this);
+        this.handlePushPinClick = this.handlePushPinClick.bind(this);
+        this.heightOfSelectedPushPinChanged = this.heightOfSelectedPushPinChanged.bind(this);
+        this.preventRedirect = this.preventRedirect.bind(this);
 
 
 
@@ -69,7 +77,7 @@ class SimpleMap extends Component {
                     obj.map.setView({center: loc, zoom: 15});
                 });
 
-                if (obj.state.plannerMode) {
+                if (obj.state.plannerData) {
                     obj.missionParser();
                 }
             }
@@ -79,7 +87,6 @@ class SimpleMap extends Component {
     }
 
     missionParser() {
-        console.log(this.state.plannerData);
 
         this.state.plannerData.forEach(wayPoint => {
 
@@ -91,11 +98,13 @@ class SimpleMap extends Component {
                 color: "#00ff00"
 
             });
-
+            pushPin.index = this.state.plannerData.indexOf(wayPoint)
             pushPin.height = wayPoint.height; //TODO parse height correctly
             window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
             window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
             window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
+            window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
+            window.Microsoft.Maps.Events.addHandler(pushPin, 'dragstart', this.preventRedirect);
             this.state.pushPins.push(pushPin);
             this.map.entities.push(pushPin);
         });
@@ -109,31 +118,61 @@ class SimpleMap extends Component {
     }
 
     missionComposer() {
-        const finalArray = [];
+        return new Promise((resolve, reject) => {
 
-        this.state.pushPins.forEach((pp) => {
+            const finalArray = [];
+            const pos = [];
 
-            finalArray.push({
+            this.state.pushPins.forEach((pp) => {
 
-                lat: pp.getLocation().latitude,
-                long: pp.getLocation().longitude,
-                height: pp.height,
-                alt: pp.height, //TODO parse to real alt
+                finalArray.push({
+
+                    lat: pp.getLocation().latitude,
+                    long: pp.getLocation().longitude,
+                    height: pp.height,
+                    alt: 0
 
 
+
+                })
+
+                pos.push(pp.getLocation().latitude);
+                pos.push(pp.getLocation().longitude);
 
             })
 
+            api.getElevationData(pos).then(result=>{
+
+                this.state.pushPins.forEach((pp) => {
+
+                   finalArray[this.state.pushPins.indexOf(pp)].alt =  (parseFloat(result.elevations[this.state.pushPins.indexOf(pp)])+parseFloat(finalArray[this.state.pushPins.indexOf(pp)].height))
+                    console.log(result.elevations[this.state.pushPins.indexOf(pp)])
+                    console.log(finalArray[this.state.pushPins.indexOf(pp)].height)
+                })
+
+                resolve(finalArray)
+
+            })
+
+
+
+
+
         })
-
-        return finalArray;
-
     }
 
     handlePushPinMoseOver(e) {
         this.setState({
             pushPinHovered: e.target
         });
+    }
+
+    handlePushPinClick(e) {
+        this.setState({
+            selectedPushPin: e.target
+        })
+
+
     }
 
 
@@ -143,14 +182,12 @@ class SimpleMap extends Component {
             this.setState({
                 pushPinHovered: null
             });
-            console.log("remove")
 
         }
     }
 
 
     handleMapRightClick(e) {
-        console.log(this.state.pushPinHovered)
         if (this.state.pushPinHovered === null || this.state.pushPinHovered === undefined) {
             this.addPushPin(e);
         } else {
@@ -160,10 +197,11 @@ class SimpleMap extends Component {
     }
 
     regeneratePushPinText() {
-        this.state.pushPins.forEach(pp=>{
 
+        this.state.pushPins.forEach(pp=>{
             pp._options.text = ""+(this.state.pushPins.indexOf(pp)+1)
             pp.setOptions(pp._options)
+            pp.index = this.state.pushPins.indexOf(pp)
         })
     }
 
@@ -182,7 +220,14 @@ class SimpleMap extends Component {
             this.map.entities.removeAt(entityIndex);
         }
 
-        this.setState({
+        if(this.state.selectedPushPin===element) {
+            this.setState({
+                selectedPushPin: undefined
+            })
+        }
+
+
+            this.setState({
             pushPinHovered: undefined
         })
 
@@ -190,7 +235,7 @@ class SimpleMap extends Component {
         this.regeneratePushPinText()
         this.generatePolyLines();
 
-
+        this.preventRedirect();
     }
 
 
@@ -205,17 +250,25 @@ class SimpleMap extends Component {
         this.state.pushPins.push(pushPin);
         this.map.entities.push(pushPin);
         pushPin.height = 0;
+        pushPin.index = this.state.pushPins.length-1;
         window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
+        window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
 
         this.generatePolyLines();
-
+        this.preventRedirect();
     }
 
     handlePushPinDrag(e) {
         this.generatePolyLines();
 
+    }
+
+    preventRedirect() {
+        window.onbeforeunload = function(){
+            return 'Du hast ungespeicherte Änderungen!';
+        };
     }
 
     generatePolyLines() {
@@ -226,6 +279,12 @@ class SimpleMap extends Component {
         });
 
         this.state.polyLine.setLocations(posArray);
+
+    }
+
+    heightOfSelectedPushPinChanged(value) {
+        this.state.selectedPushPin.height = value;
+        this.preventRedirect();
 
     }
 
@@ -244,7 +303,7 @@ class SimpleMap extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
 
-        if (!this.state.plannerMode) {
+        if (!this.state.plannerMode&&this.droneLocation) {
             this.droneLocation.latitude = this.props.center.latitude;
             this.droneLocation.longitude = this.props.center.longitude;
             this.map.setView({
@@ -263,10 +322,10 @@ class SimpleMap extends Component {
         return (
 
             <div>
+                {this.state.plannerMode && <MissionPlannerControls heightChangeCallback={this.heightOfSelectedPushPinChanged} selectedPushPin={this.state.selectedPushPin} missionName={this.props.missionName} missionUUID={this.props.missionUUID} requestDataCallback={this.missionComposer}/>}
 
 
                 <div id="myMap" style={{height: '43em', width: '100vw', marginTop: '20px'}}/>
-                {this.state.plannerMode && <MissionPlannerControls missionName={this.props.missionName} missionUUID={this.props.missionUUID} requestDataCallback={this.missionComposer}/>}
             </div>
         );
     }

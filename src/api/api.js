@@ -454,6 +454,21 @@ const api = {
             }
 
         });
+    },
+
+    getElevationData: function(points) {
+        return new Promise((resolve, reject) => {
+
+
+
+                fetch(`https://dev.virtualearth.net/REST/v1/Elevation/List?points=${points.join()}&key=AkBVrBtsknpJShn4Yjy9xKpdHxNdYuymoJ_1yHe95ECRs3CEIbwWmD6wje-c1R9v`).then(res => res.json()).then(result => {
+                        resolve({
+                           elevations: result.resourceSets[0].resources[0].elevations
+                        });
+                });
+
+
+        });
     }
 
 

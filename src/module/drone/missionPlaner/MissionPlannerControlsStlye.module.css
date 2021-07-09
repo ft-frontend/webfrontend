@@ -1,0 +1,20 @@
+.MissionPlannerControlsContainer {
+    display: flex;
+
+
+}
+.MissionPlannerControlsContainer > * {
+
+    margin-left: 10px;
+
+
+}
+
+.MissionPlannerControlsSilderContainer {
+    display:flex;
+    border-spacing: 10px;
+}
+
+.MissionPlannerControlsSilderContainer > * {
+    margin-right: 10px;
+}

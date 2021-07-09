@@ -192,7 +192,7 @@ class droneControl extends React.Component {
                         <button onClick={this.switchViewMode}>Flugeinstellungen</button>
                         {
                             !this.state.showFlightSettings?
-                            <SimpelMap  center={{latitude:this.state.droneLat,longitude:this.state.droneLong}}>
+                            <SimpelMap plannerMode={false} center={{latitude:this.state.droneLat,longitude:this.state.droneLong}}>
 
 
                             </SimpelMap>:

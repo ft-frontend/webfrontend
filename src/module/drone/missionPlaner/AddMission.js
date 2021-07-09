@@ -36,7 +36,7 @@ class AddMission extends Component {
                 </form>
                 <hr style={{marginTop:"30px"}}/>
 
-                <h4 className={deviceDashboardFontStyle.deviceDashboardFontCenter} style={{marginTop:"30px"}}>Oder Importieren aus einer Datei</h4>
+                <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter} style={{marginTop:"30px"}}>Oder Importieren aus einer Datei:</h1>
 
                 <p>SOON</p>
 
