@@ -16,9 +16,7 @@ class MissionSelect extends Component {
 
 
     componentDidMount() {
-        console.log("test")
         api.listMissions().then(r => {
-            console.log(r);
             if(r.success) {
                 r.missions.forEach(mission => {
 

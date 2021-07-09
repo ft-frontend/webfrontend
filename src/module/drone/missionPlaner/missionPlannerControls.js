@@ -32,7 +32,11 @@ class MissionPlannerControls extends Component {
     }
 
     downloadMission() {
-        this.downloadUtility(this.props.missionName + ".dronemission", JSON.stringify(this.props.requestDataCallback()));
+        this.props.requestDataCallback().then(res=>{
+            this.downloadUtility(this.props.missionName + ".dronemission", JSON.stringify(res));
+
+        })
+
     }
 
     downloadUtility(filename, text) {

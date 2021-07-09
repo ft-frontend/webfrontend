@@ -346,14 +346,15 @@ const api = {
 
     },
 
-    addNewMission: function (name) {
+    addNewMission: function (name,data) {
         return new Promise((resolve, reject) => {
             if (cookies.get('session') === undefined) {
                 resolve(false);
             } else {
                 post.body = JSON.stringify({
                     session: cookies.get('session'),
-                    name: name
+                    name: name,
+                    data: data
                 });
                 fetch(backend + `/drone/mission/createMission`, post).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) { resolve({success:false}); return}
@@ -521,6 +522,33 @@ const api = {
                             success:false
                         })
                     }
+
+                });
+            }
+
+        });
+    },
+
+    deleteMission: function(missionUUID) {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+
+                fetch(backend + `/drone/mission/deleteDroneMission?session=${cookies.get('session')}&missionUUID=${missionUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                    if(result.success) {
+                        resolve({
+                            success: true,
+                        });
+                    }else{
+                        resolve({
+                            success: false
+                        });
+                    }
+
 
                 });
             }

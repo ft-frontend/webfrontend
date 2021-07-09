@@ -151,8 +151,7 @@ class SimpleMap extends Component {
                 this.state.pushPins.forEach((pp) => {
 
                    finalArray[this.state.pushPins.indexOf(pp)].alt =  (parseFloat(result.elevations[this.state.pushPins.indexOf(pp)])+parseFloat(finalArray[this.state.pushPins.indexOf(pp)].height))
-                    console.log(result.elevations[this.state.pushPins.indexOf(pp)])
-                    console.log(finalArray[this.state.pushPins.indexOf(pp)].height)
+
                 })
 
                 resolve(finalArray)

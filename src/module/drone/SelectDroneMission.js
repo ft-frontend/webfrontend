@@ -13,7 +13,7 @@ class SelectDroneMission extends Component {
     }
     componentDidMount() {
         const options = [];
-        options.push(<option value={-1}>Keine</option>);
+        options.push(<option  value={-1}>Keine</option>);
 
         api.listMissions().then(res=>{
            res.missions.forEach(mission=>{
@@ -28,7 +28,12 @@ class SelectDroneMission extends Component {
         api.getDeviceConfig(this.props.deviceUUID).then(res=>{
             console.log(res);
             if(res.config.currentMission) {
-                document.getElementById("SelectDroneMissionBox").value = res.config.currentMission;
+                const selectBox = document.getElementById("SelectDroneMissionBox")
+                if((selectBox.innerHTML.indexOf('value="' + res.config.currentMission + '"') > -1)){
+                    selectBox.value = res.config.currentMission;
+                }else{
+                    selectBox.value = -1;
+                }
             }
         })
 
@@ -47,7 +52,7 @@ class SelectDroneMission extends Component {
             <div>
                 <label htmlFor="mission">Aktuelle Mission:</label>
 
-                <select onChange={this.handleMissionChange} name="mission" id="SelectDroneMissionBox">
+                <select onChange={this.handleMissionChange}  name="mission" id="SelectDroneMissionBox">
                     {this.state.options}
                 </select>
             </div>

@@ -7,14 +7,14 @@ class AddMission extends Component {
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this);
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
         const mission = document.getElementById("addMissionNameInput").value;
-        api.addNewMission(mission).then(result => {
-            console.log(result);
+        api.addNewMission(mission,'[]').then(result => {
             if(result.success) {
                 window.location.href= "/module/drone/missions/planner/"+result.uuid
 
@@ -22,6 +22,23 @@ class AddMission extends Component {
 
         })
 
+    }
+
+    handleFileUpload(event) {
+        const reader = new FileReader()
+        reader.onload = (e) =>{
+
+            api.addNewMission(event.target.files[0].name.split('.').slice(0, -1).join('.'),e.target.result).then(result=>{
+                if(result.success) {
+                    window.location.href= "/module/drone/missions/planner/"+result.uuid
+
+                }
+            })
+        }
+
+        for (let file of event.target.files) {
+            reader.readAsText(file)
+        }
     }
 
     render() {
@@ -38,7 +55,7 @@ class AddMission extends Component {
 
                 <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter} style={{marginTop:"30px"}}>Oder Importieren aus einer Datei:</h1>
 
-                <p>SOON</p>
+                <input type='file' accept=".dronemission" onChange={this.handleFileUpload}  className={AddMissionStyle.AddMissionForm}/>
 
 
 
