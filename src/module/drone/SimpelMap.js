@@ -11,7 +11,7 @@ class SimpleMap extends Component {
 
             this.state = {
                 plannerMode: this.props.planner,
-                plannerData: this.props.planner?JSON.parse(this.props.missionData):undefined,
+                plannerData: this.props.missionData?JSON.parse(this.props.missionData):undefined,
                 pushPins: [],
                 polyLine: undefined,
                 pushPinHovered: undefined,
@@ -19,6 +19,7 @@ class SimpleMap extends Component {
 
             };
 
+            console.log(this.props.missionData)
 
 
         this.missionParser = this.missionParser.bind(this);
@@ -77,9 +78,11 @@ class SimpleMap extends Component {
                     obj.map.setView({center: loc, zoom: 15});
                 });
 
-                if (obj.state.plannerData) {
-                    obj.missionParser();
-                }
+
+            }
+
+            if (obj.state.plannerData) {
+                obj.missionParser();
             }
 
 
@@ -87,33 +90,35 @@ class SimpleMap extends Component {
     }
 
     missionParser() {
-
         this.state.plannerData.forEach(wayPoint => {
 
             const location = new window.Microsoft.Maps.Location(wayPoint.lat, wayPoint.long);
             const pushPin = new window.Microsoft.Maps.Pushpin(location, {
 
                 text: `${this.state.plannerData.indexOf(wayPoint) + 1}`,
-                draggable: true,
+                draggable: !!this.state.plannerMode,
                 color: "#00ff00"
 
             });
             pushPin.index = this.state.plannerData.indexOf(wayPoint)
-            pushPin.height = wayPoint.height; //TODO parse height correctly
-            window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
-            window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
-            window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
-            window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
-            window.Microsoft.Maps.Events.addHandler(pushPin, 'dragstart', this.preventRedirect);
+            pushPin.height = wayPoint.height;
+            if(this.state.plannerMode) {
+                window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
+                window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
+                window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
+                window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
+                window.Microsoft.Maps.Events.addHandler(pushPin, 'dragstart', this.preventRedirect);
+            }
             this.state.pushPins.push(pushPin);
             this.map.entities.push(pushPin);
         });
 
         this.generatePolyLines();
 
-
-        //init Event Handlers
-        window.Microsoft.Maps.Events.addHandler(this.map, 'rightclick', this.handleMapRightClick);
+        if(this.state.plannerMode) {
+            //init Event Handlers
+            window.Microsoft.Maps.Events.addHandler(this.map, 'rightclick', this.handleMapRightClick);
+        }
 
     }
 

@@ -469,6 +469,63 @@ const api = {
 
 
         });
+    },
+
+    getDeviceConfig: function(deviceUUID) {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+
+                fetch(backend + `/device/getDeviceConfig?session=${cookies.get('session')}&device=${deviceUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                    if(result.success) {
+                        resolve({
+                            success: true,
+                            config: result.data
+                        });
+                    }else{
+                        resolve({
+                            success: false
+                        });
+                    }
+
+
+                });
+            }
+
+        });
+    },
+
+    saveDeviceConfig: function(deviceUUID, key,value) {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                    deviceuuid: deviceUUID,
+                    param: key,
+                    value: value
+                });
+                fetch(backend + `/device/saveConfig`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                    if(result.success) {
+                        resolve({
+                            success:true,
+                        })
+                    }else{
+                        resolve({
+                            success:false
+                        })
+                    }
+
+                });
+            }
+
+        });
     }
 
 

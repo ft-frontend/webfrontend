@@ -10,6 +10,7 @@ import MapMarker from "./MapMarker";
 import SetPIDValue from "./SetPIDValue";
 import SelectDrone from "./selectDrone";
 import DroneFlightParams from "./droneFlightParams";
+import SelectDroneMission from "./SelectDroneMission";
 
 
 class droneControl extends React.Component {
@@ -22,10 +23,12 @@ class droneControl extends React.Component {
             droneLong: 49,
             droneLat: 0,
             renderMap: false,
-            showFlightSettings: false
+            showFlightSettings: false,
+            renderSimpleMap:true
         };
 
         this.switchViewMode = this.switchViewMode.bind(this);
+        this.updateMissionCallback = this.updateMissionCallback.bind(this);
 
     }
 
@@ -94,19 +97,48 @@ class droneControl extends React.Component {
                     EmergencyMode = ( result.data.EmergencyMode)
                 }
 
-                this.setState({
-                   droneLong: long,
-                   droneLat: lat,
-                   droneAlt: alt,
-                   droneBatteryVoltage: voltage,
-                   droneBatteryPercentage: percentage,
-                    droneConnectedSatellites: connectedSatellites,
-                    droneHeight: height,
-                    droneFlightMode: flightMode,
-                    droneEmergencyMode: EmergencyMode,
+                //Get Current Mission
 
-                   renderMap: true
-                });
+                api.getDeviceConfig(this.props.match.params.device).then(res=>{
+                    if(res.config.currentMission&&res.config.currentMission!=="-1") {
+
+                        api.getMissionData(res.config.currentMission).then(mission=>{
+                            this.setState({
+                                missionData:mission.mission.data
+                            })
+                            this.setState({
+                                droneLong: long,
+                                droneLat: lat,
+                                droneAlt: alt,
+                                droneBatteryVoltage: voltage,
+                                droneBatteryPercentage: percentage,
+                                droneConnectedSatellites: connectedSatellites,
+                                droneHeight: height,
+                                droneFlightMode: flightMode,
+                                droneEmergencyMode: EmergencyMode,
+
+                                renderMap: true
+                            });
+
+                        })
+                    }else{
+                        this.setState({
+                            droneLong: long,
+                            droneLat: lat,
+                            droneAlt: alt,
+                            droneBatteryVoltage: voltage,
+                            droneBatteryPercentage: percentage,
+                            droneConnectedSatellites: connectedSatellites,
+                            droneHeight: height,
+                            droneFlightMode: flightMode,
+                            droneEmergencyMode: EmergencyMode,
+
+                            renderMap: true
+                        });
+                    }
+                })
+
+
             }
             console.log(this.state)
 
@@ -161,6 +193,29 @@ class droneControl extends React.Component {
         };
 
 
+
+
+
+    }
+
+
+    updateMissionCallback(newMission) {
+        //Get Current Mission
+
+        api.getDeviceConfig(this.props.match.params.device).then(res=>{
+            if(res.config.currentMission&&res.config.currentMission!=="-1") {
+
+                api.getMissionData(res.config.currentMission).then(mission=>{
+                    this.setState({
+                        missionData:mission.mission.data
+                    })
+                })
+            }else{
+                this.setState({
+                    missionData:"[]"
+                })
+            }
+        })
     }
 
     switchViewMode() {
@@ -192,14 +247,15 @@ class droneControl extends React.Component {
                         <button onClick={this.switchViewMode}>Flugeinstellungen</button>
                         {
                             !this.state.showFlightSettings?
-                            <SimpelMap plannerMode={false} center={{latitude:this.state.droneLat,longitude:this.state.droneLong}}>
+                                this.state.renderSimpleMap&&
+                            <SimpelMap plannerMode={false} missionData={this.state.missionData} center={{latitude:this.state.droneLat,longitude:this.state.droneLong}}>
 
 
                             </SimpelMap>:
                                 <div>
                                     <DroneFlightParams droneBatteryVoltage={this.state.droneBatteryVoltage} droneBatteryPercentage={this.state.droneBatteryPercentage} droneConnectedSatellites={this.state.droneConnectedSatellites} lat={this.state.droneLat} long={this.state.droneLong} alt={this.state.droneAlt} height={this.state.droneHeight} droneOnline={this.state.droneOnline} droneFlightMode={this.state.droneFlightMode} droneEmergencyMode={this.state.droneEmergencyMode}/>
                                 <SetPIDValue ws={this.websocket}></SetPIDValue>
-
+                                <SelectDroneMission updateMissionCallback={this.updateMissionCallback} deviceUUID={this.props.match.params.device}/>
                                 </div>
                         }
 
