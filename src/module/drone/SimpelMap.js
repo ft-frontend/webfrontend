@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "react-bingmaps";
+import MissionPlannerControls from "./missionPlaner/missionPlannerControls";
 
 class SimpleMap extends Component {
 
@@ -10,24 +11,35 @@ class SimpleMap extends Component {
             plannerMode: this.props.planner,
             plannerData: JSON.parse(this.props.missionData),
             pushPins: [],
-            polyLine: undefined
+            polyLine: undefined,
+            pushPinHovered: undefined,
+
         };
 
         this.missionParser = this.missionParser.bind(this);
         this.handlePushPinDrag = this.handlePushPinDrag.bind(this);
         this.generatePolyLines = this.generatePolyLines.bind(this);
         this.addPushPin = this.addPushPin.bind(this);
+        this.handlePushPinMoseOut = this.handlePushPinMoseOut.bind(this);
+        this.handlePushPinMoseOver = this.handlePushPinMoseOver.bind(this);
+        this.handleMapRightClick = this.handleMapRightClick.bind(this);
+        this.removePushPin = this.removePushPin.bind(this);
+        this.regeneratePushPinText = this.regeneratePushPinText.bind(this);
+        this.missionComposer = this.missionComposer.bind(this);
+
 
 
         const obj = this;
         window.GetMap = function () {
             // eslint-disable-next-line no-undef
             window.Microsoft = Microsoft;
-            const pl = new window.Microsoft.Maps.Polyline([])
+            const pl = new window.Microsoft.Maps.Polyline([], {
+                strokeThickness: 3
+            });
 
             obj.setState({
                 polyLine: pl
-            })
+            });
 
             obj.map = window.Microsoft.Maps.Map('#myMap', {
                 credentials: "AkBVrBtsknpJShn4Yjy9xKpdHxNdYuymoJ_1yHe95ECRs3CEIbwWmD6wje-c1R9v",
@@ -36,7 +48,7 @@ class SimpleMap extends Component {
                 mapTypeId: window.Microsoft.Maps.MapTypeId.aerial,
 
             });
-            obj.map.entities.push(pl)
+            obj.map.entities.push(pl);
 
             if (obj.props.center) {
                 obj.droneLocation = new window.Microsoft.Maps.Location(obj.props.center.latitude, obj.props.center.longitude);
@@ -49,7 +61,7 @@ class SimpleMap extends Component {
             } else {
                 //Center Map to User Location to provide easy possibility to find yourself in the mission planner
                 navigator.geolocation.getCurrentPosition(function (position) {
-                    var loc = new window.Microsoft.Maps.Location(
+                    const loc = new window.Microsoft.Maps.Location(
                         position.coords.latitude,
                         position.coords.longitude);
 
@@ -67,7 +79,6 @@ class SimpleMap extends Component {
     }
 
     missionParser() {
-        console.log("do this");
         console.log(this.state.plannerData);
 
         this.state.plannerData.forEach(wayPoint => {
@@ -81,9 +92,10 @@ class SimpleMap extends Component {
 
             });
 
-            pushPin.index = this.state.plannerData.indexOf(wayPoint);
-            pushPin.height = 0; //TODO parse height correctly
+            pushPin.height = wayPoint.height; //TODO parse height correctly
             window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
+            window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
+            window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
             this.state.pushPins.push(pushPin);
             this.map.entities.push(pushPin);
         });
@@ -92,7 +104,92 @@ class SimpleMap extends Component {
 
 
         //init Event Handlers
-        window.Microsoft.Maps.Events.addHandler(this.map, 'rightclick',this.addPushPin);
+        window.Microsoft.Maps.Events.addHandler(this.map, 'rightclick', this.handleMapRightClick);
+
+    }
+
+    missionComposer() {
+        const finalArray = [];
+
+        this.state.pushPins.forEach((pp) => {
+
+            finalArray.push({
+
+                lat: pp.getLocation().latitude,
+                long: pp.getLocation().longitude,
+                height: pp.height,
+                alt: pp.height, //TODO parse to real alt
+
+
+
+            })
+
+        })
+
+        return finalArray;
+
+    }
+
+    handlePushPinMoseOver(e) {
+        this.setState({
+            pushPinHovered: e.target
+        });
+    }
+
+
+    handlePushPinMoseOut(e) {
+        if ( this.state.pushPinHovered === e.target) {
+
+            this.setState({
+                pushPinHovered: null
+            });
+            console.log("remove")
+
+        }
+    }
+
+
+    handleMapRightClick(e) {
+        console.log(this.state.pushPinHovered)
+        if (this.state.pushPinHovered === null || this.state.pushPinHovered === undefined) {
+            this.addPushPin(e);
+        } else {
+            this.removePushPin(this.state.pushPinHovered);
+        }
+
+    }
+
+    regeneratePushPinText() {
+        this.state.pushPins.forEach(pp=>{
+
+            pp._options.text = ""+(this.state.pushPins.indexOf(pp)+1)
+            pp.setOptions(pp._options)
+        })
+    }
+
+    removePushPin(element) {
+
+
+        const missionDataIndex =  this.state.pushPins.indexOf(element);
+        if (missionDataIndex > -1) {
+
+            this.state.pushPins.splice(missionDataIndex, 1);
+        }
+
+        const entityIndex = this.map.entities.indexOf(element);
+        if (entityIndex > -1) {
+
+            this.map.entities.removeAt(entityIndex);
+        }
+
+        this.setState({
+            pushPinHovered: undefined
+        })
+
+
+        this.regeneratePushPinText()
+        this.generatePolyLines();
+
 
     }
 
@@ -107,27 +204,28 @@ class SimpleMap extends Component {
         });
         this.state.pushPins.push(pushPin);
         this.map.entities.push(pushPin);
+        pushPin.height = 0;
         window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
+        window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
+        window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
 
-
-        this.generatePolyLines()
+        this.generatePolyLines();
 
     }
 
     handlePushPinDrag(e) {
-       this.generatePolyLines()
+        this.generatePolyLines();
 
     }
 
     generatePolyLines() {
 
-    const posArray = [];
-    this.state.pushPins.forEach(wayPoint => {
-        posArray.push(wayPoint.getLocation());
-    })
+        const posArray = [];
+        this.state.pushPins.forEach(wayPoint => {
+            posArray.push(wayPoint.getLocation());
+        });
 
-    this.state.polyLine.setLocations(posArray);
-    console.log(this.state.polyLine)
+        this.state.polyLine.setLocations(posArray);
 
     }
 
@@ -146,7 +244,7 @@ class SimpleMap extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
 
-        if(!this.state.plannerMode) {
+        if (!this.state.plannerMode) {
             this.droneLocation.latitude = this.props.center.latitude;
             this.droneLocation.longitude = this.props.center.longitude;
             this.map.setView({
@@ -158,12 +256,7 @@ class SimpleMap extends Component {
     }
 
 
-    createMapOptions(maps) {
-        return {
-            mapTypeId: 'satellite'
 
-        };
-    }
 
 
     render() {
@@ -171,8 +264,9 @@ class SimpleMap extends Component {
 
             <div>
 
-                <div id="myMap" style={{height: '43em', width: '100vw', marginTop: '20px'}}/>
 
+                <div id="myMap" style={{height: '43em', width: '100vw', marginTop: '20px'}}/>
+                {this.state.plannerMode && <MissionPlannerControls missionName={this.props.missionName} missionUUID={this.props.missionUUID} requestDataCallback={this.missionComposer}/>}
             </div>
         );
     }

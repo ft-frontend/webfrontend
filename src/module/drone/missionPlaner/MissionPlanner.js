@@ -40,11 +40,13 @@ class MissionPlanner extends Component {
     }
 
 
+
+
     render() {
         return (
             <div>
                 <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.missionName}</h1>
-                {this.state.renderMap && <SimpleMap planner={true}  missionData={ this.state.data}  />}
+                {this.state.renderMap && <SimpleMap planner={true} missionName={this.state.missionName} missionUUID={this.props.match.params.mission} missionData={ this.state.data}  />}
             </div>
         );
     }
