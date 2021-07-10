@@ -14,7 +14,7 @@ class AddMission extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const mission = document.getElementById("addMissionNameInput").value;
-        api.addNewMission(mission,'[]').then(result => {
+        api.addNewMission(mission,'{}').then(result => {
             if(result.success) {
                 window.location.href= "/module/drone/missions/planner/"+result.uuid
 

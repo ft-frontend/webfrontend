@@ -15,7 +15,9 @@ class SimpleMap extends Component {
                 pushPins: [],
                 polyLine: undefined,
                 pushPinHovered: undefined,
-                selectedPushPin: undefined
+                selectedPushPin: undefined,
+                doThingAfterMissionEnd: 0
+
 
             };
 
@@ -35,6 +37,7 @@ class SimpleMap extends Component {
         this.handlePushPinClick = this.handlePushPinClick.bind(this);
         this.heightOfSelectedPushPinChanged = this.heightOfSelectedPushPinChanged.bind(this);
         this.preventRedirect = this.preventRedirect.bind(this);
+        this.doThingAfterMissionEndChange = this.doThingAfterMissionEndChange.bind(this);
 
 
 
@@ -90,29 +93,33 @@ class SimpleMap extends Component {
     }
 
     missionParser() {
-        this.state.plannerData.forEach(wayPoint => {
+       if(this.state.plannerData.wayPoints) {
 
-            const location = new window.Microsoft.Maps.Location(wayPoint.lat, wayPoint.long);
-            const pushPin = new window.Microsoft.Maps.Pushpin(location, {
+           this.state.plannerData.wayPoints.forEach(wayPoint => {
 
-                text: `${this.state.plannerData.indexOf(wayPoint) + 1}`,
-                draggable: !!this.state.plannerMode,
-                color: "#00ff00"
+               const location = new window.Microsoft.Maps.Location(wayPoint.lat, wayPoint.long);
+               const pushPin = new window.Microsoft.Maps.Pushpin(location, {
 
-            });
-            pushPin.index = this.state.plannerData.indexOf(wayPoint)
-            pushPin.height = wayPoint.height;
-            if(this.state.plannerMode) {
-                window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
-                window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
-                window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
-                window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
-                window.Microsoft.Maps.Events.addHandler(pushPin, 'dragstart', this.preventRedirect);
-            }
-            this.state.pushPins.push(pushPin);
-            this.map.entities.push(pushPin);
-        });
+                   text: `${this.state.plannerData.wayPoints.indexOf(wayPoint) + 1}`,
+                   draggable: !!this.state.plannerMode,
+                   color: "#00ff00"
 
+               });
+               pushPin.index = this.state.plannerData.wayPoints.indexOf(wayPoint)
+               pushPin.height = wayPoint.height;
+               if(this.state.plannerMode) {
+                   window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
+                   window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
+                   window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
+                   window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
+                   window.Microsoft.Maps.Events.addHandler(pushPin, 'dragstart', this.preventRedirect);
+               }
+               this.state.pushPins.push(pushPin);
+               this.map.entities.push(pushPin);
+           });
+
+
+       }
         this.generatePolyLines();
 
         if(this.state.plannerMode) {
@@ -197,6 +204,7 @@ class SimpleMap extends Component {
         } else {
             this.removePushPin(this.state.pushPinHovered);
         }
+
 
     }
 
@@ -292,6 +300,10 @@ class SimpleMap extends Component {
 
     }
 
+    doThingAfterMissionEndChange(value) {
+        this.state.doThingAfterMissionEnd = value;
+    }
+
     componentDidMount() {
 
         let script = document.createElement("script");
@@ -326,7 +338,7 @@ class SimpleMap extends Component {
         return (
 
             <div>
-                {this.state.plannerMode && <MissionPlannerControls heightChangeCallback={this.heightOfSelectedPushPinChanged} selectedPushPin={this.state.selectedPushPin} missionName={this.props.missionName} missionUUID={this.props.missionUUID} requestDataCallback={this.missionComposer}/>}
+                {this.state.plannerMode && <MissionPlannerControls doThingAfterMissionEndChangeCallback={this.doThingAfterMissionEndChange} heightChangeCallback={this.heightOfSelectedPushPinChanged} missionData={this.state.plannerData} selectedPushPin={this.state.selectedPushPin} missionName={this.props.missionName} missionUUID={this.props.missionUUID} requestDataCallback={this.missionComposer}/>}
 
 
                 <div id="myMap" style={{height: '43em', width: '100vw', marginTop: '20px'}}/>

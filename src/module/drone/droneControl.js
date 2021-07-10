@@ -212,7 +212,7 @@ class droneControl extends React.Component {
                 })
             }else{
                 this.setState({
-                    missionData:"[]"
+                    missionData:"{}"
                 })
             }
         })
