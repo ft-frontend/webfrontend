@@ -4,6 +4,7 @@ import deviceDashboardFontStyle from "../../../dashboard/device/deviceDashboardF
 import api from "../../../api/api";
 import ConfirmButton from "../../../UI/confirmButton/ConfirmButton";
 import Trash from "../../../res/trash.svg";
+import ChangeableTextField from "../../../UI/changeableTextField/ChangeableTextField";
 
 class MissionPlanner extends Component {
 
@@ -16,6 +17,7 @@ class MissionPlanner extends Component {
         };
 
         this.deleteMission = this.deleteMission.bind(this);
+        this.handleMissionNameChange = this.handleMissionNameChange.bind(this);
 
 
     }
@@ -50,14 +52,29 @@ class MissionPlanner extends Component {
 
     }
 
+    handleMissionNameChange(text) {
+        console.log("test");
 
+        if (text.length > 2&&text.length<23) {
+            api.renameMission(this.props.match.params.mission, text).then((result) => {
+                console.log(result);
+
+                return result.success;
+            });
+        }
+    }
 
     render() {
         return (
             <div>
-                <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.missionName}</h1>
-                <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}  confirmText={"Möchtest du die Mession wirklich löschen?"} confirmAction={this.deleteMission}><img  className={deviceDashboardFontStyle.deleteDeviceButton} src={Trash} alt="Delete"/></ConfirmButton>
-
+                {this.state.renderMap? <>
+                    <ChangeableTextField text={this.state.missionName} onNameUpdate={this.handleMissionNameChange}
+                                         className={deviceDashboardFontStyle.deviceDashboardFontCenter}/>
+                    <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}  confirmText={"Möchtest du die Mession wirklich löschen?"} confirmAction={this.deleteMission}><img  className={deviceDashboardFontStyle.deleteDeviceButton} src={Trash} alt="Delete"/></ConfirmButton>
+                    </>
+                    :
+                    <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.missionName}</h1>
+                }
                 {this.state.renderMap && <SimpleMap planner={true} missionName={this.state.missionName} missionUUID={this.props.match.params.mission} missionData={ this.state.data}  />}
             </div>
         );

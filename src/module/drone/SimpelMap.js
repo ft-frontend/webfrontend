@@ -21,8 +21,6 @@ class SimpleMap extends Component {
 
             };
 
-            console.log(this.props.missionData)
-
 
         this.missionParser = this.missionParser.bind(this);
         this.handlePushPinDrag = this.handlePushPinDrag.bind(this);

@@ -20,22 +20,21 @@ class ChangeableTextField extends React.Component {
     }
 
     updateName() {
-        if (this.state.currentText.length > 2&&this.state.currentText.length<23) {
-            api.updateDeviceName(this.props.deviceUUID, this.state.currentText).then((result) => {
-
-                if (!result.success) {
-                    this.setState({
-                        currentText: this.state.originalText
-                    });
-                }else{
-                    this.setState({
-                        isEditing: false,
-                        originalText: this.state.currentText
-                    });
-                    $(document).off(".interrupt");
-                }
+        if(this.props.onNameUpdate(this.state.currentText)) {
+            this.setState({
+                currentText: this.state.originalText
             });
+
+        }else{
+
+            this.setState({
+                isEditing: false,
+                originalText: this.state.currentText
+            });
+            $(document).off(".interrupt");
         }
+
+
     }
 
     checkInputKeyPress(event) {

@@ -554,6 +554,33 @@ const api = {
             }
 
         });
+    },
+    renameMission: function(missionUUID,newName) {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                    missionUUID: missionUUID,
+                    newMissionName: newName
+                });
+                fetch(backend + `/drone/mission/renameDroneMission`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                    if(result.success) {
+                        resolve({
+                            success:true,
+                        })
+                    }else{
+                        resolve({
+                            success:false
+                        })
+                    }
+
+                });
+            }
+
+        });
     }
 
 
