@@ -115,3 +115,17 @@
 
 }
 
+@media (max-width: 490px) {
+
+    .DroneControlSettingsButton {
+        right:  2em;
+    }
+
+
+
+    .DroneControlBackButton {
+        left: 2em;
+    }
+
+}
+

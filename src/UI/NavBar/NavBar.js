@@ -40,7 +40,9 @@ class NavBar extends React.Component {
                 {this.props.children}
 
                 <div className={styles.NavBarButtonDiv}>
+                    {this.props.renderAppSelector&&
                     <AppSelector/>
+                    }
                     {buttons}
                 </div>
 

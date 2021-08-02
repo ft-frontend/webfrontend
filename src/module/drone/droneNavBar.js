@@ -18,7 +18,7 @@ class DroneNavBar extends Component {
     render() {
         return (
             <div>
-                <NavBar links={[
+                <NavBar renderAppSelector links={[
                     {
                         name: "Drohnen",
                         link: "/module/drone/select"

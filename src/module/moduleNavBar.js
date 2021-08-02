@@ -24,7 +24,7 @@ class ModuleNavBar extends React.Component {
 
     render() {
         return (
-            <NavBar links={[
+            <NavBar renderAppSelector links={[
                 {
                     name: "<- Zurück zum Dashboard",
                     link: "/dashboard/home"

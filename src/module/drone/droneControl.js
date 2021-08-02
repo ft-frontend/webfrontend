@@ -226,7 +226,7 @@ class droneControl extends React.Component {
 
     render() {
         return <div>
-            <img onClick={() => window.location.href = "/module/drone/"}
+            <img onClick={() => window.location.href = "/module/drone/select"}
                  className={droneControlStyle.DroneControlBackButton} src={backIcon} alt="Settings"/>
             <img
                 onClick={() => window.location.href = "/dashboard/device/" + this.deviceType + "/" + this.props.match.params.device}

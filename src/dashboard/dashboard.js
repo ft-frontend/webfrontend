@@ -19,7 +19,7 @@ class dashboard extends React.Component {
 
     render() {
         return (
-            <NavBar links={[
+            <NavBar renderAppSelector links={[
                 {
                     name: "Home",
                     link: "/dashboard/home"
