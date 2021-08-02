@@ -4,14 +4,20 @@ import AppSelector from "../UI/appSelector/appSelector";
 import ModuleStyle from "./moduleNavBar.module.css"
 import api from "../api/api";
 import accountSettingsHandler from "../settings/accountSettingsHandler";
+import UserLoginButtonControl from "../UI/NavBar/UserLoginButtonControl";
 
 class ModuleNavBar extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            name: this.props.name
+            name: this.props.name,
+            buttons: [],
+            renderNavBar: false
+
         };
+
+        UserLoginButtonControl().then(buttons => this.setState({buttons:buttons,renderNavBar: true}))
 
     }
     componentDidMount() {
@@ -24,17 +30,13 @@ class ModuleNavBar extends React.Component {
 
     render() {
         return (
-            <NavBar renderAppSelector links={[
+
+            <NavBar renderElements={this.state.renderNavBar} renderAppSelector links={[
                 {
                     name: "<- Zurück zum Dashboard",
                     link: "/dashboard/home"
                 }
-            ]} buttons={[
-                {
-                    name: "Ausloggen",
-                    link: "/auth/signout"
-                }
-            ]}>
+            ]} buttons={this.state.buttons}>
                 <p className={ModuleStyle.moduleHeaderNavBarText}>{this.state.name}</p>
 
             </NavBar>

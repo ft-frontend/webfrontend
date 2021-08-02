@@ -5,6 +5,7 @@ import LEDWallSelectorIcon from "../../res/ledwallicon.svg";
 import HomeSelectorIcon from "../../res/home.svg";
 import SettingsSelectorIcon from "../../res/settings.svg";
 import OtherSelectorIcon from "../../res/other.svg";
+import DashboardSelectorIcon from "../../res/dashboard.svg";
 
 import appSelectorStyle from "./appSelector.module.css";
 import ApplistItem from "./AppListItem";
@@ -19,10 +20,10 @@ class appSelector extends React.Component {
         };
         this.toggleSelector = this.toggleSelector.bind(this);
         this.items = [
-            <ApplistItem key="1" redirect="/dashboard" iconsrc={HomeSelectorIcon}>HOME</ApplistItem>,
+            <ApplistItem key="1" redirect="/" iconsrc={HomeSelectorIcon}>HOME</ApplistItem>,
+            <ApplistItem key="2" redirect="/dashboard" iconsrc={DashboardSelectorIcon}>DASHBOARD</ApplistItem>,
             <ApplistItem key="2" redirect="/module/ledwall" iconsrc={LEDWallSelectorIcon}>LEDWALL</ApplistItem>,
             <ApplistItem key="3" redirect="/module/drone" iconsrc={DroneSelectorIcon}>DROHNE</ApplistItem>,
-            <ApplistItem key="4" redirect="/module/other" iconsrc={OtherSelectorIcon}>SONSTIGES</ApplistItem>,
             <ApplistItem key="5" redirect="/dashboard/settings/account" iconsrc={SettingsSelectorIcon}>EINSTELLUNGEN</ApplistItem>
         ];
 

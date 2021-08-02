@@ -27,28 +27,31 @@ class NavBar extends React.Component {
 
 
         return (
-            <header className={styles.NavBarHeader}>
 
-                <nav>
+        <header className={styles.NavBarHeader}>
 
-                    <ul  className={styles.NavBarUL}>
-                        {listItems}
-                    </ul>
+            <nav>
 
-                </nav>
+                <ul className={styles.NavBarUL}>
+                    {listItems}
+                </ul>
 
-                {this.props.children}
+            </nav>
 
-                <div className={styles.NavBarButtonDiv}>
-                    {this.props.renderAppSelector&&
-                    <AppSelector/>
-                    }
-                    {buttons}
-                </div>
+            {this.props.children}
+            {this.props.renderElements&&<>
+            <div className={styles.NavBarButtonDiv}>
+
+                <AppSelector/>
+
+                {buttons}
+            </div>
+            </>
+            }
 
 
+        </header>
 
-            </header>
 
 
         );
