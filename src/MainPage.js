@@ -20,7 +20,12 @@ class MainPage extends React.Component {
 
     componentDidMount() {
       //  api.checkSession().then(r => { if(r) window.location.replace("/dashboard");})
-        api.getAccountSettings(false).then(r => accountSettingsHandler.handlerSettings(r.settings));
+        api.toggleRedirect(false);
+        api.getAccountSettings(false).then(r => {if(r.settings!==undefined)accountSettingsHandler.handlerSettings(r.settings)});
+
+    }
+    componentWillUnmount() {
+        api.toggleRedirect(true);
 
     }
 

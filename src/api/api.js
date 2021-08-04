@@ -1,11 +1,13 @@
 import Cookies from 'universal-cookie';
-import { w3cwebsocket as W3CWebSocket } from "websocket";
+import {w3cwebsocket as W3CWebSocket} from "websocket";
 
 const cookies = new Cookies();
-let backend = "https://api.arnold-tim.de";
+let backend = "https://api.arnold-tim.de/api";
 if (cookies.get('backend') !== undefined) {
-   backend = cookies.get('backend');
+    backend = cookies.get('backend');
 }
+
+var redirect = true;
 
 const post = {
     method: 'POST',
@@ -25,7 +27,9 @@ function checkErrorCodes(response) {
 }
 
 function redirectToLogin() {
-    window.location.href = "/auth/signin?redirect=" + window.location.pathname;
+    if (redirect) {
+        window.location.href = "/auth/signin?redirect=" + window.location.pathname;
+    }
 
 }
 
@@ -36,7 +40,7 @@ const api = {
             if (cookies.get('session') === undefined) {
                 resolve(false);
             } else {
-                fetch(backend + `/auth/validateSession?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/auth/validateSession?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
                     resolve(result.success);
                 });
             }
@@ -49,7 +53,7 @@ const api = {
                 eorn: eorn,
                 password: password
             });
-            fetch(backend + `/auth/signin`, post).then(res => res.json()).then(result => {
+            fetch(backend + `/v1/auth/signin`, post).then(res => res.json()).then(result => {
                 if (!result.error) {
                     cookies.set('session', result.session, {path: '/'});
                     this.getAccountSettings(true);
@@ -77,7 +81,7 @@ const api = {
                 post.body = JSON.stringify({
                     session: cookies.get('session'),
                 });
-                fetch(backend + `/auth/signout`, post).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/auth/signout`, post).then(res => res.json()).then(result => {
                     cookies.remove('session', {path: '/'});
                     cookies.remove('acsettings', {path: '/'});
                     if (!result.error) {
@@ -99,7 +103,7 @@ const api = {
                 password: password,
                 name: username
             });
-            fetch(backend + `/auth/signup`, post).then(res => res.json()).then(result => {
+            fetch(backend + `/v1/auth/signup`, post).then(res => res.json()).then(result => {
                 if (result.success) {
                     cookies.set('session', result.session, {path: '/'});
                     this.getAccountSettings(true);
@@ -128,7 +132,7 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/device/listAvailable?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/device/listAvailable?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;
@@ -147,7 +151,7 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/device/listSpecificUserDevice?session=${cookies.get('session')}&device=${deviceUUID}`).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/device/listSpecificUserDevice?session=${cookies.get('session')}&device=${deviceUUID}`).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;
@@ -166,7 +170,7 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/device/changeDeviceName?session=${cookies.get('session')}&device=${deviceUUID}&newName=${newName}`).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/device/changeDeviceName?session=${cookies.get('session')}&device=${deviceUUID}&newName=${newName}`).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;
@@ -185,7 +189,7 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/device/getUserSpecificDeviceInfo?session=${cookies.get('session')}&device=${deviceUUID}`).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/device/getUserSpecificDeviceInfo?session=${cookies.get('session')}&device=${deviceUUID}`).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;
@@ -206,7 +210,7 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/device/registerByCode?session=${cookies.get('session')}&regCode=${regCode}`).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/device/registerByCode?session=${cookies.get('session')}&regCode=${regCode}`).then(res => res.json()).then(result => {
 
                     if (checkErrorCodes(result)) {
                     }
@@ -235,11 +239,14 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/device/deleteDevice?session=${cookies.get('session')}&deviceuuid=${deviceuuid}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
-                        resolve({
-                            success: true
-                        });
+                fetch(backend + `/v1/device/deleteDevice?session=${cookies.get('session')}&deviceuuid=${deviceuuid}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    resolve({
+                        success: true
+                    });
 
                 });
             }
@@ -265,8 +272,11 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/account/getSettings?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                fetch(backend + `/v1/account/getSettings?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;
@@ -296,8 +306,11 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/device/getStatusInfo?session=${cookies.get('session')}&deviceuuid=${deviceUUID}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                fetch(backend + `/v1/device/getStatusInfo?session=${cookies.get('session')}&deviceuuid=${deviceUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
                     resolve({
                         success: true,
                         data: result.data
@@ -314,22 +327,25 @@ const api = {
             redirectToLogin();
             return undefined;
         } else {
-            const client = new W3CWebSocket('wss://api.arnold-tim.de/device/droneLiveConnection?session='+cookies.get("session")+"&device="+deviceuuid);
+            const client = new W3CWebSocket('wss://api.arnold-tim.de/api/v1/device/droneLiveConnection?session=' + cookies.get("session") + "&device=" + deviceuuid);
             return client;
         }
 
     },
-    makeSearchRequest: function(deviceName,deviceTypeName,searchQuery) {
+    makeSearchRequest: function (deviceName, deviceTypeName, searchQuery) {
         return new Promise((resolve, reject) => {
 
             if (cookies.get('session') === undefined) {
                 redirectToLogin();
                 resolve(false);
             } else {
-                const params = `${deviceName?"&deviceName=true":""}${deviceTypeName?"&deviceTypeName=true":""}`
+                const params = `${deviceName ? "&deviceName=true" : ""}${deviceTypeName ? "&deviceTypeName=true" : ""}`;
 
-                fetch(backend + `/search/doSearch?session=${cookies.get('session')}${params}&searchquery=${searchQuery}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
+                fetch(backend + `/v1/search/doSearch?session=${cookies.get('session')}${params}&searchquery=${searchQuery}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
                     resolve({
                         success: true,
                         data: result.result
@@ -340,13 +356,13 @@ const api = {
 
         });
     },
-    setBackendAddress: function(backendAddress) {
+    setBackendAddress: function (backendAddress) {
         backend = backendAddress;
         cookies.set('backend', backendAddress, {path: '/'});
 
     },
 
-    addNewMission: function (name,data) {
+    addNewMission: function (name, data) {
         return new Promise((resolve, reject) => {
             if (cookies.get('session') === undefined) {
                 resolve(false);
@@ -356,18 +372,21 @@ const api = {
                     name: name,
                     data: data
                 });
-                fetch(backend + `/drone/mission/createMission`, post).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
-                   if(result.success) {
-                       resolve({
-                           success:true,
-                           uuid: result.uuid
-                       })
-                   }else{
-                       resolve({
-                           success:false
-                       })
-                   }
+                fetch(backend + `/v1/drone/mission/createMission`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    if (result.success) {
+                        resolve({
+                            success: true,
+                            uuid: result.uuid
+                        });
+                    } else {
+                        resolve({
+                            success: false
+                        });
+                    }
 
                 });
             }
@@ -382,14 +401,17 @@ const api = {
                 resolve(false);
             } else {
 
-                fetch(backend + `/drone/mission/listMissions?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
-                    if(result.success) {
+                fetch(backend + `/v1/drone/mission/listMissions?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    if (result.success) {
                         resolve({
                             success: true,
                             missions: result.missions
                         });
-                    }else{
+                    } else {
                         resolve({
                             success: false
                         });
@@ -402,7 +424,7 @@ const api = {
         });
     },
 
-    getMissionData: function(missionUUID) {
+    getMissionData: function (missionUUID) {
         return new Promise((resolve, reject) => {
 
             if (cookies.get('session') === undefined) {
@@ -410,14 +432,17 @@ const api = {
                 resolve(false);
             } else {
 
-                fetch(backend + `/drone/mission/getMissionData?session=${cookies.get('session')}&missionUUID=${missionUUID}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
-                    if(result.success) {
+                fetch(backend + `/v1/drone/mission/getMissionData?session=${cookies.get('session')}&missionUUID=${missionUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    if (result.success) {
                         resolve({
                             success: true,
                             mission: result.mission
                         });
-                    }else{
+                    } else {
                         resolve({
                             success: false
                         });
@@ -429,7 +454,7 @@ const api = {
 
         });
     },
-    saveMissionData: function(missionUUID,missionData) {
+    saveMissionData: function (missionUUID, missionData) {
         return new Promise((resolve, reject) => {
             if (cookies.get('session') === undefined) {
                 resolve(false);
@@ -439,16 +464,19 @@ const api = {
                     missionUUID: missionUUID,
                     data: missionData
                 });
-                fetch(backend + `/drone/mission/saveMissionData`, post).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
-                    if(result.success) {
+                fetch(backend + `/v1/drone/mission/saveMissionData`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    if (result.success) {
                         resolve({
-                            success:true,
-                        })
-                    }else{
+                            success: true,
+                        });
+                    } else {
                         resolve({
-                            success:false
-                        })
+                            success: false
+                        });
                     }
 
                 });
@@ -457,22 +485,21 @@ const api = {
         });
     },
 
-    getElevationData: function(points) {
+    getElevationData: function (points) {
         return new Promise((resolve, reject) => {
 
 
-
-                fetch(`https://dev.virtualearth.net/REST/v1/Elevation/List?points=${points.join()}&key=AkBVrBtsknpJShn4Yjy9xKpdHxNdYuymoJ_1yHe95ECRs3CEIbwWmD6wje-c1R9v`).then(res => res.json()).then(result => {
-                        resolve({
-                           elevations: result.resourceSets[0].resources[0].elevations
-                        });
+            fetch(`https://dev.virtualearth.net/REST/v1/Elevation/List?points=${points.join()}&key=AkBVrBtsknpJShn4Yjy9xKpdHxNdYuymoJ_1yHe95ECRs3CEIbwWmD6wje-c1R9v`).then(res => res.json()).then(result => {
+                resolve({
+                    elevations: result.resourceSets[0].resources[0].elevations
                 });
+            });
 
 
         });
     },
 
-    getDeviceConfig: function(deviceUUID) {
+    getDeviceConfig: function (deviceUUID) {
         return new Promise((resolve, reject) => {
 
             if (cookies.get('session') === undefined) {
@@ -480,14 +507,17 @@ const api = {
                 resolve(false);
             } else {
 
-                fetch(backend + `/device/getDeviceConfig?session=${cookies.get('session')}&device=${deviceUUID}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
-                    if(result.success) {
+                fetch(backend + `/v1/device/getDeviceConfig?session=${cookies.get('session')}&device=${deviceUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    if (result.success) {
                         resolve({
                             success: true,
                             config: result.data
                         });
-                    }else{
+                    } else {
                         resolve({
                             success: false
                         });
@@ -500,7 +530,7 @@ const api = {
         });
     },
 
-    saveDeviceConfig: function(deviceUUID, key,value) {
+    saveDeviceConfig: function (deviceUUID, key, value) {
         return new Promise((resolve, reject) => {
             if (cookies.get('session') === undefined) {
                 resolve(false);
@@ -511,16 +541,19 @@ const api = {
                     param: key,
                     value: value
                 });
-                fetch(backend + `/device/saveConfig`, post).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
-                    if(result.success) {
+                fetch(backend + `/v1/device/saveConfig`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    if (result.success) {
                         resolve({
-                            success:true,
-                        })
-                    }else{
+                            success: true,
+                        });
+                    } else {
                         resolve({
-                            success:false
-                        })
+                            success: false
+                        });
                     }
 
                 });
@@ -529,7 +562,7 @@ const api = {
         });
     },
 
-    deleteMission: function(missionUUID) {
+    deleteMission: function (missionUUID) {
         return new Promise((resolve, reject) => {
 
             if (cookies.get('session') === undefined) {
@@ -537,13 +570,16 @@ const api = {
                 resolve(false);
             } else {
 
-                fetch(backend + `/drone/mission/deleteDroneMission?session=${cookies.get('session')}&missionUUID=${missionUUID}`).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
-                    if(result.success) {
+                fetch(backend + `/v1/drone/mission/deleteDroneMission?session=${cookies.get('session')}&missionUUID=${missionUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    if (result.success) {
                         resolve({
                             success: true,
                         });
-                    }else{
+                    } else {
                         resolve({
                             success: false
                         });
@@ -555,7 +591,7 @@ const api = {
 
         });
     },
-    renameMission: function(missionUUID,newName) {
+    renameMission: function (missionUUID, newName) {
         return new Promise((resolve, reject) => {
             if (cookies.get('session') === undefined) {
                 resolve(false);
@@ -565,24 +601,30 @@ const api = {
                     missionUUID: missionUUID,
                     newMissionName: newName
                 });
-                fetch(backend + `/drone/mission/renameDroneMission`, post).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) { resolve({success:false}); return}
-                    if(result.success) {
+                fetch(backend + `/v1/drone/mission/renameDroneMission`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    if (result.success) {
                         resolve({
-                            success:true,
-                        })
-                    }else{
+                            success: true,
+                        });
+                    } else {
                         resolve({
-                            success:false
-                        })
+                            success: false
+                        });
                     }
 
                 });
             }
 
         });
-    }
+    },
 
+    toggleRedirect: function (redirectToLogin) {
+        redirect = redirectToLogin;
+    }
 
 
 };
