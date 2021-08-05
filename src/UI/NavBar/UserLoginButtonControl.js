@@ -1,11 +1,11 @@
 import api from "../../api/api";
 
-function getCurrentUserNavBarButtons() {
+function getCurrentUserNavBarButtons(isSessionValid) {
 
 
     return new Promise((resolve, reject) => {
-        api.checkSession().then(r => {
-            if (r) {
+
+            if (isSessionValid) {
 
                     resolve([
                         {
@@ -27,7 +27,7 @@ function getCurrentUserNavBarButtons() {
                     }
                 ])
             }
-        });
+
 
     });
 

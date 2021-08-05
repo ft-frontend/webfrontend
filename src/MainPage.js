@@ -13,7 +13,12 @@ class MainPage extends React.Component {
             renderNavBar: false
         }
 
-        UserLoginButtonControl().then(buttons => this.setState({buttons:buttons,renderNavBar:true}))
+        api.checkSession().then(r => {
+
+            UserLoginButtonControl(r).then(buttons => this.setState({buttons:buttons,renderNavBar:true}))
+
+        })
+
 
     }
 

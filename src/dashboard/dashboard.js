@@ -13,12 +13,15 @@ class dashboard extends React.Component {
 
         this.state = {
             buttons: [],
-            renderNavBar: false
+            renderNavBar: false,
         }
 
-        UserLoginButtonControl().then(buttons => this.setState({buttons:buttons,renderNavBar:true}))
 
-        api.checkSession().then(r => { if(!r) window.location.href = "/auth/signin?redirect="+loc.substring(0, loc.length) })
+        api.checkSession().then(r => { if(!r) window.location.href = "/auth/signin?redirect="+loc.substring(0, loc.length)
+
+            UserLoginButtonControl(r).then(buttons => this.setState({buttons:buttons,renderNavBar:true}))
+
+        })
         api.getAccountSettings(false).then(r => accountSettingsHandler.handlerSettings(r.settings));
 
     }
