@@ -20,13 +20,16 @@ class ModuleNavBar extends React.Component {
 
     }
     componentDidMount() {
-        var loc = window.location.pathname;
-
+        const loc = window.location.pathname;
         api.checkSession().then(r => { if(!r) window.location.href = "/auth/signin?redirect="+loc.substring(0, loc.length)
 
-            UserLoginButtonControl(r).then(buttons => this.setState({buttons:buttons,renderNavBar:true}))
-
+            this.setState({buttons:UserLoginButtonControl(r),renderNavBar:true})
         })
+
+        this.setState({buttons:UserLoginButtonControl(api.isSessionCookieAvailable()),renderNavBar:true})
+
+
+
 
         api.getAccountSettings(false).then(r => accountSettingsHandler.handlerSettings(r.settings));
 

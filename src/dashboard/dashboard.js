@@ -17,15 +17,16 @@ class dashboard extends React.Component {
         }
 
 
-        api.checkSession().then(r => { if(!r) window.location.href = "/auth/signin?redirect="+loc.substring(0, loc.length)
 
-            UserLoginButtonControl(r).then(buttons => this.setState({buttons:buttons,renderNavBar:true}))
-
-        })
-        api.getAccountSettings(false).then(r => accountSettingsHandler.handlerSettings(r.settings));
 
     }
     componentDidMount() {
+        this.setState({buttons:UserLoginButtonControl(api.isSessionCookieAvailable()),renderNavBar:true})
+        api.checkSession().then(r => {
+            this.setState({buttons:UserLoginButtonControl(r),renderNavBar:true})
+        })
+
+        api.getAccountSettings(false).then(r => accountSettingsHandler.handlerSettings(r.settings));
 
     }
 

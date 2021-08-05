@@ -13,11 +13,8 @@ class MainPage extends React.Component {
             renderNavBar: false
         }
 
-        api.checkSession().then(r => {
 
-            UserLoginButtonControl(r).then(buttons => this.setState({buttons:buttons,renderNavBar:true}))
 
-        })
 
 
     }
@@ -26,6 +23,10 @@ class MainPage extends React.Component {
     componentDidMount() {
       //  api.checkSession().then(r => { if(r) window.location.replace("/dashboard");})
         api.toggleRedirect(false);
+        this.setState({buttons:UserLoginButtonControl(api.isSessionCookieAvailable()),renderNavBar:true})
+        api.checkSession().then(r => {
+            this.setState({buttons:UserLoginButtonControl(r),renderNavBar:true})
+        })
         api.getAccountSettings(false).then(r => {if(r.settings!==undefined)accountSettingsHandler.handlerSettings(r.settings)});
 
     }

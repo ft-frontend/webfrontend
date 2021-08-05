@@ -162,6 +162,9 @@ const api = {
 
         });
     },
+    isSessionCookieAvailable: function() {
+        return cookies.get('session') !== undefined;
+    },
 
     updateDeviceName: function (deviceUUID, newName) {
         return new Promise((resolve, reject) => {
