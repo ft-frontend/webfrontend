@@ -5,6 +5,7 @@ import api from "../../../api/api";
 import ConfirmButton from "../../../UI/confirmButton/ConfirmButton";
 import Trash from "../../../res/trash.svg";
 import ChangeableTextField from "../../../UI/changeableTextField/ChangeableTextField";
+import MissionMap from "./MissionMap";
 
 class MissionPlanner extends Component {
 
@@ -75,7 +76,7 @@ class MissionPlanner extends Component {
                     :
                     <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.missionName}</h1>
                 }
-                {this.state.renderMap && <SimpleMap planner={true} missionName={this.state.missionName} missionUUID={this.props.match.params.mission} missionData={ this.state.data}  />}
+                {this.state.renderMap && <MissionMap planner={true} missionName={this.state.missionName} missionUUID={this.props.match.params.mission} missionData={ this.state.data}  />}
             </div>
         );
     }
