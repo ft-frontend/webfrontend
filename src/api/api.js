@@ -173,7 +173,12 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/v1/device/changeDeviceName?session=${cookies.get('session')}&device=${deviceUUID}&newName=${newName}`).then(res => res.json()).then(result => {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                    device: deviceUUID,
+                    newName: newName
+                });
+                fetch(backend + `/v1/device/changeDeviceName`,post).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;

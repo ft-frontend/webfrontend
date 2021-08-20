@@ -244,7 +244,7 @@ class droneControl extends React.Component {
                         this.state.renderMap &&
                     <div>
                         <div  title={this.state.droneBatteryVoltage+" V"} className={droneControlStyle.droneBatteryDiv}><div id="DroneBatteryIcon" className={droneControlStyle.droneBatteryIcon}><div className={droneControlStyle.droneBatteryLevel} style={{width: this.state.droneBatteryPercentage+"%"}}/></div><p id="DroneBatteryPercentageLabel" className={droneControlStyle.droneBatteryIconPercentageLabel}>{this.state.droneBatteryPercentage+" %"}</p></div>
-                        <button onClick={this.switchViewMode}>Flugeinstellungen</button>
+                        <button onClick={this.switchViewMode}>Flug-Parameter</button>
                         {
                             !this.state.showFlightSettings?
                                 this.state.renderSimpleMap&&
