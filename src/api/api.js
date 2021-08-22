@@ -632,6 +632,55 @@ const api = {
 
     toggleRedirect: function (redirectToLogin) {
         redirect = redirectToLogin;
+    },
+
+    isUserAdmin: function() {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+
+                fetch(backend + `/v1/account/amIAdmin?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({result: false});
+                        return;
+                    }
+                    if (result.isAdmin) {
+                        resolve({
+                            result: true,
+                        });
+                    } else {
+                        resolve({
+                            result: false
+                        });
+                    }
+
+
+                });
+            }
+
+        });
+    },
+    getUserAccountInfo: function() {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+
+                fetch(backend + `/v1/account/info?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({result: false});
+                        return;
+                    }
+                        resolve(result);
+                });
+            }
+
+        });
     }
 
 

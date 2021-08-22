@@ -24,10 +24,14 @@ import MissionSelect from "./module/drone/missionPlaner/missionSelect";
 import AddMissionButton from "./module/drone/missionPlaner/AddMissionButton";
 import AddMission from "./module/drone/missionPlaner/AddMission";
 import MissionPlanner from "./module/drone/missionPlaner/MissionPlanner";
+import AdminMeet from "./admin/adminMeet";
+import AdminNavBar from "./admin/adminNavBar";
+import AdminDashboard from "./admin/adminDashboard";
 
 function App() {
-
-   // document.body.classList.add("dark-body") //remove this line to disable dark mode
+    if (window.location.protocol !== 'https:'&&window.location.hostname!=="localhost") {
+        window.location.replace(`https:${window.location.href.substring(window.location.protocol.length)}`);
+    }
 
     return (
         <Router>
@@ -80,8 +84,9 @@ function App() {
             <Route path="/dashboard/settings/account" component={AccountSettings}/>
 
 
-
-
+            <Route path="/admin" component={AdminNavBar}/>
+            <Route exact path="/admin" component={AdminDashboard}/>
+            <Route path="/admin/meet" component={AdminMeet}/>
 
 
 
