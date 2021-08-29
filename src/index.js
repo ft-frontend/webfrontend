@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import PageWrapper from "./UI/pageWapper/PageWrapper";
 
 
 ReactDOM.render(
   <React.StrictMode>
+      <PageWrapper>
     <App />
+      </PageWrapper>
   </React.StrictMode>,
   document.getElementById('root')
 );

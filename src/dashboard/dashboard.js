@@ -24,6 +24,10 @@ class dashboard extends React.Component {
         this.setState({buttons:UserLoginButtonControl(api.isSessionCookieAvailable()),renderNavBar:true})
         api.checkSession().then(r => {
             this.setState({buttons:UserLoginButtonControl(r),renderNavBar:true})
+            if(!r) {
+                window.location.href = "/auth/signin?redirect=" + window.location.pathname;
+
+            }
         })
 
         api.getAccountSettings(false).then(r => accountSettingsHandler.handlerSettings(r.settings));

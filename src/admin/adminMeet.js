@@ -7,6 +7,7 @@ class AdminMeet extends Component {
     constructor(props) {
         super(props);
         this.initMeet = this.initMeet.bind(this);
+      //TODO render meeting only when signin
     }
     render() {
         return (
@@ -15,7 +16,8 @@ class AdminMeet extends Component {
     }
 
     initMeet() {
-        // eslint-disable-next-line no-undef
+
+
 
     }
 

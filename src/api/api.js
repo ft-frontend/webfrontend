@@ -47,15 +47,17 @@ const api = {
         });
 
     },
-    signIn: function (eorn, password) {
+    signIn: function (eorn, password, sessionTime=30) {
         return new Promise((resolve, reject) => {
             post.body = JSON.stringify({
                 eorn: eorn,
-                password: password
+                password: password,
+                sessionTime: sessionTime
             });
+
             fetch(backend + `/v1/auth/signin`, post).then(res => res.json()).then(result => {
                 if (!result.error) {
-                    cookies.set('session', result.session, {path: '/'});
+                    cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
                     this.getAccountSettings(true);
 
                     resolve({
@@ -105,7 +107,7 @@ const api = {
             });
             fetch(backend + `/v1/auth/signup`, post).then(res => res.json()).then(result => {
                 if (result.success) {
-                    cookies.set('session', result.session, {path: '/'});
+                    cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
                     this.getAccountSettings(true);
 
                     resolve({

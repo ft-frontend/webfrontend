@@ -22,15 +22,16 @@ class AdminNavBar extends React.Component {
     componentDidMount() {
         const loc = window.location.pathname;
         api.checkSession().then(r => { if(!r) window.location.href = "/auth/signin?redirect="+loc.substring(0, loc.length)
-
-            this.setState({buttons:UserLoginButtonControl(r),renderNavBar:true})
+            if(r) {
+                api.isUserAdmin().then(r => {
+                    console.log(r);
+                    if(!r.result) window.location.href = "/";
+                })
+            }
         })
 
 
-        api.isUserAdmin().then(r => {
-            console.log(r);
-            if(!r.result) window.location.href = "/";
-        })
+
 
         this.setState({buttons:UserLoginButtonControl(api.isSessionCookieAvailable()),renderNavBar:true})
 

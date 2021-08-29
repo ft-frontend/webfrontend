@@ -3,6 +3,7 @@ import NavBar from "./UI/NavBar/NavBar";
 import api from "./api/api";
 import UserLoginButtonControl from "./UI/NavBar/UserLoginButtonControl";
 import accountSettingsHandler from "./settings/accountSettingsHandler";
+import VersionNumber from "./UI/Version/VersionNumber";
 
 
 class MainPage extends React.Component {
@@ -49,7 +50,7 @@ class MainPage extends React.Component {
         <button onClick={() => {api.setBackendAddress("https://testingapi.arnold-tim.de/api")}}>Testing Backend</button>
         <button onClick={() => {api.setBackendAddress("https://api.arnold-tim.de/api")}}>Production Backend</button>
         <button onClick={() => {api.setBackendAddress("http://localhost/api")}}>Local Backend</button>
-
+            <VersionNumber/>
 
         </div>;
 

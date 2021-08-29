@@ -15,6 +15,7 @@ class SignIn extends React.Component {
 
         this.handleChangeUser = this.handleChangeUser.bind(this);
         this.handleChangePass = this.handleChangePass.bind(this);
+        this.handleStaySignInChange = this.handleStaySignInChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -24,10 +25,13 @@ class SignIn extends React.Component {
     handleChangeUser(event) {
         this.setState({name: event.target.value});
     }
+    handleStaySignInChange(event) {
+        this.setState({staySignIn: event.target.checked});
+
+    }
 
     handleSubmit(event) {
-
-        api.signIn(this.state.name,this.state.password).then(result => {
+        api.signIn(this.state.name,this.state.password,this.state.staySignIn?24*60*14:undefined).then(result => {
            if(result.success) {
                const queryString = window.location.search;
                const urlParams = new URLSearchParams(queryString);
@@ -59,7 +63,12 @@ class SignIn extends React.Component {
 
                         <input type="password" placeholder="Passwort" onChange={this.handleChangePass}/>
 
+                        <input type="checkbox" id="staySignIn" onChange={this.handleStaySignInChange}/>
+                        <label className={signInStyle.staySignInLabel} htmlFor="staySignIn">Angemeldet bleiben </label>
+
                         <button type='submit'>Login</button>
+
+
 
                         <p className={signInStyle.errorlable}>{this.state.error}</p>
 
