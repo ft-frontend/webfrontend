@@ -1,9 +1,10 @@
 import React from "react";
+import dashboardStyle from "./dashboard.module.css";
 
 class dashboardHome extends React.Component {
 
     render() {
-        return <h1>Guten Tag</h1>
+        return <h1 className={dashboardStyle.textTitle} >Guten Tag</h1>
     }
 
 }

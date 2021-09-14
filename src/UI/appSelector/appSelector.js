@@ -22,8 +22,10 @@ class appSelector extends React.Component {
         this.items = [
             <ApplistItem key="1" redirect="/" iconsrc={HomeSelectorIcon}>HOME</ApplistItem>,
             <ApplistItem key="2" redirect="/dashboard" iconsrc={DashboardSelectorIcon}>DASHBOARD</ApplistItem>,
-            <ApplistItem key="2" redirect="/module/ledwall" iconsrc={LEDWallSelectorIcon}>LEDWALL</ApplistItem>,
+           /* <ApplistItem key="2" redirect="/module/ledwall" iconsrc={LEDWallSelectorIcon}>LEDWALL</ApplistItem>,
             <ApplistItem key="3" redirect="/module/drone" iconsrc={DroneSelectorIcon}>DROHNE</ApplistItem>,
+            
+            */
             <ApplistItem key="5" redirect="/dashboard/settings/account" iconsrc={SettingsSelectorIcon}>EINSTELLUNGEN</ApplistItem>
         ];
 
@@ -59,10 +61,18 @@ class appSelector extends React.Component {
 
 
         return (
-            <div>
-                <p className={appSelectorStyle.appSelectionToggleButton} onClick={this.toggleSelector}>
-                    <img alt="" src={AppSelectorIcon} width={45} height={45}/>
-                </p>
+            <>
+                <div className={appSelectorStyle.appSelectionToggleButton} onClick={this.toggleSelector}>
+                    <div className={appSelectorStyle.appSelectionToggleButtonBox}/>
+                    <div className={appSelectorStyle.appSelectionToggleButtonBox}/>
+                    <div className={appSelectorStyle.appSelectionToggleButtonBox}/>
+                    <div className={appSelectorStyle.appSelectionToggleButtonBox}/>
+                    <div className={appSelectorStyle.appSelectionToggleButtonBox}/>
+                    <div className={appSelectorStyle.appSelectionToggleButtonBox}/>
+                    <div className={appSelectorStyle.appSelectionToggleButtonBox}/>
+                    <div className={appSelectorStyle.appSelectionToggleButtonBox}/>
+                    <div className={appSelectorStyle.appSelectionToggleButtonBox}/>
+                </div>
                 {
                     this.state.open &&
 
@@ -70,7 +80,7 @@ class appSelector extends React.Component {
 
 
                 }
-            </div>
+            </>
         );
     }
 }

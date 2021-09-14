@@ -4,10 +4,10 @@
     min-width: 256px;
     max-width: 256px;
     max-height: 288px;
-    top: 5em;
-    margin-left: -10px;
+    top: 4.2em;
+    margin-left: -19px;
     border-radius: 7px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: 10px;
     overflow-y: visible;
     overflow-x: visible;
@@ -38,8 +38,41 @@
     cursor: pointer;
     margin-right: 20px;
     user-select: none;
-    margin-bottom: -19px;
+    align-self: center;
+    width: 26px;
+    height: 26px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+   }
+
+.appSelectionToggleButton:hover {
+
 }
+
+.appSelectionToggleButtonBox {
+    width: 6px;
+    height: 6px;
+    background-color: #cecece;
+    margin-right: 3px;
+    margin-bottom: 3px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.appSelectionToggleButton > div:nth-child(3n) {
+    margin-right: 0;
+}
+
+.appSelectionToggleButton > div:nth-child(7),.appSelectionToggleButton > div:nth-child(8),.appSelectionToggleButton > div:nth-child(9) {
+    margin-bottom: 0;
+}
+
+
+
+
 .appSelectionBoxItemHolder {
     min-width: 256px;
     max-width: 256px;

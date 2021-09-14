@@ -1,10 +1,13 @@
 .NavBarHeader{
     display: flex;
     justify-content: space-between;
-    height: 96px;
+    height: 70px;
     align-items: center;
-    padding: 30px 10%;
+    padding: 0 10%;
     background-color: var(--secoundryColor);
+    width: 100vw;
+    min-width: 100vw;
+    z-index: 2;
 }
 
 .NavBarUL {

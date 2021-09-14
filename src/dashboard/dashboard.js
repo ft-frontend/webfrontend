@@ -4,8 +4,9 @@ import AppSelector from "../UI/appSelector/appSelector";
 import api from "../api/api";
 import accountSettingsHandler from "../settings/accountSettingsHandler";
 import UserLoginButtonControl from "../UI/NavBar/UserLoginButtonControl";
+import SideBar from "../UI/SideBar/SideBar";
 
-class dashboard extends React.Component {
+class Dashboard extends React.Component {
     constructor(props) {
         super(props);
         var loc = window.location.pathname;
@@ -54,8 +55,8 @@ class dashboard extends React.Component {
                 }
             ]} buttons={this.state.buttons}>
 
-
             </NavBar>
+
 
 
         );
@@ -63,4 +64,4 @@ class dashboard extends React.Component {
 
 }
 
-export default dashboard;
+export default Dashboard;

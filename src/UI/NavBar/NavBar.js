@@ -30,6 +30,8 @@ class NavBar extends React.Component {
 
         <header className={styles.NavBarHeader}>
 
+
+
             <nav>
 
                 <ul className={styles.NavBarUL}>

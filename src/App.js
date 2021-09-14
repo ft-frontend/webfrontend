@@ -1,7 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Route,Redirect} from "react-router-dom";
 import MainPage from "./MainPage";
-import dashboard from "./dashboard/dashboard";
+import Dashboard from "./dashboard/dashboard";
 import dashboardHome from "./dashboard/dashboardHome";
 import dashboardDevice from "./dashboard/device/dashboardDevice";
 import signIn from "./auth/signIn";
@@ -27,6 +27,10 @@ import MissionPlanner from "./module/drone/missionPlaner/MissionPlanner";
 import AdminMeet from "./admin/adminMeet";
 import AdminNavBar from "./admin/adminNavBar";
 import AdminDashboard from "./admin/adminDashboard";
+import PageWrapper from "./UI/pageWapper/PageWrapper";
+import RowWrapper from "./UI/pageWapper/RowWrapper";
+import SideBar from "./UI/SideBar/SideBar";
+import ContentWrapper from "./UI/pageWapper/ContentWrapper";
 
 function App() {
     if (window.location.protocol !== 'https:'&&window.location.hostname!=="localhost") {
@@ -37,8 +41,10 @@ function App() {
         <Router>
             <Route exact path="/" component={MainPage} />
 
-          <Route path="/dashboard" component={dashboard}/>
+          <Route path="/dashboard">
 
+             <Dashboard/>
+              <SideBar/>
           <Route path="/dashboard/home" component={dashboardHome}/>
 
           <Route exact path="/dashboard/device" component={dashboardDevice}/>
@@ -48,6 +54,7 @@ function App() {
           <Route exact path="/dashboard/interaction" component={Interaction}/>
 
           <Route  path="/dashboard/search" component={Search}/>
+          </Route>
 
 
             <Route exact path="/module">
