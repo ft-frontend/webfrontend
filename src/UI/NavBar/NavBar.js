@@ -10,7 +10,7 @@ class NavBar extends React.Component {
             listItems.push(<li key={link.name}><a className={styles.NavBarLinks} href={link.link}>{link.name}</a></li>);
         });
 
-        const buttons = [];
+      /*  const buttons = [];
 
         this.props.buttons.forEach(button => {
             buttons.push(
@@ -25,6 +25,7 @@ class NavBar extends React.Component {
 
         });
 
+       */
 
         return (
 
@@ -44,9 +45,9 @@ class NavBar extends React.Component {
             {this.props.renderElements&&<>
             <div className={styles.NavBarButtonDiv}>
 
-                <AppSelector/>
 
-                {buttons}
+
+                {this.props.buttons}
             </div>
             </>
             }

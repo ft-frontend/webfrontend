@@ -1,0 +1,22 @@
+.accountCircle {
+    width: 31px;
+    height: 31px;
+    border-radius: 50%;
+    background-color: #2ecc71;
+    cursor: pointer;
+}
+.accountCircle:hover {
+    box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.accountPopUp {
+    width: 250px;
+    height: 200px;
+    position: absolute;
+    top:0;
+    right: 0;
+    background-color: #ffffff;
+   transform: translate(-40px, 53px);
+    border-radius: 5%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
