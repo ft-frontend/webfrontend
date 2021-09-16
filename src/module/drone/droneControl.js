@@ -13,7 +13,7 @@ import DroneFlightParams from "./droneFlightParams";
 import SelectDroneMission from "./SelectDroneMission";
 
 
-class droneControl extends React.Component {
+class DroneControl extends React.Component {
     constructor(props) {
         super(props);
         this.deviceType = "1770efae-9f94-11eb-87e8-0242ac110002";
@@ -273,4 +273,4 @@ class droneControl extends React.Component {
 
 }
 
-export default droneControl;
+export default DroneControl;

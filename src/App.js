@@ -12,7 +12,7 @@ import Other from "./module/other/other";
 import DeviceSettings from "./dashboard/device/DeviceSettings";
 import DeviceSelect from "./dashboard/device/DeviceSelect";
 import ModuleNavBar from "./module/moduleNavBar";
-import droneControl from "./module/drone/droneControl";
+import DroneControl from "./module/drone/droneControl";
 import "./DarkMode.css"
 import settingsBar from "./settings/settingsBar";
 import AccountSettings from "./settings/account/accountSettings";
@@ -45,7 +45,7 @@ function App() {
 
              <Dashboard/>
               <SideBar/>
-          <Route path="/dashboard/home" component={dashboardHome}/>
+          <Route exact path="/dashboard" component={dashboardHome}/>
 
           <Route exact path="/dashboard/device" component={dashboardDevice}/>
           <Route exact path="/dashboard/device/:deviceType" component={DeviceSelect}/>
@@ -54,16 +54,20 @@ function App() {
           <Route exact path="/dashboard/interaction" component={Interaction}/>
 
           <Route  path="/dashboard/search" component={Search}/>
+
+
+              <Route path="/dashboard/settings" component={settingsBar}/>
+
+              <Route path="/dashboard/settings/account" component={AccountSettings}/>
           </Route>
 
 
             <Route exact path="/module">
-
                 <Redirect to="/" />
-
             </Route>
 
             <Route path="/module/ledwall">
+                <SideBar/>
                 <ModuleNavBar name="LedWall"/>
             </Route>
 
@@ -71,24 +75,38 @@ function App() {
                 <DroneNavBar/>
             </Route>
 
+            <Route exact path="/module/drone">
+                <SideBar/>
+            </Route>
+
+
+
             <Route path="/module/other" >
+                <SideBar/>
                 <ModuleNavBar name="Sonstiges"/>
             </Route>
 
-            <Route exact path="/module/drone/select" component={SelectDrone}/>
-            <Route exact path="/module/drone/select/:device" component={droneControl}/>
+            <Route exact path="/module/drone/select">
+                <SideBar/>
+                <SelectDrone/>
+            </Route>
+            <Route exact path="/module/drone/select/:device" component={DroneControl} />
 
-            <Route exact path="/module/drone/missions/" component={MissionSelect}/>
-            <Route exact path="/module/drone/missions/add" component={AddMission}/>
-            <Route exact path="/module/drone/missions/planner/:mission" component={MissionPlanner}/>
+            <Route exact path="/module/drone/missions/" >
+                <SideBar/>
+                <MissionSelect/>
+            </Route>
+            <Route exact path="/module/drone/missions/add" >
+                <SideBar/>
+                <AddMission/>
+            </Route>
+            <Route exact path="/module/drone/missions/planner/:mission" component={MissionPlanner} />
+
 
             <Route exact path="/module/other" component={Other}/>
             <Route exact path="/module/ledwall" component={LedWall}/>
 
 
-            <Route path="/dashboard/settings" component={settingsBar}/>
-
-            <Route path="/dashboard/settings/account" component={AccountSettings}/>
 
 
             <Route path="/admin" component={AdminNavBar}/>

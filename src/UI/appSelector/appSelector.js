@@ -1,7 +1,7 @@
 import React from "react";
 import AppSelectorIcon from "../../res/appSelector.svg";
-import DroneSelectorIcon from "../../res/droneicon.svg";
-import LEDWallSelectorIcon from "../../res/ledwallicon.svg";
+import DroneSelectorIcon from "../../res/item/droneicon.svg";
+import LEDWallSelectorIcon from "../../res/item/ledwallicon.svg";
 import HomeSelectorIcon from "../../res/home.svg";
 import SettingsSelectorIcon from "../../res/settings.svg";
 import OtherSelectorIcon from "../../res/other.svg";
@@ -22,10 +22,10 @@ class appSelector extends React.Component {
         this.items = [
             <ApplistItem key="1" redirect="/" iconsrc={HomeSelectorIcon}>HOME</ApplistItem>,
             <ApplistItem key="2" redirect="/dashboard" iconsrc={DashboardSelectorIcon}>DASHBOARD</ApplistItem>,
-           /* <ApplistItem key="2" redirect="/module/ledwall" iconsrc={LEDWallSelectorIcon}>LEDWALL</ApplistItem>,
+            <ApplistItem key="2" redirect="/module/ledwall" iconsrc={LEDWallSelectorIcon}>LEDWALL</ApplistItem>,
             <ApplistItem key="3" redirect="/module/drone" iconsrc={DroneSelectorIcon}>DROHNE</ApplistItem>,
             
-            */
+
             <ApplistItem key="5" redirect="/dashboard/settings/account" iconsrc={SettingsSelectorIcon}>EINSTELLUNGEN</ApplistItem>
         ];
 

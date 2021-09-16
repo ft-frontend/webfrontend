@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
             <NavBar  renderElements={this.state.renderNavBar} renderAppSelector links={[
                 {
                     name: "Übersicht",
-                    link: "/dashboard/home"
+                    link: "/dashboard"
                 },
 
                 {

@@ -41,7 +41,7 @@ class ModuleNavBar extends React.Component {
             <NavBar renderElements={this.state.renderNavBar} renderAppSelector links={[
                 {
                     name: "<- Zurück zum Dashboard",
-                    link: "/dashboard/home"
+                    link: "/dashboard/"
                 }
             ]} buttons={this.state.buttons}>
                 <p className={ModuleStyle.moduleHeaderNavBarText}>{this.state.name}</p>

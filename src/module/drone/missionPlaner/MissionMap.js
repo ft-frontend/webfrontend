@@ -62,21 +62,30 @@ class SimpleMap extends Component {
 
 
                     //Center Map to User Location to provide easy possibility to find yourself in the mission planner
-                    navigator.geolocation.getCurrentPosition(function (position) {
-                        const loc = new window.Microsoft.Maps.Location(
-                            position.coords.latitude,
-                            position.coords.longitude);
 
-                        //Center the map on the user's location.
-                        obj.map.setView({center: loc, zoom: 15});
-                    });
-             //TODO center map to first way point
 
 
 
 
             if (obj.state.plannerData) {
                 obj.missionParser();
+
+               if(obj.state.pushPins.length>0) {
+                   const loc = new window.Microsoft.Maps.Location(
+                       obj.state.pushPins[0].getLocation().latitude,
+                       obj.state.pushPins[0].getLocation().longitude);
+
+                   obj.map.setView({center: loc, zoom: 15});
+               }else{
+                   navigator.geolocation.getCurrentPosition(function (position) {
+                       const loc = new window.Microsoft.Maps.Location(
+                           position.coords.latitude,
+                           position.coords.longitude);
+
+                       //Center the map on the user's location.
+                       obj.map.setView({center: loc, zoom: 15});
+                   });
+               }
             }
 
 
@@ -106,18 +115,22 @@ class SimpleMap extends Component {
 
             })
 
-            api.getElevationData(pos).then(result=>{
+            if(this.state.pushPins.length>0) {
+                api.getElevationData(pos).then(result => {
 
-                this.state.pushPins.forEach((pp) => {
+                    this.state.pushPins.forEach((pp) => {
 
-                    finalArray[this.state.pushPins.indexOf(pp)].alt =  (parseFloat(result.elevations[this.state.pushPins.indexOf(pp)])+parseFloat(finalArray[this.state.pushPins.indexOf(pp)].height))
+                        finalArray[this.state.pushPins.indexOf(pp)].alt = (parseFloat(result.elevations[this.state.pushPins.indexOf(pp)]) + parseFloat(finalArray[this.state.pushPins.indexOf(pp)].height))
+
+                    })
+
+                    resolve(finalArray)
 
                 })
-
+            }else{
                 resolve(finalArray)
 
-            })
-
+            }
 
 
 

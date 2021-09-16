@@ -3,8 +3,9 @@
     background-color: rgb(31, 29, 43);
     width: 17em;
     height: calc(100vh - 96px);
-    float:left;
     margin-right: 10px;
+    margin-left: 70px;
+
 }
 
 

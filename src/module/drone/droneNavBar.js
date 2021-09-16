@@ -36,7 +36,6 @@ class DroneNavBar extends Component {
 
     render() {
         return (
-            <div>
                 <NavBar renderElements={this.state.renderNavBar} renderAppSelector links={[
                     {
                         name: "Drohnen",
@@ -50,7 +49,6 @@ class DroneNavBar extends Component {
                     <p className={ModuleStyle.moduleHeaderNavBarText}>Quadrocopter</p>
 
                 </NavBar>
-            </div>
         );
     }
 }

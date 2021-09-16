@@ -86,6 +86,8 @@ const api = {
                 fetch(backend + `/v1/auth/signout`, post).then(res => res.json()).then(result => {
                     cookies.remove('session', {path: '/'});
                     cookies.remove('acsettings', {path: '/'});
+                    localStorage.removeItem('username');
+
                     if (!result.error) {
                         resolve(true);
                     } else {
@@ -276,6 +278,11 @@ const api = {
                     });
                     return;
                 }
+            }else{
+                this.getUserAccountInfo().then((res) => {
+                    console.log(res);
+                    window.localStorage.setItem("username",res.name);
+                })
             }
 
             if (cookies.get('session') === undefined) {

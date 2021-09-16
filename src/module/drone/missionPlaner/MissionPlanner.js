@@ -54,7 +54,6 @@ class MissionPlanner extends Component {
     }
 
     handleMissionNameChange(text) {
-        console.log("test");
 
         if (text.length > 2&&text.length<23) {
             api.renameMission(this.props.match.params.mission, text).then((result) => {

@@ -1,6 +1,6 @@
 import api from "../../api/api";
 import style from "./UserLoginButtonControl.module.css"
-import AccountButton from "../AccountButton/AccountButton";
+import AccountNavBar from "../AccountButton/AccountNavBar";
 
 function getCurrentUserNavBarButtons(isSessionValid) {
 /*
@@ -37,11 +37,11 @@ function getCurrentUserNavBarButtons(isSessionValid) {
     if (isSessionValid) {
 
         //return <button className={style.NavBarButton} onClick={()=>window.location.href="/auth/signout"}><p>Ausloggen</p></button>;
-        return <AccountButton/>
+        return <AccountNavBar/>
     } else {
         return <>
-            <button className={style.NavBarButton} onClick={()=>window.location.href="/auth/signin"}><p>Einloggen</p></button>
-            <button className={style.NavBarButton} onClick={()=>window.location.href="/auth/signup"}><p>Registrieren</p></button>
+            <button className={style.NavBarButton} onClick={()=>window.location.href="/auth/signin?redirect=/dashboard"}><p>Einloggen</p></button>
+            <button className={style.NavBarButton} onClick={()=>window.location.href="/auth/signup?redirect=/dashboard"}><p>Registrieren</p></button>
             </>;
     }
 

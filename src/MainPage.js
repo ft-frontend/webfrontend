@@ -11,7 +11,8 @@ class MainPage extends React.Component {
         super(props);
         this.state = {
             buttons: [],
-            renderNavBar: false
+            renderNavBar: false,
+            signIn: false
         }
 
 
@@ -26,7 +27,7 @@ class MainPage extends React.Component {
         api.toggleRedirect(false);
         this.setState({buttons:UserLoginButtonControl(api.isSessionCookieAvailable()),renderNavBar:true})
         api.checkSession().then(r => {
-            this.setState({buttons:UserLoginButtonControl(r),renderNavBar:true})
+            this.setState({buttons:UserLoginButtonControl(r),renderNavBar:true,signIn:r})
         })
         api.getAccountSettings(false).then(r => {if(r.settings!==undefined)accountSettingsHandler.handlerSettings(r.settings)});
 
@@ -37,7 +38,7 @@ class MainPage extends React.Component {
     }
 
     render() {
-        return <div><NavBar renderElements={this.state.renderNavBar} links={[
+        return <><NavBar renderElements={this.state.renderNavBar} links={[
             {
                 name: "Home",
                 link: "#"
@@ -47,12 +48,17 @@ class MainPage extends React.Component {
                 link: "https://www.github.com/ft-cloud"
             }
         ]} buttons={this.state.buttons}/>
+            <div style={{marginLeft: "0px"}}>
         <button onClick={() => {api.setBackendAddress("https://testingapi.arnold-tim.de/api")}}>Testing Backend</button>
         <button onClick={() => {api.setBackendAddress("https://api.arnold-tim.de/api")}}>Production Backend</button>
         <button onClick={() => {api.setBackendAddress("http://localhost/api")}}>Local Backend</button>
             <VersionNumber/>
 
-        </div>;
+        </div>
+            {
+                this.state.signIn && <a href="/dashboard">Zum Dashboard</a>
+            }
+            </>;
 
     }
 }

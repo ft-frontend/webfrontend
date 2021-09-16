@@ -14,7 +14,7 @@ class SearchResultElement extends Component {
             case "device":
                 img = DeviceImageDrawer(this.props.element.deviceTypeName)
                 link = <div className={SearchResultElementStyle.searchResultElementLinks}> <a href={`/dashboard/device/${this.props.element.deviceTypeUUID}/${this.props.element.uuid}`}>Einstellungen</a></div>
-                quickAccess = `/module/${this.props.element.deviceTypeName}/${this.props.element.uuid}`;
+                quickAccess = `/module/${this.props.element.deviceTypeName}/select/${this.props.element.uuid}`;
                 break;
             case "deviceType":
                 img = DeviceImageDrawer(this.props.element.deviceTypeName)

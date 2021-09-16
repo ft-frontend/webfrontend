@@ -3,10 +3,58 @@
     width: 70px;
     position: absolute;
     height: 100vh;
-    z-index: 1;
     transition: width 200ms linear;
+    z-index: 0;
 }
 
 .SideBarContainer:hover {
-    width: 170px;
+    width: 200px;
 }
+
+
+.SideBarItemContainer {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+.SideBarItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    cursor: pointer;
+    padding: 7px 13px;
+    height: 54px;
+    overflow: hidden;
+}
+
+
+.SideBarItem:hover {
+    background-color: #04AA6D;
+}
+
+
+.SideBarItemImage {
+    color: white;
+    width: 40px;
+    justify-self: center;
+    user-select: none;
+}
+
+.SideBarContainer:hover .SideBarItemText {
+    display: block;
+}
+
+.SideBarItemText {
+    color: white;
+    display: none;
+    align-self: center;
+    text-align: center;
+    flex-grow: 1;
+    user-select: none;
+    white-space: nowrap;
+}
+
