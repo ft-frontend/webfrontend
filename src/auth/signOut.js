@@ -7,13 +7,13 @@ class SignOut extends React.Component {
         redirect: false
     };
 
-    componentDidMount() {
-        setTimeout(() => {
-            api.signOut().then(res => {
-                this.setState({redirect: true});
-            });
-        }, 1000);
+    constructor(props) {
+        super(props);
+        api.signOut().then(res => {
+            this.setState({redirect: true});
+        });
     }
+
 
     render() {
         const {redirect} = this.state;

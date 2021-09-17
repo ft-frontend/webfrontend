@@ -33,7 +33,7 @@
 
 
 .SideBarItem:hover {
-    background-color: #04AA6D;
+    background-color: #0088a9;
 }
 
 
@@ -58,3 +58,9 @@
     white-space: nowrap;
 }
 
+.SideBarItemActive {
+    background-color: #006277 !important;
+
+
+
+}

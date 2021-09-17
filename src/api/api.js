@@ -41,6 +41,9 @@ const api = {
                 resolve(false);
             } else {
                 fetch(backend + `/v1/auth/validateSession?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if(!result.success) {
+                        cookies.remove('session', {path: '/'});
+                    }
                     resolve(result.success);
                 });
             }
@@ -222,7 +225,7 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/v1/device/registerByCode?session=${cookies.get('session')}&regCode=${regCode}`).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/regDevice/registerByCode?session=${cookies.get('session')}&regCode=${regCode}`).then(res => res.json()).then(result => {
 
                     if (checkErrorCodes(result)) {
                     }
