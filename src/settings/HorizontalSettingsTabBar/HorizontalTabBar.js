@@ -13,19 +13,27 @@ class HorizontalTabBar extends Component {
     }
 
     contentChange(e) {
-        console.log(e.target.accessKey);
+        console.log(e.target.alt);
         this.setState({
-            currentTab: this.props.tabContent[e.target.accessKey]
+            currentTab: this.props.tabContent[e.target.alt]
         })
     }
 
     componentDidMount() {
         const items = [];
         let index = 0;
+        let startIndex = 0;
+        try {
+          const subStr =  window.location.hash.substr(1);
+          console.log(subStr)
+          if(subStr>=0&&subStr<this.props.tabContent.length) {
+              startIndex = parseInt(subStr);
+          }
+        }catch (e) {}
         this.props.tabContent.forEach((e) => {
 
             const uuid = uuidv4();
-            items.push(<><input key={uuidv4()} accessKey={index} id={uuid} defaultChecked={index===0} onChange={this.contentChange} name={"tabs"} className={HorizontalTabBarStyle.tabSelectInput} type="radio"/><label key={uuid} className={HorizontalTabBarStyle.tab} htmlFor={uuid}><span key={uuidv4()}>{e.name}</span></label></>)
+            items.push(<><input key={uuidv4()} alt={index} id={uuid} defaultChecked={index===startIndex} onChange={this.contentChange} name={"tabs"} className={HorizontalTabBarStyle.tabSelectInput} type="radio"/><label key={uuid} className={HorizontalTabBarStyle.tab} htmlFor={uuid}><span key={uuidv4()}>{e.name}</span></label></>)
             index++;
         })
     this.setState({

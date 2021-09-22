@@ -6,9 +6,7 @@ import settingsIcon from "../../res/settings.svg";
 import backIcon from "../../res/back.svg";
 import api from "../../api/api";
 import SimpelMap from "./SimpelMap";
-import MapMarker from "./MapMarker";
 import SetPIDValue from "./SetPIDValue";
-import SelectDrone from "./selectDrone";
 import DroneFlightParams from "./droneFlightParams";
 import SelectDroneMission from "./SelectDroneMission";
 

@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./NavBar.module.css";
-import AppSelector from "../appSelector/appSelector";
 
 class NavBar extends React.Component {
     render() {

@@ -1,15 +1,12 @@
 import React from "react";
 import NavBar from "../UI/NavBar/NavBar";
-import AppSelector from "../UI/appSelector/appSelector";
 import api from "../api/api";
 import accountSettingsHandler from "../settings/accountSettingsHandler";
 import UserLoginButtonControl from "../UI/NavBar/UserLoginButtonControl";
-import SideBar from "../UI/SideBar/SideBar";
 
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
-        var loc = window.location.pathname;
 
 
         this.state = {

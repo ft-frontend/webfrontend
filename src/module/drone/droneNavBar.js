@@ -3,7 +3,6 @@ import api from "../../api/api";
 import accountSettingsHandler from "../../settings/accountSettingsHandler";
 import NavBar from "../../UI/NavBar/NavBar";
 import ModuleStyle from "../moduleNavBar.module.css";
-import AppSelector from "../../UI/appSelector/appSelector";
 import UserLoginButtonControl from "../../UI/NavBar/UserLoginButtonControl";
 
 class DroneNavBar extends Component {

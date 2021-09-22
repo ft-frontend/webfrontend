@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import SimpleMap from "../SimpelMap";
 import deviceDashboardFontStyle from "../../../dashboard/device/deviceDashboardFont.module.css";
 import api from "../../../api/api";
 import ConfirmButton from "../../../UI/confirmButton/ConfirmButton";

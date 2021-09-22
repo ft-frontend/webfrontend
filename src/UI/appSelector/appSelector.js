@@ -1,10 +1,8 @@
 import React from "react";
-import AppSelectorIcon from "../../res/appSelector.svg";
 import DroneSelectorIcon from "../../res/item/droneicon.svg";
 import LEDWallSelectorIcon from "../../res/item/ledwallicon.svg";
 import HomeSelectorIcon from "../../res/home.svg";
 import SettingsSelectorIcon from "../../res/settings.svg";
-import OtherSelectorIcon from "../../res/other.svg";
 import DashboardSelectorIcon from "../../res/dashboard.svg";
 
 import appSelectorStyle from "./appSelector.module.css";

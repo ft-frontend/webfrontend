@@ -21,16 +21,12 @@ import Search from "./dashboard/search/search";
 import DroneNavBar from "./module/drone/droneNavBar";
 import SelectDrone from "./module/drone/selectDrone";
 import MissionSelect from "./module/drone/missionPlaner/missionSelect";
-import AddMissionButton from "./module/drone/missionPlaner/AddMissionButton";
 import AddMission from "./module/drone/missionPlaner/AddMission";
 import MissionPlanner from "./module/drone/missionPlaner/MissionPlanner";
 import AdminMeet from "./admin/adminMeet";
 import AdminNavBar from "./admin/adminNavBar";
 import AdminDashboard from "./admin/adminDashboard";
-import PageWrapper from "./UI/pageWapper/PageWrapper";
-import RowWrapper from "./UI/pageWapper/RowWrapper";
 import SideBar from "./UI/SideBar/SideBar";
-import ContentWrapper from "./UI/pageWapper/ContentWrapper";
 import SettingsNavBar from "./settings/settingsNavBar";
 import SettingsPageWrapper from "./settings/pageWrapper/SettingsPageWrapper";
 

@@ -4,7 +4,6 @@ import api from "../api/api";
 import accountSettingsHandler from "../settings/accountSettingsHandler";
 import UserLoginButtonControl from "../UI/NavBar/UserLoginButtonControl";
 import SideBar from "../UI/SideBar/SideBar";
-import SettingsBar from "./settingsBar";
 
 class SettingsNavBar extends React.Component {
 

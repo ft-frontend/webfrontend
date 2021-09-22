@@ -21,6 +21,9 @@ class SearchResultElement extends Component {
                 quickAccess = `/dashboard/device/${this.props.element.UUID}`
 
                 break;
+            default:
+                console.warn("unimplemented")
+                break;
 
         }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import NavBar from "../UI/NavBar/NavBar";
-import AppSelector from "../UI/appSelector/appSelector";
 import ModuleStyle from "./adminNavBar.module.css"
 import api from "../api/api";
 import accountSettingsHandler from "../settings/accountSettingsHandler";
