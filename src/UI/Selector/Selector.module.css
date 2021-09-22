@@ -46,7 +46,7 @@
 }
 
 .DeviceSelectorItemName {
-
+    color: black;
     font-size: 20px;
     align-self: flex-end;
     margin-bottom: 10px;

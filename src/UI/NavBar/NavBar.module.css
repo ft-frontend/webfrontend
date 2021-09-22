@@ -7,7 +7,7 @@
     background-color: var(--secoundryColor);
     width: 100vw;
     min-width: 100vw;
-    z-index: 2;
+    z-index: 500;
 }
 
 .NavBarUL {

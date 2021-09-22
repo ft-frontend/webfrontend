@@ -1,40 +1,29 @@
 import React from "react";
-import VerticalSelectionBar from "../UI/verticalSelectionBar/VerticalSelectionBar";
+import HorizontalTabBar from "./HorizontalSettingsTabBar/HorizontalTabBar";
+import AccountSettings from "./account/accountSettings";
+import SideBar from "../UI/SideBar/SideBar";
 
-class settingsBar extends React.Component {
+class SettingsBar extends React.Component {
     render() {
-        return <VerticalSelectionBar items={[
+        return<HorizontalTabBar tabContent={[
             {
-                link: "/dashboard/settings/account",
-                name: "Edit Profile"
-            },
-            {
-                link: "/dashboard/settings/dummy1",
-                name: "dummy"
-            },
-            {
-                link: "/dashboard/settings/dummy2",
-                name: "dummy"
-            },
-            {
-                link: "/dashboard/settings/dummy3",
-                name: "dummy"
-            },
-            {
-                link: "/dashboard/settings/dummy4",
-                name: "dummy"
-            },
-            {
-                link: "/dashboard/settings/dummy5",
-                name: "dummy"
-            },
-            {
-                link: "/dashboard/settings/dummy6",
-                name: "dummy"
-            },
-
+                content: <AccountSettings/>,
+                name: "Account Einstellungen"
+            },{
+                content: <></>,
+                name: "Test"
+            },{
+                content: <></>,
+                name: "Test"
+            },{
+                content: <></>,
+                name: "Test"
+            },{
+                content: <></>,
+                name: "Test"
+            }
         ]}/>
     }
 }
 
-export default settingsBar;
+export default SettingsBar;

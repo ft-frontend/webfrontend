@@ -330,11 +330,11 @@ class SimpleMap extends Component {
     render() {
         return (
 
-            <div>
+            <div style={{userSelect: 'none'}}>
         <MissionPlannerControls doThingAfterMissionEndChangeCallback={this.doThingAfterMissionEndChange} heightChangeCallback={this.heightOfSelectedPushPinChanged} missionData={this.state.plannerData} selectedPushPin={this.state.selectedPushPin} missionName={this.props.missionName} missionUUID={this.props.missionUUID} requestDataCallback={this.missionComposer}/>
 
 
-                <div id="myMap" style={{height: '43em', width: '100vw', marginTop: '20px'}}/>
+                <div id="myMap" style={{height: '43em', width: '100vw', marginTop: '20px', userSelect: 'none'}}/>
             </div>
         );
     }

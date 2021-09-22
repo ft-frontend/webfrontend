@@ -1,0 +1,85 @@
+.tabBarContainer {
+    margin-top: 20px;
+    display: flex;
+
+    background-color: #fff;
+    box-shadow: 0 0 1px 0 rgba(24,94,224, 0.15), 0 6px 12px 0 rgba(24,94,224, 0.15);
+    padding: 0.50rem;
+    border-radius: 99px;
+    height: fit-content;
+    width: fit-content;
+}
+
+
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 200px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: color 0.15s ease-in;
+    user-select: none;
+    z-index: 2;
+    color: black;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+}
+
+
+
+.tabSelectInput:checked +  .tab {
+    color: #076a85;
+
+}
+
+
+
+.tabSelectInput:checked:nth-child(1) ~ .glider{
+    transform: translateX(0);
+}
+.tabSelectInput:checked:nth-child(3) ~ .glider{
+    transform: translateX(100%);
+}
+.tabSelectInput:checked:nth-child(5) ~ .glider{
+    transform: translateX(200%);
+}
+.tabSelectInput:checked:nth-child(7) ~ .glider{
+    transform: translateX(300%);
+}
+.tabSelectInput:checked:nth-child(9) ~ .glider{
+    transform: translateX(400%);
+}
+.tabSelectInput:checked:nth-child(11) ~ .glider{
+    transform: translateX(500%);
+}
+.tabSelectInput:checked:nth-child(13) ~ .glider{
+    transform: translateX(600%);
+}
+.tabSelectInput:checked:nth-child(15) ~ .glider{
+    transform: translateX(700%);
+}
+.tabSelectInput:checked:nth-child(17) ~ .glider{
+    transform: translateX(800%);
+}
+
+
+
+.tabSelectInput {
+    display:none;
+}
+
+.glider {
+    position: absolute;
+    display: flex;
+    z-index: 1;
+    transition: 0.25s ease-out;
+    height: 40px;
+    width: 200px;
+    border-radius: 99px;
+    background-color: #e6eef9;
+}

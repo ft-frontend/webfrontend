@@ -11,15 +11,17 @@ class VerticalSelectionBar extends React.Component {
              console.log(window.location.pathname)
              console.log(e.link)
              if(window.location.pathname.toString().toLowerCase()===e.link.toString().toLowerCase()) {
-                 items.push(<div key={uuidv4()} className={VerticalSelectionBarStyle.VerticalSelectionBarItem+" "+VerticalSelectionBarStyle.VerticalSelectionBarActiveItem}  onClick={() => window.location.href = e.link}>{e.name}</div>)
+                 items.push(<li key={uuidv4()} className={VerticalSelectionBarStyle.VerticalSelectionBarItem+" "+VerticalSelectionBarStyle.VerticalSelectionBarActiveItem}  onClick={() => window.location.href = e.link}>{e.name}</li>)
              }else{
-                 items.push(<div key={uuidv4()} className={VerticalSelectionBarStyle.VerticalSelectionBarItem} onClick={() => window.location.href = e.link}>{e.name}</div>)
+                 items.push(<li key={uuidv4()} className={VerticalSelectionBarStyle.VerticalSelectionBarItem} onClick={() => window.location.href = e.link}>{e.name}</li>)
              }
          })
 
         return (
             <div className={VerticalSelectionBarStyle.VerticalSelectionBarWrapper}>
-                {items}
+                <ul class={VerticalSelectionBarStyle.VerticalSelectionBarList}>
+                    {items}
+                </ul>
             </div>
         );
     }
