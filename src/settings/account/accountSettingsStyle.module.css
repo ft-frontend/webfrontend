@@ -1,0 +1,59 @@
+
+
+
+.AccountSettingsContainer {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    justify-items: flex-start;
+    align-items: flex-start;
+}
+
+
+
+.AccountInfoContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    place-self: center;
+    width: 70%;
+}
+.AccountImage {
+    background-color: #2ecc71;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+
+
+.Username {
+  margin-left: 30px;
+}
+
+.UserNameError {
+    color: crimson;
+    font-weight: bold;
+    display: none;
+}
+.accountImageChangeButton {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    position: relative;
+    background-color: #edf0f1;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+.accountImageChangeButtonImage {
+
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    margin-left: 4px;
+    user-select: none;
+
+}

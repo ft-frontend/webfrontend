@@ -67,9 +67,11 @@ class DeviceSettings extends React.Component {
                 this.state.renderEverything ?
 
                     <div>
+                        <div  className={deviceDashboardFontStyle.deviceDashboardFontCenter}>
                         <ChangeableTextField onNameUpdate={this.deviceNameChange}
-                                             className={deviceDashboardFontStyle.deviceDashboardFontCenter}
+
                                              text={this.state.deviceName}/>
+                        </div>
                         <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}
                                        confirmText={"Möchtest du das Gerät wirklich löschen?"}
                                        confirmAction={this.deleteDevice}><img

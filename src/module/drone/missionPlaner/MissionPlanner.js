@@ -67,9 +67,10 @@ class MissionPlanner extends Component {
         return (
             <div>
                 {this.state.renderMap? <>
-                    <ChangeableTextField text={this.state.missionName} onNameUpdate={this.handleMissionNameChange}
-                                         className={deviceDashboardFontStyle.deviceDashboardFontCenter}/>
-                    <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}  confirmText={"Möchtest du die Mession wirklich löschen?"} confirmAction={this.deleteMission}><img  className={deviceDashboardFontStyle.deleteDeviceButton} src={Trash} alt="Delete"/></ConfirmButton>
+                    <div className={deviceDashboardFontStyle.deviceDashboardFontCenter}>
+                    <ChangeableTextField  text={this.state.missionName} onNameUpdate={this.handleMissionNameChange}/>
+                    </div>
+                        <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}  confirmText={"Möchtest du die Mession wirklich löschen?"} confirmAction={this.deleteMission}><img  className={deviceDashboardFontStyle.deleteDeviceButton} src={Trash} alt="Delete"/></ConfirmButton>
                     </>
                     :
                     <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.missionName}</h1>

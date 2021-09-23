@@ -6,7 +6,6 @@
     margin-top: 8px;
     margin-left: 15px;
     justify-self: center;
-    position: fixed;
     transition: opacity linear 0.15s;
     opacity: 0.45;
 }
@@ -22,8 +21,6 @@
     justify-self: center;
     user-select: none;
     cursor: text;
-
-
 
 }
 
@@ -47,7 +44,6 @@
     justify-content: center;
     margin-top:10px;
     width: max-content;
-    margin-left: auto;
-    margin-right: auto;
+
 
 }

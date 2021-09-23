@@ -75,7 +75,7 @@ class ChangeableTextField extends React.Component {
     }
 
     updateText(event) {
-        if(event.target.value.length>22&&event.target.value.length>this.state.currentText.length) return
+        if(event.target.value.length>(this.props.maxTextLength?this.props.maxTextLength:22)&&event.target.value.length>this.state.currentText.length) return
         this.setState({currentText: event.target.value});
         event.target.style.width = ((event.target.value.length)) + 'ch';
     }
