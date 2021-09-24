@@ -693,6 +693,30 @@ const api = {
             }
 
         });
+    },
+
+    changeUsername: function (newUsername) {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                    newUsername: newUsername
+                });
+                fetch(backend + `/v1/account/changeUsername`, post).then(res => res.json()).then(result => {
+                    console.log(result);
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                        resolve(result);
+
+
+                });
+            }
+
+        });
     }
 
 

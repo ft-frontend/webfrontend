@@ -15,11 +15,12 @@ class ChangeableTextField extends React.Component {
         this.checkInputKeyPress = this.checkInputKeyPress.bind(this);
         this.toggleMode = this.toggleMode.bind(this);
         this.updateText = this.updateText.bind(this);
+        this.updateName = this.updateName.bind(this);
 
     }
 
     updateName() {
-        if(this.props.onNameUpdate(this.state.currentText)) {
+        if(this.props.onNameUpdate(this.state.currentText,this)) {
             this.setState({
                 currentText: this.state.originalText
             });
@@ -61,7 +62,7 @@ class ChangeableTextField extends React.Component {
                 if (e.key === "Escape") {
                     obj.setState({
                         isEditing: false,
-                        currentText: obj.props.text
+                        currentText: obj.state.originalText
                     })
                 }
             });

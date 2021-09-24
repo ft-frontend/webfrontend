@@ -2,6 +2,7 @@ import React from "react";
 import AccountSettingsStyle from "./accountSettingsStyle.module.css"
 import ChangeableTextField from "../../UI/changeableTextField/ChangeableTextField";
 import editIcon from "../../res/edit.svg";
+import api from "../../api/api";
 
 class AccountSettings extends React.Component {
     constructor(props) {
@@ -11,30 +12,56 @@ class AccountSettings extends React.Component {
         }
         this.userNameChange = this.userNameChange.bind(this);
 
+
     }
 
-    userNameChange(name) {
-        return true;
+
+    userNameChange(name,instance) {
+        if(name.toString()!==this.state.username.toString()) {
+            api.changeUsername(name).then(result => {
+                if(!result.success) {
+                    const usernameChangeErrorLabel = document.getElementById("ChangeUsernameErrorLabel")
+                    usernameChangeErrorLabel.style.display = "block";
+                    instance.setState({
+                        currentText: this.state.username
+                    })
+                }else{
+                    const usernameChangeErrorLabel = document.getElementById("ChangeUsernameErrorLabel")
+                    usernameChangeErrorLabel.style.display = "none";
+                    this.setState({
+                        username: name
+                    })
+                    window.localStorage.setItem('username',name);
+
+                }
+
+            })
+
+        }
+        return false;
+
     }
 
     render() {
         return (
-            <div className={AccountSettingsStyle.AccountSettingsContainer}>
-                <div className={AccountSettingsStyle.AccountInfoContainer}>
-                    <div className={AccountSettingsStyle.AccountImage}>
-                        <div className={AccountSettingsStyle.accountImageChangeButton}>
-                        <img  src={editIcon} alt="edit" className={AccountSettingsStyle.accountImageChangeButtonImage}
-                        />
 
-                    </div></div>
+            <div className={AccountSettingsStyle.AccountSettingsContainer}>
+
+
+                <div className={AccountSettingsStyle.AccountInfoContainer}>
+
+                    <div className={AccountSettingsStyle.AccountImage}>
+
+                    </div>
+
 
                     <div className={AccountSettingsStyle.Username}>
-                    <ChangeableTextField  maxTextLength={20} onNameUpdate={this.userNameChange} text={this.state.username}/>
-                        <span className={AccountSettingsStyle.UserNameError}>Dieser Benutzername ist bereits vergeben!</span>
+                            <ChangeableTextField onNameUpdate={this.userNameChange} text={this.state.username}/>
+
+                            <span id="ChangeUsernameErrorLabel" className={AccountSettingsStyle.UserNameError}>Dieser Benutzername ist bereits vergeben!</span>
                     </div>
                 </div>
 
-                <h1>Account Settings</h1>
             </div>
         );
     }
