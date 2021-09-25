@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import api from "../../api/api";
+import {withTranslation} from "react-i18next";
 
 class SelectDroneMission extends Component {
     constructor(props) {
@@ -13,7 +14,9 @@ class SelectDroneMission extends Component {
     }
     componentDidMount() {
         const options = [];
-        options.push(<option  value={-1}>Keine</option>);
+        const {t} = this.props;
+
+        options.push(<option  value={-1}>{t('direct_translation_none')}</option>);
 
         api.listMissions().then(res=>{
            res.missions.forEach(mission=>{
@@ -48,9 +51,10 @@ class SelectDroneMission extends Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
             <div>
-                <label htmlFor="mission">Aktuelle Mission:</label>
+                <label htmlFor="mission">{t('direct_translation_currentMission')}</label>
 
                 <select onChange={this.handleMissionChange}  name="mission" id="SelectDroneMissionBox">
                     {this.state.options}
@@ -60,4 +64,4 @@ class SelectDroneMission extends Component {
     }
 }
 
-export default SelectDroneMission;
+export default withTranslation()(SelectDroneMission);

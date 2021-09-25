@@ -44,6 +44,16 @@
   "direct_translation_longitude": "Longitude",
   "direct_translation_altitude": "Altitude",
   "direct_translation_height": "Höhe",
-  "direct_translation_position": "Position"
+  "direct_translation_position": "Position",
+  "direct_translation_currentMission": "Aktuelle Mission:",
+  "direct_translation_none": "Keine",
+  "centerOnDrone": "Auf Drohne zentrieren",
+  "searchPlaceholderText": "Zur Suche Text hier eingeben",
+  "selectDevice": "Bitte Gerät wählen:",
+  "pleaseWait": "Bitte Warten...",
+  "transmitError": "Fehler beim Übertragen der Daten!",
+  "deleteConfirmation": "Möchtest du das Gerät wirklich löschen?",
+  "direct_translation_language": "Sprache: ",
+  "direct_translation_darkMode": "Darkmode"
 
 }

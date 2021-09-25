@@ -3,6 +3,9 @@ import AccountSettingsStyle from "./accountSettingsStyle.module.css"
 import ChangeableTextField from "../../UI/changeableTextField/ChangeableTextField";
 import editIcon from "../../res/edit.svg";
 import api from "../../api/api";
+import i18next from "i18next";
+import {withTranslation} from "react-i18next";
+import accountSettingsHandler from "../accountSettingsHandler";
 
 class AccountSettings extends React.Component {
     constructor(props) {
@@ -43,6 +46,7 @@ class AccountSettings extends React.Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
 
             <div className={AccountSettingsStyle.AccountSettingsContainer}>
@@ -60,11 +64,40 @@ class AccountSettings extends React.Component {
 
                             <span id="ChangeUsernameErrorLabel" className={AccountSettingsStyle.UserNameError}>Dieser Benutzername ist bereits vergeben!</span>
                     </div>
+
+
                 </div>
 
+                <div className={AccountSettingsStyle.languageSettings}>
+                    <label className={AccountSettingsStyle.languagePickerLabel} for="language-picker-select">{t('direct_translation_language')}</label>
+                    <select name="language-picker-select" id="language-picker-select" className={AccountSettingsStyle.languagePicker} onChange={()=>{
+                        const newLang=document.getElementById("language-picker-select").value;
+                        api.saveAccountSetting("language",newLang);
+                        i18next.changeLanguage(newLang)
+                        api.getAccountSettings(true)}
+                    }>
+
+                        <option lang="en" value="en" selected={(i18next.language==="en")}>English</option>
+                        <option lang="de" value="de" selected={(i18next.language==="de")}>Deutsch</option>
+                    </select>
+
+                </div>
+
+                <div className={AccountSettingsStyle.themeSettingsContainer}>
+                    <label className={AccountSettingsStyle.themeSettingsToggleLabel} htmlFor="themeSettingsToggle">{t('direct_translation_darkMode')}</label><input defaultChecked={Boolean(window.localStorage.getItem("darkmode"))===true} onChange={()=>{
+                    const darkmodeSetting=document.getElementById("themeSettingsToggle").checked;
+                    api.saveAccountSetting("darkmode",darkmodeSetting).then(()=> {
+                        api.getAccountSettings(true).then(settings=>{
+                            accountSettingsHandler.handlerSettings(settings.settings)
+
+                        });
+                    });
+
+                }} type="checkbox" id="themeSettingsToggle" />
+                </div>
             </div>
         );
     }
 }
 
-export default AccountSettings;
+export default withTranslation()(AccountSettings);

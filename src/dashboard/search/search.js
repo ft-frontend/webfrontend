@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import api from "../../api/api";
 import SearchResult from "./searchResult"
 import SearchBarStyle from "./SearchBarStyle.module.css"
+import {withTranslation} from "react-i18next";
 class Search extends Component {
     constructor(props) {
         super(props);
@@ -92,9 +93,10 @@ class Search extends Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
             <div>
-                <div className={SearchBarStyle.dashboardSearchBarDiv}><input type="text" id="searchBar" className={SearchBarStyle.dashboardSearchBar} onChange={this.onType} placeholder="Zur Suche Text hier eingeben"/></div>
+                <div className={SearchBarStyle.dashboardSearchBarDiv}><input type="text" id="searchBar" className={SearchBarStyle.dashboardSearchBar} onChange={this.onType} placeholder={t('searchPlaceholderText')}/></div>
                 {(!this.state.showResults&&this.state.searchQuery.length>=2) && <p className={SearchBarStyle.dashboardSearchBarLoading}>Loading...</p>} <SearchResult showError={this.state.showResults} searchQuery={this.state.searchQuery} searchResults={this.state.searchResults}/>
             </div>
         );
@@ -156,4 +158,4 @@ function levDist(s, t) {
     return d[n][m];
 }
 
-export default Search;
+export default withTranslation()(Search);

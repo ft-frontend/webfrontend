@@ -57,3 +57,41 @@
     user-select: none;
 
 }
+
+.languageSettings {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    place-self: center;
+    width: 70%;
+    margin-top: 30px;
+}
+.languagePickerLabel {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 10px;
+}
+
+.languagePicker {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    color: #60666d;
+
+}
+
+.themeSettingsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    place-self: center;
+    width: 70%;
+    margin-top: 30px;
+}
+
+.themeSettingsToggleLabel {
+    margin-right: 10px;
+    text-align: center;
+}

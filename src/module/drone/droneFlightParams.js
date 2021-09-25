@@ -42,27 +42,27 @@ class DroneFlightParams extends Component {
                         <td>{this.props.droneBatteryPercentage+" %"}</td>
                     </tr>
                     <tr>
-                        <td colSpan={2} className={DroneFlightParamsStyle.droneFlightParamsTableSep}>{t('direct_translation_availableSatellites')}</td>
+                        <td colSpan={2} className={DroneFlightParamsStyle.droneFlightParamsTableSep}>{t('direct_translation_position')}</td>
                     </tr>
                     <tr>
-                        <td>Verbunde Satelliten</td>
+                        <td>{t('direct_translation_availableSatellites')}</td>
                         <td>{this.props.droneConnectedSatellites}</td>
                     </tr>
                     <tr>
-                        <td>Latitude</td>
+                        <td>{t('direct_translation_latitude')}</td>
                         <td>{this.props.lat}</td>
                     </tr>
                     <tr>
-                        <td>Longitude</td>
+                        <td>{t('direct_translation_longitude')}</td>
                         <td>{this.props.long}</td>
                     </tr>
 
                     <tr>
-                        <td>Altitude</td>
+                        <td>{t('direct_translation_altitude')}</td>
                         <td>{this.props.alt+" m (NN)"}</td>
                     </tr>
                     <tr>
-                        <td>Höhe</td>
+                        <td>{t('direct_translation_height')}</td>
                         <td>{this.props.height+" m"}</td>
                     </tr>
 

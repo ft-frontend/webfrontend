@@ -3,6 +3,7 @@ import api from "../../api/api";
 import Selector from "../../UI/Selector/Selector";
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css"
 import DeviceImageDrawer from "./DeviceImageDrawer";
+import {withTranslation} from "react-i18next";
 
 class DeviceSelect extends React.Component {
 
@@ -10,14 +11,17 @@ class DeviceSelect extends React.Component {
         super(props);
         this.deviceType = this.props.match.params.deviceType;
 
+        const {t} = this.props;
         this.state = {
             deviceList: [],
             renderList: false,
-            deviceType: "Bitte Warten..."
+            deviceType: t('pleaseWait')
         };
     }
 
     componentDidMount() {
+        const {t} = this.props;
+
         api.listSpecificUserDevice(this.deviceType).then(r => {
         api.listAvailableDevices().then(devices => {
             const deviceTypeName = devices.find(o => o.UUID === this.deviceType);
@@ -27,7 +31,7 @@ class DeviceSelect extends React.Component {
                 })
             }else{
                 this.setState({
-                    deviceType: "Fehler beim Übertragen der Daten!"
+                    deviceType: t('transmitError')
                 })
                 return;
             }
@@ -56,4 +60,4 @@ class DeviceSelect extends React.Component {
 
 }
 
-export default DeviceSelect;
+export default withTranslation()(DeviceSelect);

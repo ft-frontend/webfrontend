@@ -5,6 +5,7 @@ import api from "../../api/api";
 import ChangeableTextField from "../../UI/changeableTextField/ChangeableTextField";
 import ConfirmButton from "../../UI/confirmButton/ConfirmButton";
 import Trash from "../../res/trash.svg";
+import {withTranslation} from "react-i18next";
 
 
 class DeviceSettings extends React.Component {
@@ -61,6 +62,7 @@ class DeviceSettings extends React.Component {
 
 
     render() {
+        const {t} = this.props;
         return (<div>
 
             {
@@ -73,7 +75,7 @@ class DeviceSettings extends React.Component {
                                              text={this.state.deviceName}/>
                         </div>
                         <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}
-                                       confirmText={"Möchtest du das Gerät wirklich löschen?"}
+                                       confirmText={t('deleteConfirmation')}
                                        confirmAction={this.deleteDevice}><img
                             className={deviceDashboardFontStyle.deleteDeviceButton} src={Trash}
                             alt="Delete"/></ConfirmButton>
@@ -93,4 +95,4 @@ class DeviceSettings extends React.Component {
 
 }
 
-export default DeviceSettings;
+export default withTranslation()(DeviceSettings);

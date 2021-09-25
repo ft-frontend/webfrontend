@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import "react-bingmaps";
+import {withTranslation} from "react-i18next";
+import i18next from "i18next";
 
 class SimpleMap extends Component {
 
@@ -43,6 +45,7 @@ class SimpleMap extends Component {
             DroneMapSettings.prototype = new window.Microsoft.Maps.CustomOverlay({ beneathLabels : false });
 
             function DroneMapSettings() {
+                const {t} = obj.props;
                 this.mapCenterOnDronePositionUpdate = document.createElement('input');
                 this.mapCenterOnDronePositionUpdate.type = 'checkbox';
                 this.mapCenterOnDronePositionUpdate.id = "mapCenterOnDronePositionUpdate";
@@ -51,7 +54,7 @@ class SimpleMap extends Component {
 
                 this.mapCenterOnDronePositionUpdateLabel = document.createElement('label');
                 this.mapCenterOnDronePositionUpdateLabel.htmlFor = "mapCenterOnDronePositionUpdate";
-                this.mapCenterOnDronePositionUpdateLabel.innerText = "Auf Drohne zentrieren"
+                this.mapCenterOnDronePositionUpdateLabel.innerText = t('centerOnDrone');
 
                 this.mapCenterOnDronePositionUpdate.onchange = function (e) {
                     obj.setState({
@@ -126,7 +129,6 @@ class SimpleMap extends Component {
                 this.map.entities.push(pushPin);
             });
 
-
         }
         this.generatePolyLines();
 
@@ -154,8 +156,8 @@ class SimpleMap extends Component {
         script.type = "application/javascript";
 
         // GetMap function will be called when Bing Maps script is downloaded, so inside there initialize your map and other params
-        script.src = "https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AkBVrBtsknpJShn4Yjy9xKpdHxNdYuymoJ_1yHe95ECRs3CEIbwWmD6wje-c1R9v";
-
+        script.src = "https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AkBVrBtsknpJShn4Yjy9xKpdHxNdYuymoJ_1yHe95ECRs3CEIbwWmD6wje-c1R9v&setLang="+i18next.language;
+        console.log()
         document.body.appendChild(script);
 
 
@@ -189,4 +191,4 @@ class SimpleMap extends Component {
     }
 }
 
-export default SimpleMap;
+export default withTranslation()(SimpleMap);
