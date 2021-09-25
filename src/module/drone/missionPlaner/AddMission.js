@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import deviceDashboardFontStyle from "../../../dashboard/device/deviceDashboardFont.module.css";
 import AddMissionStyle from "./AddMissionStyle.module.css"
 import api from "../../../api/api";
+import {withTranslation} from "react-i18next";
 
 class AddMission extends Component {
     constructor(props) {
@@ -42,18 +43,19 @@ class AddMission extends Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
             <div>
-                <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>Wähle einen Namen für deine neue Mission:</h1>
+                <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{t('selectANameForNewMission')}</h1>
 
                 <form className={AddMissionStyle.AddMissionForm} onSubmit={this.handleSubmit}>
 
                     <input className={AddMissionStyle.AddMissionTextInput} id="addMissionNameInput"  maxLength={40} type="text" placeholder={"Name"} defaultValue={"New Mission"}/>
-                    <button className={AddMissionStyle.AddMissionSubmit} type="submit" >Erstellen</button>
+                    <button className={AddMissionStyle.AddMissionSubmit} type="submit" >{t('direct_translation_create')}</button>
                 </form>
                 <hr style={{marginTop:"30px"}}/>
 
-                <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter} style={{marginTop:"30px"}}>Oder Importieren aus einer Datei:</h1>
+                <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter} style={{marginTop:"30px"}}>{t('importMissionFromFile')}</h1>
 
                 <input type='file' accept=".dronemission" onChange={this.handleFileUpload}  className={AddMissionStyle.AddMissionForm}/>
 
@@ -64,4 +66,4 @@ class AddMission extends Component {
     }
 }
 
-export default AddMission;
+export default withTranslation()(AddMission);

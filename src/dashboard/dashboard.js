@@ -3,6 +3,7 @@ import NavBar from "../UI/NavBar/NavBar";
 import api from "../api/api";
 import accountSettingsHandler from "../settings/accountSettingsHandler";
 import UserLoginButtonControl from "../UI/NavBar/UserLoginButtonControl";
+import {withTranslation} from "react-i18next";
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -33,21 +34,22 @@ class Dashboard extends React.Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
 
             <NavBar  renderElements={this.state.renderNavBar} renderAppSelector links={[
                 {
-                    name: "Übersicht",
+                    name: t('direct_translation_overview'),
                     link: "/dashboard"
                 },
 
                 {
-                    name: "Geräte",
+                    name: t('direct_translation_devices'),
                     link: "/dashboard/device"
                 },
 
                 {
-                    name: "Suche",
+                    name: t('direct_translation_search'),
                     link: "/dashboard/search"
                 }
             ]} buttons={this.state.buttons}>
@@ -61,4 +63,4 @@ class Dashboard extends React.Component {
 
 }
 
-export default Dashboard;
+export default withTranslation()(Dashboard);

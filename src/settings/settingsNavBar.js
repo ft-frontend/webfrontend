@@ -4,6 +4,7 @@ import api from "../api/api";
 import accountSettingsHandler from "../settings/accountSettingsHandler";
 import UserLoginButtonControl from "../UI/NavBar/UserLoginButtonControl";
 import SideBar from "../UI/SideBar/SideBar";
+import {withTranslation} from "react-i18next";
 
 class SettingsNavBar extends React.Component {
 
@@ -33,11 +34,12 @@ class SettingsNavBar extends React.Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
             <>
                 <NavBar renderElements={this.state.renderNavBar} renderAppSelector links={[
                     {
-                        name: "<- Zurück zum Dashboard",
+                        name: t('backToDashboard'),
                         link: "/dashboard/"
                     }
                 ]} buttons={this.state.buttons}>
@@ -51,4 +53,4 @@ class SettingsNavBar extends React.Component {
 
 }
 
-export default SettingsNavBar;
+export default withTranslation()(SettingsNavBar);

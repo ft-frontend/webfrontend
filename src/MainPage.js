@@ -5,7 +5,8 @@ import UserLoginButtonControl from "./UI/NavBar/UserLoginButtonControl";
 import accountSettingsHandler from "./settings/accountSettingsHandler";
 import VersionNumber from "./UI/Version/VersionNumber";
 import SideBar from "./UI/SideBar/SideBar";
-
+import { withTranslation } from 'react-i18next';
+import i18next from "i18next";
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -63,6 +64,15 @@ class MainPage extends React.Component {
         <button onClick={() => {api.setBackendAddress("http://localhost/api")}}>Local Backend</button>
             <VersionNumber/>
 
+                {
+                    !this.state.signIn&&<>
+
+                    <button onClick={()=>{i18next.changeLanguage('de')}}>Deutsch</button>
+                    <button onClick={()=>{i18next.changeLanguage('en')}}>English</button>
+
+                    </>
+                }
+
         </div>
 
             </>;
@@ -70,4 +80,4 @@ class MainPage extends React.Component {
     }
 }
 
-export default MainPage;
+export default withTranslation()(MainPage);

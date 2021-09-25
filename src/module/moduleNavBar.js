@@ -4,6 +4,7 @@ import ModuleStyle from "./moduleNavBar.module.css"
 import api from "../api/api";
 import accountSettingsHandler from "../settings/accountSettingsHandler";
 import UserLoginButtonControl from "../UI/NavBar/UserLoginButtonControl";
+import {withTranslation} from "react-i18next";
 
 class ModuleNavBar extends React.Component {
 
@@ -35,11 +36,12 @@ class ModuleNavBar extends React.Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
 
             <NavBar renderElements={this.state.renderNavBar} renderAppSelector links={[
                 {
-                    name: "<- Zurück zum Dashboard",
+                    name: t('backToDashboard'),
                     link: "/dashboard/"
                 }
             ]} buttons={this.state.buttons}>
@@ -53,4 +55,4 @@ class ModuleNavBar extends React.Component {
 
 }
 
-export default ModuleNavBar;
+export default withTranslation()(ModuleNavBar);

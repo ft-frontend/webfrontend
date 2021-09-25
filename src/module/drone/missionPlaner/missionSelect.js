@@ -4,6 +4,7 @@ import AddMissionButton from "./AddMissionButton";
 import Selector from "../../../UI/Selector/Selector";
 import api from "../../../api/api";
 import DeviceImageDrawer from "../../../dashboard/device/DeviceImageDrawer";
+import {withTranslation} from "react-i18next";
 
 class MissionSelect extends Component {
     constructor(props) {
@@ -38,9 +39,10 @@ class MissionSelect extends Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
             <div>
-                <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>Bitte eine Mission wählen:</h1>
+                <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{t('selectMission')}</h1>
                 <AddMissionButton/>
                 {this.state.renderList&& <Selector items={this.state.deviceTypeList}/>}
             </div>
@@ -48,4 +50,4 @@ class MissionSelect extends Component {
     }
 }
 
-export default MissionSelect;
+export default withTranslation()(MissionSelect);

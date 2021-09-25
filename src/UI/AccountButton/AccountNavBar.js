@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AccountButtonStyle from "./AccountButton.module.css"
 import $ from "jquery";
 import editIcon from "../../res/edit.svg";
+import {withTranslation} from "react-i18next";
 
 class AccountNavBar extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class AccountNavBar extends Component {
 
 
     render() {
-
+        const {t} = this.props;
         return (
             <>
                 <div className={AccountButtonStyle.accountNavBarContainer}>
@@ -57,9 +58,9 @@ class AccountNavBar extends Component {
                         <p>{window.localStorage.getItem('username')}</p>
                     </div>
 
-                    <div className={AccountButtonStyle.manageAccountButton} onClick={()=>window.location.href="/settings#4"}><p>Account verwalten</p></div>
+                    <div className={AccountButtonStyle.manageAccountButton} onClick={()=>window.location.href="/settings#4"}><p>{t('manageAccount')}</p></div>
                     <div className={AccountButtonStyle.signOutButton} onClick={()=>window.location.href="/auth/signout"}>
-                        <p className={AccountButtonStyle.signOutButtonText}>Abmelden</p>
+                        <p className={AccountButtonStyle.signOutButtonText}>{t('signOut')}</p>
                     </div>
 
                 </div>}
@@ -70,4 +71,4 @@ class AccountNavBar extends Component {
     }
 }
 
-export default AccountNavBar;
+export default withTranslation()(AccountNavBar);

@@ -1,45 +1,48 @@
 import React, {Component} from 'react';
 import DroneFlightParamsStyle from "./droneFlightParams.module.css"
+import {withTranslation} from "react-i18next";
 
 class DroneFlightParams extends Component {
     render() {
+        const {t} = this.props;
+
         return (
             <div>
                 <table className={DroneFlightParamsStyle.droneFlightParamsTable}>
                     <tr>
-                        <th >Parameter</th>
-                        <th>Aktueller Wert</th>
+                        <th >{t('direct_translation_parameter')}</th>
+                        <th>{t('direct_translation_currentValue')}</th>
                     </tr>
                     <tr>
-                        <td colSpan={2} className={DroneFlightParamsStyle.droneFlightParamsTableSep}>Status</td>
+                        <td colSpan={2} className={DroneFlightParamsStyle.droneFlightParamsTableSep}>{t('direct_translation_status')}</td>
                     </tr>
                     <tr>
-                        <td>Online-Status</td>
+                        <td>{t('direct_translation_onlineState')}</td>
                         <td>{this.props.droneOnline}</td>
                     </tr>
 
                     <tr>
-                        <td>Flugmodus</td>
+                        <td>{t('direct_translation_flightMode')}</td>
                         <td>{this.props.droneFlightMode}</td>
                     </tr>
 
                     <tr>
-                        <td>Emergency Stop</td>
+                        <td>{t('direct_translation_emergencyStop')}</td>
                         <td>{this.props.droneEmergencyMode}</td>
                     </tr>
                     <tr>
-                        <td colSpan={2} className={DroneFlightParamsStyle.droneFlightParamsTableSep}>Akku</td>
+                        <td colSpan={2} className={DroneFlightParamsStyle.droneFlightParamsTableSep}>{t('direct_translation_akku')}</td>
                     </tr>
                     <tr>
-                        <td>Akku-Spannung</td>
+                        <td>{t('direct_translation_akkuVoltage')}</td>
                         <td>{this.props.droneBatteryVoltage+" V"}</td>
                     </tr>
                     <tr>
-                        <td>Akku-Ladung</td>
+                        <td>{t('direct_translation_akkuLevel')}</td>
                         <td>{this.props.droneBatteryPercentage+" %"}</td>
                     </tr>
                     <tr>
-                        <td colSpan={2} className={DroneFlightParamsStyle.droneFlightParamsTableSep}>Position</td>
+                        <td colSpan={2} className={DroneFlightParamsStyle.droneFlightParamsTableSep}>{t('direct_translation_availableSatellites')}</td>
                     </tr>
                     <tr>
                         <td>Verbunde Satelliten</td>
@@ -69,4 +72,4 @@ class DroneFlightParams extends Component {
     }
 }
 
-export default DroneFlightParams;
+export default withTranslation()(DroneFlightParams);

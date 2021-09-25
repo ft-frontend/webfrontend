@@ -13,7 +13,6 @@ class HorizontalTabBar extends Component {
     }
 
     contentChange(e) {
-        console.log(e.target.alt);
         this.setState({
             currentTab: this.props.tabContent[e.target.alt]
         })
@@ -25,11 +24,17 @@ class HorizontalTabBar extends Component {
         let startIndex = 0;
         try {
           const subStr =  window.location.hash.substr(1);
-          console.log(subStr)
           if(subStr>=0&&subStr<this.props.tabContent.length) {
               startIndex = parseInt(subStr);
           }
         }catch (e) {}
+        if(isNaN(startIndex)) {
+            startIndex = 0;
+        }
+        this.setState({
+            currentTab: this.props.tabContent[startIndex]
+        })
+
         this.props.tabContent.forEach((e) => {
 
             const uuid = uuidv4();

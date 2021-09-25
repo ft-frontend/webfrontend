@@ -4,6 +4,7 @@ import accountSettingsHandler from "../../settings/accountSettingsHandler";
 import NavBar from "../../UI/NavBar/NavBar";
 import ModuleStyle from "../moduleNavBar.module.css";
 import UserLoginButtonControl from "../../UI/NavBar/UserLoginButtonControl";
+import {withTranslation} from "react-i18next";
 
 class DroneNavBar extends Component {
 
@@ -34,14 +35,15 @@ class DroneNavBar extends Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
                 <NavBar renderElements={this.state.renderNavBar} renderAppSelector links={[
                     {
-                        name: "Drohnen",
+                        name: t('direct_translation_drones'),
                         link: "/module/drone/select"
                     },
                     {
-                        name: "Missions",
+                        name: t('direct_translation_missions'),
                         link: "/module/drone/missions"
                     }
                 ]} buttons={this.state.buttons}>
@@ -52,4 +54,4 @@ class DroneNavBar extends Component {
     }
 }
 
-export default DroneNavBar;
+export default withTranslation()(DroneNavBar);

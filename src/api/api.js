@@ -274,7 +274,6 @@ const api = {
 
             if (!force) {
                 if (cookies.get("acsettings") !== undefined) {
-                    console.log(cookies.get("acsettings"));
                     resolve({
                         success: true,
                         settings: cookies.get("acsettings")

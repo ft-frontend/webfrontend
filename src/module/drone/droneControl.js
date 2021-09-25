@@ -9,6 +9,7 @@ import SimpelMap from "./SimpelMap";
 import SetPIDValue from "./SetPIDValue";
 import DroneFlightParams from "./droneFlightParams";
 import SelectDroneMission from "./SelectDroneMission";
+import {withTranslation} from "react-i18next";
 
 
 class DroneControl extends React.Component {
@@ -223,6 +224,7 @@ class DroneControl extends React.Component {
     }
 
     render() {
+        const {t} = this.props;
         return <div>
             <img onClick={() => window.location.href = "/module/drone/select"}
                  className={droneControlStyle.DroneControlBackButton} src={backIcon} alt="Settings"/>
@@ -242,7 +244,7 @@ class DroneControl extends React.Component {
                         this.state.renderMap &&
                     <div>
                         <div  title={this.state.droneBatteryVoltage+" V"} className={droneControlStyle.droneBatteryDiv}><div id="DroneBatteryIcon" className={droneControlStyle.droneBatteryIcon}><div className={droneControlStyle.droneBatteryLevel} style={{width: this.state.droneBatteryPercentage+"%"}}/></div><p id="DroneBatteryPercentageLabel" className={droneControlStyle.droneBatteryIconPercentageLabel}>{this.state.droneBatteryPercentage+" %"}</p></div>
-                        <button onClick={this.switchViewMode}>Flug-Parameter</button>
+                        <button onClick={this.switchViewMode}>{t('flightParameter')}</button>
                         {
                             !this.state.showFlightSettings?
                                 this.state.renderSimpleMap&&
@@ -271,4 +273,4 @@ class DroneControl extends React.Component {
 
 }
 
-export default DroneControl;
+export default withTranslation()(DroneControl);

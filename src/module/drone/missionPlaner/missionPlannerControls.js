@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import api from "../../../api/api";
 import MissionPlannerControlsStyle from "./MissionPlannerControlsStlye.module.css";
+import {withTranslation} from "react-i18next";
 
 class MissionPlannerControls extends Component {
     constructor(props) {
@@ -98,10 +99,11 @@ class MissionPlannerControls extends Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
             <div className={MissionPlannerControlsStyle.MissionPlannerControlsContainer}>
-                <button onClick={this.saveMission}>Speichern</button>
-                <button onClick={this.downloadMission}>Herunterladen</button>
+                <button onClick={this.saveMission}>{t('direct_translation_save')}</button>
+                <button onClick={this.downloadMission}>{t('direct_translation_download')}</button>
                 {this.props.selectedPushPin &&
                 <div className={MissionPlannerControlsStyle.MissionPlannerControlsSilderContainer}>
                     <p>Höhe:</p>
@@ -112,16 +114,16 @@ class MissionPlannerControls extends Component {
 
                 </div>}
                 <select onChange={this.handleMissionThingToDoAfterEndChange}  name="mission" id="SelectDroneMissionThingToDoAfterEnd">
-                    <option value="0">Landen</option>
-                    <option value="1">Schweben</option>
+                    <option value="0">{t('direct_translation_land')}</option>
+                    <option value="1">{t('direct_translation_hover')}</option>
                     <option value="2">RTH</option>
-                    <option value="3">Wiederholen</option>
-                    <option value="4">Bei Punkt 1 landen</option>
-                    <option value="5">Beim letzen Punkt landen</option>
+                    <option value="3">{t('direct_translation_repeat')}</option>
+                    <option value="4">{t('landAtPointOne')}</option>
+                    <option value="5">{t('landAtLastPoint')}</option>
                 </select>
             </div>
         );
     }
 }
 
-export default MissionPlannerControls;
+export default withTranslation()(MissionPlannerControls);

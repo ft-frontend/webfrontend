@@ -1,9 +1,11 @@
 import React from "react";
 import HorizontalTabBar from "./HorizontalSettingsTabBar/HorizontalTabBar";
 import AccountSettings from "./account/accountSettings";
+import {withTranslation} from "react-i18next";
 
 class SettingsBar extends React.Component {
     render() {
+        const {t} = this.props;
         return<HorizontalTabBar tabContent={[
             {
                 content: <></>,
@@ -19,10 +21,10 @@ class SettingsBar extends React.Component {
                 name: "Test"
             },{
                 content: <AccountSettings/>,
-                name: "Account Einstellungen"
+                name: t('accountSettings')
             }
         ]}/>
     }
 }
 
-export default SettingsBar;
+export default withTranslation()(SettingsBar);
