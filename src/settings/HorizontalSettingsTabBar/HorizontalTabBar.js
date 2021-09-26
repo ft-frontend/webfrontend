@@ -63,9 +63,9 @@ class HorizontalTabBar extends Component {
 
         return (
             <>
-                <div className={HorizontalTabBarStyle.tabBarContainer}>
+                <div id="HorizontalTabBarContainer" className={HorizontalTabBarStyle.tabBarContainer}>
                     {this.state.items}
-                    <span className={HorizontalTabBarStyle.glider}/>
+                    <span id="HorizontalTabBarSlider" className={HorizontalTabBarStyle.glider}/>
 
                 </div>
                 {this.state.currentTab.content}

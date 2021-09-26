@@ -54,6 +54,7 @@
   "transmitError": "Fehler beim Übertragen der Daten!",
   "deleteConfirmation": "Möchtest du das Gerät wirklich löschen?",
   "direct_translation_language": "Sprache: ",
-  "direct_translation_darkMode": "Darkmode"
+  "direct_translation_darkMode": "Darkmode",
+  "direct_translation_authentication": "Authentifizierung"
 
 }

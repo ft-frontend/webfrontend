@@ -23,8 +23,7 @@ i18n
         detection: {
             order: ['cookie', 'localStorage', 'navigator'],
             caches: ['cookie','localStorage']
-        },
-        debug: true
+        }
     });
 
 

@@ -29,6 +29,7 @@ import AdminDashboard from "./admin/adminDashboard";
 import SideBar from "./UI/SideBar/SideBar";
 import SettingsNavBar from "./settings/settingsNavBar";
 import SettingsPageWrapper from "./settings/pageWrapper/SettingsPageWrapper";
+import OAuthCallback from "./api/OAuthCallback";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
@@ -121,6 +122,7 @@ function App() {
             <Route exact path="/auth/signIn" component={signIn}/>
             <Route exact path="/auth/signUp" component={signUp}/>
             <Route exact path="/auth/signOut" component={signOut}/>
+            <Route exact path="/auth/oauth" component={OAuthCallback}/>
 
 
         </Router>

@@ -69,6 +69,7 @@
 .languagePickerLabel {
     font-family: 'Open Sans', sans-serif;
     margin-bottom: 10px;
+    color: black;
 }
 
 .languagePicker {
@@ -79,6 +80,7 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     color: #60666d;
+    background-color: white;
 
 }
 
@@ -94,4 +96,5 @@
 .themeSettingsToggleLabel {
     margin-right: 10px;
     text-align: center;
+    color: black;
 }

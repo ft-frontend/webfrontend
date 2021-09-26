@@ -742,7 +742,64 @@ const api = {
             }
 
         });
-    }
+    },
+
+    getAccountAuth: function () {
+        return new Promise((resolve, reject) => {
+
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                fetch(backend + `/v1/account/getAuth?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+
+                    if (result.error !== undefined) {
+                        resolve({
+                            success: false,
+                            error: result.error
+                        });
+                    } else {
+                        resolve({
+                            success: true,
+                            auth: result,
+                        });
+                    }
+                });
+            }
+
+        });
+    },
+    saveAccountAuth: function (key, value) {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                    key: key,
+                    newValue: value
+                });
+                fetch(backend + `/v1/account/changeAuth`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+
+                    resolve({
+                        success: result.success
+                    });
+
+
+                });
+            }
+
+        });
+    },
 
 
 };

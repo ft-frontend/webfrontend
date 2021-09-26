@@ -1,17 +1,29 @@
 
 body {
     background-color: #f2f6fc;
+    transition: background-color 0.15s linear;
+
+}
+
+* {
+    transition: background-color 0.15s linear;
+    transition: color 0.15s linear;
+
 }
 
 .dark-body {
     background-color: #313131 ;
 }
 
-.dark-body > * h1 {
+.dark-body > * h1:not(.ignoreDarkMode) {
     color: white !important;
 
 }
-.dark-body > * h4 {
+.dark-body > * h4:not(.ignoreDarkMode) {
+    color: white !important;
+
+}
+.dark-body > * label:not(.ignoreDarkMode) {
     color: white !important;
 
 }
@@ -32,6 +44,22 @@ body {
 
 .dark-body > * #DroneBatteryIcon:after  {
     background: #fff;
+}
+
+.dark-body > * #HorizontalTabBarContainer {
+    background-color: #5f6262;
+}
+
+
+
+
+.dark-body > * #HorizontalTabBarSlider {
+    background-color: #989da6;
+}
+
+.dark-body > * #language-picker-select {
+    color: white;
+    background-color: #5f6262;
 }
 
 
