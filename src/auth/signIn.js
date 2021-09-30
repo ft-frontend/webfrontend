@@ -93,9 +93,9 @@ class SignIn extends React.Component {
 
                         <p className={signInStyle.errorlable}>{this.state.error}</p>
 
-                        <div className="g-signin2" data-onsuccess="onSignIn"/>
 
                     </form>
+                    <div className={"g-signin2 "+signInStyle.loginWithGoogleButton} data-onsuccess="onSignIn"/>
 
                 </div>
 
