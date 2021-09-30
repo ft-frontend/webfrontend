@@ -744,7 +744,7 @@ const api = {
         });
     },
 
-    getAccountAuth: function () {
+    checkGoogleAccount: function () {
         return new Promise((resolve, reject) => {
 
 
@@ -752,39 +752,98 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/v1/account/getAuth?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/account/checkGoogleAuth?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
-                        resolve({success: false});
+                        resolve({valid: false});
                         return;
                     }
 
-                    if (result.error !== undefined) {
-                        resolve({
-                            success: false,
-                            error: result.error
-                        });
-                    } else {
-                        resolve({
-                            success: true,
-                            auth: result,
-                        });
-                    }
+                  resolve({valid:result.valid,googleResponse: result.googleResponse});
                 });
             }
 
         });
     },
-    saveAccountAuth: function (key, value) {
+    saveGoogleToken: function (token) {
         return new Promise((resolve, reject) => {
             if (cookies.get('session') === undefined) {
                 resolve(false);
             } else {
                 post.body = JSON.stringify({
                     session: cookies.get('session'),
-                    key: key,
-                    newValue: value
+                    token: token
                 });
-                fetch(backend + `/v1/account/changeAuth`, post).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/account/changeGoogleAuth`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+
+                    resolve({
+                        success: result.success
+                    });
+
+
+                });
+            }
+
+        });
+    },
+
+    loadGoogleAuthScript: function () {
+        const meta = document.createElement("meta");
+        meta.name = "google-signin-client_id";
+        meta.content = "213041413684-upirs2j8p9ute8tjohkd1bqpnrqv49h8.apps.googleusercontent.com"
+
+        document.head.appendChild(meta)
+        //Google Oauth
+        let script = document.createElement("script");
+        script.type = "application/javascript";
+        script.async = true;
+        script.defer = true;
+
+        script.src = "https://apis.google.com/js/platform.js";
+        document.body.appendChild(script);
+        return script
+    },
+
+    signInWithGoogleAccountToken: function (token) {
+        console.log(token)
+        return new Promise((resolve, reject) => {
+            post.body = JSON.stringify({
+                token: token
+            });
+
+            fetch(backend + `/v1/auth/startSessionWithGoogle`, post).then(res => res.json()).then(result => {
+                if (!result.error) {
+                    cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
+                    this.getAccountSettings(true);
+
+                    resolve({
+                        success: true,
+                        session: result.session
+                    });
+                } else {
+                    resolve({
+                        success: false,
+                        error: result.error
+                    });
+                }
+            });
+
+
+        });
+    },
+    deleteGoogleToken: function () {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+
+                });
+                fetch(backend + `/v1/account/deleteGoogleAuth`, post).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         resolve({success: false});
                         return;

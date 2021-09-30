@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import api from "../../api/api";
+import {withTranslation} from "react-i18next";
+import AuthenticationSettingsStyle from "./AuthenticationSettingsStyle.module.css"
 
 class AuthenticationSettings extends Component {
 
@@ -7,40 +9,63 @@ class AuthenticationSettings extends Component {
         super(props);
         this.state = {
             google: false,
-            googleUsername: "",
-            googleEmail: ""
+            googleAccount: null,
+            googleLoading: true
         }
+        this.disconnectGoogle = this.disconnectGoogle.bind(this);
+        this.renderGoogleButton = this.renderGoogleButton.bind(this);
     }
 
     componentDidMount() {
-        const meta = document.createElement("meta");
-        meta.name = "google-signin-client_id";
-        meta.content = "213041413684-upirs2j8p9ute8tjohkd1bqpnrqv49h8.apps.googleusercontent.com"
-
-        document.head.appendChild(meta)
-        //Google Oauth
-        let script = document.createElement("script");
-        script.type = "application/javascript";
-        script.async = true;
-        script.defer = true;
-
-        script.src = "https://apis.google.com/js/platform.js";
-        document.body.appendChild(script);
+     const script = api.loadGoogleAuthScript()
+        const obj = this;
 
         script.onload = function () {
-            api.getAccountAuth().then(auth=> {
+            window.gapi.load('auth2', function() {
+                window.gapi.auth2.init();
+            });
+            api.checkGoogleAccount().then((valid)=>{
+                console.log(valid)
+                if(valid!=null&&valid.valid) {
+                    obj.setState({
+                         google: true,
+                         googleLoading: false,
+                         googleAccount: valid.googleResponse
+                     })
+                }else{
+                    obj.setState({
+                        google: false,
+                        googleLoading: false,
+                        googleAccount: null
+                    })
 
+                    obj.renderGoogleButton();
+                }
             })
+            //api.getAccountAuth().then(auth=> {
+
+            //})
         }
 
 
         window.onGoogleSignIn = function (googleUser) {
-            let profile = googleUser.getBasicProfile();
-            api.saveAccountAuth("google",googleUser.getAuthResponse().id_token).then(()=> {
-                this.setState({
-                    googleUsername: profile.getName(),
-                    googleEmail: profile.getEmail(),
-                    google: true
+
+            api.saveGoogleToken(googleUser.getAuthResponse().id_token).then(()=>{
+                api.checkGoogleAccount().then((valid)=>{
+                    if(valid!=null&&valid.valid) {
+                        obj.setState({
+                            google: true,
+                            googleLoading: false,
+                            googleAccount: valid.googleResponse
+                        })
+                    }else{
+                        obj.setState({
+                            google: false,
+                            googleLoading: false,
+                            googleAccount: null
+                        })
+                    }
+                    window.gapi.auth2.getAuthInstance().disconnect();
                 })
             })
         }
@@ -49,14 +74,49 @@ class AuthenticationSettings extends Component {
 
 
     }
-    render() {
-        return (
-            <div>
-                <div className="g-signin2" data-onsuccess="onGoogleSignIn"/>
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.state);
+    }
 
-            </div>
+    renderGoogleButton() {
+        window.gapi.signin2.render('googleSignInButton',{
+            'onsuccess': window.onGoogleSignIn
+        })
+    }
+
+    disconnectGoogle() {
+        api.deleteGoogleToken().then(()=>{
+            this.setState({
+                google: false,
+                googleAccount: null
+            })
+             window.gapi.auth2.getAuthInstance().signOut().then(()=>{
+               this.renderGoogleButton();
+
+            })
+        })
+    }
+
+    render() {
+        const {t} = this.props;
+        return (
+           <>
+                <h1 className={AuthenticationSettingsStyle.headLine}>{t('direct_translation_authentication')}</h1>
+                <div className={AuthenticationSettingsStyle.googleAuth}>
+                    <h4>Google: </h4>
+                    <div className={AuthenticationSettingsStyle.googleAuthState}>
+                    {
+                        this.state.googleLoading?<h4>Loading...</h4>: <>{
+                            this.state.google?<><button onClick={this.disconnectGoogle}>{t('direct_translation_disconnect')}</button> <h4>{this.state.googleAccount.name+" "+this.state.googleAccount.email}</h4></>:<><div id="googleSignInButton" data-onsuccess="onGoogleSignIn"/></>
+                        }
+                        </>
+                    }
+                    </div>
+                </div>
+
+           </>
         );
     }
 }
 
-export default AuthenticationSettings;
+export default withTranslation()(AuthenticationSettings);

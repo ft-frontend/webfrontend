@@ -1,0 +1,20 @@
+.googleAuth {
+    margin-top: 30px;
+    display: flex;
+    width: 600px;
+    justify-content: space-between;
+    color: black;
+}
+
+.headLine {
+    color: black;
+    margin-top: 10px;
+
+}
+
+.googleAuthState {
+    display: flex;
+    width: 370px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}

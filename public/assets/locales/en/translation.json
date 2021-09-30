@@ -55,7 +55,8 @@
   "deleteConfirmation": "Do you really want to delete this device?",
   "direct_translation_language": "Language: ",
   "direct_translation_darkMode": "Dark-Mode",
-  "direct_translation_authentication": "Authentication"
+  "direct_translation_authentication": "Authentication",
+  "direct_translation_disconnect": "Disconnect"
 
 
 
