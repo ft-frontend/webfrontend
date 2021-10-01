@@ -30,26 +30,7 @@ class SignIn extends React.Component {
 
     }
 
-    componentDidMount() {
-        const obj = this;
-        window.onSignIn = function(googleUser) {
-            api.signInWithGoogleAccountToken(googleUser.getAuthResponse().id_token).then(result=>{
-                window.gapi.auth2.getAuthInstance().disconnect()
-                if(result.success) {
-                    const queryString = window.location.search;
-                    const urlParams = new URLSearchParams(queryString);
-                    obj.setState({redirect: true,url:  urlParams.get('redirect')})
 
-                }else{
-                    obj.setState({error: result.error});
-                }
-            })
-        }
-       const script = api.loadGoogleAuthScript();
-        script.onload = function() {
-
-        }
-    }
 
     handleSubmit(event) {
         api.signIn(this.state.name,this.state.password,this.state.staySignIn?24*60*14:undefined).then(result => {
@@ -95,7 +76,6 @@ class SignIn extends React.Component {
 
 
                     </form>
-                    <div className={"g-signin2 "+signInStyle.loginWithGoogleButton} data-onsuccess="onSignIn"/>
 
                 </div>
 

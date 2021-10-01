@@ -101,7 +101,7 @@ class AuthenticationSettings extends Component {
         const {t} = this.props;
         return (
            <>
-                <h1 className={AuthenticationSettingsStyle.headLine}>{t('direct_translation_authentication')}</h1>
+               {/*<h1 className={AuthenticationSettingsStyle.headLine}>{t('direct_translation_authentication')}</h1>
                 <div className={AuthenticationSettingsStyle.googleAuth}>
                     <h4>Google: </h4>
                     <div className={AuthenticationSettingsStyle.googleAuthState}>
@@ -113,7 +113,7 @@ class AuthenticationSettings extends Component {
                     }
                     </div>
                 </div>
-
+               */}
            </>
         );
     }
