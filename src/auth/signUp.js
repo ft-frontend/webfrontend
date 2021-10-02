@@ -34,7 +34,8 @@ class SignUp extends React.Component {
                 this.setState({redirect: true,url:  urlParams.get('redirect')})
 
             }else{
-                this.setState({error: result.error});
+                console.log(result.errorCode)
+                this.setState({error: api.parseError(result.errorCode)});
             }
         })
         event.preventDefault();

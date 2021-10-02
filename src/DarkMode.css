@@ -1,11 +1,10 @@
 
 body {
     background-color: #f2f6fc;
-    transition: background-color 0.15s linear;
 
 }
 
-* {
+*:not(body) {
     transition: background-color 0.15s linear;
     transition: color 0.15s linear;
 

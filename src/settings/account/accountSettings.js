@@ -25,6 +25,10 @@ class AccountSettings extends React.Component {
                 if(!result.success) {
                     const usernameChangeErrorLabel = document.getElementById("ChangeUsernameErrorLabel")
                     usernameChangeErrorLabel.style.display = "block";
+                    usernameChangeErrorLabel.innerText = api.parseError(result.errorcode)
+                    console.log(result);
+
+                    console.log(result)
                     instance.setState({
                         currentText: this.state.username
                     })
@@ -43,6 +47,10 @@ class AccountSettings extends React.Component {
         }
         return false;
 
+    }
+
+    componentDidMount() {
+        document.body.classList.add(AccountSettingsStyle.tempBodyColorTransition)
     }
 
     render() {

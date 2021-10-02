@@ -1,5 +1,6 @@
 import Cookies from 'universal-cookie';
 import {w3cwebsocket as W3CWebSocket} from "websocket";
+import i18next from "i18next";
 
 const cookies = new Cookies();
 let backend = "https://api.arnold-tim.de/api";
@@ -29,6 +30,39 @@ function checkErrorCodes(response) {
 function redirectToLogin() {
     if (redirect) {
         window.location.href = "/auth/signin?redirect=" + window.location.pathname;
+    }
+
+}
+
+function parseError(errorCode) {
+    switch (errorCode) {
+        case "002":
+            return i18next.t("error_2");
+            break;
+            case "004":
+            return i18next.t("error_4");
+            break;
+            case "005":
+            return i18next.t("error_5");
+            break;
+            case "006":
+            return i18next.t("error_6");
+            break;
+            case "010":
+            return i18next.t("error_10");
+            break;
+            case "011":
+            return i18next.t("error_11");
+            break;
+            case "012":
+            return i18next.t("error_12");
+            break;
+            case "013":
+            return i18next.t("error_13");
+            break;
+            case "014":
+            return i18next.t("error_14");
+            break;
     }
 
 }
@@ -122,7 +156,8 @@ const api = {
                 } else {
                     resolve({
                         success: false,
-                        error: result.error
+                        error: result.error,
+                        errorCode: result.errorcode
                     });
                 }
             });
@@ -732,7 +767,7 @@ const api = {
                 fetch(backend + `/v1/account/changeUsername`, post).then(res => res.json()).then(result => {
                     console.log(result);
                     if (checkErrorCodes(result)) {
-                        resolve({success: false});
+                        resolve(result);
                         return;
                     }
                         resolve(result);
@@ -859,6 +894,8 @@ const api = {
 
         });
     },
+
+    parseError: parseError
 
 
 };
