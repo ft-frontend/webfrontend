@@ -1,0 +1,23 @@
+.missionPlannerAddGenerator {
+    position: absolute;
+    margin-top: -20px;
+    right: 80px;
+    padding: 10px;
+
+    background-color: #0088a9;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.missionPlannerAddGenerator:hover {
+    box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+}
+
+
+.missionPlannerAddGeneratorText {
+    color: white;
+    display: inline-block;
+    text-align: center;
+    user-select: none;
+
+}

@@ -57,6 +57,7 @@
   "direct_translation_darkMode": "Darkmode",
   "direct_translation_authentication": "Authentifizierung",
   "direct_translation_disconnect": "Trennen",
+  "direct_translation_zigzag": "ZickZack",
   "error_2": "Ein unerwartetes Problem ist aufgetreten",
   "error_4": "Dieser Nutzername existiert bereits",
   "error_5": "Diese Email-Adresse ist bereits registriert",
@@ -65,6 +66,9 @@
   "error_11": "Auf dieses Gerät hast du keinen Zugriff",
   "error_12": "Die angegeben Zeit ist zu lang oder zu kurz",
   "error_13": "Der Benutzername enthält ungültige Zeichen",
-  "error_14": "Die Länge des Benutzernamens ist nicht zugelassen"
+  "error_14": "Die Länge des Benutzernamens ist nicht zugelassen",
+  "startMissionGenerator": "Missions Generatoren",
+  "selectFromExistingMissionOrCreateNewOne": "Wähle einer der Missionen oder erstelle eine Neue um den Generator darauf anzuwenden:",
+  "selectGenerator": "Bitte wähle einen Generator:"
 
 }

@@ -30,10 +30,13 @@ import SideBar from "./UI/SideBar/SideBar";
 import SettingsNavBar from "./settings/settingsNavBar";
 import SettingsPageWrapper from "./settings/pageWrapper/SettingsPageWrapper";
 import OAuthCallback from "./api/OAuthCallback";
+import SelectMissionOrCreateNewOne from "./module/drone/missionPlaner/missionGenerator/SelectMissionOrCreateNewOne";
+import SelectGenerator from "./module/drone/missionPlaner/missionGenerator/SelectGenerator";
+import ZigZagMap from "./module/drone/missionPlaner/missionGenerator/ZigZagMap";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
-        window.location.replace(`https:${window.location.href.substring(window.location.protocol.length)}`);
+   //     window.location.replace(`https:${window.location.href.substring(window.location.protocol.length)}`);
     }
 
     return (
@@ -107,6 +110,28 @@ function App() {
                 <SideBar/>
                 <AddMission/>
             </Route>
+            <Route exact path="/module/drone/missions/generators/selectMission">
+                <SideBar/>
+                <SelectMissionOrCreateNewOne/>
+
+            </Route>
+
+            <Route exact path="/module/drone/missions/generators/list/:mission" component={SelectGenerator}/>
+            <Route  path="/module/drone/missions/generators/list/">
+                <SideBar/>
+
+            </Route>
+
+            <Route exact path="/module/drone/missions/generators/:mission/zigzag">
+                <SideBar/>
+                <ZigZagMap/>
+
+            </Route>
+
+
+
+
+
             <Route exact path="/module/drone/missions/planner/:mission" component={MissionPlanner}/>
 
 

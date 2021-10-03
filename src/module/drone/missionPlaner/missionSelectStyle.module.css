@@ -1,0 +1,46 @@
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.missionSelectTitle {
+    color: black;
+    place-self: center;
+    justify-self: center;
+    align-self: center;
+
+}
+
+.missionSelectTopLine {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.startMissionGenerators {
+
+    position: absolute;
+    margin-top: 10px;
+    right: 10px;
+    padding: 10px;
+
+    background-color: #0088a9;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+.startMissionGenerators:hover {
+    box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+}
+
+
+.startMissionGeneratorsText {
+    color: white;
+    display: inline-block;
+    text-align: center;
+    user-select: none;
+
+}

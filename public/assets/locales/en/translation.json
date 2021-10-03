@@ -57,6 +57,7 @@
   "direct_translation_darkMode": "Dark-Mode",
   "direct_translation_authentication": "Authentication",
   "direct_translation_disconnect": "Disconnect",
+  "direct_translation_zigzag": "ZigZag",
   "error_2": "An unknown error occurred",
   "error_4": "This username already exists",
   "error_5": "This email is already registered",
@@ -65,5 +66,8 @@
   "error_11": "You don't have access to this device",
   "error_12": "The amount of time is not allowed",
   "error_13": "Your username contains invalid characters",
-  "error_14": "Your username length is not allowed"
+  "error_14": "Your username length is not allowed",
+  "startMissionGenerator": "missions generators",
+  "selectFromExistingMissionOrCreateNewOne": "Select one from your missions or create a new one to apply the generator output to it:",
+  "selectGenerator": "Please select a generator:"
 }

@@ -5,6 +5,8 @@ import ConfirmButton from "../../../UI/confirmButton/ConfirmButton";
 import Trash from "../../../res/trash.svg";
 import ChangeableTextField from "../../../UI/changeableTextField/ChangeableTextField";
 import MissionMap from "./MissionMap";
+import {withTranslation} from "react-i18next";
+import missionPlannerStyle from "./missionPlannerStyle.module.css"
 
 class MissionPlanner extends Component {
 
@@ -64,11 +66,14 @@ class MissionPlanner extends Component {
     }
 
     render() {
+        const {t} = this.props;
         return (
             <div>
                 {this.state.renderMap? <>
                     <div className={deviceDashboardFontStyle.deviceDashboardFontCenter}>
                     <ChangeableTextField  text={this.state.missionName} onNameUpdate={this.handleMissionNameChange}/>
+                        <div onClick={()=>window.location.href="/module/drone/missions/generators/list/"+this.props.match.params.mission} className={missionPlannerStyle.missionPlannerAddGenerator}><span className={"ignoreDarkMode "+missionPlannerStyle.missionPlannerAddGeneratorText}>{t('startMissionGenerator')}</span></div>
+
                     </div>
                         <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}  confirmText={"Möchtest du die Mession wirklich löschen?"} confirmAction={this.deleteMission}><img  className={deviceDashboardFontStyle.deleteDeviceButton} src={Trash} alt="Delete"/></ConfirmButton>
                     </>
@@ -81,4 +86,4 @@ class MissionPlanner extends Component {
     }
 }
 
-export default MissionPlanner;
+export default withTranslation()(MissionPlanner);

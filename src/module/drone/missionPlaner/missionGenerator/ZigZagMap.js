@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import "react-bingmaps";
-import MissionPlannerControls from "./missionPlannerControls";
-import api from "../../../api/api";
-import MissionMapStyle from "./MissionMapStyle.module.css"
+import api from "../../../../api/api";
 
-class MissionMap extends Component {
+class ZigZagMap extends Component {
 
 
     constructor(props) {
@@ -23,7 +21,6 @@ class MissionMap extends Component {
             };
 
 
-        this.missionParser = this.missionParser.bind(this);
         this.handlePushPinDrag = this.handlePushPinDrag.bind(this);
         this.generatePolyLines = this.generatePolyLines.bind(this);
         this.addPushPin = this.addPushPin.bind(this);
@@ -31,12 +28,9 @@ class MissionMap extends Component {
         this.handlePushPinMoseOver = this.handlePushPinMoseOver.bind(this);
         this.handleMapRightClick = this.handleMapRightClick.bind(this);
         this.removePushPin = this.removePushPin.bind(this);
-        this.regeneratePushPinText = this.regeneratePushPinText.bind(this);
         this.missionComposer = this.missionComposer.bind(this);
         this.handlePushPinClick = this.handlePushPinClick.bind(this);
-        this.heightOfSelectedPushPinChanged = this.heightOfSelectedPushPinChanged.bind(this);
         this.preventRedirect = this.preventRedirect.bind(this);
-        this.doThingAfterMissionEndChange = this.doThingAfterMissionEndChange.bind(this);
 
 
 
@@ -60,35 +54,9 @@ class MissionMap extends Component {
 
             });
             obj.map.entities.push(pl);
-
+            window.Microsoft.Maps.Events.addHandler(obj.map, 'rightclick', obj.handleMapRightClick);
 
                     //Center Map to User Location to provide easy possibility to find yourself in the mission planner
-
-
-
-
-
-            if (obj.state.plannerData) {
-                obj.missionParser();
-
-               if(obj.state.pushPins.length>0) {
-                   const loc = new window.Microsoft.Maps.Location(
-                       obj.state.pushPins[0].getLocation().latitude,
-                       obj.state.pushPins[0].getLocation().longitude);
-
-                   obj.map.setView({center: loc, zoom: 15});
-               }else{
-                   navigator.geolocation.getCurrentPosition(function (position) {
-                       const loc = new window.Microsoft.Maps.Location(
-                           position.coords.latitude,
-                           position.coords.longitude);
-
-                       //Center the map on the user's location.
-                       obj.map.setView({center: loc, zoom: 15});
-                   });
-               }
-            }
-
 
         };
     }
@@ -138,43 +106,6 @@ class MissionMap extends Component {
 
         })
     }
-    missionParser() {
-        if(this.state.plannerData.wayPoints) {
-
-            this.state.plannerData.wayPoints.forEach(wayPoint => {
-
-                const location = new window.Microsoft.Maps.Location(wayPoint.lat, wayPoint.long);
-                const pushPin = new window.Microsoft.Maps.Pushpin(location, {
-
-                    text: `${this.state.plannerData.wayPoints.indexOf(wayPoint) + 1}`,
-                    draggable: !!this.state.plannerMode,
-                    color: "#00ff00"
-
-                });
-                pushPin.index = this.state.plannerData.wayPoints.indexOf(wayPoint)
-                pushPin.height = wayPoint.height;
-                if(this.state.plannerMode) {
-                    window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
-                    window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
-                    window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
-                    window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
-                    window.Microsoft.Maps.Events.addHandler(pushPin, 'dragstart', this.preventRedirect);
-                }
-                this.state.pushPins.push(pushPin);
-                this.map.entities.push(pushPin);
-            });
-
-
-        }
-        this.generatePolyLines();
-
-        if(this.state.plannerMode) {
-            //init Event Handlers
-            window.Microsoft.Maps.Events.addHandler(this.map, 'rightclick', this.handleMapRightClick);
-        }
-
-    }
-
 
 
     handlePushPinMoseOver(e) {
@@ -213,14 +144,7 @@ class MissionMap extends Component {
 
     }
 
-    regeneratePushPinText() {
 
-        this.state.pushPins.forEach(pp=>{
-            pp._options.text = ""+(this.state.pushPins.indexOf(pp)+1)
-            pp.setOptions(pp._options)
-            pp.index = this.state.pushPins.indexOf(pp)
-        })
-    }
 
     removePushPin(element) {
 
@@ -249,7 +173,6 @@ class MissionMap extends Component {
         })
 
 
-        this.regeneratePushPinText()
         this.generatePolyLines();
 
         this.preventRedirect();
@@ -259,9 +182,8 @@ class MissionMap extends Component {
     addPushPin(e) {
         const pushPin = new window.Microsoft.Maps.Pushpin(e.location, {
 
-            text: `${this.state.pushPins.length + 1}`,
             draggable: true,
-            color: "#00ff00"
+            color: "#ff0000"
 
         });
         this.state.pushPins.push(pushPin);
@@ -294,23 +216,16 @@ class MissionMap extends Component {
         this.state.pushPins.forEach(wayPoint => {
             posArray.push(wayPoint.getLocation());
         });
+        if(this.state.pushPins.length>0) {
+            posArray.push(this.state.pushPins[0].getLocation());
+        }
 
         this.state.polyLine.setLocations(posArray);
 
     }
 
-    heightOfSelectedPushPinChanged(value) {
-        this.state.selectedPushPin.height = value;
 
-        this.preventRedirect();
 
-    }
-
-    doThingAfterMissionEndChange(value) {
-        this.setState({
-            doThingAfterMissionEnd: value
-        })
-    }
 
     componentDidMount() {
 
@@ -332,13 +247,10 @@ class MissionMap extends Component {
         return (
 
             <div style={{userSelect: 'none'}}>
-        <MissionPlannerControls doThingAfterMissionEndChangeCallback={this.doThingAfterMissionEndChange} heightChangeCallback={this.heightOfSelectedPushPinChanged} missionData={this.state.plannerData} selectedPushPin={this.state.selectedPushPin} missionName={this.props.missionName} missionUUID={this.props.missionUUID} requestDataCallback={this.missionComposer}/>
-
-
-                <div id="myMap" className={MissionMapStyle.MissionPlannerMap} style={{height: '43em', width: '100vw', marginTop: '20px', userSelect: 'none'}}/>
+                <div id="myMap"  style={{height: '43em', width: '100vw', marginTop: '20px', userSelect: 'none'}}/>
             </div>
         );
     }
 }
 
-export default MissionMap;
+export default ZigZagMap;
