@@ -72,7 +72,7 @@ class MissionPlanner extends Component {
                 {this.state.renderMap? <>
                     <div className={deviceDashboardFontStyle.deviceDashboardFontCenter}>
                     <ChangeableTextField  text={this.state.missionName} onNameUpdate={this.handleMissionNameChange}/>
-                        <div onClick={()=>window.location.href="/module/drone/missions/generators/list/"+this.props.match.params.mission} className={missionPlannerStyle.missionPlannerAddGenerator}><span className={"ignoreDarkMode "+missionPlannerStyle.missionPlannerAddGeneratorText}>{t('startMissionGenerator')}</span></div>
+                        <div onClick={()=>window.location.href="/module/drone/missions/generators/"+this.props.match.params.mission+"/list"} className={missionPlannerStyle.missionPlannerAddGenerator}><span className={"ignoreDarkMode "+missionPlannerStyle.missionPlannerAddGeneratorText}>{t('startMissionGenerator')}</span></div>
 
                     </div>
                         <ConfirmButton className={deviceDashboardFontStyle.deleteDeviceButtonDiv}  confirmText={"Möchtest du die Mession wirklich löschen?"} confirmAction={this.deleteMission}><img  className={deviceDashboardFontStyle.deleteDeviceButton} src={Trash} alt="Delete"/></ConfirmButton>

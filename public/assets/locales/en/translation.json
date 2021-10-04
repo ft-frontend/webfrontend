@@ -69,5 +69,7 @@
   "error_14": "Your username length is not allowed",
   "startMissionGenerator": "missions generators",
   "selectFromExistingMissionOrCreateNewOne": "Select one from your missions or create a new one to apply the generator output to it:",
-  "selectGenerator": "Please select a generator:"
+  "selectGenerator": "Please select a generator:",
+  "direct_translation_flightHeight": "Flight-Height in meters: ",
+  "direct_translation_generate": "generate ->"
 }

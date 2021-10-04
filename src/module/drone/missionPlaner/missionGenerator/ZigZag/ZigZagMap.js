@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import "react-bingmaps";
-import api from "../../../../api/api";
+import api from "../../../../../api/api";
+import MissionGeneratorHeightSelection from "../MissionGeneratorHeightSelection";
+import missionSelectStyle from "../../missionSelectStyle.module.css";
+import {withTranslation} from "react-i18next";
 
 class ZigZagMap extends Component {
 
@@ -30,7 +33,8 @@ class ZigZagMap extends Component {
         this.removePushPin = this.removePushPin.bind(this);
         this.missionComposer = this.missionComposer.bind(this);
         this.handlePushPinClick = this.handlePushPinClick.bind(this);
-        this.preventRedirect = this.preventRedirect.bind(this);
+        this.heightChange = this.heightChange.bind(this);
+        this.generateMission = this.generateMission.bind(this);
 
 
 
@@ -64,43 +68,19 @@ class ZigZagMap extends Component {
         return new Promise((resolve, reject) => {
 
             const finalArray = [];
-            const pos = [];
 
             this.state.pushPins.forEach((pp) => {
 
                 finalArray.push({
 
                     lat: pp.getLocation().latitude,
-                    long: pp.getLocation().longitude,
-                    height: pp.height,
-                    alt: 0
-
-
-
+                    long: pp.getLocation().longitude
                 })
 
-                pos.push(pp.getLocation().latitude);
-                pos.push(pp.getLocation().longitude);
 
             })
 
-            if(this.state.pushPins.length>0) {
-                api.getElevationData(pos).then(result => {
-
-                    this.state.pushPins.forEach((pp) => {
-
-                        finalArray[this.state.pushPins.indexOf(pp)].alt = (parseFloat(result.elevations[this.state.pushPins.indexOf(pp)]) + parseFloat(finalArray[this.state.pushPins.indexOf(pp)].height))
-
-                    })
-
-                    resolve(finalArray)
-
-                })
-            }else{
-                resolve(finalArray)
-
-            }
-
+        resolve(finalArray);
 
 
 
@@ -175,7 +155,6 @@ class ZigZagMap extends Component {
 
         this.generatePolyLines();
 
-        this.preventRedirect();
     }
 
 
@@ -196,7 +175,6 @@ class ZigZagMap extends Component {
         window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
 
         this.generatePolyLines();
-        this.preventRedirect();
     }
 
     handlePushPinDrag(e) {
@@ -204,11 +182,7 @@ class ZigZagMap extends Component {
 
     }
 
-    preventRedirect() {
-        window.onbeforeunload = function(){
-            return 'Du hast ungespeicherte Änderungen!';
-        };
-    }
+
 
     generatePolyLines() {
 
@@ -237,6 +211,31 @@ class ZigZagMap extends Component {
 
         document.body.appendChild(script);
 
+        window.sessionStorage.setItem("currentMissionGeneratorHeight",1)
+
+
+    }
+
+
+
+    heightChange(e) {
+        window.sessionStorage.setItem("currentMissionGeneratorHeight",e.target.value)
+    }
+
+    generateMission() {
+        this.missionComposer().then(composedMission=>{
+            api.missionGeneratorZigZag(composedMission).then(generatedMission=>{
+               if(generatedMission.success) {
+                   window.sessionStorage.setItem("currentGeneratedMission",generatedMission.route);
+                   window.location.href="/module/drone/missions/generators/missionViewer"
+
+               }else{
+
+               }
+            })
+
+        })
+
 
     }
 
@@ -244,13 +243,17 @@ class ZigZagMap extends Component {
 
 
     render() {
+        const {t} = this.props;
         return (
 
             <div style={{userSelect: 'none'}}>
-                <div id="myMap"  style={{height: '43em', width: '100vw', marginTop: '20px', userSelect: 'none'}}/>
+                <MissionGeneratorHeightSelection heightChange={this.heightChange} />
+                <div id="myMap"  style={{height: '43em', width: 'calc(100vw-70px)', marginTop: '20px',marginLeft: '70px', userSelect: 'none'}}/>
+                <div onClick={this.generateMission} className={missionSelectStyle.startMissionGenerators}><span className={"ignoreDarkMode "+missionSelectStyle.startMissionGeneratorsText}>{t('direct_translation_generate')}</span></div>
+
             </div>
         );
     }
 }
 
-export default ZigZagMap;
+export default withTranslation()(ZigZagMap);

@@ -123,7 +123,6 @@ class SimpleMap extends Component {
                     window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
                     window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
                     window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
-                    window.Microsoft.Maps.Events.addHandler(pushPin, 'dragstart', this.preventRedirect);
                 }
                 this.state.pushPins.push(pushPin);
                 this.map.entities.push(pushPin);

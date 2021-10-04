@@ -23,7 +23,7 @@ class SelectGenerator extends Component {
                     <h1 className={missionSelectStyle.missionSelectTitle}>{t('selectGenerator')}</h1>
                 </div>
 
-        <Selector items={[{link: "/module/drone/missions/generators/:mission/zigzag".replace(":mission",mission),text:t('direct_translation_zigzag'),img: zigzag}]}/>
+        <Selector items={[{link: "/module/drone/missions/generators/:mission/runGenerator/zigzag".replace(":mission",mission),text:t('direct_translation_zigzag'),img: zigzag}]}/>
             </div>
         );
     }
