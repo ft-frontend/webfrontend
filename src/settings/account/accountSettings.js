@@ -92,12 +92,12 @@ class AccountSettings extends React.Component {
                 </div>
 
                 <div className={AccountSettingsStyle.themeSettingsContainer}>
-                    <label className={AccountSettingsStyle.themeSettingsToggleLabel} htmlFor="themeSettingsToggle">{t('direct_translation_darkMode')}</label><input defaultChecked={Boolean(window.localStorage.getItem("darkmode"))===true} onChange={()=>{
+                    <label className={AccountSettingsStyle.themeSettingsToggleLabel} htmlFor="themeSettingsToggle">{t('direct_translation_darkMode')}</label><input defaultChecked={window.localStorage.getItem("darkmode")==="true"} onChange={()=>{
                     const darkmodeSetting=document.getElementById("themeSettingsToggle").checked;
                     api.saveAccountSetting("darkmode",darkmodeSetting).then(()=> {
                         api.getAccountSettings(true).then(settings=>{
                             accountSettingsHandler.handlerSettings(settings.settings)
-
+                            window.localStorage.setItem("darkmode",darkmodeSetting)
                         });
                     });
 
