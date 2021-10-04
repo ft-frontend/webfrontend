@@ -22,7 +22,7 @@ class SelectMissionOrCreateNewOne extends Component {
 
 
                     this.state.missionList.push( {
-                        link: "/module/drone/missions/generators/list/"+mission.uuid,
+                        link: "/module/drone/missions/generators/"+mission.uuid+"/list",
                         text: mission.name,
                         img:DeviceImageDrawer("Drone")
                     });
