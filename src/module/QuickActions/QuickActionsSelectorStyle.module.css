@@ -1,0 +1,13 @@
+.QuickActionSelectTitle {
+    color: black;
+    place-self: center;
+    justify-self: center;
+    align-self: center;
+
+}
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

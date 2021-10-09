@@ -23,7 +23,7 @@ class SideBar extends Component {
 
     componentDidMount() {
         let tempVar = 0;
-        const paths = [ "/dashboard", "placeholder1233", "/module/ledwall", "/module/drone", "/module/other", "/settings"];
+        const paths = [ "/dashboard", "/module/quickActions", "/module/ledwall", "/module/drone", "/module/other", "/settings"];
         for (let i in paths) {
             if (window.location.pathname.startsWith(paths[i])) {
                 tempVar = parseInt(i)+1;
@@ -63,7 +63,7 @@ class SideBar extends Component {
 
                     <div
                         className={SideBarStyle.SideBarItem + " " + (this.state.locationIndex === 2 ? SideBarStyle.SideBarItemActive : "")}
-                        onClick={() => this.redirect("#", 2)}>
+                        onClick={() => this.redirect("/module/quickActions", 2)}>
                         <img alt="" className={SideBarStyle.SideBarItemImage} src={Flash}/>
                         <p className={SideBarStyle.SideBarItemText}>{t('direct_translation_quickactions')}</p>
                     </div>

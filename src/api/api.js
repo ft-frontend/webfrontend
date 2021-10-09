@@ -900,7 +900,7 @@ const api = {
                 resolve(false);
             } else {
                 post.body = JSON.stringify({
-                    jsonpolygon: JSON.stringify(polygon),
+                    jsonpolygon: polygon,
 
                 });
                 fetch(backend + `/v1/drone/missionGeneratorPolygonZigZagOverfly`, post).then(res => res.json()).then(result => {

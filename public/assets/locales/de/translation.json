@@ -71,6 +71,8 @@
   "selectFromExistingMissionOrCreateNewOne": "Wähle einer der Missionen oder erstelle eine Neue um den Generator darauf anzuwenden:",
   "selectGenerator": "Bitte wähle einen Generator:",
   "direct_translation_flightHeight": "Flug Höhe in Meter: ",
-  "direct_translation_generate": "Generieren ->"
+  "direct_translation_generate": "Generieren ->",
+  "fawn_rescue": "Rehkitz Rettung",
+  "selectQuickAction": "Bitte eine Quick-Action wählen:"
 
 }

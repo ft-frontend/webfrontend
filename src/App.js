@@ -33,10 +33,11 @@ import OAuthCallback from "./api/OAuthCallback";
 import SelectMissionOrCreateNewOne from "./module/drone/missionPlaner/missionGenerator/SelectMissionOrCreateNewOne";
 import SelectGenerator from "./module/drone/missionPlaner/missionGenerator/SelectGenerator";
 import ZigZagMap from "./module/drone/missionPlaner/missionGenerator/ZigZag/ZigZagMap";
+import QuickActionsSelector from "./module/QuickActions/QuickActionsSelector";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
-   //     window.location.replace(`https:${window.location.href.substring(window.location.protocol.length)}`);
+        window.location.replace(`https:${window.location.href.substring(window.location.protocol.length)}`);
     }
 
     return (
@@ -88,6 +89,13 @@ function App() {
 
             <Route exact path="/module/drone">
                 <SideBar/>
+            </Route>
+
+            <Route exact path="/module/quickActions">
+                <SideBar/>
+
+                <ModuleNavBar name=""/>
+                <QuickActionsSelector/>
             </Route>
 
 
