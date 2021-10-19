@@ -12,7 +12,7 @@ class MissionMap extends Component {
 
             this.state = {
                 plannerMode: this.props.planner,
-                plannerData: this.props.missionData?JSON.parse(this.props.missionData):undefined,
+                plannerData: this.props.missionData?this.props.missionData:undefined,
                 pushPins: [],
                 polyLine: undefined,
                 pushPinHovered: undefined,
@@ -54,7 +54,7 @@ class MissionMap extends Component {
 
             obj.map = window.Microsoft.Maps.Map('#myMap', {
                 credentials: "AkBVrBtsknpJShn4Yjy9xKpdHxNdYuymoJ_1yHe95ECRs3CEIbwWmD6wje-c1R9v",
-                center: obj.props.center !== undefined ? new window.Microsoft.Maps.Location(obj.props.center.latitude, obj.props.center.longitude) : "",
+                center: (obj.props.center !== undefined) ? new window.Microsoft.Maps.Location(obj.props.center.latitude, obj.props.center.longitude) : "",
                 zoom: obj.props.center !== undefined ? 19 : 12,
                 mapTypeId: window.Microsoft.Maps.MapTypeId.aerial,
 

@@ -1,6 +1,7 @@
 import Cookies from 'universal-cookie';
 import {w3cwebsocket as W3CWebSocket} from "websocket";
 import i18next from "i18next";
+import {config} from "react-transition-group";
 
 const cookies = new Cookies();
 let backend = "https://api.arnold-tim.de/api";
@@ -539,11 +540,14 @@ const api = {
             if (cookies.get('session') === undefined) {
                 resolve(false);
             } else {
+                console.log(missionData)
                 post.body = JSON.stringify({
                     session: cookies.get('session'),
                     missionUUID: missionUUID,
                     data: missionData
                 });
+
+                console.log(post.body)
                 fetch(backend + `/v1/drone/mission/saveMissionData`, post).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         resolve({success: false});

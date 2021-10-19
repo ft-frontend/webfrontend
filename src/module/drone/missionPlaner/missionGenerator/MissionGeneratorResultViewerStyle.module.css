@@ -1,0 +1,25 @@
+.finishGeneratorButton {
+
+    margin-top: 10px;
+    place-self: flex-end;
+    margin-right: 10px;
+    padding: 10px;
+
+    background-color: #0088a9;
+    cursor: pointer;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.finishGeneratorButton:hover{
+    box-shadow: 0 3px 3px rgba(0,0,0,0.3);
+
+}
+
+.finishGeneratorButtonText {
+    color: white;
+    display: inline-block;
+    text-align: center;
+    user-select: none;
+
+}

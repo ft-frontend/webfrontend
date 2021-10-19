@@ -29,7 +29,7 @@ class MissionPlannerControls extends Component {
 
     saveMission() {
         this.props.requestDataCallback().then(jsondata => {
-            api.saveMissionData(this.props.missionUUID, JSON.stringify(this.completeMissionDataJSON(jsondata))).then((result) => {
+            api.saveMissionData(this.props.missionUUID, this.completeMissionDataJSON(jsondata)).then((result) => {
                 if (result.success) {
                     window.onbeforeunload = undefined;
                     console.log("saved");

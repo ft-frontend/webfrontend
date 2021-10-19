@@ -73,6 +73,7 @@
   "direct_translation_flightHeight": "Flug Höhe in Meter: ",
   "direct_translation_generate": "Generieren ->",
   "fawn_rescue": "Rehkitz Rettung",
-  "selectQuickAction": "Bitte eine Quick-Action wählen:"
+  "selectQuickAction": "Bitte eine Quick-Action wählen:",
+  "direct_translation_finishAssistent": "Assistent beenden"
 
 }

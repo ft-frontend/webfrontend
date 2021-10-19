@@ -10,7 +10,7 @@ class SimpleMap extends Component {
         super(props);
 
             this.state = {
-                plannerData: this.props.missionData?JSON.parse(this.props.missionData):undefined,
+                plannerData: this.props.missionData?this.props.missionData:undefined,
                 pushPins: [],
                 polyLine: undefined,
                 doThingAfterMissionEnd: 0,

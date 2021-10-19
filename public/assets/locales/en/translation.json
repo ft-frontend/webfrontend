@@ -73,5 +73,6 @@
   "direct_translation_flightHeight": "Flight-Height in meters: ",
   "direct_translation_generate": "generate ->",
   "fawn_rescue": "fawn rescue",
-  "selectQuickAction": "Please select a quick action:"
+  "selectQuickAction": "Please select a quick action:",
+  "direct_translation_finishAssistent": "Finish Assistent"
 }

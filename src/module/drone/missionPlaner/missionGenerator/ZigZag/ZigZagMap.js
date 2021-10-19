@@ -13,13 +13,12 @@ class ZigZagMap extends Component {
 
             this.state = {
                 plannerMode: this.props.planner,
-                plannerData: this.props.missionData?JSON.parse(this.props.missionData):undefined,
+                plannerData: this.props.missionData?this.props.missionData:undefined,
                 pushPins: [],
                 polyLine: undefined,
                 pushPinHovered: undefined,
                 selectedPushPin: undefined,
-                doThingAfterMissionEnd: 0
-
+                selectedMission: this.props.match.params.mission
 
             };
 
@@ -226,8 +225,8 @@ class ZigZagMap extends Component {
         this.missionComposer().then(composedMission=>{
             api.missionGeneratorZigZag(composedMission).then(generatedMission=>{
                if(generatedMission.success) {
-                   window.sessionStorage.setItem("currentGeneratedMission",generatedMission.route);
-                   window.location.href="/module/drone/missions/generators/missionViewer"
+                   window.sessionStorage.setItem("currentGeneratedMission",JSON.stringify(generatedMission.route));
+                   window.location.href="/module/drone/missions/generators/"+this.state.selectedMission+"/missionViewer";
 
                }else{
 

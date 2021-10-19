@@ -34,6 +34,7 @@ import SelectMissionOrCreateNewOne from "./module/drone/missionPlaner/missionGen
 import SelectGenerator from "./module/drone/missionPlaner/missionGenerator/SelectGenerator";
 import ZigZagMap from "./module/drone/missionPlaner/missionGenerator/ZigZag/ZigZagMap";
 import QuickActionsSelector from "./module/QuickActions/QuickActionsSelector";
+import MissionGeneratorResultViewer from "./module/drone/missionPlaner/missionGenerator/MissionGeneratorResultViewer";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
@@ -129,17 +130,22 @@ function App() {
                 <SideBar/>
 
             </Route>
-            <Route exact path="/module/drone/missions/generators/:mission/missionViewer/" component={SelectGenerator}/>
+            <Route exact path="/module/drone/missions/generators/:mission/missionViewer/" component={MissionGeneratorResultViewer}/>
+
             <Route  path="/module/drone/missions/generators/:mission/missionViewer/">
                 <SideBar/>
 
+
             </Route>
+
+            <Route exact path="/module/drone/missions/generators/:mission/runGenerator/zigzag" component={ZigZagMap}/>
 
             <Route exact path="/module/drone/missions/generators/:mission/runGenerator/zigzag">
                 <SideBar/>
-                <ZigZagMap/>
 
             </Route>
+
+
 
 
 
