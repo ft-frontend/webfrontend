@@ -15,7 +15,7 @@ class AddMission extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const mission = document.getElementById("addMissionNameInput").value;
-        api.addNewMission(mission,'{}').then(result => {
+        api.addNewMission(mission,{}).then(result => {
             if(result.success) {
                 window.location.href= "/module/drone/missions/planner/"+result.uuid
 
@@ -29,7 +29,7 @@ class AddMission extends Component {
         const reader = new FileReader()
         reader.onload = (e) =>{
 
-            api.addNewMission(event.target.files[0].name.split('.').slice(0, -1).join('.'),e.target.result).then(result=>{
+            api.addNewMission(event.target.files[0].name.split('.').slice(0, -1).join('.'),JSON.parse(e.target.result)).then(result=>{
                 if(result.success) {
                     window.location.href= "/module/drone/missions/planner/"+result.uuid
 
