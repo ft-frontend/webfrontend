@@ -97,13 +97,15 @@ class MissionGeneratorResultViewer extends Component {
                 mission = this.state.selectedMission.concat(mission);
             }
 
-            api.saveMissionData(this.props.match.params.mission,{wayPoints:mission});
-            window.sessionStorage.removeItem("currentMissionGeneratorHeight")
-            window.sessionStorage.removeItem("currentGeneratedMission")
+            api.saveMissionData(this.props.match.params.mission,{wayPoints:mission}).then(()=>{
+                window.sessionStorage.removeItem("currentMissionGeneratorHeight")
+                window.sessionStorage.removeItem("currentGeneratedMission")
 
-            //TODO temp change duo the assistent with custom callbacks
+                //TODO temp change duo the assistent with custom callbacks
 
-            window.location.href = "/module/drone/missions/planner/"+this.props.match.params.mission
+                window.location.href = "/module/drone/missions/planner/"+this.props.match.params.mission
+            });
+
 
         })
     }

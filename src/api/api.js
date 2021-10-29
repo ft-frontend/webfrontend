@@ -261,23 +261,19 @@ const api = {
                 redirectToLogin();
                 resolve(false);
             } else {
-                fetch(backend + `/v1/regDevice/registerByCode?session=${cookies.get('session')}&regCode=${regCode}`).then(res => res.json()).then(result => {
-
-                    if (checkErrorCodes(result)) {
-                    }
-                    if (result.error !== undefined) {
-                        resolve({
-                            success: false,
-                            error: result.error
-                        });
-                    } else {
-                        resolve({
-                            success: true,
-                            deviceType: result.deviceType,
-                            uuid: result.uuid
-                        });
-                    }
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                    regCode: regCode,
+                    deviceName: "New Device"
                 });
+                fetch(backend + `/v2/regDevice/registerByCode`,post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        reject("error");
+                        return;
+                    }
+                    resolve(result);
+                });
+
             }
 
         });

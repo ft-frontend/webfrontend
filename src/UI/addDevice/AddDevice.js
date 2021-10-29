@@ -126,7 +126,7 @@ class AddDevice extends React.Component {
 
     registerDevice() {
         api.registerDevice(this.state.currentRegistrationNumber).then((result) => {
-            if (result.success) {
+            if (result.errorcode==null) {
 
 
                 this.setState({
