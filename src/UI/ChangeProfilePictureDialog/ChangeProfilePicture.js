@@ -4,6 +4,7 @@ import api from "../../api/api";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import {withTranslation} from "react-i18next";
+import EventSystem from "../../EventSystem";
 
 
 class ChangeProfilePicture extends Component {
@@ -78,6 +79,7 @@ class ChangeProfilePicture extends Component {
     applyImage(event) {
         this.getCroppedImg(this.imageRef,this.state.crop,"profileImage").then(blob=>{
             api.uploadProfileImage(blob).then(()=>{
+                EventSystem.dispatch('profilePictureChange',null);
                 this.closeCallback();
 
             })
@@ -160,7 +162,7 @@ class ChangeProfilePicture extends Component {
                         {!this.state.inImageCrop ? <>
                             <div className={ChangeProfilePictureStyle.AccountImage}>
                                 <img className={ChangeProfilePictureStyle.accountCircleImage}
-                                     src={api.getProfilePictureURL()}/>
+                                     src={api.getProfilePictureURL()+"&force="+Math.random()}/>
                             </div>
 
                             <div

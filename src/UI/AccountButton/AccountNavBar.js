@@ -5,18 +5,21 @@ import editIcon from "../../res/edit.svg";
 import {withTranslation} from "react-i18next";
 import api from "../../api/api";
 import ChangeProfilePicture from "../ChangeProfilePictureDialog/ChangeProfilePicture";
+import EventSystem from "../../EventSystem";
 
 class AccountNavBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showAccountPopUp: false,
-            isProfilePictureDialogOpen: false
+            isProfilePictureDialogOpen: false,
+            profilePictureURL: api.getProfilePictureURL()
 
         }
         this.toggleAccountPopUp = this.toggleAccountPopUp.bind(this);
         this.closeChangeProfilePictureDialog = this.closeChangeProfilePictureDialog.bind(this);
         this.openProfilePictureDialog = this.openProfilePictureDialog.bind(this);
+        this.updateProfilePictureURL = this.updateProfilePictureURL.bind(this);
     }
 
     toggleAccountPopUp() {
@@ -36,10 +39,18 @@ class AccountNavBar extends Component {
             }
         };
         $(document).on('click',  this.handler);
+        EventSystem.on('profilePictureChange',this.updateProfilePictureURL)
+
     }
+    updateProfilePictureURL() {
+        this.setState({
+            profilePictureURL: api.getProfilePictureURL()+"&force="+Math.random(),
+        })
+    }
+
     componentWillUnmount() {
         $(document).off('click',  this.handler);
-
+        EventSystem.on('profilePictureChange',this.updateProfilePictureURL)
     }
     closeChangeProfilePictureDialog() {
         this.setState({
@@ -62,7 +73,7 @@ class AccountNavBar extends Component {
 
                 <div className={AccountButtonStyle.accountNavBarContainer}>
                     <div className={AccountButtonStyle.accountCircle} onClick={this.toggleAccountPopUp}>
-                        <img className={AccountButtonStyle.accountCircleImage} src={api.getProfilePictureURL()}/>
+                        <img className={AccountButtonStyle.accountCircleImage} src={this.state.profilePictureURL}/>
 
                     </div>
                 {this.state.showAccountPopUp&&<div className={AccountButtonStyle.accountPopUp}>
@@ -71,7 +82,7 @@ class AccountNavBar extends Component {
                     <div className={AccountButtonStyle.accountImageWrapper}>
                         <div className={AccountButtonStyle.accountImage}>
 
-                            <img className={AccountButtonStyle.accountCircleImage} src={api.getProfilePictureURL()}/>
+                            <img className={AccountButtonStyle.accountCircleImage} src={this.state.profilePictureURL}/>
 
                         </div>
                         <div className={AccountButtonStyle.accountImageChangeButton}>
