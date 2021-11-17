@@ -24,13 +24,47 @@
     width: 70%;
 }
 .AccountImage {
-    background-color: #2ecc71;
     border-radius: 50%;
     width: 200px;
     height: 200px;
+    overflow: hidden;
+    display: flex;
+    cursor: pointer;
+
+
+}
+
+.accountCircleImage {
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.AccountImage:hover > .changeProfilePictureText {
+    opacity: 1;
 }
 
 
+.changeProfilePictureText {
+    background-color: rgba(95, 98, 98, 0.90);
+    min-width: 100%;
+    height: 20%;
+    margin-top: 80%;
+    margin-left: -100%;
+    z-index: 1;
+    display: flex;
+    opacity: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+.changeProfilePictureTextSpan {
+    color: white;
+    margin-bottom: 8px;
+
+}
 
 .Username {
   margin-left: 30px;
@@ -102,3 +136,4 @@
     text-align: center;
     color: black;
 }
+

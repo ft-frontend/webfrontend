@@ -59,10 +59,7 @@ class MainPage extends React.Component {
                 this.state.signIn&&<SideBar/>
             }
             <div style={{marginLeft: "70px"}}>
-        <button onClick={() => {api.setBackendAddress("https://testingapi.arnold-tim.de/api")}}>Testing Backend</button>
-        <button onClick={() => {api.setBackendAddress("https://api.arnold-tim.de/api")}}>Production Backend</button>
-        <button onClick={() => {api.setBackendAddress("http://localhost/api")}}>Local Backend</button>
-            <VersionNumber/>
+
 
                 {
                     !this.state.signIn&&<>

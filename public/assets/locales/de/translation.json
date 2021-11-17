@@ -74,6 +74,12 @@
   "direct_translation_generate": "Generieren ->",
   "fawn_rescue": "Rehkitz Rettung",
   "selectQuickAction": "Bitte eine Quick-Action wählen:",
-  "direct_translation_finishAssistent": "Assistent beenden"
+  "direct_translation_finishAssistent": "Assistent beenden",
+  "direct_translation_profilePicture": "Profilbild",
+  "profilePictureExplain": "Setze ein Profilbild, um einfacher festzustellen ob du angemeldet bist. Dieses Profilbild ist jedem innerhalb der FT-Cloud öffentlich einsehbar. Du kannst es jederzeit ändern.",
+  "direct_translation_uploadImage": "Bild hochladen",
+  "direct_translation_apply": "Anwenden",
+  "direct_translation_cropImage": "Bild zuschneiden",
+  "profilePictureUpdateWarning": "Nach dem Ändern des Profilbildes kann es mehrere Minuten dauern, bis es überall angezeigt wird."
 
 }

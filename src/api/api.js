@@ -2,6 +2,7 @@ import Cookies from 'universal-cookie';
 import {w3cwebsocket as W3CWebSocket} from "websocket";
 import i18next from "i18next";
 import {config} from "react-transition-group";
+import $ from "jquery"
 
 const cookies = new Cookies();
 let backend = "https://api.arnold-tim.de/api";
@@ -69,6 +70,7 @@ function parseError(errorCode) {
 }
 
 const api = {
+    currentBackend: backend,
 
     checkSession: function () {
         return new Promise((resolve, reject) => {
@@ -918,8 +920,50 @@ const api = {
         });
     },
 
-    parseError: parseError
+
+    parseError: parseError,
 
 
+    getProfilePictureURL() {
+        if (cookies.get('session') === undefined) {
+            return "";
+        } else {
+            return backend+"/v1/usercontent/profilePicture?session="+cookies.get('session');
+        }
+    },
+    uploadProfileImage(imageBlob) {
+
+
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+
+                const fd = new FormData();
+                fd.append('session',cookies.get('session'));
+                fd.append("profilePicture",imageBlob)
+
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: backend+"/v1/usercontent/profilePicture",
+                    data: fd,
+                    processData: false,
+                    contentType: false
+                }).done(function(){
+                    resolve(true);
+                })
+
+
+
+
+            }
+
+        });
+
+
+
+    }
 };
 export default api;

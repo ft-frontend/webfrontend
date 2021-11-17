@@ -74,5 +74,15 @@
   "direct_translation_generate": "generate ->",
   "fawn_rescue": "fawn rescue",
   "selectQuickAction": "Please select a quick action:",
-  "direct_translation_finishAssistent": "Finish Assistent"
+  "direct_translation_finishAssistent": "Finish Assistent",
+  "direct_translation_profilePicture": "Profile Picture",
+  "profilePictureExplain": "Upload a Profile Picture to easily determine if it is your account. This Profile Picture will be visible to anyone in FT-Cloud. You can change it anytime.",
+  "direct_translation_uploadImage": "Upload Image",
+  "direct_translation_apply": "Apply",
+  "direct_translation_cropImage": "Crop image",
+  "profilePictureUpdateWarning": "Chancing the profile image can take several minutes."
+
+
+
+
 }

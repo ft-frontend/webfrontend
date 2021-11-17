@@ -6,15 +6,18 @@ import api from "../../api/api";
 import i18next from "i18next";
 import {withTranslation} from "react-i18next";
 import accountSettingsHandler from "../accountSettingsHandler";
+import ChangeProfilePicture from "../../UI/ChangeProfilePictureDialog/ChangeProfilePicture";
 
 class AccountSettings extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: window.localStorage.getItem('username')
+            username: window.localStorage.getItem('username'),
+            isProfilePictureDialogOpen: false
         }
         this.userNameChange = this.userNameChange.bind(this);
-
+        this.closeChangeProfilePictureDialog = this.closeChangeProfilePictureDialog.bind(this);
+        this.openProfilePictureDialog = this.openProfilePictureDialog.bind(this);
 
     }
 
@@ -53,17 +56,33 @@ class AccountSettings extends React.Component {
         document.body.classList.add(AccountSettingsStyle.tempBodyColorTransition)
     }
 
+    closeChangeProfilePictureDialog() {
+    this.setState({
+        isProfilePictureDialogOpen: !this.state.isProfilePictureDialogOpen
+    })
+    }
+    openProfilePictureDialog() {
+        this.setState({
+            isProfilePictureDialogOpen: true
+        })
+    }
+
     render() {
         const {t} = this.props;
         return (
 
             <div className={AccountSettingsStyle.AccountSettingsContainer}>
+                {
+                    this.state.isProfilePictureDialogOpen&&<ChangeProfilePicture onClose={this.closeChangeProfilePictureDialog}/>
+                }
 
 
                 <div className={AccountSettingsStyle.AccountInfoContainer}>
 
-                    <div className={AccountSettingsStyle.AccountImage}>
+                    <div className={AccountSettingsStyle.AccountImage} onClick={this.openProfilePictureDialog}>
+                        <img className={AccountSettingsStyle.accountCircleImage} src={api.getProfilePictureURL()}/>
 
+                        <div className={AccountSettingsStyle.changeProfilePictureText}><span className={AccountSettingsStyle.changeProfilePictureTextSpan}>Ändern</span></div>
                     </div>
 
 
