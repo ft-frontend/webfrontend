@@ -80,6 +80,9 @@
   "direct_translation_uploadImage": "Bild hochladen",
   "direct_translation_apply": "Anwenden",
   "direct_translation_cropImage": "Bild zuschneiden",
-  "profilePictureUpdateWarning": "Nach dem Ändern des Profilbildes kann es mehrere Minuten dauern, bis es überall angezeigt wird."
+  "profilePictureUpdateWarning": "Nach dem Ändern des Profilbildes kann es mehrere Minuten dauern, bis es überall angezeigt wird.",
+  "fileTooBig": "Die ausgewählte Datei ist zu groß",
+  "filetype_does_not_match": "Die ausgewählte Datei hat den falschen Dateityp"
+
 
 }

@@ -80,9 +80,9 @@
   "direct_translation_uploadImage": "Upload Image",
   "direct_translation_apply": "Apply",
   "direct_translation_cropImage": "Crop image",
-  "profilePictureUpdateWarning": "Chancing the profile image can take several minutes."
-
-
+  "profilePictureUpdateWarning": "Chancing the profile image can take several minutes.",
+  "fileTooBig": "file is too big",
+  "filetype_does_not_match": "The selected file has the wrong file extension"
 
 
 }

@@ -153,9 +153,11 @@
 }
 
 .profilePictureCrop {
-    width: fit-content;
+    max-width: 418px;
     align-self: center;
+    max-height: 418px;
 }
+
 
 .imageError {
     color: red;

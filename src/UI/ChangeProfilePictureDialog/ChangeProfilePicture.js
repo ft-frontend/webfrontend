@@ -47,27 +47,31 @@ class ChangeProfilePicture extends Component {
     }
 
     gotoImageCrop(event) {
-        console.log(event.target.result);
         if (event.target.files && event.target.files.length > 0) {
-
-
-            this.setState({
-                dialogWidth: 1000,
-                dialogHeight: 700,
-                inImageCrop: true,
-                imageURL: URL.createObjectURL(event.target.files[0])
-            });
+            console.log(event.target.files[0])
+            if(event.target.files[0].size>(1*1000*1000)) {
+                this.gotoImageSelect(null,false,this.props.t('fileTooBig'))
+            }else if(!event.target.files[0].type.startsWith('image/')) {
+                this.gotoImageSelect(null,false,this.props.t('filetype_does_not_match'))
+            }else {
+                this.setState({
+                    dialogWidth: 1000,
+                    dialogHeight: 700,
+                    inImageCrop: true,
+                    imageURL: URL.createObjectURL(event.target.files[0])
+                });
+            }
         }
     }
 
-    gotoImageSelect(event,noError) {
+    gotoImageSelect(event,noError,customError) {
 
 
         this.setState({
             dialogWidth: 500,
             dialogHeight: 600,
             inImageCrop: false,
-            error: !noError&&this.props.t('error_2')
+            error: !noError&&(customError!=null?customError:this.props.t('error_2'))
         });
 
     }
@@ -177,7 +181,7 @@ class ChangeProfilePicture extends Component {
                                  onClick={this.openFileSelectDialog}><span>{t('direct_translation_uploadImage')}</span>
                             </div>
                             <input onChange={this.gotoImageCrop} id="openFileSelectDialogButtonInput"
-                                   className={ChangeProfilePictureStyle.openFileSelectDialog} accept="image/jpeg"
+                                   className={ChangeProfilePictureStyle.openFileSelectDialog} accept="image/*"
                                    type="file"/>
                         </> : <>
 
@@ -189,6 +193,9 @@ class ChangeProfilePicture extends Component {
                                        onChange={(crop, percentCrop) => {
                                            this.setState({crop});
                                        }}
+                                       minHeight={50}
+                                       maxHeight={1024}
+                                       imageStyle={{maxHeight: "418px", minHeight: "418px",objectFit: "cover"}}
                                        onImageLoaded={this.onCropImageLoad}
                             />
                             <div
