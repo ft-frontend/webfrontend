@@ -87,6 +87,18 @@ const api = {
         });
 
     },
+
+    setSession: function (session) {
+        return new Promise((resolve)=>{
+            cookies.set('session', session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
+            this.checkSession().then(isSessionValid => {
+                this.getAccountSettings(true);
+
+                resolve(isSessionValid);
+            });
+
+        })
+    },
     signIn: function (eorn, password, sessionTime=30) {
         return new Promise((resolve, reject) => {
             post.body = JSON.stringify({

@@ -5,7 +5,7 @@ import VersionNumber from "../UI/Version/VersionNumber";
 class AdminDashboard extends Component {
     render() {
         return (
-            <div>
+            <div style={{marginLeft: "80px"}}>
                 <h1>Admin Dashboard</h1>
                 <button onClick={() => {api.setBackendAddress("https://testingapi.arnold-tim.de/api")}}>Testing Backend</button>
                 <button onClick={() => {api.setBackendAddress("https://api.arnold-tim.de/api")}}>Production Backend</button>

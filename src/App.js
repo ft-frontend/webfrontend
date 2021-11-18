@@ -35,6 +35,7 @@ import SelectGenerator from "./module/drone/missionPlaner/missionGenerator/Selec
 import ZigZagMap from "./module/drone/missionPlaner/missionGenerator/ZigZag/ZigZagMap";
 import QuickActionsSelector from "./module/QuickActions/QuickActionsSelector";
 import MissionGeneratorResultViewer from "./module/drone/missionPlaner/missionGenerator/MissionGeneratorResultViewer";
+import SignInWithExistingSession from "./auth/signInWithExistingSession";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
@@ -159,11 +160,16 @@ function App() {
 
 
             <Route path="/admin" component={AdminNavBar}/>
-            <Route exact path="/admin" component={AdminDashboard}/>
+            <Route exact path="/admin" >
+                <SideBar/>
+                <AdminDashboard/>
+            </Route>
+
             <Route path="/admin/meet" component={AdminMeet}/>
 
 
             <Route exact path="/auth/signIn" component={signIn}/>
+            <Route exact path="/auth/signInWithSession" component={SignInWithExistingSession}/>
             <Route exact path="/auth/signUp" component={signUp}/>
             <Route exact path="/auth/signOut" component={signOut}/>
             <Route exact path="/auth/oauth" component={OAuthCallback}/>

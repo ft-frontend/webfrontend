@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import adminMeetStyle from "./adminMeetStyle.module.css"
 import api from "../api/api";
+import EventSystem from "../EventSystem";
 
 class AdminMeet extends Component {
 
@@ -60,6 +61,14 @@ class AdminMeet extends Component {
                 });
                 api.getUserAccountInfo().then(accountInfo => {
                     japi.executeCommand('displayName', accountInfo.name);
+                    japi.executeCommand('avatarUrl', api.getProfilePictureURL());
+
+                    EventSystem.on('profilePictureChange',()=>{
+                        japi.executeCommand('avatarUrl', api.getProfilePictureURL()+"&force="+Math.random());
+
+                    })
+
+
 
                 })
 
