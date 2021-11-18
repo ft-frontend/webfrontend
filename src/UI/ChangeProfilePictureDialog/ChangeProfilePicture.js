@@ -93,6 +93,10 @@ class ChangeProfilePicture extends Component {
 
     onCropImageLoad(image) {
         this.imageRef = image;
+        console.log(this.imageRef.width)
+        if(this.imageRef.naturalWidth<50||this.imageRef.naturalHeight<50) {
+            this.gotoImageSelect(null,false,this.props.t('imagetoosmall'))
+        }
 
     }
 
