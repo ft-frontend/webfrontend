@@ -36,6 +36,7 @@ import ZigZagMap from "./module/drone/missionPlaner/missionGenerator/ZigZag/ZigZ
 import QuickActionsSelector from "./module/QuickActions/QuickActionsSelector";
 import MissionGeneratorResultViewer from "./module/drone/missionPlaner/missionGenerator/MissionGeneratorResultViewer";
 import SignInWithExistingSession from "./auth/signInWithExistingSession";
+import Cloud from "./module/cloud/cloud";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
@@ -83,6 +84,12 @@ function App() {
             <Route path="/module/ledwall">
                 <SideBar/>
                 <ModuleNavBar name="LedWall"/>
+            </Route>
+
+            <Route path="/module/cloud">
+                <SideBar/>
+                <ModuleNavBar name="Cloud"/>
+                <Cloud/>
             </Route>
 
             <Route path="/module/drone">

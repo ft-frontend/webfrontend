@@ -13,6 +13,7 @@
   "direct_translation_ledwall": "LEDWall",
   "direct_translation_quadrocopter": "Quadrocopter",
   "direct_translation_other": "Other",
+  "direct_translation_cloud": "Cloud",
   "direct_translation_settings": "Settings",
   "direct_translation_overview": "Overview",
   "direct_translation_devices": "Devices",

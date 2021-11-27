@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import SideBarStyle from "./SideBare.module.css";
 import HomeSelectorIcon from "../../res/home.svg";
 import Flash from "../../res/flash.svg";
+import Cloud from "../../res/cloud.svg";
 import LEDWallSelectorIcon from "../../res/item/ledwallicon.svg";
 import DroneSelectorIcon from "../../res/item/droneicon.svg";
 import SettingsSelectorIcon from "../../res/settings.svg";
@@ -23,7 +24,7 @@ class SideBar extends Component {
 
     componentDidMount() {
         let tempVar = 0;
-        const paths = [ "/dashboard", "/module/quickActions", "/module/ledwall", "/module/drone", "/module/other", "/settings"];
+        const paths = [ "/dashboard", "/module/quickActions", "/module/cloud", "/module/ledwall", "/module/drone", "/module/other", "/settings"];
         for (let i in paths) {
             if (window.location.pathname.startsWith(paths[i])) {
                 tempVar = parseInt(i)+1;
@@ -70,27 +71,34 @@ class SideBar extends Component {
 
                     <div
                         className={SideBarStyle.SideBarItem + " " + (this.state.locationIndex === 3 ? SideBarStyle.SideBarItemActive : "")}
-                        onClick={() => this.redirect("/module/ledwall", 3)}>
+                        onClick={() => this.redirect("/module/cloud", 3)}>
+                        <img alt="" className={SideBarStyle.SideBarItemImage} src={Cloud}/>
+                        <p className={SideBarStyle.SideBarItemText}>{t('direct_translation_cloud')}</p>
+                    </div>
+
+                    <div
+                        className={SideBarStyle.SideBarItem + " " + (this.state.locationIndex === 4 ? SideBarStyle.SideBarItemActive : "")}
+                        onClick={() => this.redirect("/module/ledwall", 4)}>
                         <img alt="" className={SideBarStyle.SideBarItemImage} src={LEDWallSelectorIcon}/>
                         <p className={SideBarStyle.SideBarItemText}>{t('direct_translation_ledwall')}</p>
                     </div>
 
                     <div
-                        className={SideBarStyle.SideBarItem + " " + (this.state.locationIndex === 4 ? SideBarStyle.SideBarItemActive : "")}
-                        onClick={() => this.redirect("/module/drone", 4)}>
+                        className={SideBarStyle.SideBarItem + " " + (this.state.locationIndex === 5 ? SideBarStyle.SideBarItemActive : "")}
+                        onClick={() => this.redirect("/module/drone", 5)}>
                         <img alt="" className={SideBarStyle.SideBarItemImage} src={DroneSelectorIcon}/>
                         <p className={SideBarStyle.SideBarItemText}>{t('direct_translation_quadrocopter')}</p>
                     </div>
                     <div
-                        className={SideBarStyle.SideBarItem + " " + (this.state.locationIndex === 5 ? SideBarStyle.SideBarItemActive : "")}
-                        onClick={() => this.redirect("/module/other", 5)}>
+                        className={SideBarStyle.SideBarItem + " " + (this.state.locationIndex === 6 ? SideBarStyle.SideBarItemActive : "")}
+                        onClick={() => this.redirect("/module/other", 6)}>
                         <img alt="" className={SideBarStyle.SideBarItemImage} src={OtherSelectorIcon}/>
                         <p className={SideBarStyle.SideBarItemText}>{t('direct_translation_other')}</p>
                     </div>
 
                     <div
-                        className={SideBarStyle.SideBarItem + " " + (this.state.locationIndex === 6 ? SideBarStyle.SideBarItemActive : "")}
-                        onClick={() => this.redirect("/settings", 6)}>
+                        className={SideBarStyle.SideBarItem + " " + (this.state.locationIndex === 7 ? SideBarStyle.SideBarItemActive : "")}
+                        onClick={() => this.redirect("/settings", 7)}>
                         <img alt="" className={SideBarStyle.SideBarItemImage} src={SettingsSelectorIcon}/>
                         <p className={SideBarStyle.SideBarItemText}>{t('direct_translation_settings')}</p>
                     </div>

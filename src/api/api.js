@@ -976,6 +976,26 @@ const api = {
 
 
 
+    },
+
+    listCloudFilesInDirectory(path) {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+
+                fetch(backend + `/v1/usercontent/cloud/folder?absolutePath=${path}&session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({result: false});
+                        return;
+                    }
+                    resolve(result);
+                });
+            }
+
+        });
     }
 };
 export default api;

@@ -49,7 +49,7 @@ class ChangeProfilePicture extends Component {
     gotoImageCrop(event) {
         if (event.target.files && event.target.files.length > 0) {
             console.log(event.target.files[0])
-            if(event.target.files[0].size>(1*1000*1000)) {
+            if(event.target.files[0].size>(20*1000*1000)) {
                 this.gotoImageSelect(null,false,this.props.t('fileTooBig'))
             }else if(!event.target.files[0].type.startsWith('image/')) {
                 this.gotoImageSelect(null,false,this.props.t('filetype_does_not_match'))
