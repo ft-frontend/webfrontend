@@ -1,0 +1,49 @@
+.fileEntry {
+    display: flex;
+    flex-direction: column;
+    width: 176px;
+    height: 171px;
+    align-items: center;
+    justify-content: center;
+    margin: 4px;
+    border-radius: 5%;
+    cursor: pointer;
+    transition: background-color 200ms;
+}
+
+.fileEntry:hover {
+    background-color: #e0e0e0;
+}
+
+.fileEntryImage {
+
+    width: 130px;
+    margin-top: 10px;
+}
+
+.fileEntryImageContainer {
+
+    width: 130px;
+}
+
+.filesContainer {
+
+    width: calc(100% - 70px);
+    /*flex: 1;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 20px;
+    margin-left: 90px;
+}
+
+.cloudContainer {
+    display: flex;
+    flex: 1;
+}
+
+.fileName {
+    margin-top: 5px;
+    color: #1b2025;
+
+}
