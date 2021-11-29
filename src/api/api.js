@@ -18,6 +18,12 @@ const post = {
     body: undefined
 };
 
+const patch = {
+    method: 'PATCH',
+    headers: {'Content-Type': 'application/json'},
+    body: undefined
+};
+
 function checkErrorCodes(response) {
     if (response.errorcode) {
 
@@ -996,6 +1002,34 @@ const api = {
             }
 
         });
+    },
+
+    moveCloudResourceTo(sourcePath,resource,target) {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+                patch.body = JSON.stringify({
+                    absoluteSourcePath: sourcePath,
+                    resourceName:resource,
+                    absoluteTargetPath:target,
+                    session: cookies.get('session'),
+
+                });
+                fetch(backend + `/v1/usercontent/cloud/moveResource`, patch).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+
+                    resolve(result);
+
+
+                });
+            }
+
+        });
     }
+
 };
 export default api;

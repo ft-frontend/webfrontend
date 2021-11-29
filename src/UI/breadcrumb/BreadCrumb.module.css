@@ -1,0 +1,39 @@
+.breadCrumb {
+    color: #494949;
+    text-align: center;
+    user-select: none;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 200ms;
+}
+
+.breadCrumb:hover:not(.activeBreadCrumb) {
+
+    background-color: rgba(95, 98, 98, 0.2);
+
+}
+
+.breadCrumb:not(.activeBreadCrumb) {
+    cursor: pointer;
+}
+
+.activeBreadCrumb {
+    color: black;
+    font-weight: bold;
+}
+
+.breadCrumbContainer {
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.seperator {
+
+    color: #5f6262;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
