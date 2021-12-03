@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import folderIcon from "../../res/folder.svg";
 import fileIcon from "../../res/file.svg";
 import api from "../../api/api";
-import { v4 as uuidv4 } from 'uuid';
-import CloudStyle from "./cloud.module.css"
+import {v4 as uuidv4} from 'uuid';
+import CloudStyle from "./cloud.module.css";
 import BreadCrumb from "../../UI/breadcrumb/BreadCrumb";
 import FolderContentElement from "./FolderContentElement";
+import uploadHandler from "./UploadHandler";
 
 class Cloud extends Component {
     constructor(props) {
@@ -14,39 +15,41 @@ class Cloud extends Component {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
 
-        const path = urlParams.get('path')==null?"/":urlParams.get('path');
-        window.history.replaceState({}, '', "/module/cloud?path="+path);
-        this.state ={
+        const path = urlParams.get('path') == null ? "/" : urlParams.get('path');
+        window.history.replaceState({}, '', "/module/cloud?path=" + path);
+        this.state = {
             path: path,
             folderContent: [],
             folderContentElements: [],
-            filePath: []
+            filePath: [],
+
         };
 
-        this.fetchFolderContent =this.fetchFolderContent.bind(this)
-        this.gotoFolder =this.gotoFolder.bind(this)
-        this.changeFolder =this.changeFolder.bind(this)
-        this.parseURLParams =this.parseURLParams.bind(this)
-        this.breadCrumbClick =this.breadCrumbClick.bind(this)
-        this.updateBreadCrumb =this.updateBreadCrumb.bind(this)
-        this.openFolderContextMenu =this.openFolderContextMenu.bind(this)
-        this.dropEvent =this.dropEvent.bind(this)
-        this.dragOver =this.dragOver.bind(this)
-        this.dragLeave =this.dragLeave.bind(this)
-        this.dragStartEvent =this.dragStartEvent.bind(this)
-        this.dragEndEvent =this.dragEndEvent.bind(this)
+        this.fetchFolderContent = this.fetchFolderContent.bind(this);
+        this.gotoFolder = this.gotoFolder.bind(this);
+        this.changeFolder = this.changeFolder.bind(this);
+        this.parseURLParams = this.parseURLParams.bind(this);
+        this.breadCrumbClick = this.breadCrumbClick.bind(this);
+        this.updateBreadCrumb = this.updateBreadCrumb.bind(this);
+        this.openFolderContextMenu = this.openFolderContextMenu.bind(this);
+        this.dropEvent = this.dropEvent.bind(this);
+        this.dragOver = this.dragOver.bind(this);
+        this.dragLeave = this.dragLeave.bind(this);
+        this.dragStartEvent = this.dragStartEvent.bind(this);
+        this.dragEndEvent = this.dragEndEvent.bind(this);
+        this.breadCrumbDrop = this.breadCrumbDrop.bind(this);
 
         this.parseURLParams();
 
 
-
     }
+
     parseURLParams() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
 
-        const path = urlParams.get('path')==null?"/":urlParams.get('path');
-        window.history.replaceState({}, '', "/module/cloud?path="+path);
+        const path = urlParams.get('path') == null ? "/" : urlParams.get('path');
+        window.history.replaceState({}, '', "/module/cloud?path=" + path);
         this.setState({
             path: path,
             folderContent: [],
@@ -55,51 +58,51 @@ class Cloud extends Component {
     }
 
     changeFolder(newPath) {
-        window.history.pushState({}, '', "/module/cloud?path="+newPath);
+        window.history.pushState({}, '', "/module/cloud?path=" + newPath);
         this.setState({
             path: newPath
-        })
+        });
 
 
     }
 
     updateBreadCrumb(newPath) {
         let filePath = [];
-        filePath.push({name:'Eigene Dateien',path: "/"})
-        let pathCounter = "/"
-        this.parsePath(newPath).forEach(e=>{
-            pathCounter+=e;
+        filePath.push({name: 'Eigene Dateien', path: "/"});
+        let pathCounter = "/";
+        this.parsePath(newPath).forEach(e => {
+            pathCounter += e;
 
             filePath.push({
                 name: e,
-                path:pathCounter
-            })
+                path: pathCounter
+            });
 
-            pathCounter+="/"
-        })
+            pathCounter += "/";
+        });
 
         this.setState({
-            filePath:filePath
-        })
+            filePath: filePath
+        });
     }
 
     gotoFolder(folderName) {
-        if(this.state.path==="/") {
+        if (this.state.path === "/") {
 
-            window.history.pushState({}, '', "/module/cloud?path="+this.state.path+folderName);
-            this.fetchFolderContent(this.state.path+folderName);
-            this.updateBreadCrumb(this.state.path+folderName);
+            window.history.pushState({}, '', "/module/cloud?path=" + this.state.path + folderName);
+            this.fetchFolderContent(this.state.path + folderName);
+            this.updateBreadCrumb(this.state.path + folderName);
             this.setState({
-                path: this.state.path+folderName
-            })
-        }else{
+                path: this.state.path + folderName
+            });
+        } else {
 
-            window.history.pushState({}, '', "/module/cloud?path="+this.state.path+"/"+folderName);
-            this.fetchFolderContent(this.state.path+"/"+folderName);
-            this.updateBreadCrumb(this.state.path+"/"+folderName);
+            window.history.pushState({}, '', "/module/cloud?path=" + this.state.path + "/" + folderName);
+            this.fetchFolderContent(this.state.path + "/" + folderName);
+            this.updateBreadCrumb(this.state.path + "/" + folderName);
             this.setState({
-                path: this.state.path+"/"+folderName
-            })
+                path: this.state.path + "/" + folderName
+            });
         }
 
 
@@ -108,58 +111,59 @@ class Cloud extends Component {
     componentDidMount() {
         this.fetchFolderContent(this.state.path);
 
-        this.popStateEventHandler = (event)=>{
+        this.popStateEventHandler = (event) => {
             this.parseURLParams();
             this.fetchFolderContent(this.state.path);
         };
 
-        window.addEventListener('popstate',this.popStateEventHandler)
+        window.addEventListener('popstate', this.popStateEventHandler);
 
     }
 
     componentWillUnmount() {
-        window.removeEventListener('popstate',this.popStateEventHandler)
+        window.removeEventListener('popstate', this.popStateEventHandler);
     }
 
     fetchFolderContent(folder) {
         this.setState({
-            folderContentElements:[]
-        })
-        api.listCloudFilesInDirectory(folder).then(result=>{
-            if(result.result===false) return;
+            folderContentElements: []
+        });
+        api.listCloudFilesInDirectory(folder).then(result => {
+            if (result.result === false) return;
 
             let folderContentElements = [];
-            result.foundFolder.files.forEach(content=>{
-                if(content.isFolder===true) {
+            result.foundFolder.files.forEach(content => {
+                if (content.isFolder === true) {
 
                     folderContentElements.push(
+                        <FolderContentElement folder={true} dragStartEvent={this.dragStartEvent}
+                                              dragEndEvent={this.dragEndEvent} dropEvent={this.dropEvent}
+                                              dragOver={this.dragOver} dragLeave={this.dragLeave} key={uuidv4()}
+                                              name={content.name} clickCallback={this.gotoFolder}/>
+                    );
 
-                    <FolderContentElement folder={true} dragStartEvent={this.dragStartEvent} dragEndEvent={this.dragEndEvent} dropEvent={this.dropEvent} dragOver={this.dragOver} dragLeave={this.dragLeave} key={uuidv4()} name={content.name} clickCallback={this.gotoFolder}/>
-
-                    )
-
-                }else{
+                } else {
                     folderContentElements.push(
-                        <FolderContentElement folder={false} dragStartEvent={this.dragStartEvent} dragEndEvent={this.dragEndEvent} dropEvent={this.dropEvent} dragOver={this.dragOver} dragLeave={this.dragLeave} key={uuidv4()} name={content.name} clickCallback={this.gotoFolder}/>
-
-
-
-                    )
+                        <FolderContentElement folder={false} dragStartEvent={this.dragStartEvent}
+                                              dragEndEvent={this.dragEndEvent} dropEvent={this.dropEvent}
+                                              dragOver={this.dragOver} dragLeave={this.dragLeave} key={uuidv4()}
+                                              name={content.name} clickCallback={this.gotoFolder}/>
+                    );
 
 
                 }
 
 
-            })
+            });
 
             this.setState({
                 folderContentElements: folderContentElements,
-                folderContent:result.foundFolder
+                folderContent: result.foundFolder
 
-            })
+            });
 
             this.updateBreadCrumb(folder);
-        })
+        });
     }
 
     openFolderContextMenu(event) {
@@ -168,7 +172,7 @@ class Cloud extends Component {
 
     }
 
-    parsePath (path) {
+    parsePath(path) {
         const pathsArray = [];
 
         path.split('/').forEach(element => {
@@ -179,27 +183,22 @@ class Cloud extends Component {
     }
 
 
-    breadCrumbClick(index,e) {
-        this.changeFolder(e.path)
+    breadCrumbClick(index, e) {
+        this.changeFolder(e.path);
         this.fetchFolderContent(e.path);
     }
-
 
 
     render() {
 
 
-
-
-
-
-
         return (
             <div className={CloudStyle.cloudContainer}>
-                //TODO add Drop and DragOver Listener on BreadCrumb
-                <BreadCrumb clickCallback={this.breadCrumbClick} className={CloudStyle.pathList}  elements={this.state.filePath}/>
+                <BreadCrumb BreadCrumbDrop={this.breadCrumbDrop} BreadCrumbDragOver={this.dragOver}
+                            BreadCrumbDragLeave={this.dragLeave} clickCallback={this.breadCrumbClick}
+                            className={CloudStyle.pathList} elements={this.state.filePath}/>
 
-                <div  className={CloudStyle.filesContainer}>
+                <div className={CloudStyle.filesContainer}>
                     {this.state.folderContentElements}
 
 
@@ -208,56 +207,91 @@ class Cloud extends Component {
         );
     }
 
-    dropEvent(event,name) {
+    dropEvent(event, name) {
         event.preventDefault();
-        event.target.classList.remove(CloudStyle.folderFileHover)
-        console.log(event)
+        event.target.classList.remove(CloudStyle.folderFileHover);
+        if (this.state.draggingElement != null) {
+            if (this.state.draggingElement !== event.target) {
 
-        if(this.state.draggingElement!=null) {
-            if(this.state.draggingElement!==event.target) {
-                if(this.state.path==="/")
+                api.moveCloudResourceTo(this.state.path, this.state.draggingResourceName, this.state.path === "/" ? this.state.path + name : this.state.path + "/" + name).then(() => {
 
-                    api.moveCloudResourceTo(this.state.path,this.state.draggingResourceName,this.state.path==="/"?this.state.path+name:this.state.path+"/"+name).then(()=>{
-                        this.fetchFolderContent(this.state.path==="/"?this.state.path+name:this.state.path+"/"+name)
+                    this.fetchFolderContent(this.state.path === "/" ? this.state.path + name : this.state.path + "/" + name); //go to folder
+                    this.setState({
+                        path: this.state.path === "/" ? this.state.path + name : this.state.path + "/" + name
+                    });
+                });
+            }
 
-                    })
+        } else {
+
+            uploadHandler.handleFileUpload(event.dataTransfer.items,this.state.path === "/" ? this.state.path + name : this.state.path + "/" + name)
+            //TODO File upload
+            console.log(event);
+
+        }
+
+
+    }
+
+
+    breadCrumbDrop(event, e) {
+        event.preventDefault();
+        event.target.classList.remove(CloudStyle.folderFileHover);
+
+        if (this.state.draggingElement != null) {
+            if (this.state.draggingElement !== event.target) {
+
+                api.moveCloudResourceTo(this.state.path, this.state.draggingResourceName, e.path).then(() => {
+                    this.setState({
+                        path: e.path
+                    });
+                    this.fetchFolderContent(e.path); //go to folder
+
+                });
 
             }
 
-        }else{
+        } else {
 
+            //TODO File upload
 
         }
 
-
     }
+
     dragOver(event) {
-        if(event.target!==this.state.draggingElement) {
-            event.target.classList.add(CloudStyle.folderFileHover)
-        }
         event.preventDefault();
+        
+
+        if (event.target !== this.state.draggingElement) {
+            event.target.classList.add(CloudStyle.folderFileHover);
+        }
 
     }
+
     dragLeave(event) {
         event.preventDefault();
-        event.target.classList.remove(CloudStyle.folderFileHover)
+        event.target.classList.remove(CloudStyle.folderFileHover);
 
     }
 
-    dragStartEvent(event,name) {
+    dragStartEvent(event, name) {
         this.setState({
             draggingElement: event.target,
             draggingResourceName: name
-        })
+        });
     }
 
     dragEndEvent(event) {
 
-
         this.setState({
-            draggingElement: null
-        })
+            draggingElement: null,
+            draggingResourceName: ""
+        });
     }
+
+
+
 }
 
 export default Cloud;

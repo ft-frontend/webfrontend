@@ -15,7 +15,7 @@ class BreadCrumb extends Component {
                 breadCrumbsElements.push(<div key={uuidv4()} className={BreadCrumbStyle.breadCrumb+" "+BreadCrumbStyle.activeBreadCrumb}>{e.name}</div>)
 
             }else{
-                breadCrumbsElements.push(<div  onDragOver={this.props.dragOver} onDrop={this.props.drop} onClick={()=>{this.props.clickCallback(index,e)}} key={uuidv4()} className={BreadCrumbStyle.breadCrumb}>{e.name}</div>)
+                breadCrumbsElements.push(<div onDragLeave={(event)=>this.props.BreadCrumbDragLeave(event,e)} onDragOver={(event)=>this.props.BreadCrumbDragOver(event,e)} onDrop={(event)=>this.props.BreadCrumbDrop(event,e)} onClick={()=>{this.props.clickCallback(index,e)}} key={uuidv4()} className={BreadCrumbStyle.breadCrumb}>{e.name}</div>)
                 breadCrumbsElements.push(<FaChevronRight className={BreadCrumbStyle.seperator}/>)
 
             }

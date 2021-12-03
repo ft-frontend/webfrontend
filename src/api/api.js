@@ -18,6 +18,12 @@ const post = {
     body: undefined
 };
 
+const put = {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: undefined
+};
+
 const patch = {
     method: 'PATCH',
     headers: {'Content-Type': 'application/json'},
@@ -1029,7 +1035,71 @@ const api = {
             }
 
         });
+    },
+    createCloudFolder(path,folderName) {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+                put.body = JSON.stringify({
+                    absolutePath: path,
+                    folderName:folderName,
+                    session: cookies.get('session'),
+
+                });
+                fetch(backend + `/v1/usercontent/cloud/folder`, put).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+
+                    resolve(result);
+
+
+                });
+            }
+
+        });
+    },
+
+    uploadCloudFile(path,file) {
+
+
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                resolve(false);
+            } else {
+
+                const fd = new FormData();
+                fd.append('absolutePath',path);
+                fd.append('session',cookies.get('session'));
+                fd.append("file",file)
+
+
+
+                $.ajax({
+                    type: 'PUT',
+                    url: backend+"/v1/usercontent/cloud/resource",
+                    data: fd,
+                    processData: false,
+                    contentType: false
+                }).done(function(){
+                    resolve(true);
+                }).catch(function(err){
+                    resolve(false);
+                })
+
+
+
+
+            }
+
+        });
+
+
+
     }
+
 
 };
 export default api;

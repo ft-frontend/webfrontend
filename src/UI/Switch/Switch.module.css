@@ -1,0 +1,61 @@
+/*
+Style animated toggle switch
+ */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.lever {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: .4s;
+
+  cursor: pointer;
+
+}
+
+.lever:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+.switch:hover .lever {
+  background-color: #777;
+}
+
+
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+.switch input:checked + .lever {
+  background-color: #2ecc71;
+}
+
+
+
+.switch input:checked + .lever:before {
+  transform: translateX(26px);
+}
+
+
