@@ -17,6 +17,7 @@
     margin-top: 20px;
     display: grid;
     grid-gap: 0;
+   /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));*/
     grid-template-columns: repeat(auto-fill,minmax(170px,auto));
     align-content: flex-start;
     height: 85vh;

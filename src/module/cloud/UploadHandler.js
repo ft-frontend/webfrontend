@@ -14,7 +14,11 @@ import api from "../../api/api";
               // Get file
               item.file(function(file) {
 
-                  file.path = currentCloudPath+"/"+path.slice(0,-1)
+                  if(path.slice(0,-1).length===0) {
+                      file.path = currentCloudPath;
+                  }else{
+                      file.path = currentCloudPath+"/"+path.slice(0,-1)
+                  }
 
                   files.push(file);
                   resolve(files);
@@ -73,30 +77,33 @@ function uploadFiles(files){
 const uploadHandler = {
 
     handleFileUpload: function (items,uploadPath) {
-        let time = performance.now();
-       console.log("starting creating folder structure")
-        for (let i=0; i<items.length; i++) {
-            // webkitGetAsEntry is where the magic happens
-            const item = items[i].webkitGetAsEntry();
-            if (item) {
-                traverseFileTree(item,undefined,uploadPath).then((foundFiles)=>{
-                    console.log((performance.now()-time))
-                    console.log("done")
-                    console.log(foundFiles)
+      return new Promise(resolve=>{
+          let time = performance.now();
+          console.log("starting creating folder structure")
+          for (let i=0; i<items.length; i++) {
+              // webkitGetAsEntry is where the magic happens
+              const item = items[i].webkitGetAsEntry();
+              if (item) {
+                  traverseFileTree(item,undefined,uploadPath).then((foundFiles)=>{
+                      console.log((performance.now()-time))
+                      console.log("done")
+                      console.log(foundFiles)
 
 
-                    console.log("start file upload")
+                      console.log("start file upload")
 
-                    uploadFiles(foundFiles).then(()=>{
-                        console.log("fileUploading done")
-                    })
+                      uploadFiles(foundFiles).then(()=>{
+                          console.log("fileUploading done")
+                          resolve();
+                      })
 
 
 
-                });
+                  });
 
-            }
-        }
+              }
+          }
+      })
     }
 
 

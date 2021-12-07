@@ -38,6 +38,7 @@ class Cloud extends Component {
         this.dragStartEvent = this.dragStartEvent.bind(this);
         this.dragEndEvent = this.dragEndEvent.bind(this);
         this.breadCrumbDrop = this.breadCrumbDrop.bind(this);
+        this.dragOverRoot = this.dragOverRoot.bind(this);
 
         this.parseURLParams();
 
@@ -198,7 +199,7 @@ class Cloud extends Component {
                             BreadCrumbDragLeave={this.dragLeave} clickCallback={this.breadCrumbClick}
                             className={CloudStyle.pathList} elements={this.state.filePath}/>
 
-                <div className={CloudStyle.filesContainer}>
+                <div className={CloudStyle.filesContainer} onDrop={(e)=>{this.dropEvent(e,null)}} onDragOver={this.dragOverRoot} onDragLeave={this.dragLeave}>
                     {this.state.folderContentElements}
 
 
@@ -209,8 +210,10 @@ class Cloud extends Component {
 
     dropEvent(event, name) {
         event.preventDefault();
+        event.stopPropagation();
         event.target.classList.remove(CloudStyle.folderFileHover);
-        if (this.state.draggingElement != null) {
+        //move file or folder within the cloud
+        if (this.state.draggingElement != null&&name!=null) {
             if (this.state.draggingElement !== event.target) {
 
                 api.moveCloudResourceTo(this.state.path, this.state.draggingResourceName, this.state.path === "/" ? this.state.path + name : this.state.path + "/" + name).then(() => {
@@ -224,9 +227,24 @@ class Cloud extends Component {
 
         } else {
 
-            uploadHandler.handleFileUpload(event.dataTransfer.items,this.state.path === "/" ? this.state.path + name : this.state.path + "/" + name)
-            //TODO File upload
-            console.log(event);
+            if(name!=null){
+                //upload new resource to the cloud
+                uploadHandler.handleFileUpload(event.dataTransfer.items,this.state.path === "/" ? this.state.path + name : this.state.path + "/" + name).then(()=>{
+                    this.fetchFolderContent(this.state.path);
+
+                })
+                console.log(event);
+            }else {
+                //upload new resource to the cloud root
+                uploadHandler.handleFileUpload(event.dataTransfer.items,this.state.path === "/"?"/":this.state.path).then(()=>{
+
+                    this.fetchFolderContent(this.state.path);
+
+                });
+                console.log(event);
+            }
+
+
 
         }
 
@@ -259,9 +277,18 @@ class Cloud extends Component {
 
     }
 
+    dragOverRoot(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if(this.state.draggingElement == null){
+            event.target.classList.add(CloudStyle.folderFileHover);
+        }
+    }
+
     dragOver(event) {
         event.preventDefault();
-        
+        event.stopPropagation();
 
         if (event.target !== this.state.draggingElement) {
             event.target.classList.add(CloudStyle.folderFileHover);

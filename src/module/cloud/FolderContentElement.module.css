@@ -3,6 +3,13 @@
 
     width: 130px;
     pointer-events: none;
+    user-select: none;
+
+}
+
+.selectedFile {
+
+    background-color: rgba(0, 120, 215, 0.5);
 
 }
 
@@ -17,6 +24,7 @@
     margin-top: 5px;
     color: #1b2025;
     pointer-events: none;
+    user-select: none;
 
 
 }
