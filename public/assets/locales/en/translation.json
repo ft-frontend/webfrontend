@@ -84,8 +84,6 @@
   "profilePictureUpdateWarning": "Chancing the profile image can take several minutes.",
   "fileTooBig": "file is too big",
   "filetype_does_not_match": "The selected file has the wrong file extension",
-  "imagetoosmall": "The selected image has to be at least 50x50 Pixels."
-
-
-
+  "imagetoosmall": "The selected image has to be at least 50x50 Pixels.",
+  "uploadProcessing": "Currently files are being processed. Please wait a moment."
 }

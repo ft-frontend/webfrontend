@@ -1,4 +1,5 @@
 import api from "../../api/api";
+import i18n from "i18next";
 
 
 
@@ -79,6 +80,9 @@ const uploadHandler = {
     handleFileUpload: function (items,uploadPath) {
       return new Promise(resolve=>{
           let time = performance.now();
+          window.onbeforeunload = function(){
+              return i18n.t('uploadProcessing');
+          };
           console.log("starting creating folder structure")
           for (let i=0; i<items.length; i++) {
               // webkitGetAsEntry is where the magic happens
@@ -94,6 +98,7 @@ const uploadHandler = {
 
                       uploadFiles(foundFiles).then(()=>{
                           console.log("fileUploading done")
+                          window.onbeforeunload = undefined;
                           resolve();
                       })
 

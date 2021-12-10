@@ -87,7 +87,8 @@ function App() {
             </Route>
 
             <Route path="/module/cloud">
-                <SideBar/>
+
+
                 <ModuleNavBar name="Cloud"/>
                 <Cloud/>
             </Route>

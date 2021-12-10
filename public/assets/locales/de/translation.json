@@ -84,7 +84,8 @@
   "profilePictureUpdateWarning": "Nach dem Ändern des Profilbildes kann es mehrere Minuten dauern, bis es überall angezeigt wird.",
   "fileTooBig": "Die ausgewählte Datei ist zu groß.",
   "filetype_does_not_match": "Die ausgewählte Datei hat den falschen Dateityp.",
-  "imagetoosmall": "Das ausgewählte Bild muss mindestens 50x50 Pixel groß sein."
+  "imagetoosmall": "Das ausgewählte Bild muss mindestens 50x50 Pixel groß sein.",
+  "uploadProcessing": "Aktuell werden Dateien hochgeladen. Dies kann einige Minuten dauern."
 
 
 }

@@ -7,6 +7,8 @@ import CloudStyle from "./cloud.module.css";
 import BreadCrumb from "../../UI/breadcrumb/BreadCrumb";
 import FolderContentElement from "./FolderContentElement";
 import uploadHandler from "./UploadHandler";
+import CloudControlBar from "./cloudControlNavBar/cloudControlBar";
+import CloudFolderSelector from "./cloudFolderSelector/CloudFolderSelector";
 
 class Cloud extends Component {
     constructor(props) {
@@ -194,7 +196,14 @@ class Cloud extends Component {
 
 
         return (
+        <div className={CloudStyle.pageWrapper}>
+
+            <CloudFolderSelector/>
+
             <div className={CloudStyle.cloudContainer}>
+
+                <CloudControlBar/>
+
                 <BreadCrumb BreadCrumbDrop={this.breadCrumbDrop} BreadCrumbDragOver={this.dragOver}
                             BreadCrumbDragLeave={this.dragLeave} clickCallback={this.breadCrumbClick}
                             className={CloudStyle.pathList} elements={this.state.filePath}/>
@@ -205,6 +214,9 @@ class Cloud extends Component {
 
                 </div>
             </div>
+
+        </div>
+
         );
     }
 
@@ -271,7 +283,12 @@ class Cloud extends Component {
 
         } else {
 
-            //TODO File upload
+            //upload new resource to the cloud root
+            uploadHandler.handleFileUpload(event.dataTransfer.items,e.path).then(()=>{
+                this.fetchFolderContent(e.path);
+
+            })
+
 
         }
 
