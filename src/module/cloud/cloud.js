@@ -132,7 +132,10 @@ class Cloud extends Component {
             folderContentElements: []
         });
         api.listCloudFilesInDirectory(folder).then(result => {
-            if (result.result === false) return;
+            if (result.result === false){
+                window.location.replace("/module/cloud/error");
+                return;
+            }
 
             let folderContentElements = [];
             result.foundFolder.files.forEach(content => {
@@ -242,8 +245,10 @@ class Cloud extends Component {
             if(name!=null){
                 //upload new resource to the cloud
                 uploadHandler.handleFileUpload(event.dataTransfer.items,this.state.path === "/" ? this.state.path + name : this.state.path + "/" + name).then(()=>{
+                    this.setState({
+                        path: this.state.path === "/" ? this.state.path + name : this.state.path + "/" + name
+                    });
                     this.fetchFolderContent(this.state.path);
-
                 })
                 console.log(event);
             }else {

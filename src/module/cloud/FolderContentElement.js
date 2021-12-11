@@ -22,7 +22,7 @@ class FolderContentElement extends Component {
                         <p className={FolderContentElementStyle.fileName}>{this.props.name}</p>
 
                     </div>:
-                    <div onDragEnd={(e)=>this.props.dragEndEvent(e,this.props.name)} onDragStart={(e)=>this.props.dragStartEvent(e,this.props.name)} key={this.props.key}  className={FolderContentElementStyle.fileEntry+" "+(this.state.isSelected?FolderContentElementStyle.selectedFile:"")}>
+                    <div onDragOver={(e)=>{e.stopPropagation();e.preventDefault();}} onDragEnd={(e)=>this.props.dragEndEvent(e,this.props.name)} onDragStart={(e)=>this.props.dragStartEvent(e,this.props.name)} key={this.props.key}  className={FolderContentElementStyle.fileEntry+" "+(this.state.isSelected?FolderContentElementStyle.selectedFile:"")}>
 
                         <div className={FolderContentElementStyle.fileEntryImageContainer}><img className={FolderContentElementStyle.fileEntryImage}  src={fileIcon}  alt="file"/></div>
                         <p className={FolderContentElementStyle.fileName}>{this.props.name}</p>

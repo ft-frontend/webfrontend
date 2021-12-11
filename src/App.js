@@ -37,6 +37,7 @@ import QuickActionsSelector from "./module/QuickActions/QuickActionsSelector";
 import MissionGeneratorResultViewer from "./module/drone/missionPlaner/missionGenerator/MissionGeneratorResultViewer";
 import SignInWithExistingSession from "./auth/signInWithExistingSession";
 import Cloud from "./module/cloud/cloud";
+import CloudFatalError from "./module/cloud/CloudFatalError/CloudFatalError";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
@@ -81,16 +82,24 @@ function App() {
                 <Redirect to="/"/>
             </Route>
 
-            <Route path="/module/ledwall">
+            <Route  path="/module/ledwall">
                 <SideBar/>
                 <ModuleNavBar name="LedWall"/>
             </Route>
 
-            <Route path="/module/cloud">
+            <Route exact path="/module/cloud">
 
 
                 <ModuleNavBar name="Cloud"/>
                 <Cloud/>
+            </Route>
+
+            <Route path="/module/cloud/error">
+
+                <SideBar/>
+                <ModuleNavBar name="Cloud"/>
+                <CloudFatalError/>
+
             </Route>
 
             <Route path="/module/drone">
