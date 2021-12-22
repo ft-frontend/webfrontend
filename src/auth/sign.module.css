@@ -17,7 +17,7 @@
     background: #191919;
     background-color: hsla(0, 0%, 10%, 0.75);
     text-align: center;
-    border-radius: 25px;
+    border-radius: 3%;
 
 }
 .signinform h1{
@@ -25,9 +25,9 @@
     text-transform: uppercase;
     font-weight: 500;
     margin-top: 25px;
+    font-family: sans-serif;
 }
 .signinform input[type = "text"],.signinform input[type = "password"],.signinform input[type = "email"]{
-    border:0;
     background: none;
     display: block;
     margin: 20px auto;
@@ -37,7 +37,7 @@
     width: 200px;
     outline: none;
     color: white;
-    border-radius: 24px;
+    border-radius: 5px;
     transition: 0.25s;
 }
 .signinform input[type = "text"]:focus,.signinform input[type = "password"]:focus,.signinform input[type = "email"]:focus{
@@ -71,11 +71,3 @@
     margin-left: 10px;
 }
 
-.loginWithGoogleButton {
-    margin: 20px auto;
-    display: block;
-    position: absolute;
-    left: 45.5%;
-    bottom: 20%
-
-}

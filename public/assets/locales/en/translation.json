@@ -85,5 +85,8 @@
   "fileTooBig": "file is too big",
   "filetype_does_not_match": "The selected file has the wrong file extension",
   "imagetoosmall": "The selected image has to be at least 50x50 Pixels.",
-  "uploadProcessing": "Currently files are being processed. Please wait a moment."
+  "uploadProcessing": "Currently files are being processed. Please wait a moment.",
+  "direct_translation_2fa": "Two Factor Authentication",
+  "direct_translation_enable": "Enable",
+  "direct_translation_disable": "Disable"
 }

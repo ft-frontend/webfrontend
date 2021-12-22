@@ -1,0 +1,176 @@
+.dialog {
+    background-color: white;
+
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    z-index: 9990;
+    transition: height 300ms, width 300ms;
+
+
+}
+
+.openFileSelectDialog {
+    display: none;
+}
+
+.closeButton {
+    width: 24px;
+    height: 24px;
+}
+
+.closeButtonWrapper {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 250ms;
+}
+
+.closeButtonWrapper:hover {
+    background-color: rgba(95, 98, 98, 0.1);
+}
+
+.closeButtonWrapper:active {
+    background-color: rgba(95, 98, 98, 0.4);
+
+}
+
+.closeButtonPath {
+    fill: #5f6262;
+
+}
+
+.dialogControl {
+    height: 60px;
+    width: 100%;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    display: flex;
+
+    place-items: center;
+
+}
+
+.AccountImage {
+    border-radius: 50%;
+    width: 280px;
+    height: 280px;
+    overflow: hidden;
+    place-self: center;
+    -webkit-user-drag: none;
+
+}
+
+.accountCircleImage {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+    cursor: pointer;
+    -webkit-user-drag: none;
+}
+
+
+.profilePictureText {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 28px;
+    -webkit-user-drag: none;
+    color: black;
+}
+
+.profileImageCropText {
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    -webkit-user-drag: none;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.profilePictureExplainText {
+    width: 85%;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #5f6262;
+    -webkit-user-drag: none;
+    align-self: center;
+}
+
+
+.dialogPageWrapper {
+    z-index: 9980;
+    left: 0;
+    top: 0;
+    position: absolute;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: rgba(41, 41, 41, 0.4);;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    flex-direction: column;
+}
+
+.profilePictureChangeButton > span {
+    color: white;
+    font-size: 1.15em;
+    user-select: none;
+
+}
+
+.profilePictureChangeButton {
+    place-self: center;
+    height: 40px;
+    width: 60%;
+    background-color: #1a73e8;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 200ms;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profilePictureChangeButton:hover {
+    background-color: #185db9;
+
+}
+
+.profilePictureChangeButton:active {
+    background-color: #124a98;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+
+
+}
+
+.profilePictureCrop {
+    min-width: 418px;
+    align-self: center;
+    max-height: 418px;
+}
+
+
+.imageError {
+    color: red;
+    align-self: center;
+    margin-top: 60px;
+}
+
+.profilePictureUpdateWarningText {
+    width: 85%;
+    text-align: center;
+    margin-top: 75px;
+    font-size: 14px;
+    color: #5f6262;
+    -webkit-user-drag: none;
+    align-self: center;
+}

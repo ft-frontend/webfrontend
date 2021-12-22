@@ -12,6 +12,9 @@ import CloudFolderSelector from "./cloudFolderSelector/CloudFolderSelector";
 
 class Cloud extends Component {
     constructor(props) {
+
+
+
         super(props);
 
         const queryString = window.location.search;
@@ -24,6 +27,7 @@ class Cloud extends Component {
             folderContent: [],
             folderContentElements: [],
             filePath: [],
+            selectedElements: []
 
         };
 
@@ -41,6 +45,7 @@ class Cloud extends Component {
         this.dragEndEvent = this.dragEndEvent.bind(this);
         this.breadCrumbDrop = this.breadCrumbDrop.bind(this);
         this.dragOverRoot = this.dragOverRoot.bind(this);
+        this.rootClick = this.rootClick.bind(this);
 
         this.parseURLParams();
 
@@ -89,7 +94,7 @@ class Cloud extends Component {
         });
     }
 
-    gotoFolder(folderName) {
+    gotoFolder(event,folderName) {
         if (this.state.path === "/") {
 
             window.history.pushState({}, '', "/module/cloud?path=" + this.state.path + folderName);
@@ -120,7 +125,9 @@ class Cloud extends Component {
         };
 
         window.addEventListener('popstate', this.popStateEventHandler);
-
+        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
+            alert("Chrome detected, please use Firefox or Edge to access the cloud");
+        }
     }
 
     componentWillUnmount() {
@@ -129,7 +136,8 @@ class Cloud extends Component {
 
     fetchFolderContent(folder) {
         this.setState({
-            folderContentElements: []
+            folderContentElements: [],
+            selectedElements: []
         });
         api.listCloudFilesInDirectory(folder).then(result => {
             if (result.result === false){
@@ -153,7 +161,7 @@ class Cloud extends Component {
                         <FolderContentElement folder={false} dragStartEvent={this.dragStartEvent}
                                               dragEndEvent={this.dragEndEvent} dropEvent={this.dropEvent}
                                               dragOver={this.dragOver} dragLeave={this.dragLeave} key={uuidv4()}
-                                              name={content.name} clickCallback={this.gotoFolder}/>
+                                              name={content.name} clickCallback={()=>{console.log("todo")}} />
                     );
 
 
@@ -166,9 +174,11 @@ class Cloud extends Component {
                 folderContentElements: folderContentElements,
                 folderContent: result.foundFolder
 
+
             });
 
             this.updateBreadCrumb(folder);
+
         });
     }
 
@@ -196,6 +206,7 @@ class Cloud extends Component {
 
 
     render() {
+        //Warn users when they are using chrome
 
 
         return (
@@ -211,7 +222,7 @@ class Cloud extends Component {
                             BreadCrumbDragLeave={this.dragLeave} clickCallback={this.breadCrumbClick}
                             className={CloudStyle.pathList} elements={this.state.filePath}/>
 
-                <div className={CloudStyle.filesContainer} onDrop={(e)=>{this.dropEvent(e,null)}} onDragOver={this.dragOverRoot} onDragLeave={this.dragLeave}>
+                <div className={CloudStyle.filesContainer} onDrop={(e)=>{this.dropEvent(e,null)}} onClick={this.rootClick} onDragOver={this.dragOverRoot} onDragLeave={this.dragLeave}>
                     {this.state.folderContentElements}
 
 
@@ -268,6 +279,20 @@ class Cloud extends Component {
 
     }
 
+    rootClick(event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+
+        if(!event.ctrlKey) {
+            //reset all selected elements
+            this.setState({
+                selectedElements: []
+            });
+        }
+
+    }
+
 
     breadCrumbDrop(event, e) {
         event.preventDefault();
@@ -303,7 +328,7 @@ class Cloud extends Component {
         event.preventDefault();
         event.stopPropagation();
 
-        if(this.state.draggingElement == null){
+          if(containsFiles(event)) {
             event.target.classList.add(CloudStyle.folderFileHover);
         }
     }
@@ -312,7 +337,7 @@ class Cloud extends Component {
         event.preventDefault();
         event.stopPropagation();
 
-        if (event.target !== this.state.draggingElement) {
+        if (event.target !== this.state.draggingElement&&(containsFiles(event)||this.state.draggingElement!=null)) {
             event.target.classList.add(CloudStyle.folderFileHover);
         }
 
@@ -340,6 +365,21 @@ class Cloud extends Component {
     }
 
 
+
+
+}
+
+function containsFiles(event) {
+
+    if (event.dataTransfer.types) {
+        for (let i = 0; i < event.dataTransfer.types.length; i++) {
+            if (event.dataTransfer.types[i] == "Files") {
+                return true;
+            }
+        }
+    }
+
+    return false;
 
 }
 

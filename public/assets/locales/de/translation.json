@@ -85,7 +85,10 @@
   "fileTooBig": "Die ausgewählte Datei ist zu groß.",
   "filetype_does_not_match": "Die ausgewählte Datei hat den falschen Dateityp.",
   "imagetoosmall": "Das ausgewählte Bild muss mindestens 50x50 Pixel groß sein.",
-  "uploadProcessing": "Aktuell werden Dateien hochgeladen. Dies kann einige Minuten dauern."
+  "uploadProcessing": "Aktuell werden Dateien hochgeladen. Dies kann einige Minuten dauern.",
+  "direct_translation_2fa": "Zwei Faktor Authentifizierung",
+  "direct_translation_enable": "Aktivieren",
+  "direct_translation_disable": "Deaktivieren"
 
 
 }

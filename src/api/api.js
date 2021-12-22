@@ -111,12 +111,14 @@ const api = {
 
         })
     },
-    signIn: function (eorn, password, sessionTime=30) {
+    signIn: function (eorn, password,totpToken, sessionTime=30) {
         return new Promise((resolve, reject) => {
             post.body = JSON.stringify({
                 eorn: eorn,
                 password: password,
-                sessionTime: sessionTime
+                sessionTime: sessionTime,
+                totpToken: totpToken
+
             });
 
             fetch(backend + `/v1/auth/signin`, post).then(res => res.json()).then(result => {
@@ -131,6 +133,7 @@ const api = {
                 } else {
                     resolve({
                         success: false,
+                        raw: result,
                         error: result.error
                     });
                 }
@@ -192,6 +195,25 @@ const api = {
 
         });
 
+    },
+
+    checkTOTPEnabled: function() {
+        return new Promise((resolve,reject) =>{
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                fetch(backend + `/v1/account/isTOTPEnabled?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        reject();
+
+                    }
+                    resolve(result.enabled);
+                });
+            }
+
+        })
     },
 
     listAvailableDevices: function () {
@@ -1098,8 +1120,26 @@ const api = {
 
 
 
-    }
+    },
 
+
+    disableTOTP() {
+        return new Promise(resolve => {
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                fetch(backend + `/v1/account/disableTOTP?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    resolve(result);
+                });
+            }
+
+        })
+    }
 
 };
 export default api;
