@@ -125,9 +125,7 @@ class Cloud extends Component {
         };
 
         window.addEventListener('popstate', this.popStateEventHandler);
-        if (navigator.userAgent.toLowerCase().indexOf('chrome') > -1) {
-            alert("Chrome detected, please use Firefox or Edge to access the cloud");
-        }
+
     }
 
     componentWillUnmount() {
