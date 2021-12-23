@@ -35,7 +35,15 @@ class AuthenticationSettings extends Component {
 
     closeEnableTOTPDialog = () => {
         this.setState({
-            openEnableTOTPDialog: false
+            openEnableTOTPDialog: false,
+            isTwoFactorAuthenticationEnabledPending: true
+        })
+
+        api.checkTOTPEnabled().then(isEnabled => {
+            this.setState({
+                isTwoFactorAuthenticationEnabledPending: false,
+                isTwoFactorAuthenticationEnabled: isEnabled
+            })
         })
     };
 
@@ -61,7 +69,7 @@ class AuthenticationSettings extends Component {
                <h1 className={AuthenticationSettingsStyle.headLine}>{t('direct_translation_authentication')}</h1>
                 <div className={AuthenticationSettingsStyle.totpAuth}>
                     <h4>{t('direct_translation_2fa')}: </h4>
-                    <div className={AuthenticationSettingsStyle.googleAuthState}>
+                    <div className={AuthenticationSettingsStyle.container}>
                         {
                             this.state.isTwoFactorAuthenticationEnabledPending?
                                 <p>Loading...</p>

@@ -88,5 +88,9 @@
   "uploadProcessing": "Currently files are being processed. Please wait a moment.",
   "direct_translation_2fa": "Two Factor Authentication",
   "direct_translation_enable": "Enable",
-  "direct_translation_disable": "Disable"
+  "direct_translation_disable": "Disable",
+  "2fa_description": "Scan this QR-Code with your Smartphone and type in the code to enable two factor authentication. This is a security feature to prevent unauthorized access to your account. You can disable it at any time.",
+  "2fa_error": "The code you entered is not valid."
+
+
 }

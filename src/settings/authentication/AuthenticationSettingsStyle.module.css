@@ -4,6 +4,10 @@
     width: 600px;
     justify-content: space-between;
     color: black;
+    place-self: center;
+    justify-self: center;
+    align-self: center;
+
 }
 
 .headLine {
@@ -12,8 +16,9 @@
 
 }
 
-.googleAuthState {
+.container {
     display: flex;
+    place-self: center;
     width: 370px;
     flex-wrap: nowrap;
     justify-content: space-between;

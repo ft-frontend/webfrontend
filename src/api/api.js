@@ -977,6 +977,15 @@ const api = {
             return backend+"/v1/usercontent/profilePicture?session="+cookies.get('session');
         }
     },
+
+    getTOTPSecretIMGUrl() {
+        if (cookies.get('session') === undefined) {
+            return "";
+        } else {
+            return backend+"/v1/account/getTOTPSecret?session="+cookies.get('session');
+        }
+    },
+
     uploadProfileImage(imageBlob) {
 
 
@@ -1139,7 +1148,36 @@ const api = {
             }
 
         })
-    }
+    },
+
+
+    enableTOTP: function (code) {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                    verifyToken: code
+
+                });
+                fetch(backend + `/v1/account/enableTOTPAuth`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+
+                    resolve({
+                        success: true
+                    });
+
+
+                });
+            }
+
+        });
+    },
 
 };
 export default api;
