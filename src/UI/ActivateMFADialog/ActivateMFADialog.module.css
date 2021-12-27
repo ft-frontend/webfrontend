@@ -61,8 +61,10 @@
 
 }
 .headline {
+    font-size: 25pt;
     place-self: center;
     margin-top: 10px;
+    color: black !important;
 
 }
 
@@ -71,7 +73,7 @@
     text-align: center;
     margin-top: 10px;
     font-size: 15px;
-    color: #5f6262;
+    color: #5f6262 !important;
     -webkit-user-drag: none;
     align-self: center;
 }

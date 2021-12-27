@@ -92,16 +92,16 @@ class AccountNavBar extends Component {
 
                     </div>
                     <div className={AccountButtonStyle.accountNameContainer}>
-                        <p>{window.localStorage.getItem('username')}</p>
+                        <p className={"ignoreDarkMode"}>{window.localStorage.getItem('username')}</p>
                     </div>
 
-                    <div className={AccountButtonStyle.manageAccountButton} onClick={()=>window.location.href="/settings#4"}><p>{t('manageAccount')}</p></div>
+                    <div className={AccountButtonStyle.manageAccountButton} onClick={()=>window.location.href="/settings#4"}><p className={"ignoreDarkMode"}>{t('manageAccount')}</p></div>
                     <div className={AccountButtonStyle.signOutButton} onClick={()=>window.location.href="/auth/signout"}>
-                        <p className={AccountButtonStyle.signOutButtonText}>{t('signOut')}</p>
+                        <p className={AccountButtonStyle.signOutButtonText+" ignoreDarkMode"}>{t('signOut')}</p>
                     </div>
 
                 </div>}
-                <p className={AccountButtonStyle.UserNameNavBar}>{window.localStorage.getItem('username')}</p>
+                <p className={AccountButtonStyle.UserNameNavBar+" ignoreDarkMode"}>{window.localStorage.getItem('username')}</p>
                 </div>
             </>
         );

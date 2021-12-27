@@ -72,16 +72,16 @@ class ActivateMFADialog extends Component {
 
 
                         <div className={ActivateMFADialogStyle.dialogContent}>
-                            <h1 className={ActivateMFADialogStyle.headline}>{t('direct_translation_2fa')}</h1>
+                            <h1 className={ActivateMFADialogStyle.headline+" ignoreDarkMode"}>{t('direct_translation_2fa')}</h1>
                             <img onContextMenu={(e)=>{e.preventDefault()}} className={ActivateMFADialogStyle.totpQRCode} alt="TOTP QR Code"
                                  src={api.getTOTPSecretIMGUrl()}/>
-                            <p className={ActivateMFADialogStyle.description}> {t('2fa_description')}</p>
+                            <p className={ActivateMFADialogStyle.description+" ignoreDarkMode"}> {t('2fa_description')}</p>
 
                             <input onChange={this.codeChange} placeholder={"Code"} type="text" maxlength={6} min={0} className={ActivateMFADialogStyle.codeInput}></input>
 
                             {
                                 this.state.error &&
-                                <p className={ActivateMFADialogStyle.error}>{t('2fa_error')}</p>
+                                <div className={ActivateMFADialogStyle.error}>{t('2fa_error')}</div>
                             }
 
                         </div>

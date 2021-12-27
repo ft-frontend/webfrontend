@@ -1,14 +1,12 @@
-import React from "react";
-import NavBar from "./UI/NavBar/NavBar";
-import api from "./api/api";
-import UserLoginButtonControl from "./UI/NavBar/UserLoginButtonControl";
-import accountSettingsHandler from "./settings/accountSettingsHandler";
-import VersionNumber from "./UI/Version/VersionNumber";
-import SideBar from "./UI/SideBar/SideBar";
-import { withTranslation } from 'react-i18next';
+import React, {Component} from 'react';
+import api from "../api/api";
+import UserLoginButtonControl from "../UI/NavBar/UserLoginButtonControl";
+import accountSettingsHandler from "../settings/accountSettingsHandler";
+import NavBar from "../UI/NavBar/NavBar";
+import SideBar from "../UI/SideBar/SideBar";
 import i18next from "i18next";
 
-class MainPage extends React.Component {
+class StaticPageUi extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,14 +16,10 @@ class MainPage extends React.Component {
         }
 
 
-
-
-
     }
 
-
     componentDidMount() {
-      //  api.checkSession().then(r => { if(r) window.location.replace("/dashboard");})
+        //  api.checkSession().then(r => { if(r) window.location.replace("/dashboard");})
         api.toggleRedirect(false);
         if(api.isSessionCookieAvailable()) {
             this.setState({
@@ -43,6 +37,21 @@ class MainPage extends React.Component {
         api.toggleRedirect(true);
 
     }
+    /*
+               <div style={{marginLeft: "70px"}}>
+
+
+                {
+                    !this.state.signIn&&<>
+
+                        <button onClick={()=>{i18next.changeLanguage('de')}}>Deutsch</button>
+                        <button onClick={()=>{i18next.changeLanguage('en')}}>English</button>
+
+                    </>
+                }
+
+            </div>
+     */
 
     render() {
         return <><NavBar renderElements={this.state.renderNavBar} links={[
@@ -56,25 +65,13 @@ class MainPage extends React.Component {
             }
         ]} buttons={this.state.buttons}/>
             {
-                this.state.signIn&&<SideBar/>
+                this.state.signIn&&<>{this.props.renderSideBar&&<SideBar/>}</>
             }
-            <div style={{marginLeft: "70px"}}>
 
 
-                {
-                    !this.state.signIn&&<>
-
-                    <button onClick={()=>{i18next.changeLanguage('de')}}>Deutsch</button>
-                    <button onClick={()=>{i18next.changeLanguage('en')}}>English</button>
-
-                    </>
-                }
-
-        </div>
-
-            </>;
+        </>;
 
     }
 }
 
-export default withTranslation()(MainPage);
+export default StaticPageUi;

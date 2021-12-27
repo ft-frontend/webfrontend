@@ -331,12 +331,16 @@ class MissionMap extends Component {
     render() {
         return (
 
-            <div style={{userSelect: 'none'}}>
-        <MissionPlannerControls doThingAfterMissionEndChangeCallback={this.doThingAfterMissionEndChange} heightChangeCallback={this.heightOfSelectedPushPinChanged} missionData={this.state.plannerData} selectedPushPin={this.state.selectedPushPin} missionName={this.props.missionName} missionUUID={this.props.missionUUID} requestDataCallback={this.missionComposer}/>
+                this.props.doNotRenderControls!=null ?                 <div id="myMap" className={MissionMapStyle.MissionPlannerMap} style={this.props.style}/>
+                    :
+                    <div style={{userSelect: 'none'}}>
+                        <MissionPlannerControls doThingAfterMissionEndChangeCallback={this.doThingAfterMissionEndChange} heightChangeCallback={this.heightOfSelectedPushPinChanged} missionData={this.state.plannerData} selectedPushPin={this.state.selectedPushPin} missionName={this.props.missionName} missionUUID={this.props.missionUUID} requestDataCallback={this.missionComposer}/>
 
 
-                <div id="myMap" className={MissionMapStyle.MissionPlannerMap} style={{height: '43em', width: '100vw', marginTop: '20px', userSelect: 'none'}}/>
-            </div>
+                        <div id="myMap" className={MissionMapStyle.MissionPlannerMap} style={{height: '43em', width: '100vw', marginTop: '20px', userSelect: 'none'}}/>
+                    </div>
+
+
         );
     }
 }

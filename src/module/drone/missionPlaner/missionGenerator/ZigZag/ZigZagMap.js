@@ -11,16 +11,16 @@ class ZigZagMap extends Component {
     constructor(props) {
         super(props);
 
-            this.state = {
-                plannerMode: this.props.planner,
-                plannerData: this.props.missionData?this.props.missionData:undefined,
-                pushPins: [],
-                polyLine: undefined,
-                pushPinHovered: undefined,
-                selectedPushPin: undefined,
-                selectedMission: this.props.match.params.mission
+        this.state = {
+            plannerMode: this.props.planner,
+            plannerData: this.props.missionData ? this.props.missionData : undefined,
+            pushPins: [],
+            polyLine: undefined,
+            pushPinHovered: undefined,
+            selectedPushPin: undefined,
+            selectedMission: this.props.match != null ? this.props.match.params.mission : undefined
 
-            };
+        };
 
 
         this.handlePushPinDrag = this.handlePushPinDrag.bind(this);
@@ -34,7 +34,6 @@ class ZigZagMap extends Component {
         this.handlePushPinClick = this.handlePushPinClick.bind(this);
         this.heightChange = this.heightChange.bind(this);
         this.generateMission = this.generateMission.bind(this);
-
 
 
         const obj = this;
@@ -59,10 +58,11 @@ class ZigZagMap extends Component {
             obj.map.entities.push(pl);
             window.Microsoft.Maps.Events.addHandler(obj.map, 'rightclick', obj.handleMapRightClick);
 
-                    //Center Map to User Location to provide easy possibility to find yourself in the mission planner
+            //Center Map to User Location to provide easy possibility to find yourself in the mission planner
 
         };
     }
+
     missionComposer() {
         return new Promise((resolve, reject) => {
 
@@ -74,16 +74,15 @@ class ZigZagMap extends Component {
 
                     lat: pp.getLocation().latitude,
                     long: pp.getLocation().longitude
-                })
+                });
 
 
-            })
+            });
 
-        resolve(finalArray);
+            resolve(finalArray);
 
 
-
-        })
+        });
     }
 
 
@@ -96,14 +95,14 @@ class ZigZagMap extends Component {
     handlePushPinClick(e) {
         this.setState({
             selectedPushPin: e.target
-        })
+        });
 
 
     }
 
 
     handlePushPinMoseOut(e) {
-        if ( this.state.pushPinHovered === e.target) {
+        if (this.state.pushPinHovered === e.target) {
 
             this.setState({
                 pushPinHovered: null
@@ -124,11 +123,10 @@ class ZigZagMap extends Component {
     }
 
 
-
     removePushPin(element) {
 
 
-        const missionDataIndex =  this.state.pushPins.indexOf(element);
+        const missionDataIndex = this.state.pushPins.indexOf(element);
         if (missionDataIndex > -1) {
 
             this.state.pushPins.splice(missionDataIndex, 1);
@@ -140,16 +138,16 @@ class ZigZagMap extends Component {
             this.map.entities.removeAt(entityIndex);
         }
 
-        if(this.state.selectedPushPin===element) {
+        if (this.state.selectedPushPin === element) {
             this.setState({
                 selectedPushPin: undefined
-            })
+            });
         }
 
 
-            this.setState({
+        this.setState({
             pushPinHovered: undefined
-        })
+        });
 
 
         this.generatePolyLines();
@@ -167,7 +165,7 @@ class ZigZagMap extends Component {
         this.state.pushPins.push(pushPin);
         this.map.entities.push(pushPin);
         pushPin.height = 0;
-        pushPin.index = this.state.pushPins.length-1;
+        pushPin.index = this.state.pushPins.length - 1;
         window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
@@ -182,22 +180,19 @@ class ZigZagMap extends Component {
     }
 
 
-
     generatePolyLines() {
 
         const posArray = [];
         this.state.pushPins.forEach(wayPoint => {
             posArray.push(wayPoint.getLocation());
         });
-        if(this.state.pushPins.length>0) {
+        if (this.state.pushPins.length > 0) {
             posArray.push(this.state.pushPins[0].getLocation());
         }
 
         this.state.polyLine.setLocations(posArray);
 
     }
-
-
 
 
     componentDidMount() {
@@ -210,48 +205,71 @@ class ZigZagMap extends Component {
 
         document.body.appendChild(script);
 
-        window.sessionStorage.setItem("currentMissionGeneratorHeight",1)
+        window.sessionStorage.setItem("currentMissionGeneratorHeight", 1);
 
 
     }
-
 
 
     heightChange(e) {
-        window.sessionStorage.setItem("currentMissionGeneratorHeight",e.target.value)
+        window.sessionStorage.setItem("currentMissionGeneratorHeight", e.target.value);
     }
 
     generateMission() {
-        this.missionComposer().then(composedMission=>{
-            api.missionGeneratorZigZag(composedMission).then(generatedMission=>{
-               if(generatedMission.success) {
-                   window.sessionStorage.setItem("currentGeneratedMission",JSON.stringify(generatedMission.route));
-                   window.location.href="/module/drone/missions/generators/"+this.state.selectedMission+"/missionViewer";
+        this.missionComposer().then(composedMission => {
+            if(composedMission.length > 0) {
+                api.missionGeneratorZigZag(composedMission).then(generatedMission => {
+                    if (this.props.testMode == null) {
+                        if (generatedMission.success) {
+                            window.sessionStorage.setItem("currentGeneratedMission", JSON.stringify(generatedMission.route));
+                            window.location.href = "/module/drone/missions/generators/" + this.state.selectedMission + "/missionViewer";
 
-               }else{
+                        } else {
 
-               }
-            })
+                        }
 
-        })
+                    } else {
+                        this.props.generateMissionCallback(generatedMission.route)
+                    }
+                });
+            }else{
+                alert("Please add at least one waypoint")
+            }
+
+        });
 
 
     }
-
-
 
 
     render() {
         const {t} = this.props;
         return (
 
-            <div style={{userSelect: 'none'}}>
-                <MissionGeneratorHeightSelection heightChange={this.heightChange} />
-                <div id="myMap"  style={{height: '43em', width: 'calc(100vw-70px)', marginTop: '20px',marginLeft: '70px', userSelect: 'none'}}/>
-                <div onClick={this.generateMission} className={missionSelectStyle.startMissionGenerators}><span className={"ignoreDarkMode "+missionSelectStyle.startMissionGeneratorsText}>{t('direct_translation_generate')}</span></div>
 
-            </div>
+            this.props.testMode != null ? <>
+                    <div id="myMap" style={this.props.style}/>
+                    <div onClick={this.generateMission} style={this.props.buttonStyle}><span
+                        className={"ignoreDarkMode " + missionSelectStyle.startMissionGeneratorsText}>Anwenden</span></div>
+                </>
+                :
+                <div style={{userSelect: 'none'}}>
+                    <MissionGeneratorHeightSelection heightChange={this.heightChange}/>
+                    <div id="myMap" style={{
+                        height: '43em',
+                        width: 'calc(100vw-70px)',
+                        marginTop: '20px',
+                        marginLeft: '70px',
+                        userSelect: 'none'
+                    }}/>
+                    <div onClick={this.generateMission} className={missionSelectStyle.startMissionGenerators}><span
+                        className={"ignoreDarkMode " + missionSelectStyle.startMissionGeneratorsText}>{t('direct_translation_generate')}</span>
+                    </div>
+
+                </div>
         );
+
+
     }
 }
 

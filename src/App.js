@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Redirect} from "react-router-dom";
-import MainPage from "./MainPage";
+import MainPage from "./StaticPages/main/MainPage";
 import Dashboard from "./dashboard/dashboard";
 import dashboardHome from "./dashboard/dashboardHome";
 import dashboardDevice from "./dashboard/device/dashboardDevice";
@@ -38,6 +38,7 @@ import MissionGeneratorResultViewer from "./module/drone/missionPlaner/missionGe
 import SignInWithExistingSession from "./auth/signInWithExistingSession";
 import Cloud from "./module/cloud/cloud";
 import CloudFatalError from "./module/cloud/CloudFatalError/CloudFatalError";
+import Rekari from "./StaticPages/rekari/Rekari";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
@@ -46,6 +47,7 @@ function App() {
 
     return (
         <Router>
+            <Route exact path="/rekari" component={Rekari}/>
             <Route exact path="/" component={MainPage}/>
 
             <Route path="/dashboard">

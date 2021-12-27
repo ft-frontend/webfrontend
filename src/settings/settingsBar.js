@@ -10,13 +10,13 @@ class SettingsBar extends React.Component {
         return<HorizontalTabBar tabContent={[
             {
                 content: <></>,
-                name: "Test"
+                name: "Informationen"
             },{
                 content: <></>,
-                name: "Test"
+                name: "Zugriff"
             },{
                 content: <></>,
-                name: "Test"
+                name: "Abonnement"
             },{
                 content: <AuthenticationSettings></AuthenticationSettings>,
                 name: t('direct_translation_authentication')

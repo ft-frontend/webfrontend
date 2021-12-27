@@ -26,6 +26,10 @@ body {
     color: white !important;
 
 }
+.dark-body > * p:not(.ignoreDarkMode) {
+    color: white !important;
+
+}
 
 
 .dark-body >  #searchBar  {

@@ -944,24 +944,19 @@ const api = {
     },
     missionGeneratorZigZag: function (polygon) {
         return new Promise((resolve, reject) => {
-            if (cookies.get('session') === undefined) {
-                resolve(false);
-            } else {
+
                 post.body = JSON.stringify({
                     jsonpolygon: polygon,
 
                 });
                 fetch(backend + `/v1/drone/missionGeneratorPolygonZigZagOverfly`, post).then(res => res.json()).then(result => {
-                    if (checkErrorCodes(result)) {
-                        resolve({success: false});
-                        return;
-                    }
+
 
                     resolve(result);
 
 
                 });
-            }
+
 
         });
     },

@@ -101,7 +101,7 @@ class SignIn extends React.Component {
 
                     <form  className={signInStyle.signinform} onSubmit={this.handleSubmit}>
                         <h1>Login</h1>
-                        <input type="text" autoComplete="off" autoCorrect="off" defaultValue={""} placeholder="Code" onChange={this.handleTOTPTokenChange}/>
+                        <input type="text" inputMode="numeric" pattern="[0-9]*" autoComplete={"one-time-code"}  defaultValue={""} placeholder="Code" onChange={this.handleTOTPTokenChange}/>
 
 
                         <button type='submit'>Login</button>
