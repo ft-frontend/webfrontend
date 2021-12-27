@@ -217,7 +217,7 @@ class ZigZagMap extends Component {
 
     generateMission() {
         this.missionComposer().then(composedMission => {
-            if(composedMission.length > 0) {
+            if(composedMission.length > 1) {
                 api.missionGeneratorZigZag(composedMission).then(generatedMission => {
                     if (this.props.testMode == null) {
                         if (generatedMission.success) {

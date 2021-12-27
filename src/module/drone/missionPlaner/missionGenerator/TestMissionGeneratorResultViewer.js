@@ -157,7 +157,6 @@ class TestMissionGeneratorResultViewer extends Component {
                 const pushPin = new window.Microsoft.Maps.Pushpin(location, {
 
                     text: `${this.state.plannerData.indexOf(wayPoint) + 1}`,
-                    draggable: true,
                     color: "#00ff00"
 
                 });
