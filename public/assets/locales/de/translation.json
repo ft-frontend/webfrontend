@@ -90,7 +90,8 @@
   "direct_translation_enable": "Aktivieren",
   "direct_translation_disable": "Deaktivieren",
   "2fa_description": "Scanne den QR-Code mit deinem Smartphone und gibt den Code ein, um die Authentifizierung zu aktivieren. Dies ist eine Sicherheitsmaßnahme, um deine FT-Cloud-Daten zu schützen. Du kannst diese Funktion jederzeit deaktivieren.",
-  "2fa_error": "Der Code ist falsch."
+  "2fa_error": "Der Code ist falsch.",
+  "direct_translation_privacyPolicy": "Datenschutzerklärung"
 
 
 }

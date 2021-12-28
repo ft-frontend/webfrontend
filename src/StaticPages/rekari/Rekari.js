@@ -14,12 +14,21 @@ import TestMissionGeneratorResultViewer
 class Rekari extends Component {
     constructor(props) {
         super(props);
+        const isDesktop = window.innerWidth > 900;
         this.state = {
-            generatedTestMission: null
+            generatedTestMission: null,
+            isDesktop: isDesktop
         };
+
+        window.onresize = () => {
+            const isDesktop = window.innerWidth > 900;
+            this.setState({isDesktop: isDesktop});
+        };
+
     }
 
     render() {
+        const {isDesktop} = this.state
         return (
             <>
                 <StaticPageUi renderSideBar={false}/>
@@ -40,10 +49,10 @@ class Rekari extends Component {
                     <div className={RekariStyle.intelligentDroneHeadline}>Intelligente Drohne</div>
 
 
-                    <div className={RekariStyle.section}>
+                    <div className={isDesktop?RekariStyle.section:RekariStyle.sectionContentUnderneath}>
 
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
                             <div className={RekariStyle.drone3dmodlefirstsection}> 3d Objekt
                             </div>
 
@@ -51,11 +60,11 @@ class Rekari extends Component {
                         </div>
 
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
                             <div className={RekariStyle.sectionHeader}>Autonome Flugdrohne</div>
 
-                            <div className={RekariStyle.sectionExplain}>
+                            <div className={isDesktop?RekariStyle.sectionExplain:RekariStyle.sectionExplainMobil}>
                                 Mit dem Herzstück des Rekari-Systems überzeugt der selbstfliegende Quadrocopter mit
                                 intuitiven Features.
                                 Durch unseren eigens entwickelten, intelligenten Flugcontroller ist das Abfliegen des
@@ -69,14 +78,14 @@ class Rekari extends Component {
 
                     </div>
 
-                    <div className={RekariStyle.section}>
+                    <div className={isDesktop?RekariStyle.section:RekariStyle.sectionContentAbove}>
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
 
                             <div className={RekariStyle.sectionHeader}>Fest installierte Wärmebildkamera¹</div>
 
-                            <div className={RekariStyle.sectionExplain}>
+                            <div className={isDesktop?RekariStyle.sectionExplain:RekariStyle.sectionExplainMobil}>
                                 Durch den festen Verbau einer Wärmebildkamera kann diese sinnvoll in das Flugsystem
                                 der Drohne integriert werden.
                                 Dadurch ist es Möglich durch nur ein System die Drohne, die Wärmebildkamera und alle
@@ -90,7 +99,7 @@ class Rekari extends Component {
                         </div>
 
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
 
                         </div>
@@ -99,19 +108,19 @@ class Rekari extends Component {
                     </div>
 
 
-                    <div className={RekariStyle.section}>
+                    <div className={isDesktop?RekariStyle.section:RekariStyle.sectionContentUnderneath}>
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
 
                         </div>
 
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
                             <div className={RekariStyle.sectionHeader}>Große Propeller</div>
 
-                            <div className={RekariStyle.sectionExplain}>
+                            <div className={isDesktop?RekariStyle.sectionExplain:RekariStyle.sectionExplainMobil}>
                                 Durch den Einsatz von großen Propellern kann die Drohne die Motordrehzahl reduzieren,
                                 und so die Flugzeit verlängern.
                                 Außerdem kann die Drohne so sichere Flüge durchführen, da durch die gewählten Propellern
@@ -143,7 +152,7 @@ class Rekari extends Component {
                         </div>
 
                         <div className={RekariStyle.uiexplainheadline}>Intuitive Benutzeroberfläche</div>
-                        <div className={RekariStyle.sectionExplain}>
+                        <div className={isDesktop?RekariStyle.sectionExplain:RekariStyle.sectionExplainMobil}>
                             Wir haben alle Funktion der Cloud aus der Sicht des Benutzers integriert, um eine intuitive
                             und einfache Bedienung zu ermöglichen. Nur so lässt sich dieses System ohne lange
                             Einweisungen in den vorhandenen Workflow einsetzen.
@@ -151,12 +160,12 @@ class Rekari extends Component {
                     </div>
 
 
-                    <div className={RekariStyle.section}>
+                    <div className={isDesktop?RekariStyle.section:RekariStyle.sectionContentAbove}>
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
                             <div className={RekariStyle.sectionHeader}>Account-System</div>
 
-                            <div className={RekariStyle.sectionExplain}>
+                            <div className={isDesktop?RekariStyle.sectionExplain:RekariStyle.sectionExplainMobil}>
                                 Durch das Account-System der Cloud kann jeder Verein einen eigene Zugang erhalten.
                                 Dadurch können Mission zum Abfliegen der Felder zentral gespeichert werden, damit
                                 ist sichergestellt, dass die Mission jedem zur Verfügung steht.
@@ -167,7 +176,7 @@ class Rekari extends Component {
                             </div>
                         </div>
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
                             <img className={RekariStyle.accountSystemImg} src={"/rekariAssets/accountSystem.png"}
                                  alt={"Account Verwaltung"}/>
                         </div>
@@ -175,19 +184,19 @@ class Rekari extends Component {
                     </div>
 
 
-                    <div className={RekariStyle.section}>
+                    <div className={isDesktop?RekariStyle.section:RekariStyle.sectionContentUnderneath}>
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
                             <img className={RekariStyle.accountSystemImg} src={"/rekariAssets/deviceControl.png"}
                                  alt={"Gerät Verwaltung"}/>
                         </div>
 
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
 
                             <div className={RekariStyle.sectionHeader}>Geräte-Verwaltung</div>
 
-                            <div className={RekariStyle.sectionExplain}>
+                            <div className={isDesktop?RekariStyle.sectionExplain:RekariStyle.sectionExplainMobil}>
                                 Mit der Cloud können Geräte ganz einfach online verwaltet werden. Dabei kann Name des
                                 Geräts und verschiedene Parameter mit nur wenigen Klicks verändert werden.
                                 Auch können Geräte im Cloudportal mit mehreren Benutzern verknüpft werden. Dadurch ist
@@ -215,7 +224,7 @@ class Rekari extends Component {
                         <div className={RekariStyle.section}>
 
 
-                            <div className={RekariStyle.MissionSectionPart}>
+                            <div className={isDesktop?RekariStyle.MissionSectionPart:RekariStyle.sectionPartMobil}>
 
 
                                 {
@@ -299,12 +308,12 @@ class Rekari extends Component {
 
                     <div className={RekariStyle.partnerSectionHeader}>Unsere Partner</div>
 
-                    <div className={RekariStyle.section}>
-                        <div className={RekariStyle.sectionPart}>
+                    <div className={isDesktop?RekariStyle.section:RekariStyle.sectionContentAbove}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
                             <div className={RekariStyle.sectionHeader}>u-blox</div>
 
-                            <div className={RekariStyle.sectionExplain}>
+                            <div className={isDesktop?RekariStyle.sectionExplain:RekariStyle.sectionExplainMobil}>
 
                                 Mit u-blox hatten wir einen starken Partner an der Seite. Mit Ihren branchenführenden
                                 Sensoren konnten wir präzise und verlässlich eine Kommunikation herstellen und die
@@ -315,7 +324,7 @@ class Rekari extends Component {
                             </div>
 
                         </div>
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
                             <img src={"/rekariAssets/ublox.svg"} alt={"Ublox Logo"} className={RekariStyle.ubloxLogo}></img>
 
@@ -324,19 +333,19 @@ class Rekari extends Component {
 
                     </div>
 
-                    <div className={RekariStyle.section}>
-                        <div className={RekariStyle.sectionPart}>
+                    <div className={isDesktop?RekariStyle.section:RekariStyle.sectionContentUnderneath}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
 
                             <img src={"/rekariAssets/productware.png"} alt={"Productware Logo"}
                                  className={RekariStyle.productwareLogo}></img>
 
                         </div>
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
                             <div className={RekariStyle.sectionHeader}>Productware</div>
 
-                            <div className={RekariStyle.sectionExplain}>
+                            <div className={isDesktop?RekariStyle.sectionExplain:RekariStyle.sectionExplainMobil}>
 
                                 Productware an unserer Seite hat uns geholfen, dass wir die Flight-Controller schnell
                                 und unkompliziert, mit ausgezeichneter Qualität bestücken lassen konnten. Dabei waren
@@ -350,12 +359,12 @@ class Rekari extends Component {
 
                     </div>
 
-                    <div className={RekariStyle.section}>
-                        <div className={RekariStyle.sectionPart}>
+                    <div className={isDesktop?RekariStyle.section:RekariStyle.sectionContentAbove}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
                             <div className={RekariStyle.sectionHeader}>Rohde & Schwarz</div>
 
-                            <div className={RekariStyle.sectionExplain}>
+                            <div className={isDesktop?RekariStyle.sectionExplain:RekariStyle.sectionExplainMobil}>
 
                                 Unser Partner Rohde & Schwarz hat uns mit der Bereitstellung eines
                                 Qualitäts-Oszilloskops geholfen, viele Fehler schnell und einfach zu finden. Durch die
@@ -366,7 +375,7 @@ class Rekari extends Component {
                             </div>
 
                         </div>
-                        <div className={RekariStyle.sectionPart}>
+                        <div className={isDesktop?RekariStyle.sectionPart:RekariStyle.sectionPartMobil}>
 
                             <img src={"/rekariAssets/rohdeundschwarz.svg"} alt={"Rohde & Schwarz Logo"}
                                  className={RekariStyle.rohdeundschwarz}></img>
@@ -383,9 +392,9 @@ class Rekari extends Component {
                             Über uns
                         </div>
 
-                        <div className={RekariStyle.aboutUsSection}>
-                            <div className={RekariStyle.aboutUseImage}></div>
-                            <div className={RekariStyle.aboutUseText}>Wir sind Tim und Felix, gemeinsam hatten wir die Idee eine Drohne von Grund auf selbst zu entwickeln. Unsere Interesse streuen sich breit über den Einsatz von modernen Technologien. Nachdem wir bereits im Jahr 2021 bei JugendForscht erfolgreich teilgenommen haben, ist dieses Projekt aufbauend auf der Erfahrung des vergangenen Jahres eine weitere JugendForscht Teilnahme. Aber auch darüber hinaus erproben wir weitere Einsatzgebiete von spezialisierten Drohnen.</div>
+                        <div className={isDesktop?RekariStyle.aboutUsSection:RekariStyle.aboutUsSectionMobile}>
+                            <div className={isDesktop?RekariStyle.aboutUseImage:RekariStyle.aboutUsImageMobile}></div>
+                            <div className={isDesktop?RekariStyle.aboutUseText:RekariStyle.aboutUseTextMobile}>Wir sind Tim und Felix, gemeinsam hatten wir die Idee eine Drohne von Grund auf selbst zu entwickeln. Unsere Interesse streuen sich breit über den Einsatz von modernen Technologien. Nachdem wir bereits im Jahr 2021 bei JugendForscht erfolgreich teilgenommen haben, ist dieses Projekt aufbauend auf der Erfahrung des vergangenen Jahres eine weitere JugendForscht Teilnahme. Aber auch darüber hinaus erproben wir weitere Einsatzgebiete von spezialisierten Drohnen.</div>
                         </div>
 
                     </div>
@@ -491,12 +500,12 @@ class Rekari extends Component {
                                 window.open("#", '_blank');
                             }}>Press Kit
                             </div>
-                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                            {/*<div className={RekariStyle.footerSectionElement} onClick={() => {
                                 window.open("#", '_blank');
                             }}>Impressum
-                            </div>
+                            </div>*/}
                             <div className={RekariStyle.footerSectionElement} onClick={() => {
-                                window.open("#", '_blank');
+                                window.open("/privacyPolicy", '_blank');
                             }}>Datenschutz
                             </div>
 

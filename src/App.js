@@ -39,6 +39,7 @@ import SignInWithExistingSession from "./auth/signInWithExistingSession";
 import Cloud from "./module/cloud/cloud";
 import CloudFatalError from "./module/cloud/CloudFatalError/CloudFatalError";
 import Rekari from "./StaticPages/rekari/Rekari";
+import PrivacyPolicy from "./StaticPages/privacyPolicy/PrivacyPolicy";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
@@ -48,6 +49,7 @@ function App() {
     return (
         <Router>
             <Route exact path="/rekari" component={Rekari}/>
+            <Route exact path="/privacyPolicy" component={PrivacyPolicy}/>
             <Route exact path="/" component={MainPage}/>
 
             <Route path="/dashboard">
