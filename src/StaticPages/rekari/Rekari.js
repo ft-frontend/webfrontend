@@ -26,12 +26,13 @@ class Rekari extends Component {
 
 
                 <div className={RekariStyle.headLineContainer}>
-                    <h1 className={RekariStyle.headLine+" ignoreDarkMode"}>Rekari</h1>
-                    <p className={RekariStyle.subheading+" ignoreDarkMode"}>Rehkitzrettung durch intelligente Drohnen neu durchdacht</p>
-                    <p className={RekariStyle.subheading+" ignoreDarkMode"}>Durch das Rekari-System können Rehkitze schneller gerettet
+                    <h1 className={RekariStyle.headLine + " ignoreDarkMode"}>Rekari</h1>
+                    <p className={RekariStyle.subheading + " ignoreDarkMode"}>Rehkitzrettung durch intelligente Drohnen
+                        neu durchdacht</p>
+                    <p className={RekariStyle.subheading + " ignoreDarkMode"}>Durch das Rekari-System können Rehkitze
+                        schneller gerettet
                         werden und die Helfer entlastet werden</p>
                 </div>
-
 
 
                 <div className={RekariStyle.sectionWrapper}>
@@ -40,6 +41,7 @@ class Rekari extends Component {
 
 
                     <div className={RekariStyle.section}>
+
 
                         <div className={RekariStyle.sectionPart}>
                             <div className={RekariStyle.drone3dmodlefirstsection}> 3d Objekt
@@ -72,7 +74,7 @@ class Rekari extends Component {
                         <div className={RekariStyle.sectionPart}>
 
 
-                            <div className={RekariStyle.sectionHeader}>Fest installierte Wärmebildkamera*</div>
+                            <div className={RekariStyle.sectionHeader}>Fest installierte Wärmebildkamera¹</div>
 
                             <div className={RekariStyle.sectionExplain}>
                                 Durch den festen Verbau einer Wärmebildkamera kann diese sinnvoll in das Flugsystem
@@ -83,9 +85,7 @@ class Rekari extends Component {
                                 wenigen Live-Monitoren überwacht werden können.
 
                             </div>
-                            <div className={RekariStyle.footnote}>*Aktuell befindet sich dieses Feature noch in der
-                                Entwicklungsphase
-                            </div>
+
 
                         </div>
 
@@ -142,10 +142,12 @@ class Rekari extends Component {
 
                         </div>
 
-                    <div className={RekariStyle.uiexplainheadline}>Intuitive Benutzeroberfläche</div>
-                    <div className={RekariStyle.sectionExplain}>
-                        Wir haben alle Funktion der Cloud aus der Sicht des Benutzers integriert, um eine intuitive und einfache Bedienung zu ermöglichen. Nur so lässt sich dieses System ohne lange Einweisungen in den vorhandenen Workflow einsetzen.
-                    </div>
+                        <div className={RekariStyle.uiexplainheadline}>Intuitive Benutzeroberfläche</div>
+                        <div className={RekariStyle.sectionExplain}>
+                            Wir haben alle Funktion der Cloud aus der Sicht des Benutzers integriert, um eine intuitive
+                            und einfache Bedienung zu ermöglichen. Nur so lässt sich dieses System ohne lange
+                            Einweisungen in den vorhandenen Workflow einsetzen.
+                        </div>
                     </div>
 
 
@@ -173,7 +175,6 @@ class Rekari extends Component {
                     </div>
 
 
-
                     <div className={RekariStyle.section}>
 
                         <div className={RekariStyle.sectionPart}>
@@ -184,25 +185,30 @@ class Rekari extends Component {
                         <div className={RekariStyle.sectionPart}>
 
 
-
                             <div className={RekariStyle.sectionHeader}>Geräte-Verwaltung</div>
 
                             <div className={RekariStyle.sectionExplain}>
-                               Mit der Cloud können Geräte ganz einfach online verwaltet werden. Dabei kann Name des Geräts und verschiedene Parameter mit nur wenigen Klicks verändert werden.
-                                Auch können Geräte im Cloudportal mit mehreren Benutzern verknüpft werden. Dadurch ist das Teilen von Beispielweise Drohnen ein Kinderspiel.
+                                Mit der Cloud können Geräte ganz einfach online verwaltet werden. Dabei kann Name des
+                                Geräts und verschiedene Parameter mit nur wenigen Klicks verändert werden.
+                                Auch können Geräte im Cloudportal mit mehreren Benutzern verknüpft werden. Dadurch ist
+                                das Teilen von Beispielweise Drohnen ein Kinderspiel.
                             </div>
                         </div>
 
                     </div>
 
                     <div className={RekariStyle.CenterSection}>
-                        <div className={RekariStyle.missionGeneratorHeadline}>Mission-Generatoren</div>
+                        <div className={RekariStyle.missionGeneratorHeadline}>Missionen</div>
+                        <div className={RekariStyle.centerSectionExplain}>Durch Missionen kann eine Flugroute schon vor der dem Einsatz bis ins kleinste Detail geplant werden. Dadurch kann sichergestellt werden, dass die Drohne genau so fliegt, wie es gewünscht ist. Außerdem gibt es die Möglichkeit, zu jedem Wegpunkt individuell verschiedene Parameter, wie zum Beispiel die Flughöhe festzulegen. Auch kann genau festgelegt werden, was nach der Mission passieren soll. Möglich ist, die Drohne nach dem Abschließen des Flugmanövers an einem bestimmten Punkt laden zu lassen.</div>
 
-                        <div className={RekariStyle.missionGeneratorExplain}>
+
+                        <div className={RekariStyle.sectionHeader+" "+RekariStyle.missionGeneratorSpace}>Mission-Generatoren</div>
+                        <div className={RekariStyle.centerSectionExplain}>
                             Durch die Mission-Generatoren kann durch nur das einfache Umrahmen des Feldes eine Mission
                             generiert werden.
                             Dabei berechnet unser intelligenter Algorithmus völlig automatisch die optimale Mission.
-                            Der Algorithmus kann direkt hier getestet werden. Dafür einfach auf der Karte zu einem Feld zoomen und an den Ecken des Feldes mit der rechten Maustaste Punkte setzen.
+                            Der Algorithmus kann direkt hier getestet werden. Dafür einfach auf der Karte zu einem Feld
+                            zoomen und an den Ecken des Feldes mit der rechten Maustaste Punkte setzen.
                             Anschließend muss nur mit dem Klick auf <q>Anwenden</q> der Prozess gestartet werden.
                         </div>
 
@@ -214,27 +220,31 @@ class Rekari extends Component {
 
                                 {
                                     this.state.generatedTestMission ?
-                                       <> <TestMissionGeneratorResultViewer style={{
-                                           height: '80%',
-                                           width: '100%',
-                                           userSelect: 'none',
-                                           borderRadius: '15px',
-                                           overflow: 'hidden'
+                                        <> <TestMissionGeneratorResultViewer style={{
+                                            height: '80%',
+                                            width: '100%',
+                                            userSelect: 'none',
+                                            borderRadius: '15px',
+                                            overflow: 'hidden'
 
-                                       }}
-                                                                            mission={this.state.generatedTestMission}/>
-                                       <div style={{
-                                           marginTop: "30px",
+                                        }}
+                                                                             mission={this.state.generatedTestMission}/>
+                                            <div style={{
+                                                marginTop: "30px",
 
-                                           padding: "10px",
-                                           paddingLeft: "20px",
-                                           paddingRight: "20px",
+                                                padding: "10px",
+                                                paddingLeft: "20px",
+                                                paddingRight: "20px",
 
-                                           backgroundColor: "#0088a9",
-                                           cursor: "pointer",
-                                           borderRadius: "5px"
+                                                backgroundColor: "#0088a9",
+                                                cursor: "pointer",
+                                                borderRadius: "5px"
 
-                                       }} onClick={()=>{this.setState({generatedTestMission:null})}}>Zurück</div></>
+                                            }} onClick={() => {
+                                                this.setState({generatedTestMission: null});
+                                            }}>Zurück
+                                            </div>
+                                        </>
                                         :
 
                                         <ZigZagMap style={{
@@ -266,44 +276,234 @@ class Rekari extends Component {
 
                     </div>
 
+                    <div className={RekariStyle.CenterSection}>
+
+                        <div className={RekariStyle.sectionHeader}>Sofortiges Speichern von Bildern</div>
+
+
+                        <img className={RekariStyle.SaveSectionImage} src={"/rekari/heatmap.gif"}/>
+
+                        <div className={RekariStyle.centerSectionExplain}>Während dem Flug der Drohne werden sämtliche erstellten Bilder in Abhängigkeit der aktuellen Position gespeichert.¹ Dadurch muss das Feld nur einmal überflogen werden, um aus den Bildern eine Karte zusammenzufügen.² So ist mit einer Akku-Ladung das Überfliegen von einem größeren Bereich möglich.</div>
+
+
+                    </div>
+
+                    <div className={RekariStyle.CenterSection}>
+
+                        <div className={RekariStyle.demoVideoSectionHeader}>Demo-Video</div>
+
+                        <div className={RekariStyle.demoVideo}><ReactPlayer controls={true} style={{minWidth: "100%",minHeight: "100%",maxWidth: "100%"}} url="https://www.youtube.com/watch?v=bKyheLg-D0g"/></div>
+
+                    </div>
+
+
+                    <div className={RekariStyle.partnerSectionHeader}>Unsere Partner</div>
+
+                    <div className={RekariStyle.section}>
+                        <div className={RekariStyle.sectionPart}>
+
+                            <div className={RekariStyle.sectionHeader}>u-blox</div>
+
+                            <div className={RekariStyle.sectionExplain}>
+
+                                Mit u-blox hatten wir einen starken Partner an der Seite. Mit Ihren branchenführenden
+                                Sensoren konnten wir präzise und verlässlich eine Kommunikation herstellen und die
+                                aktuellen Koordinaten der Drohne ermitteln. Dank u-blox war es uns möglich die Drohne
+                                auf bis zu einem Meter genau zu orten. Eine bessere Wahl als die Sensoren von u-blox
+                                hätten wir nicht treffen können. Vielen Dank an unseren Partner u-blox.
+
+                            </div>
+
+                        </div>
+                        <div className={RekariStyle.sectionPart}>
+
+                            <img src={"/rekari/ublox.svg"} alt={"Ublox Logo"} className={RekariStyle.ubloxLogo}></img>
+
+                        </div>
+
+
+                    </div>
+
+                    <div className={RekariStyle.section}>
+                        <div className={RekariStyle.sectionPart}>
+
+
+                            <img src={"/rekari/productware.png"} alt={"Productware Logo"}
+                                 className={RekariStyle.productwareLogo}></img>
+
+                        </div>
+                        <div className={RekariStyle.sectionPart}>
+
+                            <div className={RekariStyle.sectionHeader}>Productware</div>
+
+                            <div className={RekariStyle.sectionExplain}>
+
+                                Productware an unserer Seite hat uns geholfen, dass wir die Flight-Controller schnell
+                                und unkompliziert, mit ausgezeichneter Qualität bestücken lassen konnten. Dabei waren
+                                wir überrascht, wie schnell Productware es geschafft hat, unsere verwendeten Bauteile
+                                auf Lieferbarkeit und Lebenszyklus zu prüfen. Ihr kompetentes Team hat es dadurch
+                                geschafft, dass wir unseren Prototypen schnell testen konnten. Vielen Dank an das Team
+                                von Productware.
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div className={RekariStyle.section}>
+                        <div className={RekariStyle.sectionPart}>
+
+                            <div className={RekariStyle.sectionHeader}>Rohde & Schwarz</div>
+
+                            <div className={RekariStyle.sectionExplain}>
+
+                                Unser Partner Rohde & Schwarz hat uns mit der Bereitstellung eines
+                                Qualitäts-Oszilloskops geholfen, viele Fehler schnell und einfach zu finden. Durch die
+                                vielen Möglichkeiten der Analyse, konnten wir schnell unsere Daten-Busse auslesen. Auch
+                                hat uns sehr gefreut, dass das Oszilloskop nach dem Projekt einer größeren Gruppe von
+                                technikinteressierten jungen Menschen zur Verfügung steht. Vielen Dank an das Team von
+                                Rohde & Schwarz.
+                            </div>
+
+                        </div>
+                        <div className={RekariStyle.sectionPart}>
+
+                            <img src={"/rekari/rohdeundschwarz.svg"} alt={"Rohde & Schwarz Logo"}
+                                 className={RekariStyle.rohdeundschwarz}></img>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div className={RekariStyle.CenterSection}>
+
+                        <div className={RekariStyle.aboutUsHeader}>
+                            Über uns
+                        </div>
+
+                        <div className={RekariStyle.aboutUsSection}>
+                            <div className={RekariStyle.aboutUseImage}></div>
+                            <div className={RekariStyle.aboutUseText}>Wir sind Tim und Felix, gemeinsam hatten wir die Idee eine Drohne von Grund auf selbst zu entwickeln. Unsere Interesse streuen sich breit über den Einsatz von modernen Technologien. Nachdem wir bereits im Jahr 2021 bei JugendForscht erfolgreich teilgenommen haben, ist dieses Projekt aufbauend auf der Erfahrung des vergangenen Jahres eine weitere JugendForscht Teilnahme. Aber auch darüber hinaus erproben wir weitere Einsatzgebiete von spezialisierten Drohnen.</div>
+                        </div>
+
+                    </div>
+
+                    <div className={RekariStyle.CenterSection}>
+
+
+                        <div className={RekariStyle.sectionHeader}>Jetzt Kontakt aufnehmen</div>
+
+                        <form id="form" className={RekariStyle.contactForm}>
+                            <div className={RekariStyle.formPersonalInformation}>
+                                <input className={RekariStyle.formInput} type="text" id="name" placeholder="Name"
+                                       required/>
+                                <input className={RekariStyle.formInput} type="email" id="email" placeholder="E-Mail"
+                                       required/>
+                            </div>
+
+                            <textarea className={RekariStyle.formTextarea} id="message" placeholder="Nachricht"
+                                      required/>
+
+                            <button type="submit" className={RekariStyle.formButton}>Senden</button>
+
+
+                        </form>
+
+
+                    </div>
+
+
+                    <div className={RekariStyle.CenterSection}>
+
+                        <div className={RekariStyle.footnote}>
+                           ¹ Dieses Feature befindet sich aktuell noch in der Entwicklungsphase
+                        </div>
+                        <div className={RekariStyle.footnote}>
+                            ² Darstellung der Wärmebildkamera-Aufnahme entspricht nicht der Funktionsweise einer realen Wärmebildkamera
+                        </div> <div className={RekariStyle.footnote}>
+
+                        </div>
+
+                        <div className={RekariStyle.copyright}>
+                           Design und Programmierung der Website: Tim Arnold
+                        </div>
+
+                     <div className={RekariStyle.copyright}>
+                        © 2022 Tim & Felix - Rekari
+                        </div>
+
+
+                    </div>
+
+
+
 
                 </div>
 
 
                 <div className={RekariStyle.footer}>
                     <div className={RekariStyle.footerWrapper}>
-                    <div className={RekariStyle.footerSection}>
-                        <div className={RekariStyle.footerSectionHeadline}>Über uns</div>
-                        <div className={RekariStyle.footerSectionElement} onClick={()=>{window.open("https://github.com/coder246",'_blank')}}>Github (Tim)</div>
-                        <div className={RekariStyle.footerSectionElement} onClick={()=>{window.open("https://github.com/felixpc",'_blank')}}>Github (Felix)</div>
-                        <div className={RekariStyle.footerSectionElement} onClick={()=>{window.open("https://github.com/ft-cloud/Documentation/wiki",'_blank')}}>Dokumentation</div>
+                        <div className={RekariStyle.footerSection}>
+                            <div className={RekariStyle.footerSectionHeadline}>Über uns</div>
+                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                                window.open("https://github.com/coder246", '_blank');
+                            }}>Github (Tim)
+                            </div>
+                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                                window.open("https://github.com/felixpc", '_blank');
+                            }}>Github (Felix)
+                            </div>
+                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                                window.open("https://github.com/ft-cloud/Documentation/wiki", '_blank');
+                            }}>Dokumentation
+                            </div>
 
-                    </div>
+                        </div>
 
                         <div className={RekariStyle.seperator}/>
 
-                    <div className={RekariStyle.footerSection}>
-                        <div className={RekariStyle.footerSectionHeadline}>Andere Projekte</div>
-                        <div className={RekariStyle.footerSectionElement} onClick={()=>{window.open("https://github.com/ft-ki/ekes",'_blank')}}>EKES - Simulation</div>
-                        <div className={RekariStyle.footerSectionElement} onClick={()=>{window.open("https://www.jugend-forscht-bayern.de/landeswettbewerb-bayern/landeswettbewerb-jugend-forscht/projekte/mathematik-informatik/EKES%20-%20Einfache%20KI-basierte%20Evolutions-Simulation",'_blank')}}>JugendForscht 2021</div>
-                        <div className={RekariStyle.footerSectionElement} onClick={()=>{window.open("https://github.com/ledtisch",'_blank')}}>Interaktiver LEDTisch</div>
+                        <div className={RekariStyle.footerSection}>
+                            <div className={RekariStyle.footerSectionHeadline}>Andere Projekte</div>
+                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                                window.open("https://github.com/ft-ki/ekes", '_blank');
+                            }}>EKES - Simulation
+                            </div>
+                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                                window.open("https://www.jugend-forscht-bayern.de/landeswettbewerb-bayern/landeswettbewerb-jugend-forscht/projekte/mathematik-informatik/EKES%20-%20Einfache%20KI-basierte%20Evolutions-Simulation", '_blank');
+                            }}>JugendForscht 2021
+                            </div>
+                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                                window.open("https://github.com/ledtisch", '_blank');
+                            }}>Interaktiver LEDTisch
+                            </div>
 
-                    </div>
+                        </div>
 
                         <div className={RekariStyle.seperator}/>
 
 
                         <div className={RekariStyle.footerSection}>
-                        <div className={RekariStyle.footerSectionHeadline}>Informationen</div>
+                            <div className={RekariStyle.footerSectionHeadline}>Informationen</div>
 
-                            <div className={RekariStyle.footerSectionElement} onClick={()=>{window.open("#",'_blank')}}>Impressum</div>
-                            <div className={RekariStyle.footerSectionElement} onClick={()=>{window.open("#",'_blank')}}>Datenschutz</div>
+                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                                window.open("#", '_blank');
+                            }}>Press Kit
+                            </div>
+                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                                window.open("#", '_blank');
+                            }}>Impressum
+                            </div>
+                            <div className={RekariStyle.footerSectionElement} onClick={() => {
+                                window.open("#", '_blank');
+                            }}>Datenschutz
+                            </div>
 
 
-                    </div>
+                        </div>
                     </div>
                 </div>
-
 
 
             </>

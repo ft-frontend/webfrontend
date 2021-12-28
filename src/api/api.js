@@ -176,12 +176,10 @@ const api = {
             });
             fetch(backend + `/v1/auth/signup`, post).then(res => res.json()).then(result => {
                 if (result.success) {
-                    cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
-                    this.getAccountSettings(true);
+                   // cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
 
                     resolve({
                         success: true,
-                        session: result.session
                     });
                 } else {
                     resolve({

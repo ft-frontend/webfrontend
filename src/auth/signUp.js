@@ -6,8 +6,10 @@ import signInStyle from "./sign.module.css";
 class SignUp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: '',redirect: false,url: ''};
-        api.checkSession().then(r => { if(r) window.location.replace("/dashboard");})
+        this.state = {value: '', hasSignedUp: false, url: ''};
+        api.checkSession().then(r => {
+            if (r) window.location.replace("/dashboard");
+        });
 
         this.handleChangeUser = this.handleChangeUser.bind(this);
         this.handleChangePass = this.handleChangePass.bind(this);
@@ -18,35 +20,47 @@ class SignUp extends React.Component {
     handleChangePass(event) {
         this.setState({password: event.target.value});
     }
+
     handleChangeUser(event) {
         this.setState({name: event.target.value});
     }
+
     handleChangeEmail(event) {
         this.setState({email: event.target.value});
     }
 
     handleSubmit(event) {
 
-        api.signUp(this.state.name,this.state.email,this.state.password).then(result => {
-            if(result.success) {
+        api.signUp(this.state.name, this.state.email, this.state.password).then(result => {
+            if (result.success) {
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString);
-                this.setState({redirect: true,url:  urlParams.get('redirect')})
+                this.setState({hasSignedUp: true, url: urlParams.get('redirect')});
 
-            }else{
-                console.log(result.errorCode)
+            } else {
+                console.log(result.errorCode);
                 this.setState({error: api.parseError(result.errorCode)});
             }
-        })
+        });
         event.preventDefault();
     }
 
     render() {
-        const { redirect } = this.state;
+        const {hasSignedUp} = this.state;
 
-        if (redirect) {
-            return <Redirect to={this.state.url}/>;
-        }else {
+        if (hasSignedUp) {
+            return (<div className={signInStyle.loginBackground}>
+
+                    <div className={signInStyle.signinform}>
+
+                        <h1>Registrieren</h1>
+                        <p style={{color: "#fff"}}>Abgeschlossen. Bitte Verifizieren deine Email über den Link in deinem Postfach</p>
+                        <a style={{color: "#fff",textDecoration: "none"}} href={"/auth/signin?redirect=" + this.state.url}>Zum Login</a>
+                    </div>
+
+                </div>
+            );
+        } else {
 
             return (
 
@@ -61,15 +75,16 @@ class SignUp extends React.Component {
 
                         <input type="password" placeholder="Passwort" onChange={this.handleChangePass}/>
 
-                        <button type='submit'>Registrieren</button>
+                        <button type="submit">Registrieren</button>
 
                         <p className={signInStyle.errorlable}>{this.state.error}</p>
 
                     </form>
                 </div>
 
-            )
+            );
         }
     }
 }
+
 export default SignUp;
