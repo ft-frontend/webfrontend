@@ -168,7 +168,7 @@ class Rekari extends Component {
                         </div>
 
                         <div className={RekariStyle.sectionPart}>
-                            <img className={RekariStyle.accountSystemImg} src={"/rekari/accountSystem.png"}
+                            <img className={RekariStyle.accountSystemImg} src={"/rekariAssets/accountSystem.png"}
                                  alt={"Account Verwaltung"}/>
                         </div>
 
@@ -178,7 +178,7 @@ class Rekari extends Component {
                     <div className={RekariStyle.section}>
 
                         <div className={RekariStyle.sectionPart}>
-                            <img className={RekariStyle.accountSystemImg} src={"/rekari/deviceControl.png"}
+                            <img className={RekariStyle.accountSystemImg} src={"/rekariAssets/deviceControl.png"}
                                  alt={"Gerät Verwaltung"}/>
                         </div>
 
@@ -281,7 +281,7 @@ class Rekari extends Component {
                         <div className={RekariStyle.sectionHeader}>Sofortiges Speichern von Bildern</div>
 
 
-                        <img className={RekariStyle.SaveSectionImage} src={"/rekari/heatmap.gif"}/>
+                        <img className={RekariStyle.SaveSectionImage} src={"/rekariAssets/heatmap.gif"}/>
 
                         <div className={RekariStyle.centerSectionExplain}>Während dem Flug der Drohne werden sämtliche erstellten Bilder in Abhängigkeit der aktuellen Position gespeichert.¹ Dadurch muss das Feld nur einmal überflogen werden, um aus den Bildern eine Karte zusammenzufügen.² So ist mit einer Akku-Ladung das Überfliegen von einem größeren Bereich möglich.</div>
 
@@ -317,7 +317,7 @@ class Rekari extends Component {
                         </div>
                         <div className={RekariStyle.sectionPart}>
 
-                            <img src={"/rekari/ublox.svg"} alt={"Ublox Logo"} className={RekariStyle.ubloxLogo}></img>
+                            <img src={"/rekariAssets/ublox.svg"} alt={"Ublox Logo"} className={RekariStyle.ubloxLogo}></img>
 
                         </div>
 
@@ -328,7 +328,7 @@ class Rekari extends Component {
                         <div className={RekariStyle.sectionPart}>
 
 
-                            <img src={"/rekari/productware.png"} alt={"Productware Logo"}
+                            <img src={"/rekariAssets/productware.png"} alt={"Productware Logo"}
                                  className={RekariStyle.productwareLogo}></img>
 
                         </div>
@@ -368,7 +368,7 @@ class Rekari extends Component {
                         </div>
                         <div className={RekariStyle.sectionPart}>
 
-                            <img src={"/rekari/rohdeundschwarz.svg"} alt={"Rohde & Schwarz Logo"}
+                            <img src={"/rekariAssets/rohdeundschwarz.svg"} alt={"Rohde & Schwarz Logo"}
                                  className={RekariStyle.rohdeundschwarz}></img>
 
                         </div>
