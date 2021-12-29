@@ -53,28 +53,28 @@ function parseError(errorCode) {
         case "002":
             return i18next.t("error_2");
             break;
-            case "004":
+        case "004":
             return i18next.t("error_4");
             break;
-            case "005":
+        case "005":
             return i18next.t("error_5");
             break;
-            case "006":
+        case "006":
             return i18next.t("error_6");
             break;
-            case "010":
+        case "010":
             return i18next.t("error_10");
             break;
-            case "011":
+        case "011":
             return i18next.t("error_11");
             break;
-            case "012":
+        case "012":
             return i18next.t("error_12");
             break;
-            case "013":
+        case "013":
             return i18next.t("error_13");
             break;
-            case "014":
+        case "014":
             return i18next.t("error_14");
             break;
     }
@@ -90,7 +90,7 @@ const api = {
                 resolve(false);
             } else {
                 fetch(backend + `/v1/auth/validateSession?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
-                    if(!result.success) {
+                    if (!result.success) {
                         cookies.remove('session', {path: '/'});
                     }
                     resolve(result.success);
@@ -101,8 +101,8 @@ const api = {
     },
 
     setSession: function (session) {
-        return new Promise((resolve)=>{
-            cookies.set('session', session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
+        return new Promise((resolve) => {
+            cookies.set('session', session, {path: '/', expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14)});
             this.checkSession().then(isSessionValid => {
                 this.getAccountSettings(true);
 
@@ -111,7 +111,7 @@ const api = {
 
         })
     },
-    signIn: function (eorn, password,totpToken, sessionTime=30) {
+    signIn: function (eorn, password, totpToken, sessionTime = 30) {
         return new Promise((resolve, reject) => {
             post.body = JSON.stringify({
                 eorn: eorn,
@@ -123,7 +123,10 @@ const api = {
 
             fetch(backend + `/v1/auth/signin`, post).then(res => res.json()).then(result => {
                 if (!result.error) {
-                    cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
+                    cookies.set('session', result.session, {
+                        path: '/',
+                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14)
+                    });
                     this.getAccountSettings(true);
 
                     resolve({
@@ -176,7 +179,7 @@ const api = {
             });
             fetch(backend + `/v1/auth/signup`, post).then(res => res.json()).then(result => {
                 if (result.success) {
-                   // cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
+                    // cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
 
                     resolve({
                         success: true,
@@ -195,8 +198,8 @@ const api = {
 
     },
 
-    checkTOTPEnabled: function() {
-        return new Promise((resolve,reject) =>{
+    checkTOTPEnabled: function () {
+        return new Promise((resolve, reject) => {
 
             if (cookies.get('session') === undefined) {
                 redirectToLogin();
@@ -251,7 +254,7 @@ const api = {
 
         });
     },
-    isSessionCookieAvailable: function() {
+    isSessionCookieAvailable: function () {
         return cookies.get('session') !== undefined;
     },
 
@@ -267,7 +270,7 @@ const api = {
                     device: deviceUUID,
                     newName: newName
                 });
-                fetch(backend + `/v1/device/changeDeviceName`,post).then(res => res.json()).then(result => {
+                fetch(backend + `/v1/device/changeDeviceName`, post).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;
@@ -312,7 +315,7 @@ const api = {
                     regCode: regCode,
                     deviceName: "New Device"
                 });
-                fetch(backend + `/v2/regDevice/registerByCode`,post).then(res => res.json()).then(result => {
+                fetch(backend + `/v2/regDevice/registerByCode`, post).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;
@@ -358,10 +361,10 @@ const api = {
                     });
                     return;
                 }
-            }else{
+            } else {
                 this.getUserAccountInfo().then((res) => {
                     console.log(res);
-                    window.localStorage.setItem("username",res.name);
+                    window.localStorage.setItem("username", res.name);
                 })
             }
 
@@ -411,9 +414,9 @@ const api = {
                         return;
                     }
 
-                        resolve({
-                            success: result.success
-                        });
+                    resolve({
+                        success: result.success
+                    });
 
 
                 });
@@ -752,7 +755,7 @@ const api = {
         redirect = redirectToLogin;
     },
 
-    isUserAdmin: function() {
+    isUserAdmin: function () {
         return new Promise((resolve, reject) => {
 
             if (cookies.get('session') === undefined) {
@@ -781,7 +784,7 @@ const api = {
 
         });
     },
-    getUserAccountInfo: function() {
+    getUserAccountInfo: function () {
         return new Promise((resolve, reject) => {
 
             if (cookies.get('session') === undefined) {
@@ -794,7 +797,7 @@ const api = {
                         resolve({result: false});
                         return;
                     }
-                        resolve(result);
+                    resolve(result);
                 });
             }
 
@@ -816,7 +819,7 @@ const api = {
                         resolve(result);
                         return;
                     }
-                        resolve(result);
+                    resolve(result);
 
 
                 });
@@ -839,7 +842,7 @@ const api = {
                         return;
                     }
 
-                  resolve({valid:result.valid,googleResponse: result.googleResponse});
+                    resolve({valid: result.valid, googleResponse: result.googleResponse});
                 });
             }
 
@@ -897,7 +900,10 @@ const api = {
 
             fetch(backend + `/v1/auth/startSessionWithGoogle`, post).then(res => res.json()).then(result => {
                 if (!result.error) {
-                    cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
+                    cookies.set('session', result.session, {
+                        path: '/',
+                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14)
+                    });
                     this.getAccountSettings(true);
 
                     resolve({
@@ -943,17 +949,17 @@ const api = {
     missionGeneratorZigZag: function (polygon) {
         return new Promise((resolve, reject) => {
 
-                post.body = JSON.stringify({
-                    jsonpolygon: polygon,
+            post.body = JSON.stringify({
+                jsonpolygon: polygon,
 
-                });
-                fetch(backend + `/v1/drone/missionGeneratorPolygonZigZagOverfly`, post).then(res => res.json()).then(result => {
-
-
-                    resolve(result);
+            });
+            fetch(backend + `/v1/drone/missionGeneratorPolygonZigZagOverfly`, post).then(res => res.json()).then(result => {
 
 
-                });
+                resolve(result);
+
+
+            });
 
 
         });
@@ -967,7 +973,7 @@ const api = {
         if (cookies.get('session') === undefined) {
             return "";
         } else {
-            return backend+"/v1/usercontent/profilePicture?session="+cookies.get('session');
+            return backend + "/v1/usercontent/profilePicture?session=" + cookies.get('session');
         }
     },
 
@@ -975,7 +981,7 @@ const api = {
         if (cookies.get('session') === undefined) {
             return "";
         } else {
-            return backend+"/v1/account/getTOTPSecret?session="+cookies.get('session');
+            return backend + "/v1/account/getTOTPSecret?session=" + cookies.get('session');
         }
     },
 
@@ -988,28 +994,24 @@ const api = {
             } else {
 
                 const fd = new FormData();
-                fd.append('session',cookies.get('session'));
-                fd.append("profilePicture",imageBlob)
-
+                fd.append('session', cookies.get('session'));
+                fd.append("profilePicture", imageBlob)
 
 
                 $.ajax({
                     type: 'POST',
-                    url: backend+"/v1/usercontent/profilePicture",
+                    url: backend + "/v1/usercontent/profilePicture",
                     data: fd,
                     processData: false,
                     contentType: false
-                }).done(function(){
+                }).done(function () {
                     resolve(true);
                 })
-
-
 
 
             }
 
         });
-
 
 
     },
@@ -1034,15 +1036,15 @@ const api = {
         });
     },
 
-    moveCloudResourceTo(sourcePath,resource,target) {
+    moveCloudResourceTo(sourcePath, resource, target) {
         return new Promise((resolve, reject) => {
             if (cookies.get('session') === undefined) {
                 resolve(false);
             } else {
                 patch.body = JSON.stringify({
                     absoluteSourcePath: sourcePath,
-                    resourceName:resource,
-                    absoluteTargetPath:target,
+                    resourceName: resource,
+                    absoluteTargetPath: target,
                     session: cookies.get('session'),
 
                 });
@@ -1060,14 +1062,14 @@ const api = {
 
         });
     },
-    createCloudFolder(path,folderName) {
+    createCloudFolder(path, folderName) {
         return new Promise((resolve, reject) => {
             if (cookies.get('session') === undefined) {
                 resolve(false);
             } else {
                 put.body = JSON.stringify({
                     absolutePath: path,
-                    folderName:folderName,
+                    folderName: folderName,
                     session: cookies.get('session'),
 
                 });
@@ -1086,7 +1088,7 @@ const api = {
         });
     },
 
-    uploadCloudFile(path,file) {
+    uploadCloudFile(path, file) {
 
 
         return new Promise((resolve, reject) => {
@@ -1095,31 +1097,27 @@ const api = {
             } else {
 
                 const fd = new FormData();
-                fd.append('absolutePath',path);
-                fd.append('session',cookies.get('session'));
-                fd.append("file",file)
-
+                fd.append('absolutePath', path);
+                fd.append('session', cookies.get('session'));
+                fd.append("file", file)
 
 
                 $.ajax({
                     type: 'PUT',
-                    url: backend+"/v1/usercontent/cloud/resource",
+                    url: backend + "/v1/usercontent/cloud/resource",
                     data: fd,
                     processData: false,
                     contentType: false
-                }).done(function(){
+                }).done(function () {
                     resolve(true);
-                }).catch(function(err){
+                }).catch(function (err) {
                     resolve(false);
                 })
-
-
 
 
             }
 
         });
-
 
 
     },
@@ -1171,6 +1169,37 @@ const api = {
 
         });
     },
+
+    sendRekariMessage: function (name, email, message) {
+
+        return new Promise((resolve, reject) => {
+            post.body = JSON.stringify({
+                name: name,
+                email: email,
+                message: message
+            });
+
+            fetch(backend + `/v1/account/sendContact`, post).then(res => res.json()).then(result => {
+                if (!result.success) {
+                    resolve({
+                        success: false
+                    });
+                } else {
+                    resolve({
+                        success: true
+                    });
+                }
+            }).catch(err => {
+                resolve({
+                    success: false,
+                });
+            })
+
+
+        });
+
+
+    }
 
 };
 export default api;

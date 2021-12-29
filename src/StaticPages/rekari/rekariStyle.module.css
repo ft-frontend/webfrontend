@@ -84,11 +84,12 @@ max-width: 100%;
   width: 100%;
 
   background-color: #131514;
-  min-height: 50vh;
+  min-height: 30vh;
   text-align: start;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-content: center;
   justify-content: center;
 }
 
@@ -184,13 +185,6 @@ max-width: 100%;
 }
 
 
-.cloudSectionExplain {
-  color: #fff;
-  width: 80%;
-  line-height: 1.6em;
-  font-size: 1.2rem;
-  margin-top: 50px;
-}
 
 
 .centerSectionExplain {
@@ -198,7 +192,15 @@ max-width: 100%;
   width: 80%;
   line-height: 1.6em;
   font-size: 1.2rem;
-  margin-top: 10px;
+  margin-top: 25px;
+  text-align: center;
+}
+.centerSectionExplainMobil {
+  color: #fff;
+  width: 95%;
+  line-height: 1.6em;
+  font-size: 1.2rem;
+  margin-top: 25px;
   text-align: center;
 }
 
@@ -232,8 +234,7 @@ max-width: 100%;
 
 .accountSystemImg {
   width: 84%;
-  border-radius: 5px;
-  margin-left: -40px;
+  border-radius: 10px;
 }
 
 .missionGeneratorHeadline {
@@ -272,7 +273,7 @@ max-width: 100%;
 }
 .demoVideo {
   width: 70%;
-  height: 450px;
+  height: fit-content;
   margin-top: 30px;
   border-radius: 15px;
   overflow: hidden;
@@ -296,6 +297,7 @@ max-width: 100%;
   background-color: white;
   border-radius: 10px;
   padding: 10px;
+  align-self: center;
 }
 
 .productwareLogo {
@@ -364,7 +366,7 @@ max-width: 100%;
 
   max-width: 80%;
   margin-bottom: 100px;
-  min-width: 90%;
+  min-width: 50%;
 
 }
 
@@ -407,7 +409,7 @@ max-width: 100%;
 }
 .aboutUseTextMobile {
   color: #fff;
-  width: 50%;
+  width: 95%;
   margin-top: 10px;
   margin-bottom: 30px;
   line-height: 1.6em;
@@ -436,8 +438,15 @@ max-width: 100%;
 
 }
 
-.aboutSign {
 
+.contactFormMessage {
+  color: #fff;
+  width: 80%;
+  line-height: 1.6em;
+  font-size: 1.2rem;
+  margin-top: 25px;
+  margin-bottom: 100px;
+  text-align: center;
 }
 
 .footer {

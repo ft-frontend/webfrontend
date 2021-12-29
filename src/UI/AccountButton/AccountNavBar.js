@@ -31,11 +31,13 @@ class AccountNavBar extends Component {
     componentDidMount() {
         const obj = this;
         this.handler = function (e) {
-            if ($(e.target).closest("."+AccountButtonStyle.accountPopUp).length === 0&&$(e.target).closest("."+AccountButtonStyle.accountCircle).length === 0) {
-                obj.setState({
-                    showAccountPopUp: false
-                })
-
+            if(obj.state.showAccountPopUp) {
+                //TODO gar nicht schön!
+                if ((!$(e.target).hasClass(AccountButtonStyle.accountPopUp))&&(!$(e.target).hasClass(AccountButtonStyle.accountCircleImage))&&(!$(e.target).hasClass("ignoreDarkMode"))) {
+                    obj.setState({
+                        showAccountPopUp: false
+                    })
+                }
             }
         };
         $(document).on('click',  this.handler);
