@@ -57,11 +57,15 @@ class StaticPageUi extends Component {
         return <><NavBar renderElements={this.state.renderNavBar} links={[
             {
                 name: "Home",
-                link: "#"
+                link: "/"
             },
             {
                 name: "Software",
                 link: "https://www.github.com/ft-cloud"
+            },
+            {
+                name: "Rekari",
+                link: "/rekari"
             }
         ]} buttons={this.state.buttons}/>
             {

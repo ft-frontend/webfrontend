@@ -18,7 +18,10 @@ class Rekari extends Component {
             generatedTestMission: null,
             isDesktop: isDesktop,
             send: false,
-            sendPending: false
+            sendPending: false,
+            message: "",
+            name: "",
+            email: ""
         };
 
         window.onresize = () => {
@@ -44,6 +47,9 @@ class Rekari extends Component {
                     <p className={RekariStyle.subheading + " ignoreDarkMode"}>Durch das Rekari-System können Rehkitze
                         schneller gerettet
                         werden und die Helfer entlastet werden</p>
+
+
+
                 </div>
 
 
@@ -68,10 +74,9 @@ class Rekari extends Component {
                             <div className={RekariStyle.sectionHeader}>Autonome Flugdrohne</div>
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
-                                Mit dem Herzstück des Rekari-Systems überzeugt der selbstfliegende Quadrocopter mit
+                                Als Zentrum des Rekari-Systems überzeugt der selbstfliegende Quadrocopter mit
                                 intuitiven Features.
-                                Durch unseren eigens entwickelten, intelligenten Flugcontroller ist das Abfliegen des
-                                Feldes und das Kartograpieren der Umgebung kein Problem mehr.
+
                                 Dabei sorgt das robuste Design der Flugdrohne für eine hohe Leistungsfähigkeit und eine
                                 branchenführende Stabilität.
                             </div>
@@ -110,12 +115,10 @@ class Rekari extends Component {
 
                     </div>
 
-
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-
-
+                            <img className={RekariStyle.SaveSectionImage} src={"/rekariAssets/propeller.jpg"}></img>
                         </div>
 
 
@@ -126,8 +129,8 @@ class Rekari extends Component {
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
                                 Durch den Einsatz von großen Propellern kann die Drohne die Motordrehzahl reduzieren,
                                 und so die Flugzeit verlängern.
-                                Außerdem kann die Drohne so sichere Flüge durchführen, da durch die gewählten Propellern
-                                besser von Wind geschützt ist.
+                                Außerdem kann die Drohne so sicherere Flüge durchführen, da die gewählten Propeller
+                                besser gegen Winde und Turbulenzen ankommen.
 
                             </div>
 
@@ -137,29 +140,65 @@ class Rekari extends Component {
 
                     </div>
 
-                    {/* Cloud section*/}
-                    <div className={RekariStyle.CenterSection}>
+                    <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentAbove}>
 
-                        <div className={RekariStyle.cloudSectionHeader}>Intelligente Cloudanbindung</div>
+                        <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                        <div className={RekariStyle.cloudSectionIMG}>PlaceHolder IMG Connect</div>
 
-                        <div
-                            className={isDesktop ? RekariStyle.centerSectionExplain : RekariStyle.centerSectionExplainMobil}>
-                            Durch die sinnvolle Anbindung der Drohne an die Cloud, können Bild-Daten in Echtzeit
-                            ausgewertet werden.
-                            Des Weiteren kann die Mission zum Abfliegen des Feldes mit nur einem Klick auf die Drohne
-                            übertragen werden.
-                            Über die Cloud kann während der Rettung den Suchhelfern die erstelle Wärmebildkarte zur
-                            Verfügung gestellt werden.²
+                            <div className={RekariStyle.sectionHeader}>Intelligenter Flight-Controller</div>
+
+                            <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
+                                Der Flight-Controller ist das Herzstück einer jeden Drohne.
+                                Er steuert und stabilisiert die Drohne während des gesamten Fluges.
+                                Dadruch, dass wir unseren Flight-Controller von Grund auf neu entwickelt haben, können
+                                wir die Drohne intelligent und intuitive benutzbar machen.
+                                So ist das Abfliegen des Feldes und das Kartographieren der Umgebung kein Problem mehr.
+
+                            </div>
+
 
                         </div>
 
+
+                        <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
+
+                        <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
+
+                        </div>
+
+
+                        <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
+
+                            <div className={RekariStyle.sectionHeader}>Ausgefeilte Cloudanbindung</div>
+
+                            <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
+                                Durch die sinnvolle Anbindung der Drohne an die Cloud, können Bild-Daten in Echtzeit ausgewertet werden.
+                                Des Weiteren kann die Mission zum Abfliegen des Feldes mit nur einem Klick auf die Drohne übertragen werden. Über die Cloud kann während der Rettung den Suchhelfern die erstelle Wärmebildkarte zur Verfügung gestellt werden.²
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <div className={RekariStyle.CenterSection}>
+
+
                         <div className={RekariStyle.uiexplainheadline}>Intuitive Benutzeroberfläche</div>
-                        <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
+                        <div className={isDesktop ? RekariStyle.centerSectionExplain : RekariStyle.sectionExplainMobil}>
                             Wir haben alle Funktion der Cloud aus der Sicht des Benutzers integriert, um eine intuitive
                             und einfache Bedienung zu ermöglichen. Nur so lässt sich dieses System ohne lange
-                            Einweisungen in den vorhandenen Workflow einsetzen.
+                            Einweisungen in den vorhandenen Workflow einsetzen. Das System ist außerdem darauf ausgelegt, eine komplett Lösung zu sein. Damit lässt sich das umständliche Wechseln zwischen verschiedenen Lösungen vermeiden.
                         </div>
                     </div>
 
@@ -181,7 +220,7 @@ class Rekari extends Component {
                         </div>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.accountSystemImg} src={"/rekariAssets/accountSystem.png"}
+                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/accountSystem.png"}
                                  alt={"Account Verwaltung"}/>
                         </div>
 
@@ -191,7 +230,7 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.accountSystemImg} src={"/rekariAssets/deviceControl.png"}
+                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/deviceControl.png"}
                                  alt={"Gerät Verwaltung"}/>
                         </div>
 
@@ -206,6 +245,26 @@ class Rekari extends Component {
                                 Auch können Geräte im Cloudportal mit mehreren Benutzern verknüpft werden. Dadurch ist
                                 das Teilen von Beispielweise Drohnen ein Kinderspiel.
                             </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentAbove}>
+
+                        <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
+                            <div className={RekariStyle.sectionHeader}>Live-Steuerung</div>
+
+                            <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
+                                Durch den eigene Drohnen-Bereich in der Web-Oberfläche können alle Einstellungen und Parameter direkt online geändert werden.
+                                Außerdem kann der Status der Drohne und die aktuelle Position abgerufen werden. So ist es für jeden der Zugriff auf den Drohne ganz einfach zu überwachen, welche Aktion die Drohne aktuell durchführt.
+                            </div>
+                        </div>
+
+                        <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
+                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/droneControl.png"}
+                                 alt={"Gerät Verwaltung"}/>
                         </div>
 
                     </div>
@@ -480,8 +539,11 @@ class Rekari extends Component {
 
                                 <>{
                                     this.state.sendingSuccess ?
-                                        <div className={RekariStyle.contactFormMessage}>Erfolgreich gesendet. Vielen Dank für deine Nachricht. Wir werden uns so schnell wie möglich darum kümmern.</div> :
-                                        <div className={RekariStyle.contactFormMessage}>Unbekannter Sende-Fehler. Bitte versuche es später erneut.</div>
+                                        <div className={RekariStyle.contactFormMessage}>Erfolgreich gesendet. Vielen
+                                            Dank für deine Nachricht. Wir werden uns so schnell wie möglich darum
+                                            kümmern.</div> :
+                                        <div className={RekariStyle.contactFormMessage}>Unbekannter Sende-Fehler. Bitte
+                                            versuche es später erneut.</div>
 
                                 }
                                 </>
@@ -571,10 +633,7 @@ class Rekari extends Component {
                                 window.open("#", '_blank');
                             }}>Impressum
                             </div>*/}
-                            <div className={RekariStyle.footerSectionElement} onClick={() => {
-                                window.open("/privacyPolicy", '_blank');
-                            }}>Datenschutz
-                            </div>
+
 
 
                         </div>

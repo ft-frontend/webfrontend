@@ -18,6 +18,8 @@ max-width: 100%;
 
 }
 
+
+
 .headLine {
   font-weight: 500;
   line-height: 1.2;
@@ -40,6 +42,7 @@ max-width: 100%;
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
 
 }
 
@@ -48,6 +51,7 @@ max-width: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
 
 }
 
@@ -175,6 +179,7 @@ max-width: 100%;
   background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  margin-top: 50px;
 }
 
 .cloudSectionIMG {
@@ -232,10 +237,17 @@ max-width: 100%;
   -webkit-text-fill-color: transparent;
 }
 
-.accountSystemImg {
+.cloudImg {
   width: 84%;
   border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+
 }
+.cloudImg:hover {
+  transform: scale(1.01);
+}
+
+
 
 .missionGeneratorHeadline {
   font-size: clamp(1.875rem,1.5893rem + 1.4286vw,2.75rem);
