@@ -11,6 +11,14 @@ import StaticPageUi from "../StaticPageUI";
 
 class MainPage extends React.Component {
 
+    componentDidMount() {
+        if (window.location.hostname === "rekari.de") {
+            window.location.href = "/rekari";
+        }else{
+            window.location.href = "/home";
+
+        }
+    }
 
 
     render() {

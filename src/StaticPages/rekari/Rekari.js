@@ -9,6 +9,10 @@ import TestMissionGeneratorResultViewer
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import api from "../../api/api";
+import '@google/model-viewer/dist/model-viewer'
+import {BsWhatsapp,BsFacebook,BsTwitter,BsLinkedin} from "react-icons/bs";
+import {AiOutlineMail} from "react-icons/ai";
+
 
 class Rekari extends Component {
     constructor(props) {
@@ -41,14 +45,31 @@ class Rekari extends Component {
 
 
                 <div className={RekariStyle.headLineContainer}>
-                    <h1 className={RekariStyle.headLine + " ignoreDarkMode"}>Rekari</h1>
-                    <p className={RekariStyle.subheading + " ignoreDarkMode"}>Rehkitzrettung durch intelligente Drohnen
-                        neu durchdacht</p>
-                    <p className={RekariStyle.subheading + " ignoreDarkMode"}>Durch das Rekari-System können Rehkitze
-                        schneller gerettet
-                        werden und die Helfer entlastet werden</p>
+                    <div/>
+                    <div className={RekariStyle.headLineWrapper}>
+                        <h1 className={RekariStyle.headLine + " ignoreDarkMode"}>Rekari</h1>
+                        <p className={RekariStyle.subheading + " ignoreDarkMode"}>Rehkitzrettung durch intelligente
+                            Drohnen
+                            neu durchdacht</p>
+                        <p className={RekariStyle.subheading + " ignoreDarkMode"}>Durch das Rekari-System können
+                            Rehkitze
+                            schneller gerettet
+                            werden und die Helfer entlastet werden</p>
+
+                    </div>
+                    <div className={RekariStyle.headLineWrapper}>
+                        <p className={RekariStyle.subheadingMargin + " ignoreDarkMode"}>
+                            JugendForscht Projekt 2022 - Tim Arnold und Felix von Ludowig
+                        </p>
+
+                        <div className={RekariStyle.scrollDownInteractionReminder}>
 
 
+                            <span className={RekariStyle.firstScrollArrow}/>
+                            <span className={RekariStyle.secondScrollArrow}/>
+                            <span className={RekariStyle.thirdScrollArrow}/>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -62,8 +83,8 @@ class Rekari extends Component {
 
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <div className={RekariStyle.drone3dmodlefirstsection}> 3d Objekt
-                            </div>
+
+                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/drone.jpg"}></img>
 
 
                         </div>
@@ -109,6 +130,7 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
+                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/heat.png"}></img>
 
                         </div>
 
@@ -118,7 +140,7 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.SaveSectionImage} src={"/rekariAssets/propeller.jpg"}></img>
+                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/propeller.jpg"}></img>
                         </div>
 
 
@@ -162,7 +184,8 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-
+                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/fcpcb.png"}
+                                 alt={"Account Verwaltung"}/>
                         </div>
 
 
@@ -171,7 +194,8 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-
+                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/cloud.jpg"}
+                                 alt={"Account Verwaltung"}/>
                         </div>
 
 
@@ -180,8 +204,11 @@ class Rekari extends Component {
                             <div className={RekariStyle.sectionHeader}>Ausgefeilte Cloudanbindung</div>
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
-                                Durch die sinnvolle Anbindung der Drohne an die Cloud, können Bild-Daten in Echtzeit ausgewertet werden.
-                                Des Weiteren kann die Mission zum Abfliegen des Feldes mit nur einem Klick auf die Drohne übertragen werden. Über die Cloud kann während der Rettung den Suchhelfern die erstelle Wärmebildkarte zur Verfügung gestellt werden.²
+                                Durch die sinnvolle Anbindung der Drohne an die Cloud, können Bild-Daten in Echtzeit
+                                ausgewertet werden.
+                                Des Weiteren kann die Mission zum Abfliegen des Feldes mit nur einem Klick auf die
+                                Drohne übertragen werden. Über die Cloud kann während der Rettung den Suchhelfern die
+                                erstelle Wärmebildkarte zur Verfügung gestellt werden.²
 
                             </div>
 
@@ -198,7 +225,9 @@ class Rekari extends Component {
                         <div className={isDesktop ? RekariStyle.centerSectionExplain : RekariStyle.sectionExplainMobil}>
                             Wir haben alle Funktion der Cloud aus der Sicht des Benutzers integriert, um eine intuitive
                             und einfache Bedienung zu ermöglichen. Nur so lässt sich dieses System ohne lange
-                            Einweisungen in den vorhandenen Workflow einsetzen. Das System ist außerdem darauf ausgelegt, eine komplett Lösung zu sein. Damit lässt sich das umständliche Wechseln zwischen verschiedenen Lösungen vermeiden.
+                            Einweisungen in den vorhandenen Workflow einsetzen. Das System ist außerdem darauf
+                            ausgelegt, eine komplett Lösung zu sein. Damit lässt sich das umständliche Wechseln zwischen
+                            verschiedenen Lösungen vermeiden.
                         </div>
                     </div>
 
@@ -250,15 +279,17 @@ class Rekari extends Component {
                     </div>
 
 
-
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentAbove}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
                             <div className={RekariStyle.sectionHeader}>Live-Steuerung</div>
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
-                                Durch den eigene Drohnen-Bereich in der Web-Oberfläche können alle Einstellungen und Parameter direkt online geändert werden.
-                                Außerdem kann der Status der Drohne und die aktuelle Position abgerufen werden. So ist es für jeden der Zugriff auf den Drohne ganz einfach zu überwachen, welche Aktion die Drohne aktuell durchführt.
+                                Durch den eigene Drohnen-Bereich in der Web-Oberfläche können alle Einstellungen und
+                                Parameter direkt online geändert werden.
+                                Außerdem kann der Status der Drohne und die aktuelle Position abgerufen werden. So ist
+                                es für jeden der Zugriff auf den Drohne ganz einfach zu überwachen, welche Aktion die
+                                Drohne aktuell durchführt.
                             </div>
                         </div>
 
@@ -420,8 +451,10 @@ class Rekari extends Component {
                         </div>
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img src={"/rekariAssets/ublox.svg"} alt={"Ublox Logo"}
-                                 className={RekariStyle.ubloxLogo}></img>
+                            <img onClick={() => {
+                                window.open("https://www.u-blox.com/", '_blank');
+                            }} src={"/rekariAssets/ublox.svg"} alt={"Ublox Logo"}
+                                 className={RekariStyle.ubloxLogo}/>
 
                         </div>
 
@@ -432,7 +465,9 @@ class Rekari extends Component {
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
 
-                            <img src={"/rekariAssets/productware.png"} alt={"Productware Logo"}
+                            <img onClick={() => {
+                                window.open("https://productware.de/", '_blank');
+                            }} src={"/rekariAssets/productware.png"} alt={"Productware Logo"}
                                  className={RekariStyle.productwareLogo}></img>
 
                         </div>
@@ -472,7 +507,9 @@ class Rekari extends Component {
                         </div>
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img src={"/rekariAssets/rohdeundschwarz.svg"} alt={"Rohde & Schwarz Logo"}
+                            <img  onClick={() => {
+                                window.open("https://www.rohde-schwarz.com/", '_blank');
+                            }} src={"/rekariAssets/rohdeundschwarz.svg"} alt={"Rohde & Schwarz Logo"}
                                  className={RekariStyle.rohdeundschwarz}></img>
 
                         </div>
@@ -489,7 +526,13 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.aboutUsSection : RekariStyle.aboutUsSectionMobile}>
                             <div
-                                className={isDesktop ? RekariStyle.aboutUseImage : RekariStyle.aboutUsImageMobile}></div>
+                                className={isDesktop ? RekariStyle.aboutUseImage : RekariStyle.aboutUsImageMobile}>
+
+                                <img className={RekariStyle.aboutUsImageElement}
+                                     src={"/rekariAssets/standfoto.jpg"}></img>
+
+                            </div>
+
                             <div className={isDesktop ? RekariStyle.aboutUseText : RekariStyle.aboutUseTextMobile}>Wir
                                 sind Tim und Felix, gemeinsam hatten wir die Idee eine Drohne von Grund auf selbst zu
                                 entwickeln. Unsere Interesse streuen sich breit über den Einsatz von modernen
@@ -549,6 +592,22 @@ class Rekari extends Component {
                                 </>
                         }
 
+
+                    </div>
+
+                    <div className={RekariStyle.CenterSection}>
+
+                        <div className={RekariStyle.sectionHeader}>Teile dieses Projekt</div>
+
+                        <div className={RekariStyle.shareContainer}>
+
+                            <a href="whatsapp://send?text=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de" target="_blank" data-action="share/whatsapp/share" ><BsWhatsapp class={RekariStyle.whatsapp} onClick={()=>{}}></BsWhatsapp></a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frekari.de&title=Rekari%20JugendForscht%20Projekt" target="_blank"><BsLinkedin class={RekariStyle.linkedin}></BsLinkedin></a>
+                            <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Frekari.de" target="_blank"><BsFacebook class={RekariStyle.facebook}></BsFacebook></a>
+                            <a href="https://twitter.com/share?url=https%3A%2F%2Frekari.de&text=Rekari%20JugendForscht%20Projekt" target="_blank"><BsTwitter class={RekariStyle.twitter}></BsTwitter></a>
+                            <a href="mailto:?subject=Rekari%20JugendForscht%20Projekt&body=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de" target="_blank"><AiOutlineMail class={RekariStyle.mail}></AiOutlineMail></a>
+
+                        </div>
 
                     </div>
 
@@ -633,7 +692,6 @@ class Rekari extends Component {
                                 window.open("#", '_blank');
                             }}>Impressum
                             </div>*/}
-
 
 
                         </div>
