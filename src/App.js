@@ -29,7 +29,7 @@ import AdminDashboard from "./admin/adminDashboard";
 import SideBar from "./UI/SideBar/SideBar";
 import SettingsNavBar from "./settings/settingsNavBar";
 import SettingsPageWrapper from "./settings/pageWrapper/SettingsPageWrapper";
-import OAuthCallback from "./api/OAuthCallback";
+import AuthCallback from "./auth/AuthCallback";
 import SelectMissionOrCreateNewOne from "./module/drone/missionPlaner/missionGenerator/SelectMissionOrCreateNewOne";
 import SelectGenerator from "./module/drone/missionPlaner/missionGenerator/SelectGenerator";
 import ZigZagMap from "./module/drone/missionPlaner/missionGenerator/ZigZag/ZigZagMap";
@@ -195,7 +195,7 @@ function App() {
             <Route exact path="/auth/signInWithSession" component={SignInWithExistingSession}/>
             <Route exact path="/auth/signUp" component={signUp}/>
             <Route exact path="/auth/signOut" component={signOut}/>
-            <Route exact path="/auth/oauth" component={OAuthCallback}/>
+            <Route exact path="/auth/oauth" component={AuthCallback}/>
 
 
         </Router>

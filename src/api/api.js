@@ -4,7 +4,7 @@ import i18next from "i18next";
 import {config} from "react-transition-group";
 import $ from "jquery"
 
-const cookies = new Cookies();
+export const cookies = new Cookies();
 let backend = "https://api.arnold-tim.de/api";
 if (cookies.get('backend') !== undefined) {
     backend = cookies.get('backend');
@@ -1199,7 +1199,35 @@ const api = {
         });
 
 
-    }
+    },
+
+    addApiKey: function () {
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                });
+                fetch(backend + `/v1/auth/addAPIKey`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+
+                    resolve({
+                        success: true,
+                        apiKey: result.success
+                    });
+
+
+                });
+            }
+
+        });
+    },
+
 
 };
 export default api;

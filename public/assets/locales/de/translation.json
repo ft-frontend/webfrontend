@@ -57,6 +57,7 @@
   "direct_translation_language": "Sprache: ",
   "direct_translation_darkMode": "Darkmode",
   "direct_translation_authentication": "Authentifizierung",
+  "direct_translation_authorization": "Autorisierung",
   "direct_translation_disconnect": "Trennen",
   "direct_translation_zigzag": "ZickZack",
   "error_2": "Ein unerwartetes Problem ist aufgetreten",
@@ -91,7 +92,10 @@
   "direct_translation_disable": "Deaktivieren",
   "2fa_description": "Scanne den QR-Code mit deinem Smartphone und gibt den Code ein, um die Authentifizierung zu aktivieren. Dies ist eine Sicherheitsmaßnahme, um deine FT-Cloud-Daten zu schützen. Du kannst diese Funktion jederzeit deaktivieren.",
   "2fa_error": "Der Code ist falsch.",
-  "direct_translation_privacyPolicy": "Datenschutzerklärung"
+  "direct_translation_privacyPolicy": "Datenschutzerklärung",
+  "authorizationFailed": "Ein Fehler ist aufgetreten. Bitte schließe diese Seite und versuche es erneut.",
+  "allowAccess": "Zugriff erlauben",
+  "authorizationInfoText": "Eine Anwendung möchte auch deinen Account zugreifen. Wenn du nicht weißt, woher diese Anfrage kommt, schließe diese Seite."
 
 
 }

@@ -57,6 +57,7 @@
   "direct_translation_language": "Language: ",
   "direct_translation_darkMode": "Dark-Mode",
   "direct_translation_authentication": "Authentication",
+  "direct_translation_authorization": "Authorization",
   "direct_translation_disconnect": "Disconnect",
   "direct_translation_zigzag": "ZigZag",
   "error_2": "An unknown error occurred",
@@ -91,7 +92,10 @@
   "direct_translation_disable": "Disable",
   "2fa_description": "Scan this QR-Code with your Smartphone and type in the code to enable two factor authentication. This is a security feature to prevent unauthorized access to your account. You can disable it at any time.",
   "2fa_error": "The code you entered is not valid.",
-  "direct_translation_privacyPolicy": "Privacy Police"
+  "direct_translation_privacyPolicy": "Privacy Police",
+  "authorizationFailed": "An error occured. Please close this site and try again.",
+  "allowAccess": "Allow Access",
+  "authorizationInfoText": "An application wants to access your account. If you don't know where this request comes from, please close this site."
 
 
 }

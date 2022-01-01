@@ -84,7 +84,7 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/drone.jpg"}></img>
+                            <img alt={"Bild der Drohne"} className={RekariStyle.droneSectionIMG} src={"/rekariAssets/drone.webp"}></img>
 
 
                         </div>
@@ -130,7 +130,7 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/heat.png"}></img>
+                            <img alt="Heatmap" className={RekariStyle.droneSectionIMG} src={"/rekariAssets/heat.webp"}></img>
 
                         </div>
 
@@ -140,7 +140,7 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/propeller.jpg"}></img>
+                            <img alt="Bild der Propeller" className={RekariStyle.droneSectionIMG} src={"/rekariAssets/propeller.webp"}></img>
                         </div>
 
 
@@ -173,7 +173,7 @@ class Rekari extends Component {
                                 Der Flight-Controller ist das Herzstück einer jeden Drohne.
                                 Er steuert und stabilisiert die Drohne während des gesamten Fluges.
                                 Dadruch, dass wir unseren Flight-Controller von Grund auf neu entwickelt haben, können
-                                wir die Drohne intelligent und intuitive benutzbar machen.
+                                wir das Rekari-System intelligent und intuitive benutzbar machen.
                                 So ist das Abfliegen des Feldes und das Kartographieren der Umgebung kein Problem mehr.
 
                             </div>
@@ -184,7 +184,7 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/fcpcb.png"}
+                            <img alt="Bild des Flight-Controllers" className={RekariStyle.droneSectionIMG} src={"/rekariAssets/fcpcb.webp"}
                                  alt={"Account Verwaltung"}/>
                         </div>
 
@@ -194,7 +194,7 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.droneSectionIMG} src={"/rekariAssets/cloud.jpg"}
+                            <img alt="Cloud-Symbolbild" className={RekariStyle.droneSectionIMG} src={"/rekariAssets/cloud.webp"}
                                  alt={"Account Verwaltung"}/>
                         </div>
 
@@ -206,7 +206,7 @@ class Rekari extends Component {
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
                                 Durch die sinnvolle Anbindung der Drohne an die Cloud, können Bild-Daten in Echtzeit
                                 ausgewertet werden.
-                                Des Weiteren kann die Mission zum Abfliegen des Feldes mit nur einem Klick auf die
+                                Des Weiteren kann eine Mission zum Abfliegen des Feldes mit nur einem Klick auf die
                                 Drohne übertragen werden. Über die Cloud kann während der Rettung den Suchhelfern die
                                 erstelle Wärmebildkarte zur Verfügung gestellt werden.²
 
@@ -226,8 +226,8 @@ class Rekari extends Component {
                             Wir haben alle Funktion der Cloud aus der Sicht des Benutzers integriert, um eine intuitive
                             und einfache Bedienung zu ermöglichen. Nur so lässt sich dieses System ohne lange
                             Einweisungen in den vorhandenen Workflow einsetzen. Das System ist außerdem darauf
-                            ausgelegt, eine komplett Lösung zu sein. Damit lässt sich das umständliche Wechseln zwischen
-                            verschiedenen Lösungen vermeiden.
+                            ausgelegt, eine komplett Lösung zu sein. Dadurch lässt sich umständliches Wechseln zwischen
+                            verschiedenen Systemen vermeiden.
                         </div>
                     </div>
 
@@ -244,12 +244,12 @@ class Rekari extends Component {
                                 Auch kann die Drohne im Cloudportal verwaltet werden und Einstellungen vorgenommen
                                 werden.
                                 Zusätzlich kann jeder Account durch eine Zwei-Faktor-Authentifizierung gesichert
-                                werden.³
+                                werden.
                             </div>
                         </div>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/accountSystem.png"}
+                            <img  className={RekariStyle.cloudImg} src={"/rekariAssets/accountSystem.webp"}
                                  alt={"Account Verwaltung"}/>
                         </div>
 
@@ -259,7 +259,7 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/deviceControl.png"}
+                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/deviceControl.webp"}
                                  alt={"Gerät Verwaltung"}/>
                         </div>
 
@@ -288,14 +288,14 @@ class Rekari extends Component {
                                 Durch den eigene Drohnen-Bereich in der Web-Oberfläche können alle Einstellungen und
                                 Parameter direkt online geändert werden.
                                 Außerdem kann der Status der Drohne und die aktuelle Position abgerufen werden. So ist
-                                es für jeden der Zugriff auf den Drohne ganz einfach zu überwachen, welche Aktion die
-                                Drohne aktuell durchführt.
+                                es für jeden der Zugriff auf den Drohne hat, ganz einfach zu überwachen, welche Aktion die
+                                sie aktuell durchführt.
                             </div>
                         </div>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/droneControl.png"}
-                                 alt={"Gerät Verwaltung"}/>
+                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/droneControl.webp"}
+                                 alt={"Live-Steuerung"}/>
                         </div>
 
                     </div>
@@ -308,7 +308,7 @@ class Rekari extends Component {
                             werden. Dadurch kann sichergestellt werden, dass die Drohne genau so fliegt, wie es
                             gewünscht ist. Außerdem gibt es die Möglichkeit, zu jedem Wegpunkt individuell verschiedene
                             Parameter, wie zum Beispiel die Flughöhe festzulegen. Auch kann genau festgelegt werden, was
-                            nach der Mission passieren soll. Möglich ist, die Drohne nach dem Abschließen des
+                            nach der Mission passieren soll. Möglich ist, die Drohne nach dem Abschluss des
                             Flugmanövers an einem bestimmten Punkt laden zu lassen.
                         </div>
 
@@ -477,7 +477,7 @@ class Rekari extends Component {
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
 
-                                Productware an unserer Seite hat uns geholfen, dass wir die Flight-Controller schnell
+                                Productware als unser Partner hat uns geholfen, dass wir die Flight-Controller schnell
                                 und unkompliziert, mit ausgezeichneter Qualität bestücken lassen konnten. Dabei waren
                                 wir überrascht, wie schnell Productware es geschafft hat, unsere verwendeten Bauteile
                                 auf Lieferbarkeit und Lebenszyklus zu prüfen. Ihr kompetentes Team hat es dadurch
@@ -528,13 +528,13 @@ class Rekari extends Component {
                             <div
                                 className={isDesktop ? RekariStyle.aboutUseImage : RekariStyle.aboutUsImageMobile}>
 
-                                <img className={RekariStyle.aboutUsImageElement}
-                                     src={"/rekariAssets/standfoto.jpg"}></img>
+                                <img alt="Standfoto" className={RekariStyle.aboutUsImageElement}
+                                     src={"/rekariAssets/standfoto.webp"}></img>
 
                             </div>
 
                             <div className={isDesktop ? RekariStyle.aboutUseText : RekariStyle.aboutUseTextMobile}>Wir
-                                sind Tim und Felix, gemeinsam hatten wir die Idee eine Drohne von Grund auf selbst zu
+                                sind Tim und Felix. Gemeinsam hatten wir die Idee eine Drohne von Grund auf selbst zu
                                 entwickeln. Unsere Interesse streuen sich breit über den Einsatz von modernen
                                 Technologien. Nachdem wir bereits im Jahr 2021 bei JugendForscht erfolgreich
                                 teilgenommen haben, ist dieses Projekt aufbauend auf der Erfahrung des vergangenen
