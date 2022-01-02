@@ -136,8 +136,7 @@ const api = {
 
                     cookies.set('session', result.session, {
                         path: '/',
-                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14),
-                        domain: "."+currentDomain
+                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14)
                     });
                     this.getAccountSettings(true);
 
@@ -313,6 +312,7 @@ const api = {
     getAccountSettings: function (force) {
         return new Promise((resolve, reject) => {
 
+            console.log("load Account Name")
             if (!force) {
                 if (cookies.get("acsettings") !== undefined) {
                     resolve({
@@ -321,12 +321,16 @@ const api = {
                     });
                     return;
                 }
-                    this.getUserAccountInfo().then((res) => {
+                console.log("Get User name force")
+
+                this.getUserAccountInfo().then((res) => {
                         console.log(res);
                         window.localStorage.setItem("username", res.name);
                     })
 
             } else {
+                console.log("Get User name ")
+
                 this.getUserAccountInfo().then((res) => {
                     console.log(res);
                     window.localStorage.setItem("username", res.name);
