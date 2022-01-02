@@ -24,7 +24,9 @@ class Dashboard extends React.Component {
         api.checkSession().then(r => {
             this.setState({buttons:UserLoginButtonControl(r),renderNavBar:true})
             if(!r) {
-                window.location.href = "/auth/signin?redirect=" + window.location.pathname;
+                const currentDomain = document.domain.split('.').reverse().splice(0,2).reverse().join('.');
+
+                window.location.href=`https://login.${currentDomain}/auth/signin?redirect=https://${document.domain}:${window.location.port}${window.location.pathname}`
 
             }
         })

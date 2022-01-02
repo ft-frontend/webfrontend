@@ -19,8 +19,13 @@ class DroneNavBar extends Component {
 
 
     componentDidMount() {
-        const loc = window.location.pathname;
-        api.checkSession().then(r => { if(!r) window.location.href = "/auth/signin?redirect="+loc.substring(0, loc.length)
+        api.checkSession().then(r => {
+            if (!r) {
+
+            const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');
+
+            window.location.href = `https://login.${currentDomain}/auth/signin?redirect=https://${document.domain}:${window.location.port}${window.location.pathname}`
+        }
 
             this.setState({buttons:UserLoginButtonControl(r),renderNavBar:true})
         })

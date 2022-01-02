@@ -98,7 +98,7 @@ class AccountNavBar extends Component {
                     </div>
 
                     <div className={AccountButtonStyle.manageAccountButton} onClick={()=>window.location.href="/settings#4"}><p className={"ignoreDarkMode"}>{t('manageAccount')}</p></div>
-                    <div className={AccountButtonStyle.signOutButton} onClick={()=>window.location.href="/auth/signout"}>
+                    <div className={AccountButtonStyle.signOutButton} onClick={()=>{const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');window.location.href=`https://login.${currentDomain}/auth/signout`}}>
                         <p className={AccountButtonStyle.signOutButtonText+" ignoreDarkMode"}>{t('signOut')}</p>
                     </div>
 

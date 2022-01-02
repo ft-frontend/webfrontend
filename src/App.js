@@ -4,9 +4,7 @@ import MainPage from "./StaticPages/main/MainPage";
 import Dashboard from "./dashboard/dashboard";
 import dashboardHome from "./dashboard/dashboardHome";
 import dashboardDevice from "./dashboard/device/dashboardDevice";
-import signIn from "./auth/signIn";
-import signUp from "./auth/signUp";
-import signOut from "./auth/signOut";
+
 import LedWall from "./module/ledwall/ledwall";
 import Other from "./module/other/other";
 import DeviceSettings from "./dashboard/device/DeviceSettings";
@@ -29,18 +27,17 @@ import AdminDashboard from "./admin/adminDashboard";
 import SideBar from "./UI/SideBar/SideBar";
 import SettingsNavBar from "./settings/settingsNavBar";
 import SettingsPageWrapper from "./settings/pageWrapper/SettingsPageWrapper";
-import AuthCallback from "./auth/AuthCallback";
 import SelectMissionOrCreateNewOne from "./module/drone/missionPlaner/missionGenerator/SelectMissionOrCreateNewOne";
 import SelectGenerator from "./module/drone/missionPlaner/missionGenerator/SelectGenerator";
 import ZigZagMap from "./module/drone/missionPlaner/missionGenerator/ZigZag/ZigZagMap";
 import QuickActionsSelector from "./module/QuickActions/QuickActionsSelector";
 import MissionGeneratorResultViewer from "./module/drone/missionPlaner/missionGenerator/MissionGeneratorResultViewer";
-import SignInWithExistingSession from "./auth/signInWithExistingSession";
 import Cloud from "./module/cloud/cloud";
 import CloudFatalError from "./module/cloud/CloudFatalError/CloudFatalError";
 import Rekari from "./StaticPages/rekari/Rekari";
 import PrivacyPolicy from "./StaticPages/privacyPolicy/PrivacyPolicy";
 import Home from "./StaticPages/main/Home";
+import SignIn from "./auth/signIn";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
@@ -190,12 +187,10 @@ function App() {
 
             <Route path="/admin/meet" component={AdminMeet}/>
 
+            {/* Signin for local testing */}
 
-            <Route exact path="/auth/signIn" component={signIn}/>
-            <Route exact path="/auth/signInWithSession" component={SignInWithExistingSession}/>
-            <Route exact path="/auth/signUp" component={signUp}/>
-            <Route exact path="/auth/signOut" component={signOut}/>
-            <Route exact path="/auth/oauth" component={AuthCallback}/>
+            <Route exact path="/test/auth/signin" component={SignIn}></Route>
+
 
 
         </Router>

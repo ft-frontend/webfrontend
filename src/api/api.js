@@ -43,7 +43,12 @@ function checkErrorCodes(response) {
 
 function redirectToLogin() {
     if (redirect) {
-        window.location.href = "/auth/signin?redirect=" + window.location.pathname;
+
+        const currentDomain = document.domain.split('.').reverse().splice(0,2).reverse().join('.');
+
+        window.location.href=`https://login.${currentDomain}/auth/signin?redirect=https://${document.domain}:${window.location.port}${window.location.pathname}`
+
+
     }
 
 }
@@ -91,7 +96,9 @@ const api = {
             } else {
                 fetch(backend + `/v1/auth/validateSession?session=${cookies.get('session')}`).then(res => res.json()).then(result => {
                     if (!result.success) {
-                        cookies.remove('session', {path: '/'});
+                        const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');
+
+                        cookies.remove('session', {path: '/', domain:"."+currentDomain});
                     }
                     resolve(result.success);
                 });
@@ -102,7 +109,9 @@ const api = {
 
     setSession: function (session) {
         return new Promise((resolve) => {
-            cookies.set('session', session, {path: '/', expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14)});
+            const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');
+
+            cookies.set('session', session, {path: '/', expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14),domain:"."+currentDomain});
             this.checkSession().then(isSessionValid => {
                 this.getAccountSettings(true);
 
@@ -123,9 +132,12 @@ const api = {
 
             fetch(backend + `/v1/auth/signin`, post).then(res => res.json()).then(result => {
                 if (!result.error) {
+                    const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');
+
                     cookies.set('session', result.session, {
                         path: '/',
-                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14)
+                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14),
+                        domain: "."+currentDomain
                     });
                     this.getAccountSettings(true);
 
@@ -144,58 +156,6 @@ const api = {
 
 
         });
-    },
-    signOut: function () {
-        return new Promise((resolve, reject) => {
-            if (cookies.get('session') === undefined) {
-                resolve(false);
-            } else {
-                post.body = JSON.stringify({
-                    session: cookies.get('session'),
-                });
-                fetch(backend + `/v1/auth/signout`, post).then(res => res.json()).then(result => {
-                    cookies.remove('session', {path: '/'});
-                    cookies.remove('acsettings', {path: '/'});
-                    localStorage.removeItem('username');
-
-                    if (!result.error) {
-                        resolve(true);
-                    } else {
-                        resolve(false);
-                    }
-                });
-            }
-
-        });
-
-    },
-    signUp: function (username, email, password) {
-
-        return new Promise((resolve, reject) => {
-            post.body = JSON.stringify({
-                email: email,
-                password: password,
-                name: username
-            });
-            fetch(backend + `/v1/auth/signup`, post).then(res => res.json()).then(result => {
-                if (result.success) {
-                    // cookies.set('session', result.session, {path: '/',expires: new Date(Date.now()+1000*60*60*24*14)});
-
-                    resolve({
-                        success: true,
-                    });
-                } else {
-                    resolve({
-                        success: false,
-                        error: result.error,
-                        errorCode: result.errorcode
-                    });
-                }
-            });
-
-
-        });
-
     },
 
     checkTOTPEnabled: function () {
@@ -361,6 +321,11 @@ const api = {
                     });
                     return;
                 }
+                    this.getUserAccountInfo().then((res) => {
+                        console.log(res);
+                        window.localStorage.setItem("username", res.name);
+                    })
+
             } else {
                 this.getUserAccountInfo().then((res) => {
                     console.log(res);
@@ -387,7 +352,9 @@ const api = {
                             error: result.error
                         });
                     } else {
-                        cookies.set('acsettings', result, {path: '/'});
+                        const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');
+
+                        cookies.set('acsettings', result, {path: '/',domain:"."+currentDomain});
                         resolve({
                             success: true,
                             settings: result,
@@ -484,7 +451,9 @@ const api = {
     },
     setBackendAddress: function (backendAddress) {
         backend = backendAddress;
-        cookies.set('backend', backendAddress, {path: '/'});
+        const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');
+
+        cookies.set('backend', backendAddress, {path: '/',domain:"."+currentDomain});
 
     },
 
@@ -900,9 +869,12 @@ const api = {
 
             fetch(backend + `/v1/auth/startSessionWithGoogle`, post).then(res => res.json()).then(result => {
                 if (!result.error) {
+                    const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');
+
                     cookies.set('session', result.session, {
                         path: '/',
-                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14)
+                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 14),
+                        domain:"." + currentDomain
                     });
                     this.getAccountSettings(true);
 
