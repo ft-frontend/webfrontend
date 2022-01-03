@@ -274,7 +274,8 @@ const api = {
                     regCode: regCode,
                     deviceName: "New Device"
                 });
-                fetch(backend + `/v2/regDevice/registerByCode`, post).then(res => res.json()).then(result => {
+
+                fetch(backend + `/v2/regDevice/registerByCode`, post).then(res => {console.log(res);return(res.json())}).then(result => {
                     if (checkErrorCodes(result)) {
                         reject("error");
                         return;
@@ -312,7 +313,6 @@ const api = {
     getAccountSettings: function (force) {
         return new Promise((resolve, reject) => {
 
-            console.log("load Account Name")
             if (!force) {
                 if (cookies.get("acsettings") !== undefined) {
                     resolve({
@@ -320,22 +320,31 @@ const api = {
                         settings: cookies.get("acsettings")
                     });
                     return;
-                }
-                console.log("Get User name force")
 
-                this.getUserAccountInfo().then((res) => {
-                        console.log(res);
-                        window.localStorage.setItem("username", res.name);
-                    })
+                }
 
             } else {
-                console.log("Get User name ")
+
+                this.getUserAccountInfo().then((res) => {
+                    console.log(res);
+                    window.localStorage.setItem("username", res.name);
+                })
+
+
+            }
+
+
+            //check if username in local storage is undefined or null and then set it
+            if (window.localStorage.getItem("username") == null || window.localStorage.getItem("username") === "undefined") {
 
                 this.getUserAccountInfo().then((res) => {
                     console.log(res);
                     window.localStorage.setItem("username", res.name);
                 })
             }
+
+
+
 
             if (cookies.get('session') === undefined) {
                 redirectToLogin();

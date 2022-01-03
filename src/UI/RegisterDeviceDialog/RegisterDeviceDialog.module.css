@@ -10,13 +10,32 @@
 
 }
 
-.openFileSelectDialog {
-    display: none;
-}
+
 
 .closeButton {
     width: 24px;
     height: 24px;
+
+}
+
+
+
+.AddDeviceColorClicker {
+    background-color: red;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 50px;
+    height: 30px;
+    transition: all 1s ease 0s;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 1px 1px 9px 1px rgba(0, 0, 0, 0.9);
+}
+
+.AddDeviceColorClicker:hover {
+    transition: all 0.2s ease 0s;
+
+
 }
 
 .closeButtonWrapper {
@@ -30,9 +49,36 @@
     border-radius: 50%;
     transition: background-color 250ms;
 }
+.AddDeviceDialogColorCodeSelectionBox {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 150px;
+}
 
 .closeButtonWrapper:hover {
     background-color: rgba(95, 98, 98, 0.1);
+}
+
+.AddDeviceDialogRegisterNewDevice {
+    max-width: fit-content;
+    text-align: center;
+    outline: none;
+    display: block;
+    margin: 40px auto;
+    padding: 9px 25px;
+    background: rgba(0, 136, 169, 1) none;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration: none;
+    width: 30vw;
 }
 
 .closeButtonWrapper:active {
@@ -80,7 +126,7 @@
 
 .codeInput {
     width: 40%;
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -152,6 +198,6 @@
 .error {
     color: red;
     align-self: center;
-    margin-top: 60px;
+    margin-top: 15px;
 }
 

@@ -178,7 +178,6 @@ class AddDevice extends React.Component {
                                  className={AddDeviceStyle.AddDeviceColorClicker}/>
                         </div>
                         <p className={AddDeviceStyle.errorLabelAddDeviceDialog}>{this.state.errorMessage}</p>
-                        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                         <a className={AddDeviceStyle.closeAddDeviceDialog} href="#"
                            onClick={this.closeMenu}>Schließen</a>
                     </div>

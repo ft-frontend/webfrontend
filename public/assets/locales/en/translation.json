@@ -95,7 +95,13 @@
   "direct_translation_privacyPolicy": "Privacy Police",
   "authorizationFailed": "An error occured. Please close this site and try again.",
   "allowAccess": "Allow Access",
-  "authorizationInfoText": "An application wants to access your account. If you don't know where this request comes from, please close this site."
+  "authorizationInfoText": "An application wants to access your account. If you don't know where this request comes from, please close this site.",
+  "direct_translation_deviceRegistration": "Device Registration",
+  "deviceRegistrationDescription": "After you have activated your FT-Cloud compatible device, you can register it here. The device displays either a numerical code or a color code. Enter this code in the correct order to register it on your account.",
+  "deviceRegistrationError": "The device code is invalid."
+
+
+
 
 
 }

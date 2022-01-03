@@ -6,6 +6,7 @@ import AddDevice from "../../UI/addDevice/AddDevice";
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css"
 import DeviceImageDrawer from "./DeviceImageDrawer";
 import {withTranslation} from "react-i18next";
+import RegisterDeviceDialog from "../../UI/RegisterDeviceDialog/RegisterDeviceDialog";
 
 class dashboardDevice extends React.Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class dashboardDevice extends React.Component {
 
     render() {
         const {t} = this.props;
-        return (<div><h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{t('selectDevice')}</h1><AddDevice/>{ this.state.renderList &&<Selector items={this.state.deviceTypeList}/>}</div>)
+        return (<div><h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{t('selectDevice')}</h1><RegisterDeviceDialog/>{ this.state.renderList &&<Selector items={this.state.deviceTypeList}/>}</div>)
     }
 
 }
