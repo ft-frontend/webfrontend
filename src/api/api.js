@@ -3,6 +3,7 @@ import {w3cwebsocket as W3CWebSocket} from "websocket";
 import i18next from "i18next";
 import {config} from "react-transition-group";
 import $ from "jquery"
+import EventSystem from "../EventSystem";
 
 export const cookies = new Cookies();
 let backend = "https://api.arnold-tim.de/api";
@@ -319,30 +320,24 @@ const api = {
                         success: true,
                         settings: cookies.get("acsettings")
                     });
-                    return;
+
+
+                    //return;
 
                 }
 
             } else {
 
-                this.getUserAccountInfo().then((res) => {
-                    console.log(res);
-                    window.localStorage.setItem("username", res.name);
-                })
 
 
             }
 
 
-            //check if username in local storage is undefined or null and then set it
-            if (window.localStorage.getItem("username") == null || window.localStorage.getItem("username") === "undefined") {
-
-                this.getUserAccountInfo().then((res) => {
-                    console.log(res);
-                    window.localStorage.setItem("username", res.name);
-                })
-            }
-
+            this.getUserAccountInfo().then((res) => {
+                console.log(res);
+                window.localStorage.setItem("username", res.name);
+                EventSystem.dispatch("usernameChange", res.name);
+            })
 
 
 

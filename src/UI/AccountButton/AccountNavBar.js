@@ -13,13 +13,15 @@ class AccountNavBar extends Component {
         this.state = {
             showAccountPopUp: false,
             isProfilePictureDialogOpen: false,
-            profilePictureURL: api.getProfilePictureURL()
+            profilePictureURL: api.getProfilePictureURL(),
+            username: window.localStorage.getItem('username')
 
         }
         this.toggleAccountPopUp = this.toggleAccountPopUp.bind(this);
         this.closeChangeProfilePictureDialog = this.closeChangeProfilePictureDialog.bind(this);
         this.openProfilePictureDialog = this.openProfilePictureDialog.bind(this);
         this.updateProfilePictureURL = this.updateProfilePictureURL.bind(this);
+        this.updateUsername = this.updateUsername.bind(this);
     }
 
     toggleAccountPopUp() {
@@ -42,6 +44,7 @@ class AccountNavBar extends Component {
         };
         $(document).on('click',  this.handler);
         EventSystem.on('profilePictureChange',this.updateProfilePictureURL)
+        EventSystem.on('usernameChange',this.updateUsername)
 
     }
     updateProfilePictureURL() {
@@ -52,8 +55,15 @@ class AccountNavBar extends Component {
 
     componentWillUnmount() {
         $(document).off('click',  this.handler);
-        EventSystem.on('profilePictureChange',this.updateProfilePictureURL)
+        EventSystem.remove('profilePictureChange',this.updateProfilePictureURL)
+        EventSystem.remove('usernameChange',this.updateUsername)
     }
+    updateUsername(e) {
+        this.setState({
+            username: e
+        })
+    }
+
     closeChangeProfilePictureDialog() {
         this.setState({
             isProfilePictureDialogOpen: !this.state.isProfilePictureDialogOpen
@@ -94,16 +104,17 @@ class AccountNavBar extends Component {
 
                     </div>
                     <div className={AccountButtonStyle.accountNameContainer}>
-                        <p className={"ignoreDarkMode"}>{window.localStorage.getItem('username')}</p>
-                    </div>
+                        <p className={"ignoreDarkMode"}>{this.state.username}</p>
+                            </div>
 
-                    <div className={AccountButtonStyle.manageAccountButton} onClick={()=>window.location.href="/settings#4"}><p className={"ignoreDarkMode"}>{t('manageAccount')}</p></div>
+
+                                      <div className={AccountButtonStyle.manageAccountButton} onClick={()=>window.location.href="/settings#4"}><p className={"ignoreDarkMode"}>{t('manageAccount')}</p></div>
                     <div className={AccountButtonStyle.signOutButton} onClick={()=>{const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');window.location.href=`https://login.${currentDomain}/auth/signout`}}>
                         <p className={AccountButtonStyle.signOutButtonText+" ignoreDarkMode"}>{t('signOut')}</p>
                     </div>
 
                 </div>}
-                <p className={AccountButtonStyle.UserNameNavBar+" ignoreDarkMode"}>{window.localStorage.getItem('username')}</p>
+                <p className={AccountButtonStyle.UserNameNavBar+" ignoreDarkMode"}>{this.state.username}</p>
                 </div>
             </>
         );

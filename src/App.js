@@ -49,7 +49,7 @@ function App() {
             <Route exact path="/rekari" component={Rekari}/>
             <Route exact path="/home" component={Home}/>
             <Route exact path="/privacyPolicy" component={PrivacyPolicy}/>
-            <Route exact path="/" component={MainPage}/>
+            <Route exact path="/" component={Rekari}/>
 
             <Route path="/dashboard">
 

@@ -84,7 +84,7 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img alt={"Bild der Drohne"} className={RekariStyle.droneSectionIMG} src={"/rekariAssets/drone.webp"}></img>
+                            <img alt={"Bild der Drohne"} className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/drone.webp"}></img>
 
 
                         </div>
@@ -130,7 +130,7 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img alt="Heatmap" className={RekariStyle.droneSectionIMG} src={"/rekariAssets/heat.webp"}></img>
+                            <img alt="Heatmap" className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/heat.webp"}></img>
 
                         </div>
 
@@ -140,7 +140,7 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img alt="Bild der Propeller" className={RekariStyle.droneSectionIMG} src={"/rekariAssets/propeller.webp"}></img>
+                            <img alt="Bild der Propeller" className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/propeller.webp"}></img>
                         </div>
 
 
@@ -184,7 +184,7 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img alt="Bild des Flight-Controllers" className={RekariStyle.droneSectionIMG} src={"/rekariAssets/fcpcb.webp"}
+                            <img alt="Bild des Flight-Controllers" className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/fcpcb.webp"}
                                  alt={"Account Verwaltung"}/>
                         </div>
 
@@ -194,7 +194,7 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img alt="Cloud-Symbolbild" className={RekariStyle.droneSectionIMG} src={"/rekariAssets/cloud.webp"}
+                            <img alt="Cloud-Symbolbild" className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/cloud.webp"}
                                  alt={"Account Verwaltung"}/>
                         </div>
 
@@ -249,7 +249,7 @@ class Rekari extends Component {
                         </div>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img  className={RekariStyle.cloudImg} src={"/rekariAssets/accountSystem.webp"}
+                            <img  className={RekariStyle.cloudImg} src={"https://cdn.rekari.de/rekariAssets/accountSystem.webp"}
                                  alt={"Account Verwaltung"}/>
                         </div>
 
@@ -259,7 +259,7 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/deviceControl.webp"}
+                            <img className={RekariStyle.cloudImg} src={"https://cdn.rekari.de/rekariAssets/deviceControl.webp"}
                                  alt={"Gerät Verwaltung"}/>
                         </div>
 
@@ -294,7 +294,7 @@ class Rekari extends Component {
                         </div>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.cloudImg} src={"/rekariAssets/droneControl.webp"}
+                            <img className={RekariStyle.cloudImg} src={"https://cdn.rekari.de/rekariAssets/droneControl.webp"}
                                  alt={"Live-Steuerung"}/>
                         </div>
 
@@ -401,8 +401,8 @@ class Rekari extends Component {
 
 
                         <video className={RekariStyle.SaveSectionImage} autoPlay loop muted playsInline>
-                            <source src="/rekariAssets/heatmap.webm" type="video/webm"/>
-                            <source src="/rekariAssets/heatmap.mp4" type="video/mp4"/>
+                            <source src="https://cdn.rekari.de/rekariAssets/heatmap.webm" type="video/webm"/>
+                            <source src="https://cdn.rekari.de/rekariAssets/heatmap.mp4" type="video/mp4"/>
                         </video>
 
                         <div
@@ -453,7 +453,7 @@ class Rekari extends Component {
 
                             <img onClick={() => {
                                 window.open("https://www.u-blox.com/", '_blank');
-                            }} src={"/rekariAssets/ublox.svg"} alt={"Ublox Logo"}
+                            }} src={"https://cdn.rekari.de/rekariAssets/ublox.svg"} alt={"Ublox Logo"}
                                  className={RekariStyle.ubloxLogo}/>
 
                         </div>
@@ -467,7 +467,7 @@ class Rekari extends Component {
 
                             <img onClick={() => {
                                 window.open("https://productware.de/", '_blank');
-                            }} src={"/rekariAssets/productware.png"} alt={"Productware Logo"}
+                            }} src={"https://cdn.rekari.de/rekariAssets/productware.png"} alt={"Productware Logo"}
                                  className={RekariStyle.productwareLogo}></img>
 
                         </div>
@@ -509,7 +509,7 @@ class Rekari extends Component {
 
                             <img  onClick={() => {
                                 window.open("https://www.rohde-schwarz.com/", '_blank');
-                            }} src={"/rekariAssets/rohdeundschwarz.svg"} alt={"Rohde & Schwarz Logo"}
+                            }} src={"https://cdn.rekari.de/rekariAssets/rohdeundschwarz.svg"} alt={"Rohde & Schwarz Logo"}
                                  className={RekariStyle.rohdeundschwarz}></img>
 
                         </div>
@@ -529,7 +529,7 @@ class Rekari extends Component {
                                 className={isDesktop ? RekariStyle.aboutUseImage : RekariStyle.aboutUsImageMobile}>
 
                                 <img alt="Standfoto" className={RekariStyle.aboutUsImageElement}
-                                     src={"/rekariAssets/standfoto.webp"}></img>
+                                     src={"https://cdn.rekari.de/rekariAssets/standfoto.webp"}></img>
 
                             </div>
 
@@ -544,6 +544,20 @@ class Rekari extends Component {
                         </div>
 
                     </div>
+
+                    <div className={RekariStyle.CenterSection}>
+                        <div className={RekariStyle.shortDescriptionHeader}>
+                           Projekt Kurzbeschreibung
+                        </div>
+                        <div className={isDesktop ? RekariStyle.centerSectionExplain : RekariStyle.centerSectionExplainMobil}>
+                            Uns bewegt der Tod von jährlich bis zu 100.000 Rehkitzen durch Mäharbeiten. Geht die Mutter auf Futtersuche, legt sie ihre kleinen Kitze zum Schutz vor Jägern bevorzugt in hohe Wiesen. Bei landwirtschaftl. Nutzung werden jedoch Mähdrescher zur tödlichen Gefahr. Oft übernehmen Ehrenamtliche die mühsame Arbeit möglichst viele Kitze zu retten, teilweise auch unterstützt durch ferngesteuerte Drohnen. Genau hier setzt unser Projekt an. Wir möchten den Nutzen von Drohnen bei der Kitzrettung weiter steigern. Unser Ziel ist ein System zu entwickeln, bei dem eine Drohne mit einer Wärmebildkamera zunächst ein Feld autonom abfliegt, daraus eine thermographische Karte erstellt und diese anschließend an die Smartphones der Retter überträgt. Die thermischen Hotspots können dann von den Rettern gezielt angelaufen werden. Da Rehkitze auch bei Gefahr ihr Versteck nicht verlassen, ist nur ein Scanflug notwendig und die erstellte Karte immer noch gültig. So wollen wir die Kitzrettung effektiver machen.
+                        </div>
+
+                        <div className={RekariStyle.spacer}></div>
+
+
+                    </div>
+
 
                     <div className={RekariStyle.CenterSection}>
 
@@ -601,11 +615,11 @@ class Rekari extends Component {
 
                         <div className={RekariStyle.shareContainer}>
 
-                            <a href="whatsapp://send?text=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de" target="_blank" data-action="share/whatsapp/share" ><BsWhatsapp class={RekariStyle.whatsapp} onClick={()=>{}}></BsWhatsapp></a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frekari.de&title=Rekari%20JugendForscht%20Projekt" target="_blank"><BsLinkedin class={RekariStyle.linkedin}></BsLinkedin></a>
-                            <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Frekari.de" target="_blank"><BsFacebook class={RekariStyle.facebook}></BsFacebook></a>
-                            <a href="https://twitter.com/share?url=https%3A%2F%2Frekari.de&text=Rekari%20JugendForscht%20Projekt" target="_blank"><BsTwitter class={RekariStyle.twitter}></BsTwitter></a>
-                            <a href="mailto:?subject=Rekari%20JugendForscht%20Projekt&body=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de" target="_blank"><AiOutlineMail class={RekariStyle.mail}></AiOutlineMail></a>
+                            <a href="whatsapp://send?text=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de" target="_blank" data-action="share/whatsapp/share" ><BsWhatsapp className={RekariStyle.whatsapp} onClick={()=>{}}></BsWhatsapp></a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frekari.de&title=Rekari%20JugendForscht%20Projekt" target="_blank"><BsLinkedin className={RekariStyle.linkedin}></BsLinkedin></a>
+                            <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Frekari.de" target="_blank"><BsFacebook className={RekariStyle.facebook}></BsFacebook></a>
+                            <a href="https://twitter.com/share?url=https%3A%2F%2Frekari.de&text=Rekari%20JugendForscht%20Projekt" target="_blank"><BsTwitter className={RekariStyle.twitter}></BsTwitter></a>
+                            <a href="mailto:?subject=Rekari%20JugendForscht%20Projekt&body=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de" target="_blank"><AiOutlineMail className={RekariStyle.mail}></AiOutlineMail></a>
 
                         </div>
 

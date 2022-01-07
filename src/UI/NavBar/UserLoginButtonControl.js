@@ -2,7 +2,8 @@ import style from "./UserLoginButtonControl.module.css"
 import AccountNavBar from "../AccountButton/AccountNavBar";
 import {useTranslation} from "react-i18next";
 
-function GetCurrentUserNavBarButtons(isSessionValid) {
+function
+GetCurrentUserNavBarButtons(isSessionValid) {
 
     /*
 
