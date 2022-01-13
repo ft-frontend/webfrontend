@@ -28,12 +28,13 @@ class ZigZagMap extends Component {
         this.addPushPin = this.addPushPin.bind(this);
         this.handlePushPinMoseOut = this.handlePushPinMoseOut.bind(this);
         this.handlePushPinMoseOver = this.handlePushPinMoseOver.bind(this);
-        this.handleMapRightClick = this.handleMapRightClick.bind(this);
+        this.clickOnMap = this.clickOnMap.bind(this);
         this.removePushPin = this.removePushPin.bind(this);
         this.missionComposer = this.missionComposer.bind(this);
         this.handlePushPinClick = this.handlePushPinClick.bind(this);
         this.heightChange = this.heightChange.bind(this);
         this.generateMission = this.generateMission.bind(this);
+        this.onMapRightClick = this.onMapRightClick.bind(this);
 
 
         const obj = this;
@@ -56,12 +57,15 @@ class ZigZagMap extends Component {
 
             });
             obj.map.entities.push(pl);
-            window.Microsoft.Maps.Events.addHandler(obj.map, 'rightclick', obj.handleMapRightClick);
+            window.Microsoft.Maps.Events.addHandler(obj.map, 'click', obj.clickOnMap);
+            window.Microsoft.Maps.Events.addHandler(obj.map, 'rightclick', obj.onMapRightClick);
 
             //Center Map to User Location to provide easy possibility to find yourself in the mission planner
 
         };
     }
+
+
 
     missionComposer() {
         return new Promise((resolve, reject) => {
@@ -111,8 +115,20 @@ class ZigZagMap extends Component {
         }
     }
 
+    onMapRightClick() {
+        if (this.state.pushPinHovered === null || this.state.pushPinHovered === undefined) {
+            this.setState({
+                selectedPushPin: null
+            });
+        }else{
+            this.setState({
+                selectedPushPin: this.state.pushPinHovered
+            });
+        }
+    }
 
-    handleMapRightClick(e) {
+
+    clickOnMap(e) {
         if (this.state.pushPinHovered === null || this.state.pushPinHovered === undefined) {
             this.addPushPin(e);
         } else {
@@ -125,7 +141,7 @@ class ZigZagMap extends Component {
 
     removePushPin(element) {
 
-
+        console.log(element);
         const missionDataIndex = this.state.pushPins.indexOf(element);
         if (missionDataIndex > -1) {
 
@@ -169,7 +185,7 @@ class ZigZagMap extends Component {
         window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
-        window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
+        //window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
 
         this.generatePolyLines();
     }
@@ -248,23 +264,25 @@ class ZigZagMap extends Component {
 
 
             this.props.testMode != null ? <>
+
                     <div id="myMap" style={this.props.style}/>
                     <div onClick={this.generateMission} style={this.props.buttonStyle}><span
                         className={"ignoreDarkMode " + missionSelectStyle.startMissionGeneratorsText}>Anwenden</span></div>
                 </>
                 :
                 <div style={{userSelect: 'none'}}>
+                    <div onClick={this.generateMission} className={missionSelectStyle.startMissionGenerators}><span
+                        className={"ignoreDarkMode " + missionSelectStyle.startMissionGeneratorsText}>{t('direct_translation_generate')}</span>
+                    </div>
                     <MissionGeneratorHeightSelection heightChange={this.heightChange}/>
                     <div id="myMap" style={{
                         height: '43em',
                         width: 'calc(100vw-70px)',
-                        marginTop: '20px',
+                        marginTop: '40px',
                         marginLeft: '70px',
                         userSelect: 'none'
                     }}/>
-                    <div onClick={this.generateMission} className={missionSelectStyle.startMissionGenerators}><span
-                        className={"ignoreDarkMode " + missionSelectStyle.startMissionGeneratorsText}>{t('direct_translation_generate')}</span>
-                    </div>
+
 
                 </div>
         );

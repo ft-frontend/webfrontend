@@ -29,10 +29,10 @@ class MissionGeneratorResultViewer extends Component {
         this.handlePushPinMoseOut = this.handlePushPinMoseOut.bind(this);
         this.handlePushPinMoseOver = this.handlePushPinMoseOver.bind(this);
         this.handleMapRightClick = this.handleMapRightClick.bind(this);
+        this.handleMapClick = this.handleMapClick.bind(this);
         this.removePushPin = this.removePushPin.bind(this);
         this.regeneratePushPinText = this.regeneratePushPinText.bind(this);
         this.missionComposer = this.missionComposer.bind(this);
-        this.handlePushPinClick = this.handlePushPinClick.bind(this);
         this.heightOfSelectedPushPinChanged = this.heightOfSelectedPushPinChanged.bind(this);
         this.finishTask = this.finishTask.bind(this);
 
@@ -171,7 +171,8 @@ class MissionGeneratorResultViewer extends Component {
                 window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
                 window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
                 window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
-                window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
+                window.Microsoft.Maps.Events.addHandler(pushPin, 'click', (e)=>this.removePushPin(e.target));
+
                 window.Microsoft.Maps.Events.addHandler(pushPin, 'dragstart', this.preventRedirect);
 
                 this.state.pushPins.push(pushPin);
@@ -184,6 +185,7 @@ class MissionGeneratorResultViewer extends Component {
 
         //init Event Handlers
         window.Microsoft.Maps.Events.addHandler(this.map, 'rightclick', this.handleMapRightClick);
+        window.Microsoft.Maps.Events.addHandler(this.map, 'click', this.handleMapClick);
 
 
     }
@@ -195,13 +197,7 @@ class MissionGeneratorResultViewer extends Component {
         });
     }
 
-    handlePushPinClick(e) {
-        this.setState({
-            selectedPushPin: e.target
-        });
 
-
-    }
 
 
     handlePushPinMoseOut(e) {
@@ -216,6 +212,20 @@ class MissionGeneratorResultViewer extends Component {
 
 
     handleMapRightClick(e) {
+        if (this.state.pushPinHovered === null || this.state.pushPinHovered === undefined) {
+            this.setState({
+                selectedPushPin: null
+            });
+        } else {
+            this.setState({
+                selectedPushPin: this.state.pushPinHovered
+            });
+        }
+
+
+    }
+
+    handleMapClick(e) {
         if (this.state.pushPinHovered === null || this.state.pushPinHovered === undefined) {
             this.addPushPin(e);
         } else {
@@ -282,7 +292,7 @@ class MissionGeneratorResultViewer extends Component {
         window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
-        window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
+        window.Microsoft.Maps.Events.addHandler(pushPin, 'click', (e)=>this.removePushPin(e.target));
 
         this.generatePolyLines();
     }
@@ -339,15 +349,16 @@ class MissionGeneratorResultViewer extends Component {
         const {t} = this.props;
         return (
             <>
+                <div onClick={this.finishTask} className={MissionGeneratorResultViewerStyle.finishGeneratorButton}><span
+                    className={"ignoreDarkMode " + MissionGeneratorResultViewerStyle.finishGeneratorButtonText}>{t('direct_translation_finishAssistent')}</span>
+                </div>
                 <div style={{userSelect: 'none'}}>
 
                     <div id="myMap" style={{height: '43em', width: '100vw', marginTop: '20px', userSelect: 'none'}}/>
 
                 </div>
 
-                <div onClick={this.finishTask} className={MissionGeneratorResultViewerStyle.finishGeneratorButton}><span
-                    className={"ignoreDarkMode " + MissionGeneratorResultViewerStyle.finishGeneratorButtonText}>{t('direct_translation_finishAssistent')}</span>
-                </div>
+
 
             </>
 

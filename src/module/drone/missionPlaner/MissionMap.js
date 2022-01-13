@@ -33,10 +33,11 @@ class MissionMap extends Component {
         this.removePushPin = this.removePushPin.bind(this);
         this.regeneratePushPinText = this.regeneratePushPinText.bind(this);
         this.missionComposer = this.missionComposer.bind(this);
-        this.handlePushPinClick = this.handlePushPinClick.bind(this);
+      //  this.handlePushPinClick = this.handlePushPinClick.bind(this);
         this.heightOfSelectedPushPinChanged = this.heightOfSelectedPushPinChanged.bind(this);
         this.preventRedirect = this.preventRedirect.bind(this);
         this.doThingAfterMissionEndChange = this.doThingAfterMissionEndChange.bind(this);
+        this.handleMapClick = this.handleMapClick.bind(this);
 
 
 
@@ -157,7 +158,7 @@ class MissionMap extends Component {
                     window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
                     window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
                     window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
-                    window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
+                    window.Microsoft.Maps.Events.addHandler(pushPin, 'click', (e)=>this.removePushPin(e.target));
                     window.Microsoft.Maps.Events.addHandler(pushPin, 'dragstart', this.preventRedirect);
                 }
                 this.state.pushPins.push(pushPin);
@@ -170,6 +171,7 @@ class MissionMap extends Component {
 
         if(this.state.plannerMode) {
             //init Event Handlers
+            window.Microsoft.Maps.Events.addHandler(this.map, 'click', this.handleMapClick);
             window.Microsoft.Maps.Events.addHandler(this.map, 'rightclick', this.handleMapRightClick);
         }
 
@@ -183,13 +185,11 @@ class MissionMap extends Component {
         });
     }
 
-    handlePushPinClick(e) {
-        this.setState({
-            selectedPushPin: e.target
-        })
+  //  handlePushPinClick(e) {
 
 
-    }
+
+   // }
 
 
     handlePushPinMoseOut(e) {
@@ -205,8 +205,24 @@ class MissionMap extends Component {
 
     handleMapRightClick(e) {
         if (this.state.pushPinHovered === null || this.state.pushPinHovered === undefined) {
+            this.setState({
+                selectedPushPin:null
+            })
+        } else {
+
+            this.setState({
+                selectedPushPin:this.state.pushPinHovered
+            })
+        }
+
+
+    }
+
+    handleMapClick(e) {
+        if (this.state.pushPinHovered === null || this.state.pushPinHovered === undefined) {
             this.addPushPin(e);
         } else {
+
             this.removePushPin(this.state.pushPinHovered);
         }
 
@@ -271,7 +287,7 @@ class MissionMap extends Component {
         window.Microsoft.Maps.Events.addHandler(pushPin, 'drag', this.handlePushPinDrag);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseover', this.handlePushPinMoseOver);
         window.Microsoft.Maps.Events.addHandler(pushPin, 'mouseout', this.handlePushPinMoseOut);
-        window.Microsoft.Maps.Events.addHandler(pushPin, 'click', this.handlePushPinClick);
+        window.Microsoft.Maps.Events.addHandler(pushPin, 'click', (e)=>this.removePushPin(e.target));
 
         this.generatePolyLines();
         this.preventRedirect();

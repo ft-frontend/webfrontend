@@ -70,7 +70,7 @@
   "error_13": "Der Benutzername enthält ungültige Zeichen",
   "error_14": "Die Länge des Benutzernamens ist nicht zugelassen",
   "startMissionGenerator": "Missions Generatoren",
-  "selectFromExistingMissionOrCreateNewOne": "Wähle einer der Missionen oder erstelle eine Neue um den Generator darauf anzuwenden:",
+  "selectFromExistingMissionOrCreateNewOne": "Wähle einer der Missionen, um den Generator darauf anzuwenden:",
   "selectGenerator": "Bitte wähle einen Generator:",
   "direct_translation_flightHeight": "Flug Höhe in Meter: ",
   "direct_translation_generate": "Generieren ->",

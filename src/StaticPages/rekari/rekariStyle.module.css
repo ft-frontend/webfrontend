@@ -13,7 +13,7 @@ max-width: 100%;
   height: 100vh;
   margin-top: -70px;
   max-width: 100%;
-  background-color: white;
+  background-color: #131514;
 
 
 
@@ -31,7 +31,7 @@ max-width: 100%;
 .headLine {
   font-weight: 500;
   line-height: 1.2;
-  color: #000;
+  color: #fff;
   letter-spacing: -2px;
   margin-bottom: 20px;
 }
@@ -131,6 +131,7 @@ model-viewer {
   margin-bottom: 30px;
   line-height: 1.6em;
   font-size: 1.2rem;
+  text-align: justify;
 }
 .sectionExplainMobil {
   color: #fff;
@@ -145,7 +146,7 @@ model-viewer {
 .subheading {
   margin-bottom: 5px;
   font-size: 1.4rem;
-  color: #000;
+  color: #fff;
   letter-spacing: 0.2pt;
   max-width: 60vw;
   text-align: center;
@@ -154,7 +155,7 @@ model-viewer {
 .subheadingMargin {
 
   font-size: 1rem;
-  color: #000;
+  color: #fff;
   letter-spacing: 0.2pt;
   max-width: 60vw;
   text-align: center;
@@ -183,8 +184,8 @@ model-viewer {
 
   display: block;
   transform: rotate(45deg);
-  border-right: 2px solid #000000;
-  border-bottom: 2px solid #000000;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
   margin: 1px 0 3px 4px;
 
   width: 16px;
@@ -199,8 +200,8 @@ model-viewer {
 
   display: block;
   transform: rotate(45deg);
-  border-right: 2px solid #000000;
-  border-bottom: 2px solid #000000;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
   margin: -6px 0 3px 4px;
 
   width: 16px;
@@ -217,8 +218,8 @@ model-viewer {
 
   display: block;
   transform: rotate(45deg);
-  border-right: 2px solid #000000;
-  border-bottom: 2px solid #000000;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
   margin: -6px 0 3px 4px;
 
   width: 16px;
@@ -532,10 +533,9 @@ model-viewer {
 }
 
 .aboutUseImage {
-  width: 240px;
+  width: 426px;
   height: 240px;
-  background-color: #2ecc71;
-  border-radius: 50%;
+  border-radius: 5%;
   margin-right: 100px;
   transition: all 0.3s ease-in-out;
   overflow: hidden;
@@ -548,15 +548,12 @@ model-viewer {
 
 }
 
-.aboutUseImage:hover {
- border-radius: 3%;
-}
+
 
 .aboutUsImageMobile {
-  width: 240px;
+  width: 426px;
   height: 240px;
-  background-color: #2ecc71;
-  border-radius: 50%;
+  border-radius: 5%;
   margin-bottom: 50px;
   overflow: hidden;
   display: flex;
@@ -578,6 +575,7 @@ model-viewer {
   margin-bottom: 30px;
   line-height: 1.6em;
   font-size: 1.1rem;
+  text-align: justify;
 }
 
 .spacer {
@@ -588,6 +586,7 @@ model-viewer {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
 
   flex-direction: column;
 

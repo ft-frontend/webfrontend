@@ -9,8 +9,8 @@ import TestMissionGeneratorResultViewer
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import api from "../../api/api";
-import '@google/model-viewer/dist/model-viewer'
-import {BsWhatsapp,BsFacebook,BsTwitter,BsLinkedin} from "react-icons/bs";
+import '@google/model-viewer/dist/model-viewer';
+import {BsWhatsapp, BsFacebook, BsTwitter, BsLinkedin} from "react-icons/bs";
 import {AiOutlineMail} from "react-icons/ai";
 
 
@@ -84,7 +84,8 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img alt={"Bild der Drohne"} className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/drone.webp"}></img>
+                            <img alt={"Bild der Drohne"} className={RekariStyle.droneSectionIMG}
+                                 src={"https://cdn.rekari.de/rekariAssets/drone.webp"}></img>
 
 
                         </div>
@@ -99,7 +100,7 @@ class Rekari extends Component {
                                 intuitiven Features.
 
                                 Dabei sorgt das robuste Design der Flugdrohne für eine hohe Leistungsfähigkeit und eine
-                                branchenführende Stabilität.
+                                überzeugende Stabilität.
                             </div>
 
                         </div>
@@ -117,7 +118,7 @@ class Rekari extends Component {
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
                                 Durch den festen Verbau einer Wärmebildkamera kann diese sinnvoll in das Flugsystem
                                 der Drohne integriert werden.
-                                Dadurch ist es Möglich durch nur ein System die Drohne, die Wärmebildkamera und alle
+                                Dadurch ist es möglich, durch nur ein System die Drohne, die Wärmebildkamera und alle
                                 weiteren Funktionen zu verwalten.
                                 Dabei wollen wir weg von provisorisch installierten Wärmebildkameras, die mit nur
                                 wenigen Live-Monitoren überwacht werden können.
@@ -130,7 +131,8 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img alt="Heatmap" className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/heat.webp"}></img>
+                            <img alt="Heatmap" className={RekariStyle.droneSectionIMG}
+                                 src={"https://cdn.rekari.de/rekariAssets/heat.webp"}></img>
 
                         </div>
 
@@ -140,7 +142,8 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img alt="Bild der Propeller" className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/propeller.webp"}></img>
+                            <img alt="Bild der Propeller" className={RekariStyle.droneSectionIMG}
+                                 src={"https://cdn.rekari.de/rekariAssets/propeller.webp"}></img>
                         </div>
 
 
@@ -149,7 +152,7 @@ class Rekari extends Component {
                             <div className={RekariStyle.sectionHeader}>Große Propeller</div>
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
-                                Durch den Einsatz von großen Propellern kann die Drohne die Motordrehzahl reduzieren,
+                                Durch den Einsatz von großen Propellern kann die Drohne die Motordrehzahl reduzieren
                                 und so die Flugzeit verlängern.
                                 Außerdem kann die Drohne so sicherere Flüge durchführen, da die gewählten Propeller
                                 besser gegen Winde und Turbulenzen ankommen.
@@ -171,8 +174,8 @@ class Rekari extends Component {
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
                                 Der Flight-Controller ist das Herzstück einer jeden Drohne.
-                                Er steuert und stabilisiert die Drohne während des gesamten Fluges.
-                                Dadruch, dass wir unseren Flight-Controller von Grund auf neu entwickelt haben, können
+                                Er steuert und stabilisiert die Drohne während des gesamten Flugs.
+                                Dadurch, dass wir unseren Flight-Controller von Grund auf neu entwickelt haben, können
                                 wir das Rekari-System intelligent und intuitive benutzbar machen.
                                 So ist das Abfliegen des Feldes und das Kartographieren der Umgebung kein Problem mehr.
 
@@ -184,8 +187,9 @@ class Rekari extends Component {
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img alt="Bild des Flight-Controllers" className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/fcpcb.webp"}
-                                 alt={"Account Verwaltung"}/>
+                            <img alt="Bild des Flight-Controllers" className={RekariStyle.droneSectionIMG}
+                                 src={"https://cdn.rekari.de/rekariAssets/fcpcb.webp"}
+                            />
                         </div>
 
 
@@ -194,8 +198,9 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img alt="Cloud-Symbolbild" className={RekariStyle.droneSectionIMG} src={"https://cdn.rekari.de/rekariAssets/cloud.webp"}
-                                 alt={"Account Verwaltung"}/>
+                            <img alt="Cloud-Symbolbild" className={RekariStyle.droneSectionIMG}
+                                 src={"https://cdn.rekari.de/rekariAssets/cloud.webp"}
+                            />
                         </div>
 
 
@@ -238,8 +243,8 @@ class Rekari extends Component {
                             <div className={RekariStyle.sectionHeader}>Account-System</div>
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
-                                Durch das Account-System der Cloud kann jeder Verein einen eigene Zugang erhalten.
-                                Dadurch können Mission zum Abfliegen der Felder zentral gespeichert werden, damit
+                                Durch das Account-System der Cloud kann jeder Verein einen eigenen Zugang erhalten.
+                                Dadurch können Mission zum Abfliegen der Felder zentral gespeichert werden. Damit
                                 ist sichergestellt, dass die Mission jedem zur Verfügung steht.
                                 Auch kann die Drohne im Cloudportal verwaltet werden und Einstellungen vorgenommen
                                 werden.
@@ -249,7 +254,8 @@ class Rekari extends Component {
                         </div>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img  className={RekariStyle.cloudImg} src={"https://cdn.rekari.de/rekariAssets/accountSystem.webp"}
+                            <img className={RekariStyle.cloudImg}
+                                 src={"https://cdn.rekari.de/rekariAssets/accountSystem.webp"}
                                  alt={"Account Verwaltung"}/>
                         </div>
 
@@ -259,7 +265,8 @@ class Rekari extends Component {
                     <div className={isDesktop ? RekariStyle.section : RekariStyle.sectionContentUnderneath}>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.cloudImg} src={"https://cdn.rekari.de/rekariAssets/deviceControl.webp"}
+                            <img className={RekariStyle.cloudImg}
+                                 src={"https://cdn.rekari.de/rekariAssets/deviceControl.webp"}
                                  alt={"Gerät Verwaltung"}/>
                         </div>
 
@@ -269,7 +276,7 @@ class Rekari extends Component {
                             <div className={RekariStyle.sectionHeader}>Geräte-Verwaltung</div>
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
-                                Mit der Cloud können Geräte ganz einfach online verwaltet werden. Dabei kann Name des
+                                Mit der Cloud können Geräte ganz einfach online verwaltet werden. Dabei können Name des
                                 Geräts und verschiedene Parameter mit nur wenigen Klicks verändert werden.
                                 Auch können Geräte im Cloudportal mit mehreren Benutzern verknüpft werden. Dadurch ist
                                 das Teilen von Beispielweise Drohnen ein Kinderspiel.
@@ -285,16 +292,17 @@ class Rekari extends Component {
                             <div className={RekariStyle.sectionHeader}>Live-Steuerung</div>
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
-                                Durch den eigene Drohnen-Bereich in der Web-Oberfläche können alle Einstellungen und
+                                Durch den eigene Drohnen-Bereich in der Web-Oberfläche, können alle Einstellungen und
                                 Parameter direkt online geändert werden.
                                 Außerdem kann der Status der Drohne und die aktuelle Position abgerufen werden. So ist
-                                es für jeden der Zugriff auf den Drohne hat, ganz einfach zu überwachen, welche Aktion die
+                                es für jeden der Zugriff auf den Drohne hat, ganz einfach zu überwachen, welche Aktion
                                 sie aktuell durchführt.
                             </div>
                         </div>
 
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
-                            <img className={RekariStyle.cloudImg} src={"https://cdn.rekari.de/rekariAssets/droneControl.webp"}
+                            <img className={RekariStyle.cloudImg}
+                                 src={"https://cdn.rekari.de/rekariAssets/droneControl.webp"}
                                  alt={"Live-Steuerung"}/>
                         </div>
 
@@ -307,7 +315,8 @@ class Rekari extends Component {
                             Missionen kann eine Flugroute schon vor der dem Einsatz bis ins kleinste Detail geplant
                             werden. Dadurch kann sichergestellt werden, dass die Drohne genau so fliegt, wie es
                             gewünscht ist. Außerdem gibt es die Möglichkeit, zu jedem Wegpunkt individuell verschiedene
-                            Parameter, wie zum Beispiel die Flughöhe festzulegen. Auch kann genau festgelegt werden, was
+                            Parameter, wie zum Beispiel die Flughöhe festzulegen. Auch kann genau spezifiziert werden,
+                            was
                             nach der Mission passieren soll. Möglich ist, die Drohne nach dem Abschluss des
                             Flugmanövers an einem bestimmten Punkt laden zu lassen.
                         </div>
@@ -323,7 +332,7 @@ class Rekari extends Component {
                             Dabei berechnet unser intelligenter Algorithmus völlig automatisch die optimale Mission.
                             {isDesktop && <>Der Algorithmus kann direkt hier getestet werden. Dafür einfach auf der
                                 Karte zu einem Feld
-                                zoomen und an den Ecken des Feldes mit der rechten Maustaste Punkte setzen.
+                                zoomen und an den Ecken des Felds mit der rechten Maustaste Punkte setzen.
                                 Anschließend muss nur mit dem Klick auf <q>Anwenden</q> der Prozess gestartet
                                 werden.</>}
                         </div>
@@ -477,11 +486,11 @@ class Rekari extends Component {
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
 
-                                Productware als unser Partner hat uns geholfen, dass wir die Flight-Controller schnell
-                                und unkompliziert, mit ausgezeichneter Qualität bestücken lassen konnten. Dabei waren
-                                wir überrascht, wie schnell Productware es geschafft hat, unsere verwendeten Bauteile
-                                auf Lieferbarkeit und Lebenszyklus zu prüfen. Ihr kompetentes Team hat es dadurch
-                                geschafft, dass wir unseren Prototypen schnell testen konnten. Vielen Dank an das Team
+                                Die Firma Productware als unser Partner hat uns ermöglicht, dass wir die
+                                Flight-Controller schnell und unkompliziert, mit ausgezeichneter Qualität bestücken
+                                lassen konnten. Dabei hat es Produktware geschafft, unsere verwendeten Bauteile auf
+                                Lieferbarkeit und Lebenszyklus zu prüfen und zu beschaffen. Ihr kompetentes Team hat es
+                                ermöglicht, dass wir unseren Prototypen schnell testen konnten. Vielen Dank an das Team
                                 von Productware.
                             </div>
                         </div>
@@ -507,10 +516,11 @@ class Rekari extends Component {
                         </div>
                         <div className={isDesktop ? RekariStyle.sectionPart : RekariStyle.sectionPartMobil}>
 
-                            <img  onClick={() => {
+                            <img onClick={() => {
                                 window.open("https://www.rohde-schwarz.com/", '_blank');
-                            }} src={"https://cdn.rekari.de/rekariAssets/rohdeundschwarz.svg"} alt={"Rohde & Schwarz Logo"}
-                                 className={RekariStyle.rohdeundschwarz}></img>
+                            }} src={"https://cdn.rekari.de/rekariAssets/rohdeundschwarz.svg"}
+                                 alt={"Rohde & Schwarz Logo"}
+                                 className={RekariStyle.rohdeundschwarz}/>
 
                         </div>
 
@@ -547,10 +557,23 @@ class Rekari extends Component {
 
                     <div className={RekariStyle.CenterSection}>
                         <div className={RekariStyle.shortDescriptionHeader}>
-                           Projekt Kurzbeschreibung
+                            Projekt Kurzbeschreibung
                         </div>
-                        <div className={isDesktop ? RekariStyle.centerSectionExplain : RekariStyle.centerSectionExplainMobil}>
-                            Uns bewegt der Tod von jährlich bis zu 100.000 Rehkitzen durch Mäharbeiten. Geht die Mutter auf Futtersuche, legt sie ihre kleinen Kitze zum Schutz vor Jägern bevorzugt in hohe Wiesen. Bei landwirtschaftl. Nutzung werden jedoch Mähdrescher zur tödlichen Gefahr. Oft übernehmen Ehrenamtliche die mühsame Arbeit möglichst viele Kitze zu retten, teilweise auch unterstützt durch ferngesteuerte Drohnen. Genau hier setzt unser Projekt an. Wir möchten den Nutzen von Drohnen bei der Kitzrettung weiter steigern. Unser Ziel ist ein System zu entwickeln, bei dem eine Drohne mit einer Wärmebildkamera zunächst ein Feld autonom abfliegt, daraus eine thermographische Karte erstellt und diese anschließend an die Smartphones der Retter überträgt. Die thermischen Hotspots können dann von den Rettern gezielt angelaufen werden. Da Rehkitze auch bei Gefahr ihr Versteck nicht verlassen, ist nur ein Scanflug notwendig und die erstellte Karte immer noch gültig. So wollen wir die Kitzrettung effektiver machen.
+                        <div
+                            className={isDesktop ? RekariStyle.centerSectionExplain : RekariStyle.centerSectionExplainMobil}>
+
+                            Uns bewegt der Tod von jährlich bis zu 100.000 Rehkitzen durch Mäharbeiten. Geht die Mutter
+                            auf Futtersuche, legt sie ihre kleinen Kitze zum Schutz vor Jägern bevorzugt in hohe Wiesen.
+                            Bei landwirtschaftl. Nutzung werden jedoch Mähmaschinen zur tödlichen Gefahr. Oft übernehmen
+                            Ehrenamtliche die mühsame Arbeit möglichst viele Kitze zu retten, teilweise auch unterstützt
+                            durch ferngesteuerte Drohnen. Genau hier setzt unser Projekt an. Wir möchten den Nutzen von
+                            Drohnen bei der Kitzrettung weiter steigern. Unser Ziel ist ein System zu entwickeln, bei
+                            dem eine Drohne mit einer Wärmebildkamera zunächst ein Feld autonom abfliegt, daraus eine
+                            thermographische Karte erstellt und diese anschließend an die Smartphones der Retter
+                            überträgt. Die thermischen Hotspots können dann von den Rettern gezielt angelaufen werden.
+                            Da Rehkitze auch bei Gefahr ihr Versteck nicht verlassen, ist nur ein Scanflug notwendig und
+                            die erstellte Karte immer noch gültig. So wollen wir die Kitzrettung effektiver machen.
+
                         </div>
 
                         <div className={RekariStyle.spacer}></div>
@@ -615,11 +638,18 @@ class Rekari extends Component {
 
                         <div className={RekariStyle.shareContainer}>
 
-                            <a href="whatsapp://send?text=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de" target="_blank" data-action="share/whatsapp/share" ><BsWhatsapp className={RekariStyle.whatsapp} onClick={()=>{}}></BsWhatsapp></a>
-                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frekari.de&title=Rekari%20JugendForscht%20Projekt" target="_blank"><BsLinkedin className={RekariStyle.linkedin}></BsLinkedin></a>
-                            <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Frekari.de" target="_blank"><BsFacebook className={RekariStyle.facebook}></BsFacebook></a>
-                            <a href="https://twitter.com/share?url=https%3A%2F%2Frekari.de&text=Rekari%20JugendForscht%20Projekt" target="_blank"><BsTwitter className={RekariStyle.twitter}></BsTwitter></a>
-                            <a href="mailto:?subject=Rekari%20JugendForscht%20Projekt&body=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de" target="_blank"><AiOutlineMail className={RekariStyle.mail}></AiOutlineMail></a>
+                            <a href="whatsapp://send?text=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de"
+                               target="_blank" data-action="share/whatsapp/share"><BsWhatsapp
+                                className={RekariStyle.whatsapp} onClick={() => {
+                            }}></BsWhatsapp></a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frekari.de&title=Rekari%20JugendForscht%20Projekt"
+                               target="_blank"><BsLinkedin className={RekariStyle.linkedin}></BsLinkedin></a>
+                            <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Frekari.de"
+                               target="_blank"><BsFacebook className={RekariStyle.facebook}></BsFacebook></a>
+                            <a href="https://twitter.com/share?url=https%3A%2F%2Frekari.de&text=Rekari%20JugendForscht%20Projekt"
+                               target="_blank"><BsTwitter className={RekariStyle.twitter}></BsTwitter></a>
+                            <a href="mailto:?subject=Rekari%20JugendForscht%20Projekt&body=Schau%20dir%20mal%20dieses%20coole%20JugendForscht%20Projekt%20an%3A%20https%3A%2F%2Frekari.de"
+                               target="_blank"><AiOutlineMail className={RekariStyle.mail}></AiOutlineMail></a>
 
                         </div>
 
