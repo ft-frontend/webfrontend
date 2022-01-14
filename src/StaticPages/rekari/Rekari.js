@@ -330,9 +330,9 @@ class Rekari extends Component {
                             Durch die Mission-Generatoren kann durch nur das einfache Umrahmen des Feldes eine Mission
                             generiert werden.
                             Dabei berechnet unser intelligenter Algorithmus völlig automatisch die optimale Mission.
-                            {isDesktop && <>Der Algorithmus kann direkt hier getestet werden. Dafür einfach auf der
+                            {isDesktop && <> Der Algorithmus kann direkt hier getestet werden. Dafür einfach auf der
                                 Karte zu einem Feld
-                                zoomen und an den Ecken des Felds mit der rechten Maustaste Punkte setzen.
+                                zoomen und an den Ecken des Felds mit der linken Maustaste Punkte setzen.
                                 Anschließend muss nur mit dem Klick auf <q>Anwenden</q> der Prozess gestartet
                                 werden.</>}
                         </div>

@@ -41,7 +41,7 @@ import SignIn from "./auth/signIn";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
-       // window.location.replace(`https:${window.location.href.substring(window.location.protocol.length)}`);
+        window.location.replace(`https:${window.location.href.substring(window.location.protocol.length)}`);
     }
 
     return (

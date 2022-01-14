@@ -52,8 +52,9 @@ class ZigZagMap extends Component {
             obj.map = window.Microsoft.Maps.Map('#myMap', {
                 credentials: "AkBVrBtsknpJShn4Yjy9xKpdHxNdYuymoJ_1yHe95ECRs3CEIbwWmD6wje-c1R9v",
                 center: obj.props.center !== undefined ? new window.Microsoft.Maps.Location(obj.props.center.latitude, obj.props.center.longitude) : "",
-                zoom: obj.props.center !== undefined ? 19 : 12,
+                zoom: obj.props.center !== undefined ? 19 : 18,
                 mapTypeId: window.Microsoft.Maps.MapTypeId.aerial,
+                minZoom:  obj.props.testMode?17:-1
 
             });
             obj.map.entities.push(pl);
