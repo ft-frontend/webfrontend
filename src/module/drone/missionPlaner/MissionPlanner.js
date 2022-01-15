@@ -28,19 +28,27 @@ class MissionPlanner extends Component {
         const that = this;
         api.getMissionData(this.props.match.params.mission).then((res) => {
             console.log(res);
-            that.setState({
-                missionName: res.mission.name
-
-            });
-
-            if (!res.mission.error) {
+            if(res.success) {
                 that.setState({
-                    renderMap: true,
-                    data: res.mission.data
+                    missionName: res.mission.name
 
                 });
 
+                if (!res.mission.error) {
+                    that.setState({
+                        renderMap: true,
+                        data: res.mission.data
+
+                    });
+
+                }
+            }else{
+                that.setState({
+                    missionName: "Zugriffs Fehler"
+
+                });
             }
+
 
         });
 

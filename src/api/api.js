@@ -459,9 +459,8 @@ const api = {
     },
     setBackendAddress: function (backendAddress) {
         backend = backendAddress;
-        const currentDomain = document.domain.split('.').reverse().splice(0, 2).reverse().join('.');
 
-        cookies.set('backend', backendAddress, {path: '/',domain:"."+currentDomain});
+        cookies.set('backend', backendAddress, {path: '/'});
 
     },
 

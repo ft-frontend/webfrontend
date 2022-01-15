@@ -409,7 +409,7 @@ class Rekari extends Component {
                         <div className={RekariStyle.sectionHeader}>Sofortiges Speichern von Bildern</div>
 
 
-                        <video className={RekariStyle.SaveSectionImage} autoPlay loop muted playsInline>
+                        <video className={RekariStyle.SaveSectionImage} autoPlay loop muted playsInline >
                             <source src="https://cdn.rekari.de/rekariAssets/heatmap.webm" type="video/webm"/>
                             <source src="https://cdn.rekari.de/rekariAssets/heatmap.mp4" type="video/mp4"/>
                         </video>
