@@ -38,6 +38,7 @@ import Rekari from "./StaticPages/rekari/Rekari";
 import PrivacyPolicy from "./StaticPages/privacyPolicy/PrivacyPolicy";
 import Home from "./StaticPages/main/Home";
 import SignIn from "./auth/signIn";
+import FawnRescue from "./module/QuickActions/fawnRescue/FawnRescue";
 
 function App() {
     if (window.location.protocol !== 'https:' && window.location.hostname !== "localhost") {
@@ -118,6 +119,13 @@ function App() {
 
                 <ModuleNavBar name=""/>
                 <QuickActionsSelector/>
+            </Route>
+
+            <Route exact path="/module/quickActions/fawnrescue">
+                <SideBar/>
+
+                <ModuleNavBar name=""/>
+                <FawnRescue/>
             </Route>
 
 

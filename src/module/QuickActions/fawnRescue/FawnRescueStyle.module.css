@@ -1,0 +1,41 @@
+.FawnRescueTitle {
+    color: black;
+    place-self: center;
+    justify-self: center;
+    align-self: center;
+
+}
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+.list {
+
+    margin-top: 100px;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 60%;
+    justify-content: space-between;
+    height: 250px;
+
+
+}
+
+.requirements {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40%;
+    align-self: center;
+
+}
+
+.requirements > * {
+    font-size: 1.1em;
+}

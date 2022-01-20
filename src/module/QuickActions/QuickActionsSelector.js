@@ -12,7 +12,7 @@ class QuickActionsSelector extends Component {
             <div className={QuickActionsSelectorStyle.pageContainer}>
             <h1 className={QuickActionsSelectorStyle.QuickActionSelectTitle}>{t('selectQuickAction')}</h1>
 
-                <Selector items={[{link: "#", text: t('fawn_rescue'), img: fawnImg}]}/>
+                <Selector items={[{link: "/module/quickActions/fawnrescue", text: t('fawn_rescue'), img: fawnImg}]}/>
             </div>
         );
     }

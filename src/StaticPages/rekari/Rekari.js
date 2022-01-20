@@ -432,7 +432,7 @@ class Rekari extends Component {
                         <div className={RekariStyle.demoVideo}>
 
 
-                            <LiteYouTubeEmbed id={"bKyheLg-D0g"} title={"JuFo 2022 Teaser"}/>
+                            <LiteYouTubeEmbed id={"COdJ-xNxUX4"} title={"JuFo 2022 Teaser"}/>
 
 
                         </div>
@@ -535,13 +535,12 @@ class Rekari extends Component {
                         </div>
 
                         <div className={isDesktop ? RekariStyle.aboutUsSection : RekariStyle.aboutUsSectionMobile}>
-                            <div
-                                className={isDesktop ? RekariStyle.aboutUseImage : RekariStyle.aboutUsImageMobile}>
 
-                                <img alt="Standfoto" className={RekariStyle.aboutUsImageElement}
+
+                                <img alt="Standfoto" className={isDesktop ? RekariStyle.aboutUseImage : RekariStyle.aboutUsImageMobile}
                                      src={"https://cdn.rekari.de/rekariAssets/standfoto.webp"}></img>
 
-                            </div>
+
 
                             <div className={isDesktop ? RekariStyle.aboutUseText : RekariStyle.aboutUseTextMobile}>Wir
                                 sind Tim und Felix. Gemeinsam hatten wir die Idee eine Drohne von Grund auf selbst zu
@@ -671,6 +670,11 @@ class Rekari extends Component {
 
                         <div className={RekariStyle.copyright}>
                             Design und Programmierung der Website: Tim Arnold
+
+                        </div>
+
+                        <div className={RekariStyle.copyright}>
+                            Bei den genannten Produktnamen kann es sich um eingetragene Marken des jeweiligen Herstellers handeln.
                         </div>
 
                         <div className={RekariStyle.copyright}>
@@ -729,7 +733,7 @@ class Rekari extends Component {
                             <div className={RekariStyle.footerSectionHeadline}>Informationen</div>
 
                             <div className={RekariStyle.footerSectionElement} onClick={() => {
-                                window.open("#", '_blank');
+                                window.open("https://cdn.rekari.de/rekariAssets/presskit.zip", '_blank');
                             }}>Press Kit
                             </div>
                             {/*<div className={RekariStyle.footerSectionElement} onClick={() => {

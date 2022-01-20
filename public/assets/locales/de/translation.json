@@ -98,5 +98,6 @@
   "authorizationInfoText": "Eine Anwendung möchte auch deinen Account zugreifen. Wenn du nicht weißt, woher diese Anfrage kommt, schließe diese Seite.",
   "direct_translation_deviceRegistration": "Geräte Registrierung",
   "deviceRegistrationDescription": "Nachdem du dein FT-Cloud kompatibles Gerät aktiviert hast, kannst du es hier registrieren. Das Gerät zeigt entweder einen Zahlencode oder ein Farbcode an. Gib diesen Code in der richtigen Reihenfolge ein, um es auf deinen Account zu registrieren.",
-  "deviceRegistrationError": "Der Registrierungscode ist ungültig."
+  "deviceRegistrationError": "Der Registrierungscode ist ungültig.",
+  "fawnRescueHeading": "Rehkitzrettung - Voraussetzungen"
 }
