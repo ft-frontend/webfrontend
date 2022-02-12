@@ -72,6 +72,23 @@ class Rekari extends Component {
                     </div>
 
                 </div>
+                <div className={RekariStyle.sectionWrapper}>
+
+                    <div className={RekariStyle.CenterSection}>
+
+                <div
+                    className={isDesktop ? RekariStyle.centerSectionExplain : RekariStyle.centerSectionExplainMobil}>
+
+                    Mit dem Rekari-System wollen wir erreichen, dass eine Drohne ein Feld einmal abfliegt und eine Wärmebildkarte erstellt.
+                    Nach diesem Scan-Flug werden potentielle Rehkitze markiert und an die Smartphones der Helfer übertragen.
+                    So kann jeder seinen Standort in Abhängigkeit der Wärmebildkarte erkennen und sich so zuverlässig orientieren.
+                    Wir möchten ein einheitliches System entwicklen, dass den Workflow vereinfacht und die Einstiegshöhe reduziert.
+
+                </div>
+
+                </div>
+
+                </div>
 
 
                 <div className={RekariStyle.sectionWrapper}>
@@ -449,11 +466,9 @@ class Rekari extends Component {
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
 
-                                Mit u-blox hatten wir einen starken Partner an der Seite. Mit Ihren branchenführenden
-                                Sensoren konnten wir präzise und verlässlich eine Kommunikation herstellen und die
-                                aktuellen Koordinaten der Drohne ermitteln. Dank u-blox war es uns möglich die Drohne
-                                auf bis zu einem Meter genau zu orten. Eine bessere Wahl als die Sensoren von u-blox
-                                hätten wir nicht treffen können. Vielen Dank an unseren Partner u-blox.
+                                Mit u-blox hatten wir einen starken Partner an der Seite. Mit Ihren branchenführenden Sensoren konnten wir präzise und verlässlich eine Kommunikation
+                                herstellen und die aktuellen Koordinaten der Drohne ermitteln. Dank u-blox
+                                war es uns möglich die Drohne auf bis zu einem Meter genau zu orten. Eine bessere Wahl als die Sensoren von u-blox hätten wir nicht treffen können. Vielen Dank an unseren Partner u-blox für die Bereitstellung der Bauteile.
 
                             </div>
 
@@ -486,12 +501,7 @@ class Rekari extends Component {
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
 
-                                Die Firma Productware als unser Partner hat uns ermöglicht, dass wir die
-                                Flight-Controller schnell und unkompliziert, mit ausgezeichneter Qualität bestücken
-                                lassen konnten. Dabei hat es Produktware geschafft, unsere verwendeten Bauteile auf
-                                Lieferbarkeit und Lebenszyklus zu prüfen und zu beschaffen. Ihr kompetentes Team hat es
-                                ermöglicht, dass wir unseren Prototypen schnell testen konnten. Vielen Dank an das Team
-                                von Productware.
+                                Die Firma Productware als unser Partner hat uns ermöglicht, dass wir die Flight-Controller schnell und unkompliziert, mit ausgezeichneter Qualität bestücken lassen konnten. Dabei hat es Produktware geschafft, unsere verwendeten Bauteile auf Lieferbarkeit und Lebenszyklus zu prüfen und zu beschaffen. Ihr kompetentes Team hat es ermöglicht, dass wir unseren Prototypen schnell testen konnten. Vielen Dank an das Team von Productware.
                             </div>
                         </div>
 
@@ -505,12 +515,10 @@ class Rekari extends Component {
 
                             <div className={isDesktop ? RekariStyle.sectionExplain : RekariStyle.sectionExplainMobil}>
 
-                                Unser Partner Rohde & Schwarz hat uns mit der Bereitstellung eines
-                                Qualitäts-Oszilloskops geholfen, viele Fehler schnell und einfach zu finden. Durch die
-                                vielen Möglichkeiten der Analyse, konnten wir schnell unsere Daten-Busse auslesen. Auch
-                                hat uns sehr gefreut, dass das Oszilloskop nach dem Projekt einer größeren Gruppe von
-                                technikinteressierten jungen Menschen zur Verfügung steht. Vielen Dank an das Team von
-                                Rohde & Schwarz.
+                                Unser Partner Rohde & Schwarz hat uns mit der Bereitstellung eines Qualitäts-Oszilloskops geholfen, Fehler schnell zu
+                                finden. Durch die vielen Möglichkeiten der Analyse, konnten
+                                wir schnell unsere Daten-Busse auslesen. Auch hat uns sehr
+                                gefreut, dass das Oszilloskop nach dem Projekt einer größeren Gruppe von technikinteressierten jungen Menschen zur Verfügung steht. Vielen Dank an das Team von Rohde & Schwarz.
                             </div>
 
                         </div>
