@@ -82,7 +82,7 @@ class Rekari extends Component {
                     Mit dem Rekari-System wollen wir erreichen, dass eine Drohne ein Feld einmal abfliegt und eine Wärmebildkarte erstellt.
                     Nach diesem Scan-Flug werden potentielle Rehkitze markiert und an die Smartphones der Helfer übertragen.
                     So kann jeder seinen Standort in Abhängigkeit der Wärmebildkarte erkennen und sich so zuverlässig orientieren.
-                    Wir möchten ein einheitliches System entwicklen, dass den Workflow vereinfacht und die Einstiegshöhe reduziert.
+                    Wir möchten ein einheitliches System entwicklen, das den Workflow vereinfacht und die Einstiegshürde reduziert.
 
                 </div>
 
