@@ -37,10 +37,13 @@ class Rekari extends Component {
 
     }
 
+
     render() {
         const {isDesktop} = this.state;
         return (
             <>
+
+
                 <StaticPageUi renderSideBar={false}/>
 
 
@@ -49,7 +52,7 @@ class Rekari extends Component {
                     <div className={RekariStyle.headLineWrapper}>
                         <h1 className={RekariStyle.headLine + " ignoreDarkMode"}>Rekari</h1>
                         <p className={RekariStyle.subheading + " ignoreDarkMode"}>Rehkitzrettung durch intelligente
-                            Drohnen
+                            Drohnen technisch
                             neu durchdacht</p>
                         <p className={RekariStyle.subheading + " ignoreDarkMode"}>Durch das Rekari-System können
                             Rehkitze
@@ -92,6 +95,21 @@ class Rekari extends Component {
 
 
                 <div className={RekariStyle.sectionWrapper}>
+
+                    <div className={RekariStyle.CenterSection}>
+
+                        <div className={RekariStyle.demoVideoSectionHeader}>Demo-Video</div>
+
+                        <div className={RekariStyle.demoVideo}>
+
+
+                            <LiteYouTubeEmbed id={"COdJ-xNxUX4"} title={"JuFo 2022 Teaser"}/>
+
+
+                        </div>
+
+                    </div>
+
 
                     <div className={RekariStyle.intelligentDroneHeadline}>Intelligente Drohne</div>
 
@@ -442,19 +460,7 @@ class Rekari extends Component {
 
                     </div>
 
-                    <div className={RekariStyle.CenterSection}>
 
-                        <div className={RekariStyle.demoVideoSectionHeader}>Demo-Video</div>
-
-                        <div className={RekariStyle.demoVideo}>
-
-
-                            <LiteYouTubeEmbed id={"COdJ-xNxUX4"} title={"JuFo 2022 Teaser"}/>
-
-
-                        </div>
-
-                    </div>
 
 
                     <div className={RekariStyle.partnerSectionHeader}>Unsere Partner</div>
