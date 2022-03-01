@@ -1,0 +1,31 @@
+.deviceStatusTable {
+    border-collapse: collapse;
+    width: 60%;
+    margin: 30px auto auto;
+}
+
+.deviceStatusTable > * th, td {
+    text-align: center;
+    padding: 8px;
+    color: black;
+
+}
+
+tr:nth-child(2n+1) {
+    background-color: #f2f2f2
+}
+
+tr:nth-child(2n+2) {
+    background-color: #e3e3e3
+}
+
+.deviceStatusTable > * th {
+    background-color: #04AA6D;
+    color: white;
+}
+.deviceStatusTableSep {
+    text-align: center;
+    font-weight: bold;
+    color: black;
+
+}

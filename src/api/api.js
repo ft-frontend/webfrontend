@@ -423,6 +423,55 @@ const api = {
         });
     },
 
+    getDeviceStatus: function(deviceUUID) {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                fetch(backend + `/v1/device/getStatus?session=${cookies.get('session')}&deviceuuid=${deviceUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    resolve({
+                        success: true,
+                        data: result.data
+                    });
+
+                });
+            }
+
+        });
+    },
+
+
+    getDeviceStatusModules(deviceTypeUUID) {
+        return new Promise((resolve, reject) => {
+                
+                if (cookies.get('session') === undefined) {
+                    redirectToLogin();
+                    resolve(false);
+                } else {
+                    fetch(backend + `/v1/device/getStatusModules?session=${cookies.get('session')}&deviceTypeUUID=${deviceTypeUUID}`).then(res => res.json()).then(result => {
+                        if (checkErrorCodes(result)) {
+                            resolve({success: false});
+                            return;
+                        }
+                        resolve({
+                            success: true,
+                            data: result.data
+                        });
+    
+                    });
+                }
+    
+
+
+        });
+    },
+
     connectToDroneWebsocket: function (deviceuuid) {
         if (cookies.get('session') === undefined) {
             redirectToLogin();

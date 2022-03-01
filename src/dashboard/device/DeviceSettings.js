@@ -6,6 +6,7 @@ import ChangeableTextField from "../../UI/changeableTextField/ChangeableTextFiel
 import ConfirmButton from "../../UI/confirmButton/ConfirmButton";
 import Trash from "../../res/trash.svg";
 import {withTranslation} from "react-i18next";
+import DeviceStatusTable from "./deviceStatus/DeviceStatusTable";
 
 
 class DeviceSettings extends React.Component {
@@ -83,8 +84,14 @@ class DeviceSettings extends React.Component {
                             this.state.adminAccess &&
                             <h4 className={deviceDashboardFontStyle.adminAccessInfo}>Admin-Zugriff</h4>
                         }
+
+
+                        <DeviceStatusTable deviceTypeUUID={this.state.deviceTypeUUID} deviceUUID={this.state.deviceUUID}/>
+
                     </div> :
                     <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{this.state.deviceName}</h1>
+
+
 
 
             }

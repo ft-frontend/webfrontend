@@ -5,7 +5,7 @@ import AddDevice from "../../UI/addDevice/AddDevice";
 
 import deviceDashboardFontStyle from "./deviceDashboardFont.module.css"
 import DeviceImageDrawer from "./DeviceImageDrawer";
-import {withTranslation} from "react-i18next";
+import { withTranslation } from "react-i18next";
 import RegisterDeviceDialog from "../../UI/RegisterDeviceDialog/RegisterDeviceDialog";
 
 class dashboardDevice extends React.Component {
@@ -22,10 +22,10 @@ class dashboardDevice extends React.Component {
             r.forEach(device => {
 
 
-                this.state.deviceTypeList.push( {
-                    link: "/dashboard/device/"+device.UUID,
+                this.state.deviceTypeList.push({
+                    link: "/dashboard/device/" + device.UUID,
                     text: device.name,
-                    img:DeviceImageDrawer(device.name)
+                    img: DeviceImageDrawer(device.name)
                 });
             })
             this.setState({
@@ -35,8 +35,20 @@ class dashboardDevice extends React.Component {
     }
 
     render() {
-        const {t} = this.props;
-        return (<div><h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>{t('selectDevice')}</h1><RegisterDeviceDialog/>{ this.state.renderList &&<Selector items={this.state.deviceTypeList}/>}</div>)
+        const { t } = this.props;
+        return (
+            <div>
+                <h1 className={deviceDashboardFontStyle.deviceDashboardFontCenter}>
+                    {t('selectDevice')}
+                </h1>
+                
+                <RegisterDeviceDialog />
+                
+                {
+                    this.state.renderList && <Selector items={this.state.deviceTypeList} />
+                }
+            </div>
+        )
     }
 
 }
