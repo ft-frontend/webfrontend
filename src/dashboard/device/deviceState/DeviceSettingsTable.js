@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { withTranslation } from 'react-i18next';
 import api from "../../../api/api";
 import uuid from "uuid";
+import EditableCell from './EditableCell';
 
-import DeviceStateTableStyle from "./DeviceStateTableStyle.module.css"
+import DeviceSettingsTableStyle from "./DeviceSettingsTableStyle.module.css"
+import { BsFillPencilFill } from 'react-icons/bs';
 
 class DeviceSettingsTable extends Component {
 
@@ -18,18 +20,9 @@ class DeviceSettingsTable extends Component {
         }
 
 
-
-
-
-
     }
 
 
-    /**
-     * 
-     * "data":{"_id":"617c583a4e39c96c60f3bd34","deviceUUID":"e58d06a1-a960-4352-90b4-117b4524065b","name":"Neue Drohne","uuid":"a362e353-3bc9-46b2-9b19-a352a533695e","status":[{"UUID":"fd847120-e3f8-4896-84e8-c93fa49517b8","variables":[{"UUID":"6e35c494-b7d0-4eb3-9c22-69a7d5313bf4","value":"1235"}]},{"UUID":"e7665479-b649-4730-a4d4-8e0fa21272df","variables":[{"UUID":"9fa79bf9-15f3-4055-b494-b391e3cb4502","value":"1286"}]}]}
-     * 
-     */
 
     componentDidMount() {
 
@@ -38,14 +31,9 @@ class DeviceSettingsTable extends Component {
             api.getDeviceSettings(this.props.deviceUUID).then(settings => {
                 const tableElements = [];
                 settings.data.forEach((element) => {
-                   
+
 
                     const currentModuleElement = module.data.find(element2 => element2.UUID === element.UUID);
-
-
-
-
-
 
                     const variables = [];
                     element.variables.forEach((variable) => {
@@ -56,14 +44,14 @@ class DeviceSettingsTable extends Component {
                         if((currentVariableElement.type === "number"||currentVariableElement.type === "string")&&Object(variable.value)!==variable.value){
 
                         variables.push({
-                            uuid: variable.UUID,
+                            UUID: variable.UUID,
                             name: currentVariableElement.name,
                             value: variable.value
                         })
 
                     }else{
                         variables.push({
-                            uuid: variable.UUID,
+                            UUID: variable.UUID,
                             name: currentVariableElement.name,
                             value: "Data Type not supported yet",
                             dataError: true
@@ -76,7 +64,7 @@ class DeviceSettingsTable extends Component {
 
 
                     tableElements.push({
-                        uuid: element.UUID,
+                        UUID: element.UUID,
                         name: currentModuleElement.name,
                         variables: variables
                     })
@@ -96,25 +84,28 @@ class DeviceSettingsTable extends Component {
         const obj = this;
         this.liveWebsocket = api.deviceLiveUpdate(this.props.deviceUUID);
         this.liveWebsocket.onmessage = (event) => {
+
+            if(JSON.parse(event.data).operation==="ping") return;
+
             const data = JSON.parse(event.data).data;
 
 
             //iterate over all modules
             data.settings.forEach((element) => {
-                const currentModuleElement = obj.state.deviceSettings.find(element2 => element2.uuid === element.UUID);
-                console.log(element)
+                const currentModuleElement = obj.state.deviceSettings.find(element2 => element2.UUID === element.UUID);  
                 //check if module is in table
                 if (currentModuleElement != null) {
                     //iterate over all variables
                     element.variables.forEach((variable) => {
-                        const currentVariableElement = currentModuleElement.variables.find(element2 => element2.uuid === variable.UUID);
-
+                        const currentVariableElement = currentModuleElement.variables.find(element2 => element2.UUID === variable.UUID);
                         //check if variable is in table
                         if (currentVariableElement != null) {
                             //check if there is not an error and the new value is a primitive type
                             //TODO handle GPS Position or other complex types in the future
                             if(!currentVariableElement.dataError&&Object(variable.value)!==variable.value){
+
                             currentVariableElement.value = variable.value;
+
                             }
 
                         }
@@ -142,25 +133,21 @@ class DeviceSettingsTable extends Component {
         return (
             <div>
 
-                <table className={DeviceStateTableStyle.deviceStatusTable}>
+                <table className={DeviceSettingsTableStyle.deviceSettingsTable}>
                     <tbody>
 
                         <tr><th>Einstellung</th><th>Aktueller Wert</th></tr>
                         {
 
                             this.state.deviceSettings.map((element) => (
+                               
 
                                 <>
-                                    <tr uuid={element.UUID} key={uuid()}>
-                                        <td colSpan={2} className={DeviceStateTableStyle.deviceStatusTableSep}>{element.name}</td>
+                                    <tr className={DeviceSettingsTableStyle.deviceSettingsRow} uuid={element.UUID} key={element.UUID}>
+                                        <td colSpan={2} className={DeviceSettingsTableStyle.deviceSettingsTableSep}>{element.name}</td>
                                     </tr>
 
-
-                                    {element.variables.map((variable) => (<tr uuid={variable.uuid} key={uuid()}>
-                                        {/*  debug <td>{variable.UUID}</td>*/}
-                                        <td uuid={variable.uuid}>{variable.name}</td>
-                                        <td>{variable.value}</td>
-                                    </tr>))}
+                                    {element.variables.map((variable) => (<EditableCell uuid={variable.UUID} module={element.UUID} device={this.props.deviceUUID} name={variable.name} value={variable.value}/>))}
 
                                 </>
 

@@ -53,23 +53,25 @@ class DeviceStatusTable extends Component {
                         const currentVariableElement = currentModuleElement.variables.find(element2 => element2.UUID === variable.UUID);
                         //TODO handle GPS Position or other complex types in the future
 
-                        if((currentVariableElement.type === "number"||currentVariableElement.type === "string")&&Object(variable.value)!==variable.value){
+                        if(currentVariableElement!=null) {
+                            if((currentVariableElement.type === "number"||currentVariableElement.type === "string")&&Object(variable.value)!==variable.value){
 
-                        variables.push({
-                            uuid: variable.UUID,
-                            name: currentVariableElement.name,
-                            value: variable.value
-                        })
-
-                    }else{
-                        variables.push({
-                            uuid: variable.UUID,
-                            name: currentVariableElement.name,
-                            value: "Data Type not supported yet",
-                            dataError: true
-                        })  
-                    }
-
+                                variables.push({
+                                    uuid: variable.UUID,
+                                    name: currentVariableElement.name,
+                                    value: variable.value
+                                })
+        
+                            }else{
+                                variables.push({
+                                    uuid: variable.UUID,
+                                    name: currentVariableElement.name,
+                                    value: "Data Type not supported yet",
+                                    dataError: true
+                                })  
+                            }
+        
+                        }
 
 
                     });
@@ -151,12 +153,12 @@ class DeviceStatusTable extends Component {
                             this.state.deviceStatus.map((element) => (
 
                                 <>
-                                    <tr uuid={element.UUID} key={uuid()}>
+                                    <tr uuid={element.UUID} key="{element.UUID}">
                                         <td colSpan={2} className={DeviceStateTableStyle.deviceStatusTableSep}>{element.name}</td>
                                     </tr>
 
 
-                                    {element.variables.map((variable) => (<tr uuid={variable.uuid} key={uuid()}>
+                                    {element.variables.map((variable) => (<tr uuid={variable.uuid} key="{variable.uuid}">
                                         {/*  debug <td>{variable.UUID}</td>*/}
                                         <td uuid={variable.uuid}>{variable.name}</td>
                                         <td>{variable.value}</td>

@@ -1,0 +1,45 @@
+.deviceSettingsTable {
+    border-collapse: collapse;
+    width: 60%;
+    margin: 30px auto auto;
+}
+
+.deviceSettingsTable > * th, td {
+    text-align: center;
+    padding: 8px;
+    color: black;
+    width: 50%;
+
+}
+
+
+.deviceSettingsRow:nth-child(2n+1) {
+    background-color: #f2f2f2
+}
+
+.deviceSettingsRow:nth-child(2n+2) {
+    background-color: #e3e3e3
+}
+
+
+.deviceSettingsTable > * th {
+    background-color: #04AA6D;
+    color: white;
+}
+.deviceSettingsTableSep {
+    text-align: center;
+    font-weight: bold;
+    color: black;
+
+}
+.editPencilIcon {
+    cursor: pointer;
+    margin-left: 10px;
+    color: gray;
+}
+
+.editPencilIcon:hover {
+    color: black;
+
+}
+

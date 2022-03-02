@@ -530,11 +530,12 @@ const api = {
             } else {
                 post.body = JSON.stringify({
                     session: cookies.get('session'),
-                    deviceUUID: deviceUUID,
+                    deviceuuid: deviceUUID,
                     module: module,
                     variable: variable,
                     value: value
                 });
+                console.log(value);
                 fetch(backend + `/v1/device/updateSettings`, post).then(res => res.json()).then(result => {
                     if (checkErrorCodes(result)) {
                         resolve({success: false});
