@@ -472,6 +472,96 @@ const api = {
         });
     },
 
+
+    getDeviceSettings: function(deviceUUID) {
+        return new Promise((resolve, reject) => {
+
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                fetch(backend + `/v1/device/getSettings?session=${cookies.get('session')}&deviceuuid=${deviceUUID}`).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    resolve({
+                        success: true,
+                        data: result.data
+                    });
+
+                });
+            }
+
+        });
+    },
+
+       getDeviceSettingsModules(deviceTypeUUID) {
+        return new Promise((resolve, reject) => {
+                
+                if (cookies.get('session') === undefined) {
+                    redirectToLogin();
+                    resolve(false);
+                } else {
+                    fetch(backend + `/v1/device/getSettingsModules?session=${cookies.get('session')}&deviceTypeUUID=${deviceTypeUUID}`).then(res => res.json()).then(result => {
+                        if (checkErrorCodes(result)) {
+                            resolve({success: false});
+                            return;
+                        }
+                        resolve({
+                            success: true,
+                            data: result.data
+                        });
+    
+                    });
+                }
+    
+
+
+        });
+    },
+
+    updateDeviceSettings: function (deviceUUID, module,variable,value) { 
+
+        return new Promise((resolve, reject) => {
+            if (cookies.get('session') === undefined) {
+                redirectToLogin();
+                resolve(false);
+            } else {
+                post.body = JSON.stringify({
+                    session: cookies.get('session'),
+                    deviceUUID: deviceUUID,
+                    module: module,
+                    variable: variable,
+                    value: value
+                });
+                fetch(backend + `/v1/device/updateSettings`, post).then(res => res.json()).then(result => {
+                    if (checkErrorCodes(result)) {
+                        resolve({success: false});
+                        return;
+                    }
+                    resolve({
+                        success: result.success
+                    });
+
+                });
+            }
+
+        });
+
+
+    },
+
+    deviceLiveUpdate(deviceUUID) {
+        if (cookies.get('session') === undefined) {
+            redirectToLogin();
+            return undefined;
+        } else {
+            const client = new W3CWebSocket('ws://localhost/api/v1/device/liveUpdates?session=' + cookies.get("session") + "&device=" + deviceUUID);
+            return client;
+        }
+    },
+
     connectToDroneWebsocket: function (deviceuuid) {
         if (cookies.get('session') === undefined) {
             redirectToLogin();
