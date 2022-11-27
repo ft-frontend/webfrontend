@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/testing/static/css/main.60343817.css",
-    "main.js": "/testing/static/js/main.8c85b2a6.js",
-    "static/js/27.0a9675ec.chunk.js": "/testing/static/js/27.0a9675ec.chunk.js",
-    "static/media/droneicon.svg": "/testing/static/media/droneicon.c6aa330e0f279c5fe66f956b044861ae.svg",
-    "static/media/fawn.svg": "/testing/static/media/fawn.5828b2517f3e3a1c399ea7bce60fe560.svg",
-    "static/media/zigzag.svg": "/testing/static/media/zigzag.cd081373f6cf564c9b8d6704ec23c574.svg",
-    "static/media/file.svg": "/testing/static/media/file.186acf8cbe301658acdec090e917cfb5.svg",
-    "static/media/appSelector.svg": "/testing/static/media/appSelector.bd3d86c2d6d253c4fd85243e998cb583.svg",
-    "static/media/dashboard.svg": "/testing/static/media/dashboard.8b9ee395599107fbdf1364657605087a.svg",
-    "static/media/trash.svg": "/testing/static/media/trash.67e0ef734d17c4b7549e428301bd854c.svg",
-    "static/media/settings.svg": "/testing/static/media/settings.a5437883f8c1ba042c094694106bb4aa.svg",
-    "static/media/flash.svg": "/testing/static/media/flash.d0900ff9d393d9c45ade5fe82189086b.svg",
-    "index.html": "/testing/index.html",
-    "static/media/cloud.svg": "/testing/static/media/cloud.7bb6593348756df6befa3c4eaaa73f2b.svg",
-    "static/media/edit.svg": "/testing/static/media/edit.40b8dda31dda56b8c07628fcb8f3b965.svg",
-    "static/media/ledwallicon.svg": "/testing/static/media/ledwallicon.ec800ee97af1757a2bfc20e931e33162.svg",
-    "static/media/home.svg": "/testing/static/media/home.34f13528b7dbc94ab2707b1fa557aa48.svg",
-    "static/media/getFetch.cjs": "/testing/static/media/getFetch.c780682470504fffbd04.cjs",
-    "static/media/folder.svg": "/testing/static/media/folder.b68ce656a8259ffc4b2d7d9ef4e677b8.svg",
-    "static/media/other.svg": "/testing/static/media/other.3990e1b0724fab466300334fd25ce4a6.svg",
-    "static/media/back.svg": "/testing/static/media/back.25c745034ac4e52706028809e045fcdb.svg"
+    "main.css": "/webfrontend/static/css/main.60343817.css",
+    "main.js": "/webfrontend/static/js/main.90a22e3d.js",
+    "static/js/27.0a9675ec.chunk.js": "/webfrontend/static/js/27.0a9675ec.chunk.js",
+    "static/media/droneicon.svg": "/webfrontend/static/media/droneicon.c6aa330e0f279c5fe66f956b044861ae.svg",
+    "static/media/fawn.svg": "/webfrontend/static/media/fawn.5828b2517f3e3a1c399ea7bce60fe560.svg",
+    "static/media/zigzag.svg": "/webfrontend/static/media/zigzag.cd081373f6cf564c9b8d6704ec23c574.svg",
+    "static/media/file.svg": "/webfrontend/static/media/file.186acf8cbe301658acdec090e917cfb5.svg",
+    "static/media/appSelector.svg": "/webfrontend/static/media/appSelector.bd3d86c2d6d253c4fd85243e998cb583.svg",
+    "static/media/dashboard.svg": "/webfrontend/static/media/dashboard.8b9ee395599107fbdf1364657605087a.svg",
+    "static/media/trash.svg": "/webfrontend/static/media/trash.67e0ef734d17c4b7549e428301bd854c.svg",
+    "static/media/settings.svg": "/webfrontend/static/media/settings.a5437883f8c1ba042c094694106bb4aa.svg",
+    "index.html": "/webfrontend/index.html",
+    "static/media/flash.svg": "/webfrontend/static/media/flash.d0900ff9d393d9c45ade5fe82189086b.svg",
+    "static/media/cloud.svg": "/webfrontend/static/media/cloud.7bb6593348756df6befa3c4eaaa73f2b.svg",
+    "static/media/edit.svg": "/webfrontend/static/media/edit.40b8dda31dda56b8c07628fcb8f3b965.svg",
+    "static/media/ledwallicon.svg": "/webfrontend/static/media/ledwallicon.ec800ee97af1757a2bfc20e931e33162.svg",
+    "static/media/home.svg": "/webfrontend/static/media/home.34f13528b7dbc94ab2707b1fa557aa48.svg",
+    "static/media/getFetch.cjs": "/webfrontend/static/media/getFetch.c780682470504fffbd04.cjs",
+    "static/media/folder.svg": "/webfrontend/static/media/folder.b68ce656a8259ffc4b2d7d9ef4e677b8.svg",
+    "static/media/other.svg": "/webfrontend/static/media/other.3990e1b0724fab466300334fd25ce4a6.svg",
+    "static/media/back.svg": "/webfrontend/static/media/back.25c745034ac4e52706028809e045fcdb.svg"
   },
   "entrypoints": [
     "static/css/main.60343817.css",
-    "static/js/main.8c85b2a6.js"
+    "static/js/main.90a22e3d.js"
   ]
 }
