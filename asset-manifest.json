@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/webfrontend/static/css/main.60343817.css",
-    "main.js": "/webfrontend/static/js/main.90a22e3d.js",
+    "main.js": "/webfrontend/static/js/main.2415df24.js",
     "static/js/27.0a9675ec.chunk.js": "/webfrontend/static/js/27.0a9675ec.chunk.js",
     "static/media/droneicon.svg": "/webfrontend/static/media/droneicon.c6aa330e0f279c5fe66f956b044861ae.svg",
     "static/media/fawn.svg": "/webfrontend/static/media/fawn.5828b2517f3e3a1c399ea7bce60fe560.svg",
@@ -24,6 +24,6 @@
   },
   "entrypoints": [
     "static/css/main.60343817.css",
-    "static/js/main.90a22e3d.js"
+    "static/js/main.2415df24.js"
   ]
 }
